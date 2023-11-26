@@ -64,7 +64,7 @@ function ToolsSection() {
           modules={[Autoplay]}
           className="max-w-[80%] h-full "
         > */}
-          {data.map((item, index) => {
+          {/* {data.map((item, index) => {
             return (
               // <SwiperSlide key={index}>
                 <Image
@@ -75,7 +75,7 @@ function ToolsSection() {
                 ></Image>
               // </SwiperSlide>
             );
-          })}
+          })} */}
         {/* </Swiper> */}
       </div>
     </section>
