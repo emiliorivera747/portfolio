@@ -3,38 +3,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import Image from "next/image";
+import Slider from "./Slider";
+import { motion } from "framer-motion";
 
-function ToolsSection() {
-  const data = [
-    {
-      imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1700934047/Copy_of_Space_and_Astronomy_Film_Video_Intro_11_tjnkdq.png",
-    },
-    {
-      imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1700934047/Copy_of_Space_and_Astronomy_Film_Video_Intro_11_tjnkdq.png",
-    },
-    {
-      imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1700934047/Copy_of_Space_and_Astronomy_Film_Video_Intro_11_tjnkdq.png",
-    },
-    {
-      imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1700934047/Copy_of_Space_and_Astronomy_Film_Video_Intro_11_tjnkdq.png",
-    },
-    {
-      imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1700934047/Copy_of_Space_and_Astronomy_Film_Video_Intro_11_tjnkdq.png",
-    },
-    {
-      imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1700934047/Copy_of_Space_and_Astronomy_Film_Video_Intro_11_tjnkdq.png",
-    },
-    {
-      imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1700934047/Copy_of_Space_and_Astronomy_Film_Video_Intro_11_tjnkdq.png",
-    },
-  ];
+function ToolsSection({ toolData }) {
+
 
   return (
     <section className="min-h-screen h-auto bg-black w-screen overflow-auto">
@@ -46,38 +19,22 @@ function ToolsSection() {
         </div>
         {/* <p className="text-gray-300 text-[20px]">Using the latest Technology</p> */}
       </div>
-      <div className="flex flex-row w-full item-center justify-center">
-        {" "}
-        <h1 className="text-2xl text-zinc-400 pt-6 pb-2 justify-center ">
-          Front End
-        </h1>
-      </div>
-      <div className="p-10 ">
-        {/* <Swiper
-          slidesPerView={5}
-          loop={true}
-          autoplay={{
-            delay: 0,
-            disableOnInteraction: false,
-          }}
-          speed={6000}
-          modules={[Autoplay]}
-          className="max-w-[80%] h-full "
-        > */}
-          {/* {data.map((item, index) => {
-            return (
-              // <SwiperSlide key={index}>
-                <Image
-                  className="bg-white rounded-full"
-                  src={item.imageUrl}
-                  width={500}
-                  height={500}
-                ></Image>
-              // </SwiperSlide>
-            );
-          })} */}
-        {/* </Swiper> */}
-      </div>
+      {toolData?.map((item, index) => {
+        return (
+          <>
+            <div className="flex flex-col w-full items-center justify-center">
+              <h1 className="text-2xl text-zinc-400 pt-6 pb-2 justify-center ">
+                {item.title}
+              </h1>
+            </div>
+            <Slider
+              data={item.data}
+              reverseDirection={index == 1 ? true : false}
+              slides={item.slides}
+            />
+          </>
+        );
+      })}
     </section>
   );
 }

@@ -9,6 +9,135 @@ import Contact from "@/components/Contact";
 
 
 export default function Home() {
+  const frontEndData = [
+    {
+      name: "React",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/14_k0egpe.png",
+    },
+    {
+      name: "Tailwind",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/15_pzbsyb.png",
+    },
+    {
+      name: "Sass",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/16_bonjj4.png",
+    },
+
+    {
+      name: "Figma",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/17_lvirvm.png",
+    },
+    {
+      name: "Redux Tool Kit",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/19_tvxcu4.png",
+    },
+    {
+      name: "CSS",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032024/18_krpore.png",
+    },
+    {
+      name: "HTML",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/20_dj1kp5.png",
+    },
+  ];
+  const backEndData = [
+    {
+      name: "Express",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701033384/Copy_of_Space_and_Astronomy_Film_Video_Intro_13_wooz0a.png",
+    },
+    {
+      name: "Node js",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/22_p333bu.png",
+    },
+    {
+      name: "MongoDB",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/23_xbkhqi.png",
+    },
+
+    {
+      name: "Postman",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032032/27_jorltd.png",
+    },
+  ];
+  const bothData = [
+    {
+      name: "Auth0",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/24_rox9ad.png",
+    },
+    {
+      name: "JavaScript",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032031/25_cfrb7c.png",
+    },
+    {
+      name: "Cloudinary",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/16_bonjj4.png",
+    },
+
+    {
+      name: "GitHub",
+      imageUrl:
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701048416/31_kpgvez.png",
+    },
+    {
+      name: "Heroku",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032032/28_zxknjp.png",
+    },
+  ];
+  const frontEndDataTwo = [
+    {
+      name: "Nextjs",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701048415/30_d4smdo.png",
+    },
+    {
+      name: "React",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/14_k0egpe.png",
+    },
+    {
+      name: "Tailwind",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/15_pzbsyb.png",
+    },
+    {
+      name: "Sass",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/16_bonjj4.png",
+    },
+    {
+      name: "Git Hub",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701048416/31_kpgvez.png",
+    },
+    {
+      name: "HTML",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/20_dj1kp5.png",
+    },
+  ];
+  const toolData = [
+    { title: "Front End", data: frontEndData, slides: 4 },
+    { title: "Back End", data: backEndData, slides: 4},
+    { title: "Front End & Back End", data: bothData, slides: 4 },
+  ];
+  const toolDataTwo = [
+    {title: 'Front End', data: frontEndDataTwo, slides: 4}
+  ]
   const [mousePosition, setMousePosition] = useState({
     x: 0,
     y: 0,
@@ -32,7 +161,7 @@ export default function Home() {
       width: 20,
       x: mousePosition.x - 16,
       y: mousePosition.y - 16,
-      backgroundColor: "black",
+      backgroundColor: "white",
     },
     default2: {
       height: 20,
@@ -50,8 +179,8 @@ export default function Home() {
       mixBlendMode: "difference",
     },
   };
-  const textEnter = () => setCursorVariant("text");
 
+  const textEnter = () => setCursorVariant("text");
   const textLeave = () => setCursorVariant("default");
   const textLeaveWhiteBg = () => setCursorVariant("default2");
 
@@ -89,7 +218,7 @@ export default function Home() {
         textColor="text-zinc-200"
         title={"Tools"}
       /> */}
-      <ToolsSection></ToolsSection>
+      <ToolsSection toolData={toolData}></ToolsSection>
       <ProjectSection
         title={"My Portfolio"}
         videoUrl={
@@ -103,7 +232,7 @@ export default function Home() {
         textColor="text-zinc-200"
         title={"Tools"}
       /> */}
-      <ToolsSection></ToolsSection>
+      <ToolsSection toolData={toolDataTwo}></ToolsSection>
       <Contact textEnter={textEnter} textLeave={textLeaveWhiteBg}></Contact>
       <motion.div
         className="cursor"
