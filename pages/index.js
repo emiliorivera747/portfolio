@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import MainPageSectionHeader from "@/components/MainPageSectionHeader";
 import Contact from "@/components/Contact";
 
-
 export default function Home() {
   const frontEndData = [
     {
@@ -63,7 +62,11 @@ export default function Home() {
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/23_xbkhqi.png",
     },
-
+    {
+      name: "Mongoose",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/23_xbkhqi.png",
+    },
     {
       name: "Postman",
       imageUrl:
@@ -90,7 +93,7 @@ export default function Home() {
     {
       name: "GitHub",
       imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701048416/31_kpgvez.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701048416/31_kpgvez.png",
     },
     {
       name: "Heroku",
@@ -102,7 +105,7 @@ export default function Home() {
     {
       name: "Nextjs",
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1701048415/30_d4smdo.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701048415/29_wbkxgo.png",
     },
     {
       name: "React",
@@ -122,7 +125,7 @@ export default function Home() {
     {
       name: "Git Hub",
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1701048416/31_kpgvez.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032032/26_iyfvkr.png",
     },
     {
       name: "HTML",
@@ -132,12 +135,12 @@ export default function Home() {
   ];
   const toolData = [
     { title: "Front End", data: frontEndData, slides: 4 },
-    { title: "Back End", data: backEndData, slides: 4},
+    { title: "Back End", data: backEndData, slides: 4 },
     { title: "Front End & Back End", data: bothData, slides: 4 },
   ];
   const toolDataTwo = [
-    {title: 'Front End', data: frontEndDataTwo, slides: 4}
-  ]
+    { title: "Front End", data: frontEndDataTwo, slides: 4 },
+  ];
   const [mousePosition, setMousePosition] = useState({
     x: 0,
     y: 0,
@@ -193,16 +196,6 @@ export default function Home() {
           "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
         }
       />
-      {/* <div className="p-12 flex justify-center">
-        {" "}
-        <h1 className="text-6xl">Projects</h1>
-      </div> */}
-      {/* <MainPageSectionHeader
-        textSizeLg="lg:text-8xl"
-        textSizeSm="text-4xl"
-        textColor="text-zinc-200"
-        title={"Projects"}
-      /> */}
       <ProjectSection
         title={"Casa Chirilagua"}
         videoUrl={
@@ -211,28 +204,51 @@ export default function Home() {
         buttonLabel={"Learn About Project"}
         textEnter={textEnter}
         textLeave={textLeave}
+        titleColor={"text-black"}
+        titleFont={"font-bold"}
+        buttonTextColor={"text-white"}
+        buttonBorderColor={"border-white"}
+        buttonBgColor={"hover:bg-white"}
+        buttonHoverTextColor={"hover:text-black"}
+
       />
-      {/* <MainPageSectionHeader
-        textSizeLg="lg:text-8xl"
-        textSizeSm="text-4xl"
-        textColor="text-zinc-200"
-        title={"Tools"}
-      /> */}
-      <ToolsSection toolData={toolData}></ToolsSection>
+      <ToolsSection
+        toolData={toolData}
+        bgColor={"bg-black"}
+        textColor={"text-white"}
+      ></ToolsSection>
       <ProjectSection
-        title={"My Portfolio"}
+        title={"My Portfolio Website"}
         videoUrl={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1701457873/Space_and_Astronomy_Film_Video_Intro_12_ooqdhv.mp4"
         }
         buttonLabel={"Learn About Project"}
+        titleColor={"text-white"}
+        titleFont={"font-extrabold"}
+        buttonTextColor={"text-white"}
+        buttonBorderColor={"border-white"}
+        buttonBgColor={"hover:bg-white"}
+        buttonHoverTextColor={"hover:text-black"}
+
       />
-      {/* <MainPageSectionHeader
-        textSizeLg="lg:text-7xl"
-        textSizeSm="text-4xl"
-        textColor="text-zinc-200"
-        title={"Tools"}
-      /> */}
-      <ToolsSection toolData={toolDataTwo}></ToolsSection>
+      <ProjectSection
+        title={"Responsive Design"}
+        titleColor={"text-black"}
+        titleFont={"font-extrabold"}
+        videoUrl={
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1701458220/Space_and_Astronomy_Film_Video_Intro_13_i1hkpv.mp4"
+        }
+        buttonLabel={"Learn About Project"}
+        buttonTextColor={"text-black"}
+        buttonBorderColor={"border-black"}
+        buttonBgColor={"hover:bg-black"}
+        buttonHoverTextColor={"hover:text-white"}
+      />
+      <ToolsSection
+        toolData={toolDataTwo}
+        bgColor={"bg-white"}
+        textColor={"text-black"}
+      ></ToolsSection>
       <Contact textEnter={textEnter} textLeave={textLeaveWhiteBg}></Contact>
       <motion.div
         className="cursor"

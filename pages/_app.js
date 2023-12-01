@@ -1,8 +1,9 @@
 import "../styles/globals.scss";
 import Navbar from "@/components/Navbar";
-import { Open_Sans} from 'next/font/google';
+import { Open_Sans } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 
-const openSans = Open_Sans({ subsets: ['latin'], weight: ['400'] });
+const openSans = Open_Sans({ subsets: ["latin"], weight: ["400"] });
 export default function App({ Component, pageProps }) {
   const navBarData = [
     {
@@ -11,7 +12,7 @@ export default function App({ Component, pageProps }) {
       url: "/projects",
     },
     {
-      id: 2, 
+      id: 2,
       label: "About",
       url: "/about",
     },
@@ -21,6 +22,7 @@ export default function App({ Component, pageProps }) {
       {" "}
       <Navbar menuItems={navBarData} />
       <Component {...pageProps} />
+      <ToastContainer />
     </div>
   );
 }

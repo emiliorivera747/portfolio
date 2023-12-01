@@ -2,7 +2,11 @@ import React from 'react'
 
 function about() {
   return (
-    <div>about</div>
+    <section className="h-screen w-screen bg-black">
+    <div className="flex items-center justify-center h-full w-full">
+      <h6 className="text-7xl text-white">Comming Soon...</h6>
+    </div>
+  </section>
   )
 }
 

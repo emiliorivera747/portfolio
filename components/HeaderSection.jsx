@@ -53,30 +53,30 @@ function HeaderSection({ textEnter, textLeave }) {
         variants={variants}
         className="h-full w-full flex flex-col"
       >
-        <motion.div className="flex h-4/5 items-end justify-center">
-          <motion.div style={{ x: xName }} className="">
+        <motion.div className="flex h-3/4 items-end justify-center">
+          <motion.div className="">
             {" "}
             <h6
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className="text-white text-6xl lg:text-9xl font-semibold tracking-wide "
+              className="text-white text-6xl lg:text-9xl font-semibold tracking-wide text-center"
             >
               Emilio Rivera
             </h6>
           </motion.div>
         </motion.div>
         <div className="h-1/5 flex flex-row items-center justify-center">
-          <motion.h1
+          <h1
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
-            className="text-zinc-500 mb-4 text-lg lg:text-4xl pl-2"
+            className="text-black mb-4 text-lg lg:text-4xl pl-2"
             style={{ x: xImA }}
           >
-            I'm a{" "}
-            <span className="text-blue-400 text-lg lg:text-4xl">
+            {"I'm a"}{" "}
+            <span className="text-red-500 font-semibold text-lg lg:text-4xl">
               {typeEffect}
             </span>
-          </motion.h1>
+          </h1>
         </div>
       </motion.div>
     </section>

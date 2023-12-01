@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const variants = {
   initial: {
     y: 500,
@@ -17,7 +18,7 @@ const variants = {
   },
 };
 
-function Contact({ textEnter, textLeave}) {
+function Contact({ textEnter, textLeave }) {
   const form = useRef();
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -34,15 +35,20 @@ function Contact({ textEnter, textLeave}) {
       )
       .then(
         (result) => {
-          console.log(result);
+          toast.success("Thank You! I will be in touch with you shortly.", {
+            position: toast.POSITION.TOP_RIGHT,
+          });
           setSuccess(true);
         },
         (error) => {
-          console.log(error);
+          toast.error("An Error occurred on Submission" + error, {
+            position: toast.POSITION.TOP_RIGHT,
+          });
           setError(true);
         }
       );
   };
+
 
 
   return (
@@ -59,7 +65,7 @@ function Contact({ textEnter, textLeave}) {
             variants={variants}
             className="text-white text-4xl md:text-7xl font-bold leading-none"
           >
-            Let's Work Together
+            {"Let's Work Together"}
           </motion.h1>
           <motion.div variants={variants} className="">
             <h1
@@ -77,22 +83,6 @@ function Contact({ textEnter, textLeave}) {
               emiliorivera174@gmail.com
             </span>
           </motion.div>
-          {/* <motion.div variants={variants} className="">
-            <h1
-              onMouseEnter={textEnter}
-              onMouseLeave={textLeave}
-              className="text-white font-bold"
-            >
-              Address
-            </h1>
-            <span
-              onMouseEnter={textEnter}
-              onMouseLeave={textLeave}
-              className="text-white text-sm"
-            >
-              61 Gordon Blvd, Woodbridge VA
-            </span>
-          </motion.div> */}
           <motion.div variants={variants} className="">
             <h1
               onMouseEnter={textEnter}
@@ -116,7 +106,7 @@ function Contact({ textEnter, textLeave}) {
             onSubmit={sendEmail}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ delay: 2, duration: 1 }}
+            transition={{ delay: 1, duration: 1 }}
             className="flex flex-col gap-4 p-4 md:p-10"
           >
             <input
@@ -127,7 +117,7 @@ function Contact({ textEnter, textLeave}) {
             />
             <input
               name="email"
-              type="text"
+              type="email"
               className="bg-transparent border-white p-2 text-white rounded-sm border"
               placeholder="Email"
             />
@@ -146,7 +136,6 @@ function Contact({ textEnter, textLeave}) {
             {success && "Success"}
           </motion.form>
         </motion.div>
-
       </motion.div>
     </section>
   );

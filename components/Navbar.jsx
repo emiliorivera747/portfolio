@@ -1,6 +1,7 @@
 import { useState } from "react";
 import profilePicture from "../images/portfolioImage.jpg";
 import Link from "next/link";
+import Image from "next/image";
 
 function Navbar({ menuItems }) {
   const [openMenu, setOpenMenu] = useState(false);
@@ -33,12 +34,11 @@ space-x-20 my-2"
       >
         {/* Logo */}
         <div className="z-30 justify-self-start">
-          <img src={profilePicture} alt="" />
           <Link
             href="/"
             className={`tracking-widest hover:text-softRed  ${logoBgColor} rounded-lg p-2 ${logoTextColor} text-white font-bold`}
           >
-            Emilio Rivera's Portfolio
+            {"Emilio Rivera's Portfolio"}
           </Link>
         </div>
 
@@ -76,9 +76,9 @@ space-x-20 my-2"
         id="menu"
         className={` ${openClass} fixed inset-0 z-20 ${isHidden} flex-col items-center self-end w-full h-full m-h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500 opacity-95 bg-black`}
       >
-        {menuItems.map((item) => {
+        {menuItems.map((item, index) => {
           return (
-            <div className="w-full py-3 text-center">
+            <div key={index} className="w-full py-3 text-center">
               <Link
                 key={item.id}
                 href={item.url}

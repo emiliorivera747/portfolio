@@ -1,12 +1,18 @@
 import React from "react";
 import { motion } from "framer-motion";
-
+import Link from 'next/link'
 function ProjectSection({
   title,
   videoUrl,
   buttonLabel,
   textEnter,
   textLeave,
+  titleColor,
+  titleFont,
+  buttonTextColor,
+  buttonBgColor,
+  buttonBorderColor,
+  buttonHoverTextColor,
 }) {
   return (
     <section className="relative h-screen w-screen">
@@ -14,7 +20,7 @@ function ProjectSection({
         <h1
           onMouseEnter={textEnter}
           onMouseLeave={textLeave}
-          className="absolute font-bold text-4xl text-black pt-6"
+          className={`absolute ${titleFont} text-4xl ${titleColor} pt-3`}
         >
           {title}
         </h1>
@@ -27,9 +33,9 @@ function ProjectSection({
         ></video>
         <div className="flex items-end justify-center ">
           {" "}
-          <button className="absolute rounded-md border-4 border-white bg-transparent text-white w-60 h-12 font-semibold self-center p-2 bottom-0 hover:bg-white hover:text-black mb-6">
+          <Link href={"/project1"} className={`absolute rounded-md border-2 ${buttonBorderColor} bg-transparent ${buttonTextColor} w-60 h-12 font-semibold self-center justify-center text-center p-2 bottom-0 ${buttonBgColor} ${buttonHoverTextColor} mb-6`}>
             {buttonLabel}
-          </button>
+          </Link>
         </div>
       </motion.div>
     </section>
