@@ -30,6 +30,7 @@ function ProjectSection({
           autoPlay={true}
           loop
           muted
+          playsInline
         ></video>
         <div className="flex items-end justify-center ">
           {" "}

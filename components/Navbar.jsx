@@ -1,7 +1,5 @@
 import { useState } from "react";
-import profilePicture from "../images/portfolioImage.jpg";
 import Link from "next/link";
-import Image from "next/image";
 
 function Navbar({ menuItems }) {
   const [openMenu, setOpenMenu] = useState(false);
@@ -21,7 +19,7 @@ function Navbar({ menuItems }) {
       setOpenClass("");
       setIsHidden("hidden");
       setLogoTextColor("text-black");
-      setLogoBgColor("hover:bg-zinc-300");
+      setLogoBgColor("hover:bg-zinc-800");
     }
   };
 

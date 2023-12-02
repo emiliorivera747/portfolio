@@ -220,7 +220,7 @@ export default function Home() {
       <ProjectSection
         title={"My Portfolio Website"}
         videoUrl={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1701457873/Space_and_Astronomy_Film_Video_Intro_12_ooqdhv.mp4"
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1701549492/Space_and_Astronomy_Film_Video_Intro_14_fwhk3u.mp4"
         }
         buttonLabel={"Learn About Project"}
         titleColor={"text-white"}
@@ -232,16 +232,16 @@ export default function Home() {
 
       />
       <ProjectSection
-        title={"Responsive Design"}
-        titleColor={"text-black"}
+        title={""}
+        titleColor={"text-zinc-500"}
         titleFont={"font-extrabold"}
         videoUrl={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1701458220/Space_and_Astronomy_Film_Video_Intro_13_i1hkpv.mp4"
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1701557230/Space_and_Astronomy_Film_Video_Intro_16_fjtbwv.mp4"
         }
         buttonLabel={"Learn About Project"}
-        buttonTextColor={"text-black"}
-        buttonBorderColor={"border-black"}
-        buttonBgColor={"hover:bg-black"}
+        buttonTextColor={"text-gray-500"}
+        buttonBorderColor={"border-gray-500"}
+        buttonBgColor={"hover:bg-gray-500"}
         buttonHoverTextColor={"hover:text-white"}
       />
       <ToolsSection

@@ -1,16 +1,11 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { Autoplay } from "swiper/modules";
-import Image from "next/image";
 import Slider from "./Slider";
-import { motion } from "framer-motion";
-
 function ToolsSection({ toolData, bgColor, textColor }) {
-
-
   return (
-    <section className={`relative min-h-screen h-auto ${bgColor} w-screen overflow-auto`}>
+    <section
+      className={`relative min-h-screen h-auto ${bgColor} w-screen overflow-auto`}
+    >
       <div className="flex flex-col justify-center items-center">
         <div className="flex flex-col items-center ">
           <h1 className={`font-bold text-4xl ${textColor} pt-6 pb-2`}>

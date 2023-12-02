@@ -73,7 +73,7 @@ function HeaderSection({ textEnter, textLeave }) {
             style={{ x: xImA }}
           >
             {"I'm a"}{" "}
-            <span className="text-red-500 font-semibold text-lg lg:text-4xl">
+            <span className="text-red-500 text-lg lg:text-4xl">
               {typeEffect}
             </span>
           </h1>
