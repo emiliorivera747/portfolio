@@ -17,7 +17,7 @@ function ToolsSection({ toolData, bgColor, textColor }) {
         return (
           <>
             <div className="flex flex-col w-full items-center justify-center">
-              <h1 className="text-2xl text-zinc-500 pt-6 pb-2 justify-center ">
+            <h1 className={`text-2xl ${textColor} pt-6 pb-2 justify-center `}>
                 {item.title}
               </h1>
             </div>

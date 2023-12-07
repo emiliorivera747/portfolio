@@ -8,11 +8,16 @@ export default function App({ Component, pageProps }) {
   const navBarData = [
     {
       id: 1,
+      label: "Home",
+      url: "/",
+    },
+    {
+      id: 2,
       label: "Projects",
       url: "/projects",
     },
     {
-      id: 2,
+      id: 3,
       label: "About",
       url: "/about",
     },

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import HeaderSection from "@/components/HeaderSection";
 import ProjectSection from "@/components/ProjectSection";
 import ToolsSection from "@/components/ToolsSection";
@@ -8,6 +8,11 @@ import MainPageSectionHeader from "@/components/MainPageSectionHeader";
 import Contact from "@/components/Contact";
 
 export default function Home() {
+  // const [screenWidth, setScreenWidth] = useState(window ? window.innerWidth : "" );
+
+
+
+
   const frontEndData = [
     {
       name: "React",
@@ -166,6 +171,13 @@ export default function Home() {
       y: mousePosition.y - 16,
       backgroundColor: "white",
     },
+    none: {
+      height: 0,
+      width: 0,
+      x: mousePosition.x - 16,
+      y: mousePosition.y - 16,
+      // backgroundColor: "white",
+    },
     default2: {
       height: 20,
       width: 20,
@@ -186,31 +198,34 @@ export default function Home() {
   const textEnter = () => setCursorVariant("text");
   const textLeave = () => setCursorVariant("default");
   const textLeaveWhiteBg = () => setCursorVariant("default2");
+  const textEnterNone = () => setCursorVariant("none");
+  const textLeaveNone = () => setCursorVariant("none");
 
   return (
     <div className={"flex min-h-screen flex-col bg-white container"}>
       <HeaderSection
-        textEnter={textEnter}
+        textEnter={ textEnter}
         textLeave={textLeave}
         videoUrl={
           "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
         }
       />
       <ProjectSection
-        title={"Casa Chirilagua"}
+        title={"Casa Chirilagua Full Stack Project"}
         videoUrl={
           "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
         }
-        buttonLabel={"Learn About Project"}
+        buttonLabel={"Learn More"}
         textEnter={textEnter}
         textLeave={textLeave}
-        titleColor={"text-black"}
+        titleColor={"text-white md:text-black"}
         titleFont={"font-bold"}
         buttonTextColor={"text-white"}
         buttonBorderColor={"border-white"}
         buttonBgColor={"hover:bg-white"}
         buttonHoverTextColor={"hover:text-black"}
-
+        bgColor={"bg-black"}
+        videoCover={"md:object-cover"}
       />
       <ToolsSection
         toolData={toolData}
@@ -222,34 +237,39 @@ export default function Home() {
         videoUrl={
           "https://res.cloudinary.com/dcss55nem/video/upload/v1701549492/Space_and_Astronomy_Film_Video_Intro_14_fwhk3u.mp4"
         }
-        buttonLabel={"Learn About Project"}
-        titleColor={"text-white"}
+        buttonLabel={"Learn More"}
+        titleColor={"text-black"}
         titleFont={"font-extrabold"}
-        buttonTextColor={"text-white"}
-        buttonBorderColor={"border-white"}
-        buttonBgColor={"hover:bg-white"}
-        buttonHoverTextColor={"hover:text-black"}
+        buttonTextColor={"text-black md:text-white"}
+        buttonBorderColor={"border-black md:border-white"}
+        buttonBgColor={"hover:bg-black md:hover:bg-white"}
+        buttonHoverTextColor={"hover:text-white md:hover:text-black"}
+        videoCover={"md:object-cover"}
 
       />
       <ProjectSection
-        title={""}
-        titleColor={"text-zinc-500"}
+        title={"Responsive Design"}
+        titleColor={"text-black"}
         titleFont={"font-extrabold"}
         videoUrl={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1701557230/Space_and_Astronomy_Film_Video_Intro_16_fjtbwv.mp4"
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1701612656/Space_and_Astronomy_Film_Video_Intro_19_flipwd.mp4"
         }
-        buttonLabel={"Learn About Project"}
-        buttonTextColor={"text-gray-500"}
-        buttonBorderColor={"border-gray-500"}
-        buttonBgColor={"hover:bg-gray-500"}
+        buttonLabel={"Learn More"}
+        buttonTextColor={"text-black"}
+        buttonBorderColor={"border-black"}
+        buttonBgColor={"hover:bg-black"}
         buttonHoverTextColor={"hover:text-white"}
+        videoCover={"object-cover"}
       />
       <ToolsSection
         toolData={toolDataTwo}
         bgColor={"bg-white"}
         textColor={"text-black"}
       ></ToolsSection>
-      <Contact textEnter={textEnter} textLeave={textLeaveWhiteBg}></Contact>
+      <Contact
+        textEnter={textEnter}
+        textLeave={textLeave}
+      ></Contact>
       <motion.div
         className="cursor"
         variants={variants}

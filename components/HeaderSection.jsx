@@ -22,12 +22,12 @@ function HeaderSection({ textEnter, textLeave }) {
     offset: ["end end", "end start"],
   });
 
-  // Use useTransform for both elements separately
-  const xImA = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]); // Adjust the values here
-  const xName = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]); // Adjust the values here
-
   const [typeEffect] = useTypewriter({
-    words: ["Front End Developer", "UX/UI Designer", "Back End Developer"],
+    words: [
+      "Full Stack Developer",
+      "Front End Developer",
+      "Back End Developer",
+    ],
     loop: {},
     typeSpeed: 100,
     deleteSpeed: 40,
@@ -35,49 +35,63 @@ function HeaderSection({ textEnter, textLeave }) {
 
   const backgroundImageUrl =
     "url(https://res.cloudinary.com/dcss55nem/image/upload/v1700934047/Copy_of_Space_and_Astronomy_Film_Video_Intro_11_tjnkdq.png)";
-
+ 
+  
   return (
-    <section
-      ref={ref}
-      className="h-screen w-screen bg-black"
-      style={{
-        backgroundImage: backgroundImageUrl,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        overflow: "hidden",
-      }}
-    >
+    <section ref={ref} className="h-screen w-screen bg-black ">
       <motion.div
         initial="initial"
         whileInView="animate"
         variants={variants}
-        className="h-full w-full flex flex-col"
+        className="absolute h-screen w-screen flex flex-col bg-transparent"
+        style={{
+          backgroundImage: backgroundImageUrl,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          overflow: "hidden",
+        }}
       >
-        <motion.div className="flex h-3/4 items-end justify-center">
-          <motion.div className="">
-            {" "}
-            <h6
+        <div className="h-full flex flex-row items-end justify-center">
+          <div className="flex h-1/3 p-4 ">
+            <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className="text-white text-6xl lg:text-9xl font-semibold tracking-wide text-center"
+              className=" text-zinc-700 font-semibold mb-4 text-4xl lg:text-5xl pl-2"
             >
-              Emilio Rivera
-            </h6>
-          </motion.div>
-        </motion.div>
-        <div className="h-1/5 flex flex-row items-center justify-center">
-          <h1
-            onMouseEnter={textEnter}
-            onMouseLeave={textLeave}
-            className="text-black mb-4 text-lg lg:text-4xl pl-2"
-            style={{ x: xImA }}
-          >
-            {"I'm a"}{" "}
-            <span className="text-red-500 text-lg lg:text-4xl">
-              {typeEffect}
-            </span>
-          </h1>
+              {"I'm a"}{" "}
+              <span className="font-semibold from-orange-400 to-red-700 bg-gradient-to-r bg-clip-text text-transparent text-4xl lg:text-5xl">
+                {typeEffect}
+              </span>
+            </h1>
+          </div>
         </div>
+      </motion.div>
+      <motion.div
+        initial="initial"
+        whileInView="animate"
+        variants={variants}
+        className="lg:relative flex h-3/4 items-center justify-center"
+      >
+        <motion.div className="flex flex-col md:flex-col lg:flex-row justify-evenly w-full lg:gap-56">
+          <div className="">
+            <h1
+              onMouseEnter={textEnter}
+              onMouseLeave={textLeave}
+              className=" text-white text-8xl md:text-[12rem]  lg:text-[9rem] font-semibold  tracking-widest lg:tracking-wide text-center "
+            >
+              {"Emilio"}
+            </h1>
+          </div>
+          <div className="">
+            <h1
+              onMouseEnter={textEnter}
+              onMouseLeave={textLeave}
+              className=" text-white text-8xl md:text-[12rem] lg:text-[9rem] font-semibold tracking-widest lg:tracking-wide text-center "
+            >
+              {"Rivera"}
+            </h1>
+          </div>
+        </motion.div>
       </motion.div>
     </section>
   );

@@ -13,9 +13,11 @@ function ProjectSection({
   buttonBgColor,
   buttonBorderColor,
   buttonHoverTextColor,
+  bgColor,
+  videoCover,
 }) {
   return (
-    <section className="relative h-screen w-screen">
+    <section className={`relative h-screen w-screen ${bgColor}`}>
       <motion.div className="flex flex-col items-center justify-start h-screen">
         <h1
           onMouseEnter={textEnter}
@@ -25,7 +27,7 @@ function ProjectSection({
           {title}
         </h1>
         <video
-          className="h-full w-full object-cover"
+          className={ `h-full w-full ${videoCover}`}
           src={videoUrl}
           autoPlay={true}
           loop

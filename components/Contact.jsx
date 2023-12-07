@@ -107,7 +107,7 @@ function Contact({ textEnter, textLeave }) {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 1, duration: 1 }}
-            className="flex flex-col gap-4 p-4 md:p-10"
+            className="flex flex-col gap-4 pt-6 md:p-10"
           >
             <input
               type="text"

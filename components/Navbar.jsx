@@ -24,7 +24,7 @@ function Navbar({ menuItems }) {
   };
 
   return (
-    <nav className="container absolute p-4">
+    <nav className="container relative p-4 bg-black">
       {/*Flex Container For Nav Items  */}
       <div
         className="flex items-center justify-between
@@ -81,6 +81,7 @@ space-x-20 my-2"
                 key={item.id}
                 href={item.url}
                 className="block hover:text-zinc-400"
+                onClick={handleMenuClick}
               >
                 {item.label}
               </Link>
