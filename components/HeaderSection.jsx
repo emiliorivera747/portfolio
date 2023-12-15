@@ -59,7 +59,7 @@ function HeaderSection({ textEnter, textLeave }) {
               className=" text-zinc-700 font-semibold mb-4 text-4xl lg:text-5xl pl-2"
             >
               {"I'm a"}{" "}
-              <span className="font-semibold from-orange-400 to-red-700 bg-gradient-to-r bg-clip-text text-transparent text-4xl lg:text-5xl">
+              <span className="font-semibold from-red-700 to-red-600 bg-gradient-to-r bg-clip-text text-transparent text-4xl lg:text-5xl">
                 {typeEffect}
               </span>
             </h1>
@@ -77,7 +77,7 @@ function HeaderSection({ textEnter, textLeave }) {
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className=" text-white text-8xl md:text-[12rem]  lg:text-[9rem] font-semibold  tracking-widest lg:tracking-wide text-center "
+              className=" text-white text-8xl sm:text-[12rem]  lg:text-[9rem] font-semibold  tracking-widest lg:tracking-wide text-center "
             >
               {"Emilio"}
             </h1>
@@ -86,7 +86,7 @@ function HeaderSection({ textEnter, textLeave }) {
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className=" text-white text-8xl md:text-[12rem] lg:text-[9rem] font-semibold tracking-widest lg:tracking-wide text-center "
+              className=" text-white text-8xl sm:text-[11rem]  lg:text-[9rem] font-semibold tracking-widest lg:tracking-wide text-center "
             >
               {"Rivera"}
             </h1>

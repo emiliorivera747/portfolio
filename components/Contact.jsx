@@ -54,7 +54,7 @@ function Contact({ textEnter, textLeave }) {
   return (
     <section className="h-screen w-screen bg-black overflow-auto">
       <motion.div
-        className="flex flex-col md:flex-row items-start gap-50 p-12 md:p-24 max-w-full"
+        className="flex flex-col sm:flex-row items-start gap-50 p-12 md:p-24 max-w-full w-full"
         initial="initial"
         whileInView="animate"
       >
@@ -63,11 +63,11 @@ function Contact({ textEnter, textLeave }) {
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
             variants={variants}
-            className="text-white text-4xl md:text-7xl font-bold leading-none"
+            className="text-white text-5xl md:text-7xl font-bold leading-none w-full"
           >
             {"Let's Work Together"}
           </motion.h1>
-          <motion.div variants={variants} className="">
+          <motion.div variants={variants} className="w-full">
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
@@ -83,11 +83,11 @@ function Contact({ textEnter, textLeave }) {
               emiliorivera174@gmail.com
             </span>
           </motion.div>
-          <motion.div variants={variants} className="">
+          <motion.div variants={variants} className="w-full">
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className="text-white font-bold"
+              className="text-white font-bold "
             >
               Phone
             </h1>

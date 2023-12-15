@@ -22,14 +22,15 @@ function Slider({ data, reverseDirection, slides }) {
           prevEl: ".swiper-button-prev",
         }}
         breakpoints={{
-          640: {
+          0:{
             slidesPerView: 1,
-            spaceBetween: 10,
+            spaceBetween: 20,
           },
-          768: {
+          600: {
             slidesPerView: 2,
             spaceBetween: 20,
           },
+  
           1024: {
             slidesPerView: slides,
             spaceBetween: 30,
@@ -37,7 +38,7 @@ function Slider({ data, reverseDirection, slides }) {
         }}
       >
         {data.map((item, index) => (
-          <SwiperSlide className="h-full w-full" key={index}>
+          <SwiperSlide className="h-1/2 w-full" key={index}>
             <Image
               alt=" "
               className=" bg-zinc-100/5  rounded-lg p-16 backdrop-blur-sm "
@@ -46,8 +47,8 @@ function Slider({ data, reverseDirection, slides }) {
                   "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset",
               }}
               src={item.imageUrl}
-              width={500}
-              height={500}
+              width={300}
+              height={200}
             ></Image>
             <div className="flex item-center justify-center pt-8">
               {" "}

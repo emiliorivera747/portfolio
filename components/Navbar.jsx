@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-
+import Image from "next/image";
 function Navbar({ menuItems }) {
   const [openMenu, setOpenMenu] = useState(false);
   const [openClass, setOpenClass] = useState("");
@@ -24,26 +24,26 @@ function Navbar({ menuItems }) {
   };
 
   return (
-    <nav className="container relative p-4 bg-black">
+    <nav className="absolute p-4 pr-6 bg-black w-screen">
       {/*Flex Container For Nav Items  */}
       <div
         className="flex items-center justify-between
 space-x-20 my-2"
       >
         {/* Logo */}
-        <div className="z-30 justify-self-start">
+        <div className="z-30 justify-self-start ">
           <Link
             href="/"
-            className={`tracking-widest hover:text-softRed  ${logoBgColor} rounded-lg p-2 ${logoTextColor} text-white font-bold`}
+            className={`flex flewx-row tracking-widest hover:text-softRed  ${logoBgColor} rounded-lg p-2 ${logoTextColor} text-white font-bold`}
           >
-            {"Emilio Rivera's Portfolio"}
+            <Image src="https://res.cloudinary.com/dcss55nem/image/upload/v1702588027/favicon_5_a5rhl0.png" height={30} width={30} className="pr-1 self-end" alt="logo"/> <h1 className="self-end font-bold tracking-widest">{"milio's Portfolio"}</h1>
           </Link>
         </div>
 
         {/*Nav Items*/}
         <div className="flex flex-row items-center justify-end">
           {" "}
-          <div className="hidden items-center justify-end space-x-10 uppercase text-grayishBlue md:flex pr-10">
+          <div className="hidden items-center justify-end space-x-10 uppercase text-grayishBlue md:flex pr-10 z-30">
             {menuItems.map((item) => {
               return (
                 <Link

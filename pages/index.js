@@ -211,21 +211,21 @@ export default function Home() {
         }
       />
       <ProjectSection
-        title={"Casa Chirilagua Full Stack Project"}
+        title={"Casa Chirilagua"}
         videoUrl={
           "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
         }
         buttonLabel={"Learn More"}
         textEnter={textEnter}
         textLeave={textLeave}
-        titleColor={"text-white md:text-black"}
+        titleColor={"text-white sm:text-black"}
         titleFont={"font-bold"}
         buttonTextColor={"text-white"}
         buttonBorderColor={"border-white"}
         buttonBgColor={"hover:bg-white"}
         buttonHoverTextColor={"hover:text-black"}
         bgColor={"bg-black"}
-        videoCover={"md:object-cover"}
+        videoCover={"sm:object-cover"}
       />
       <ToolsSection
         toolData={toolData}
@@ -244,7 +244,7 @@ export default function Home() {
         buttonBorderColor={"border-black md:border-white"}
         buttonBgColor={"hover:bg-black md:hover:bg-white"}
         buttonHoverTextColor={"hover:text-white md:hover:text-black"}
-        videoCover={"md:object-cover"}
+        videoCover={"sm:object-cover"}
 
       />
       <ProjectSection
