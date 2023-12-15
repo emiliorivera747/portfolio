@@ -60,7 +60,7 @@ function HeaderSection({ textEnter, textLeave }) {
             >
               {"I'm a"}{" "}
               <span className="font-semibold from-red-700 to-red-600 bg-gradient-to-r bg-clip-text text-transparent text-4xl lg:text-5xl">
-                {typeEffect}
+                {"Full Stack Developer"}
               </span>
             </h1>
           </div>

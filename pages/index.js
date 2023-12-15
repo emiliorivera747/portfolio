@@ -3,15 +3,11 @@ import HeaderSection from "@/components/HeaderSection";
 import ProjectSection from "@/components/ProjectSection";
 import ToolsSection from "@/components/ToolsSection";
 import { motion } from "framer-motion";
-
-import MainPageSectionHeader from "@/components/MainPageSectionHeader";
+import Page from "@/components/page";
 import Contact from "@/components/Contact";
 
 export default function Home() {
   // const [screenWidth, setScreenWidth] = useState(window ? window.innerWidth : "" );
-
-
-
 
   const frontEndData = [
     {
@@ -202,79 +198,77 @@ export default function Home() {
   const textLeaveNone = () => setCursorVariant("none");
 
   return (
-    <div className={"flex min-h-screen flex-col bg-white container"}>
-      <HeaderSection
-        textEnter={ textEnter}
-        textLeave={textLeave}
-        videoUrl={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
-        }
-      />
-      <ProjectSection
-        title={"Casa Chirilagua"}
-        videoUrl={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
-        }
-        buttonLabel={"Learn More"}
-        textEnter={textEnter}
-        textLeave={textLeave}
-        titleColor={"text-white sm:text-black"}
-        titleFont={"font-bold"}
-        buttonTextColor={"text-white"}
-        buttonBorderColor={"border-white"}
-        buttonBgColor={"hover:bg-white"}
-        buttonHoverTextColor={"hover:text-black"}
-        bgColor={"bg-black"}
-        videoCover={"sm:object-cover"}
-      />
-      <ToolsSection
-        toolData={toolData}
-        bgColor={"bg-black"}
-        textColor={"text-white"}
-      ></ToolsSection>
-      <ProjectSection
-        title={"My Portfolio Website"}
-        videoUrl={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1701549492/Space_and_Astronomy_Film_Video_Intro_14_fwhk3u.mp4"
-        }
-        buttonLabel={"Learn More"}
-        titleColor={"text-black"}
-        titleFont={"font-extrabold"}
-        buttonTextColor={"text-black md:text-white"}
-        buttonBorderColor={"border-black md:border-white"}
-        buttonBgColor={"hover:bg-black md:hover:bg-white"}
-        buttonHoverTextColor={"hover:text-white md:hover:text-black"}
-        videoCover={"sm:object-cover"}
-
-      />
-      <ProjectSection
-        title={"Responsive Design"}
-        titleColor={"text-black"}
-        titleFont={"font-extrabold"}
-        videoUrl={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1701612656/Space_and_Astronomy_Film_Video_Intro_19_flipwd.mp4"
-        }
-        buttonLabel={"Learn More"}
-        buttonTextColor={"text-black"}
-        buttonBorderColor={"border-black"}
-        buttonBgColor={"hover:bg-black"}
-        buttonHoverTextColor={"hover:text-white"}
-        videoCover={"object-cover"}
-      />
-      <ToolsSection
-        toolData={toolDataTwo}
-        bgColor={"bg-white"}
-        textColor={"text-black"}
-      ></ToolsSection>
-      <Contact
-        textEnter={textEnter}
-        textLeave={textLeave}
-      ></Contact>
-      <motion.div
-        className="cursor"
-        variants={variants}
-        animate={cursorVariant}
-      />
-    </div>
+    <Page>
+      <div className={"flex min-h-screen flex-col bg-white container"}>
+        <HeaderSection
+          textEnter={textEnter}
+          textLeave={textLeave}
+          videoUrl={
+            "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
+          }
+        />
+        <ProjectSection
+          title={"Casa Chirilagua"}
+          videoUrl={
+            "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
+          }
+          buttonLabel={"Learn More"}
+          textEnter={textEnter}
+          textLeave={textLeave}
+          titleColor={"text-white sm:text-black"}
+          titleFont={"font-bold"}
+          buttonTextColor={"text-white"}
+          buttonBorderColor={"border-white"}
+          buttonBgColor={"hover:bg-white"}
+          buttonHoverTextColor={"hover:text-black"}
+          bgColor={"bg-black"}
+          videoCover={"sm:object-cover"}
+        />
+        <ToolsSection
+          toolData={toolData}
+          bgColor={"bg-black"}
+          textColor={"text-white"}
+        ></ToolsSection>
+        <ProjectSection
+          title={"My Portfolio Website"}
+          videoUrl={
+            "https://res.cloudinary.com/dcss55nem/video/upload/v1701549492/Space_and_Astronomy_Film_Video_Intro_14_fwhk3u.mp4"
+          }
+          buttonLabel={"Learn More"}
+          titleColor={"text-black"}
+          titleFont={"font-extrabold"}
+          buttonTextColor={"text-black md:text-white"}
+          buttonBorderColor={"border-black md:border-white"}
+          buttonBgColor={"hover:bg-black md:hover:bg-white"}
+          buttonHoverTextColor={"hover:text-white md:hover:text-black"}
+          videoCover={"sm:object-cover"}
+        />
+        <ProjectSection
+          title={"Responsive Design"}
+          titleColor={"text-black"}
+          titleFont={"font-extrabold"}
+          videoUrl={
+            "https://res.cloudinary.com/dcss55nem/video/upload/v1701612656/Space_and_Astronomy_Film_Video_Intro_19_flipwd.mp4"
+          }
+          buttonLabel={"Learn More"}
+          buttonTextColor={"text-black"}
+          buttonBorderColor={"border-black"}
+          buttonBgColor={"hover:bg-black"}
+          buttonHoverTextColor={"hover:text-white"}
+          videoCover={"object-cover"}
+        />
+        <ToolsSection
+          toolData={toolDataTwo}
+          bgColor={"bg-white"}
+          textColor={"text-black"}
+        ></ToolsSection>
+        <Contact textEnter={textEnter} textLeave={textLeave}></Contact>
+        <motion.div
+          className="cursor"
+          variants={variants}
+          animate={cursorVariant}
+        />
+      </div>
+    </Page>
   );
 }

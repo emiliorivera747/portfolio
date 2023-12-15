@@ -10,7 +10,7 @@ function Slider({ data, reverseDirection, slides }) {
       <Swiper
         loop={true}
         autoplay={{
-          delay: 500,
+          // delay: 500,
           disableOnInteraction: false,
           reverseDirection: reverseDirection,
         }}
@@ -38,19 +38,19 @@ function Slider({ data, reverseDirection, slides }) {
         }}
       >
         {data.map((item, index) => (
-          <SwiperSlide className="h-1/2 w-full" key={index}>
+          <SwiperSlide className="h-1/2 w-full " key={index}>
             <Image
               alt=" "
-              className=" bg-zinc-100/5  rounded-lg p-16 backdrop-blur-sm "
+              className=" bg-zinc-100/5  rounded-lg p-12 backdrop-blur-sm "
               style={{
                 boxShadow:
                   "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset",
               }}
               src={item.imageUrl}
               width={300}
-              height={200}
+              height={300}
             ></Image>
-            <div className="flex item-center justify-center pt-8">
+            <div className="flex item-center justify-center pt-4">
               {" "}
               <h1 className="text-zinc-400">{item.name}</h1>
             </div>
