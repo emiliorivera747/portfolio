@@ -88,7 +88,7 @@ export default function Home() {
     {
       name: "Cloudinary",
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/16_bonjj4.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1700277363/samples/cloudinary-icon.png",
     },
 
     {
@@ -132,6 +132,11 @@ export default function Home() {
       name: "HTML",
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/20_dj1kp5.png",
+    },
+    {
+      name: "Cloudinary",
+      imageUrl:
+        "https://res.cloudinary.com/dcss55nem/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1700277363/samples/cloudinary-icon.png",
     },
   ];
   const toolData = [
@@ -232,15 +237,15 @@ export default function Home() {
         <ProjectSection
           title={"My Portfolio Website"}
           videoUrl={
-            "https://res.cloudinary.com/dcss55nem/video/upload/v1701549492/Space_and_Astronomy_Film_Video_Intro_14_fwhk3u.mp4"
+            "https://res.cloudinary.com/dcss55nem/video/upload/v1702685763/Space_and_Astronomy_Film_Video_Intro_20_ibjn2t.mp4"
           }
           buttonLabel={"Learn More"}
           titleColor={"text-black"}
           titleFont={"font-extrabold"}
-          buttonTextColor={"text-black md:text-white"}
-          buttonBorderColor={"border-black md:border-white"}
-          buttonBgColor={"hover:bg-black md:hover:bg-white"}
-          buttonHoverTextColor={"hover:text-white md:hover:text-black"}
+          buttonTextColor={"text-black md:text-black"}
+          buttonBorderColor={"border-black md:border-black"}
+          buttonBgColor={"hover:bg-black md:hover:bg-black"}
+          buttonHoverTextColor={"hover:text-white md:hover:text-white"}
           videoCover={"sm:object-cover"}
         />
         <ProjectSection

@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }) {
         <Navbar menuItems={navBarData} />
         <Component {...pageProps} />
         <ToastContainer />
-        <motion.div className="absolute top-0 left-0 w-full h-screen bg-black z-50" initial={{scaleY:0}} animate={{scaleY:0}} exit={{scaleY: 1}} transition={{duration:0.75, ease: [0.22,1, 0.36, 1]}}></motion.div>
+        <motion.div className="absolute top-0 left-0 w-screen h-screen bg-black z-50" initial={{scaleY:0}} animate={{scaleY:0}} exit={{scaleY: 1}} transition={{duration:0.75, ease: [0.22,1, 0.36, 1]}}></motion.div>
       </motion.div>
     </AnimatePresence>
   );

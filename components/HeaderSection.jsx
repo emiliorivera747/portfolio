@@ -34,7 +34,7 @@ function HeaderSection({ textEnter, textLeave }) {
   });
 
   const backgroundImageUrl =
-    "url(https://res.cloudinary.com/dcss55nem/image/upload/v1700934047/Copy_of_Space_and_Astronomy_Film_Video_Intro_11_tjnkdq.png)";
+    "url(https://res.cloudinary.com/dcss55nem/image/upload/v1702766909/Website_Header_Picture_jem7z3.png)";
  
   
   return (
@@ -52,18 +52,18 @@ function HeaderSection({ textEnter, textLeave }) {
         }}
       >
         <div className="h-full flex flex-row items-end justify-center">
-          <div className="flex h-1/3 p-4 ">
+          <motion.div className="flex h-1/3 p-4 ">
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className=" text-zinc-700 font-semibold mb-4 text-4xl lg:text-5xl pl-2"
+              className="font-semibold from-red-700 to-red-600 bg-gradient-to-r bg-clip-text text-transparent text-4xl lg:text-6xl"
             >
-              {"I'm a"}{" "}
-              <span className="font-semibold from-red-700 to-red-600 bg-gradient-to-r bg-clip-text text-transparent text-4xl lg:text-5xl">
-                {"Full Stack Developer"}
-              </span>
+
+              {/* <span className="font-semibold from-red-700 to-red-600 bg-gradient-to-r bg-clip-text text-transparent text-4xl lg:text-6xl"> */}
+                {"Full Stack Engineer"}
+              {/* </span> */}
             </h1>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
       <motion.div
