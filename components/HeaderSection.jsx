@@ -17,21 +17,21 @@ const variants = {
 };
 function HeaderSection({ textEnter, textLeave }) {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["end end", "end start"],
-  });
+  // const { scrollYProgress } = useScroll({
+  //   target: ref,
+  //   offset: ["end end", "end start"],
+  // });
 
-  const [typeEffect] = useTypewriter({
-    words: [
-      "Full Stack Developer",
-      "Front End Developer",
-      "Back End Developer",
-    ],
-    loop: {},
-    typeSpeed: 100,
-    deleteSpeed: 40,
-  });
+  // const [typeEffect] = useTypewriter({
+  //   words: [
+  //     "Full Stack Developer",
+  //     "Front End Developer",
+  //     "Back End Developer",
+  //   ],
+  //   loop: {},
+  //   typeSpeed: 100,
+  //   deleteSpeed: 40,
+  // });
 
   const backgroundImageUrl =
     "url(https://res.cloudinary.com/dcss55nem/image/upload/v1702766909/Website_Header_Picture_jem7z3.png)";
