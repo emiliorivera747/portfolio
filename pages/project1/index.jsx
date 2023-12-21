@@ -129,14 +129,14 @@ function Project1() {
       </motion.div>
 
       {/* Description */}
-      <div className="w-screen bg-black h-auto min-h-screen">
-        <motion.div
-          initial="initial"
+      <motion.div initial="initial"
           whileInView="animate"
-          variants={variants}
+          variants={variants}className="w-screen bg-black h-auto min-h-screen">
+        <motion.div
+
           className="bg-black h-full"
         >
-          <motion.div className="h-1/6 w-full flex items-top justify-center pt-10">
+          <motion.div            className="h-1/6 w-full flex items-top justify-center pt-10">
             <h1 className="text-4xl text-white font-bold">
               {" "}
               What did I do?
@@ -145,7 +145,7 @@ function Project1() {
           <motion.div className="h-full w-full bg-black">
             {" "}
             <h1 className="text-white text-start leading-loose tracking-wider text-xl p-16">
-              Developed an internal website using MongoDb, Express.js, Node.js, and React
+              Developed an internal website using MongoDB, Express.js, Node.js, and React
               to help manage programs for Casa Chirilagua, a non-profit
               organization based in the City of Alexandria, Virginia.
             </h1>
@@ -156,7 +156,7 @@ function Project1() {
                 </h1>
                 <p className="text-md text-white">Full Stack Engineer</p>
               </div>
-              <div className="w-full flex flex-col  pl-16 pr-16">
+              <motion.div className="w-full flex flex-col  pl-16 pr-16">
                 {" "}
                 <h1 className="text-white text-start leading-loose tracking-wider text-xl font-bold pb-6">
                   Responsibility
@@ -167,16 +167,16 @@ function Project1() {
                   UI/UX Design, Figma Prototyping, Deployment, Present Demos,
                   Employee Training.
                 </p>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
       <div className="h-screen w-screen bg-white">
         <ProjectSlider data={data} />
       </div>
-      <div className="h-screen w-screen bg-black">
+      <div className="h-screen w-screen bg-black flex items-center justify-center">
         <h1 className="text-6xl text-white">Comming Soon...</h1>
       </div>
     </section>
