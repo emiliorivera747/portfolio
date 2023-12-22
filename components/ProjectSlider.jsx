@@ -25,24 +25,24 @@ function ProjectSlider({ data }) {
     >
       {data.map((item, index) => {
         return (
-          <SwiperSlide data-hash="slide1" key={index}className="bg-black">
+          <SwiperSlide data-hash="slide1" key={index} className="bg-black">
             <div className="relative h-screen w-screen">
               {/* Background Image */}
               <div
                 className="absolute top-0 left-0 w-full h-full bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${item.imageUrl})`,
-                  opacity: 0.6,
+                  opacity: item.opacity,
                 }}
               ></div>
 
               {/* Text Content */}
               <div className="relative z-10 flex flex-col items-start justify-center w-full h-full">
-                <div className="h-full w-1/2 p-16 flex flex-col justify-center items-start">
+                <div className="h-full w-2/3 p-16 flex flex-col justify-center items-start">
                   <h1 className="text-white font-semibold text-4xl lg:text-4xl pb-6">
                     {item.title}
                   </h1>
-                  <p className="text-white">{item.paragraph}</p>
+                  <div className="text-white leading-loose tracking-wider">{item.paragraph}</div>
                 </div>
               </div>
             </div>
