@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, HashNavigation } from "swiper/modules";
 
+//test
 function ProjectSlider({ data }) {
  
   return (
