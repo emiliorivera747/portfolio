@@ -29,7 +29,7 @@ const variants = {
 function Project1() {
   const data = [
     {
-      opacity: 0.6,
+      opacity: 0.5,
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703106052/Screenshot_42_derzh2.png",
       title: "Welcome Page",
