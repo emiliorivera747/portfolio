@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import { Pagination, Navigation, HashNavigation } from "swiper/modules";
 
 function ProjectSlider({ data }) {
+ 
   return (
     <Swiper
       spaceBetween={30}
@@ -23,7 +24,7 @@ function ProjectSlider({ data }) {
     >
       {data.map((item, index) => {
         return (
-          <SwiperSlide data-hash="slide1" key={index} className="bg-black">
+          <SwiperSlide data-hash="slide1" key={index}className="bg-black">
             <div className="relative h-screen w-screen">
               {/* Background Image */}
               <div

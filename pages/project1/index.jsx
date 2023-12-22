@@ -32,13 +32,13 @@ function Project1() {
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703106052/Screenshot_42_derzh2.png",
       title: "Welcome Page",
-      paragraph: "",
+      paragraph: "Included a purple background consistent with the organization's official colors of purple, green, orange. ",
     },
     {
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703106082/Screenshot_43_qxtb1f.png",
       title: "Login",
-      paragraph: "",
+      paragraph: "Front End and Back End protected with Auth0 a third party authentication service. Auth0 uses AES-256 to encrypt data at rest and is ISO27018 certified complying with security and privacy guidelines for managing PII.",
     },
     {
       imageUrl:
