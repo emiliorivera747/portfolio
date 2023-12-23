@@ -52,7 +52,6 @@ function Project1() {
       paragraph: (
         <ul>
             Created custom dashboard components using the recharts library.
- 
           <li>
             <span className="font-bold">Pie chart</span>: Categorizes the
             programs by the number of students.
