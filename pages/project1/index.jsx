@@ -216,24 +216,24 @@ function Project1() {
           </motion.div>
           <motion.div className="h-full w-full bg-black">
             {" "}
-            <h1 className="text-white text-start leading-loose tracking-wider text-xl p-16">
+            <h1 className="p-6 text-white text-start leading-loose tracking-wider md:text-xl md:p-16">
               Developed an internal website using MongoDB, Express.js, Node.js,
               and React to help manage programs for Casa Chirilagua, a
               non-profit organization based in the City of Alexandria, Virginia.
             </h1>
             <div className="flex flex-row w-full pt-6">
-              <div className="w-full flex flex-col pl-16">
+              <div className="pl-6 w-full flex flex-col md:pl-16">
                 <h1 className="text-white text-start leading-loose tracking-wider text-xl  font-bold pb-6">
                   Role
                 </h1>
                 <p className="text-md text-white">Full Stack Engineer</p>
               </div>
-              <motion.div className="w-full flex flex-col  pl-16 pr-16">
+              <motion.div className="w-full flex flex-col  pl-2 pr-6 md:pl-16 md:pr-16">
                 {" "}
                 <h1 className="text-white text-start leading-loose tracking-wider text-xl font-bold pb-6">
                   Responsibility
                 </h1>
-                <p className="text-md text-white leading-loose tracking-wider">
+                <p className="text-sm md:text-md text-white leading-loose tracking-wider">
                   Consultation, Front End Architecture, Back End Development,
                   Create and Manage Databases, Create RESTful APIs, Security,
                   UI/UX Design, Figma Prototyping, Deployment, Present Demos,
