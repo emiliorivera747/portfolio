@@ -16,13 +16,14 @@ function Slider({ data, reverseDirection, slides }) {
         }}
         speed={2000}
         modules={[Autoplay, Navigation]} // Add Navigation module
-        className="w-full h-full flex"
-        navigation={{   // Enable navigation
+        className="w-full  flex "
+        navigation={{
+          // Enable navigation
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         }}
         breakpoints={{
-          0:{
+          0: {
             slidesPerView: 1,
             spaceBetween: 20,
           },
@@ -30,7 +31,7 @@ function Slider({ data, reverseDirection, slides }) {
             slidesPerView: 2,
             spaceBetween: 20,
           },
-  
+
           1024: {
             slidesPerView: slides,
             spaceBetween: 30,
@@ -38,21 +39,20 @@ function Slider({ data, reverseDirection, slides }) {
         }}
       >
         {data.map((item, index) => (
-          <SwiperSlide className="h-full w-full " key={index}>
-            <Image
-              alt=" "
-              className=" bg-zinc-100/5  rounded-lg p-12 backdrop-blur-sm "
-              style={{
-                boxShadow:
-                  "rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset",
-              }}
-              src={item.imageUrl}
-              width={400}
-              height={400}
-            ></Image>
-            <div className="flex item-center justify-center pt-4">
-              {" "}
-              <h1 className="text-zinc-400">{item.name}</h1>
+          <SwiperSlide className="h-full w-full" key={index}>
+            <div className="flex flex-col ">
+              <Image
+                alt={item.name}
+                className=" bg-zinc-100/5  rounded-lg p-12 backdrop-blur-sm "
+                src={item.imageUrl}
+                width={400}
+                height={400}
+                loading="lazy"
+              ></Image>
+              <div className="flex item-center justify-center pt-4">
+                {" "}
+                <h1 className="text-zinc-400">{item.name}</h1>
+              </div>
             </div>
           </SwiperSlide>
         ))}

@@ -49,7 +49,7 @@ space-x-20 my-2"
                 <Link
                   key={item.id}
                   href={item.url}
-                  className="tracking-widest hover:text-softRed hover:bg-zinc-800 rounded-lg p-2 text-white font-bold"
+                  className="tracking-widest hover:text-softRed hover:bg-zinc-800 rounded-lg p-2 text-white font-bold text-sm"
                 >
                   {item.label}
                 </Link>
@@ -59,7 +59,7 @@ space-x-20 my-2"
           {/* Hamburger Button */}
           <button
             id="menu-btn"
-            className={`${openClass} z-30 block focus:outline-none hamburger justify-end`}
+            className={`${openClass} z-30 block focus:outline-none hamburger justify-end `}
             onClick={handleMenuClick}
           >
             <span className="hamburger-top"></span>
@@ -72,7 +72,7 @@ space-x-20 my-2"
       {/* Mobile Menu */}
       <div
         id="menu"
-        className={` ${openClass} fixed inset-0 z-20 ${isHidden} flex-col items-center self-end w-full h-full m-h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500 opacity-95 bg-black`}
+        className={` ${openClass} fixed inset-0 z-20 ${isHidden} flex-col items-center self-end w-full h-full m-h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500 opacity-90 bg-black`}
       >
         {menuItems.map((item, index) => {
           return (
