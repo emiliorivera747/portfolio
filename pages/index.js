@@ -204,7 +204,7 @@ export default function Home() {
 
   return (
     <Page>
-      <div className={"flex min-h-screen flex-col bg-white container"}>
+      <section className="h-screen w-screen overflow-x-hidden">
         <HeaderSection
           textEnter={textEnter}
           textLeave={textLeave}
@@ -273,7 +273,7 @@ export default function Home() {
           variants={variants}
           animate={cursorVariant}
         />
-      </div>
+      </section>
     </Page>
   );
 }

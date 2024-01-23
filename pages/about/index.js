@@ -7,7 +7,7 @@ import TextTitleSection from "@/components/TextTitleSection";
 function About() {
   return (
     <Page>
-      <section className="h-screen w-screen bg-black ">
+      <section className="h-screen w-screen bg-black overflow-x-hidden">
         <div className="h-full flex items-center justify-center">
           {" "}
           <h6 className=" text-4xl md:text-8xl text-white font-bold text-center">
