@@ -248,7 +248,7 @@ function Project1() {
       <div className=" bg-white w-screen relative min-h-screen h-auto ${bgColor w-screen overflow-auto">
         {data.map((item, index) => {
           return (
-            <div className=" flex flex-col p-10 md:p-20">
+            <div className=" flex flex-col p-10 md:p-20" key={index}>
               <motion.div className="h-1/6 w-full flex items-top justify-center pt-10 pb-10 ">
                 <h1 className="text-2xl text-black font-bold ">{item.title}</h1>
               </motion.div>
