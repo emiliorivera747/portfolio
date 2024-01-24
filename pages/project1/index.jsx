@@ -252,7 +252,7 @@ function Project1() {
               <motion.div className="h-1/6 w-full flex items-top justify-center pt-10 pb-10 ">
                 <h1 className="text-2xl text-black font-bold ">{item.title}</h1>
               </motion.div>
-              <p className="pb-10 leading-loose tracking-wider">{item.paragraph}</p>
+              <p className="pb-6 leading-loose tracking-wider">{item.paragraph}</p>
               <div className="w-full">
                 <img
                   alt={item.name}
