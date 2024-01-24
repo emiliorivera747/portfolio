@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
-
+import Link from "next/link";
 import { Pagination, Navigation, HashNavigation } from "swiper/modules";
 
 //components
@@ -48,10 +48,10 @@ function Project1() {
       opacity: 0.4,
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703106149/Screenshot_44_eckb71.png",
-      title: "Dashboard pt.1",
+      title: "Dashboard Part 1",
       paragraph: (
         <ul>
-            Created custom dashboard components using the recharts library.
+          Created custom dashboard components using the recharts library.
           <li>
             <span className="font-bold">Pie chart</span>: Categorizes the
             programs by the number of students.
@@ -67,7 +67,7 @@ function Project1() {
       opacity: 0.5,
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703106150/Screenshot_45_a8cnad.png",
-      title: "Dashboard pt.2",
+      title: "Dashboard Part 2",
       paragraph:
         "Line graph created using recharts, displaying the number of students enrolled over time, along with additional reusable card components.",
     },
@@ -101,7 +101,7 @@ function Project1() {
       opacity: 0.3,
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703106153/Screenshot_47_tdnhsh.png",
-      title: "Student Profile pt.1",
+      title: "Student Profile Part 1",
       paragraph: (
         <ul>
           Students, parents, programs, and families have a similar user
@@ -122,7 +122,7 @@ function Project1() {
       opacity: 0.4,
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703262379/Screenshot_48_rvdabm.png",
-      title: "Student Profile pt.2",
+      title: "Student Profile Part 2",
       paragraph:
         "Collapsible headers provide useful information about the student, program, parent, or other entities.",
     },
@@ -130,7 +130,7 @@ function Project1() {
       opacity: 0.4,
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703262475/Screenshot_57_ll3bll.png",
-      title: "Student Profile pt.3",
+      title: "Student Profile Part 3",
       paragraph:
         "Created a reusable modal component used throughout the web application.",
     },
@@ -138,35 +138,35 @@ function Project1() {
       opacity: 0.4,
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703106160/Screenshot_49_cy3fcs.png",
-      title: "Student Profile pt.4",
+      title: "Student Profile Part 4",
       paragraph: "Includes a reusable Delete component.",
     },
     {
       opacity: 0.5,
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703106161/Screenshot_50_loutw3.png",
-      title: "Student Registration pt.1",
+      title: "Student Registration Part 1",
       paragraph: "",
     },
     {
       opacity: 0.5,
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703106162/Screenshot_51_irucos.png",
-      title: "Student Registration pt.2",
+      title: "Student Registration Part 2",
       paragraph: "",
     },
     {
       opacity: 0.5,
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703106162/Screenshot_52_cr7otq.png",
-      title: "Student Registration pt.3",
+      title: "Student Registration Part 3",
       paragraph: "",
     },
     {
       opacity: 0.5,
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1703106166/Screenshot_54_db2ybx.png",
-      title: "Student Registration pt.4",
+      title: "Student Registration Part 4",
       paragraph: "",
     },
   ];
@@ -174,18 +174,9 @@ function Project1() {
     "https://res.cloudinary.com/dcss55nem/image/upload/v1702849160/Copy_of_Space_and_Astronomy_Film_Video_Intro_18_wvt2b6.png";
 
   return (
-    <section
-      className={`relative min-h-screen h-auto bg-black min-w-screen w-auto`}
-    >
+    <section className={`h-screen w-screen overflow-x-hidden bg-black`}>
       {/* Title */}
-      <motion.div
-        className="relative h-screen w-screen"
-        style={{
-          backgroundImage: `url(${backgroundImageUrl})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <motion.div className="relative h-screen w-screen">
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <motion.div
           initial="initial"
@@ -193,63 +184,91 @@ function Project1() {
           variants={variants}
           className="absolute inset-0 flex items-center p-40 justify-center h-full w-full"
         >
-          <Image
-            src="https://res.cloudinary.com/dcss55nem/image/upload/v1702750751/casa-logo_izyfkc.svg"
-            layout="responsive"
-            width={1000} // Adjust the percentage as needed
-            height={1000} // Adjust the percentage as needed
-            className="max-w-full max-h-full"
-          />
+          <h6 className=" text-4xl md:text-8xl text-white font-bold text-center text-trans">
+            Casa Chirilagua
+          </h6>
         </motion.div>
       </motion.div>
 
       {/* Description */}
-      <motion.div
+      <div
         initial="initial"
         whileInView="animate"
         variants={variants}
-        className="w-screen bg-black h-auto min-h-screen"
+        className="w-screen bg-white h-auto min-h-screen"
       >
-        <motion.div className="bg-black h-full">
+        <motion.div className=" h-full">
           <motion.div className="h-1/6 w-full flex items-top justify-center pt-10">
-            <h1 className="text-4xl text-white font-bold"> What did I do?</h1>
+            <h1 className="text-3xl text-black font-bold"> What did I do?</h1>
           </motion.div>
-          <motion.div className="h-full w-full bg-black">
+          <motion.div className="h-full w-full bg-white">
             {" "}
-            <h1 className="p-6 text-white text-start leading-loose tracking-wider md:text-xl md:p-16">
+            <h1 className="p-6 text-black text-start leading-loose tracking-wider md:text-xl md:p-16">
               Developed an internal website using MongoDB, Express.js, Node.js,
               and React to help manage programs for Casa Chirilagua, a
               non-profit organization based in the City of Alexandria, Virginia.
             </h1>
-            <div className="flex flex-row w-full pt-6">
-              <div className="pl-6 w-full flex flex-col md:pl-16">
-                <h1 className="text-white text-start leading-loose tracking-wider text-xl  font-bold pb-6">
+            <div className=" grid gap-5 md:gap-1 md:grid-cols-5 w-full pt-6">
+              <div className="w-full flex flex-col pl-6 md:pl-16 col-span-1">
+                <h1 className="text-black text-start leading-loose tracking-wider text-xl  font-bold pb-6">
                   Role
                 </h1>
-                <p className="text-md text-white">Full Stack Engineer</p>
+                <p className="text-md text-black">Full Stack Engineer</p>
               </div>
-              <motion.div className="w-full flex flex-col  pl-2 pr-6 md:pl-16 md:pr-16">
+              <motion.div className="w-full flex flex-col pl-6 md:pl-16 col-span-2">
                 {" "}
-                <h1 className="text-white text-start leading-loose tracking-wider text-xl font-bold pb-6">
+                <h1 className="text-black text-start leading-loose tracking-wider text-xl font-bold pb-6 ">
                   Responsibility
                 </h1>
-                <p className="text-sm md:text-md text-white leading-loose tracking-wider">
+                <p className="text-sm md:text-md text-black leading-loose tracking-wider">
                   Consultation, Front End Architecture, Back End Development,
-                  Create and Manage Databases, Create RESTful APIs, Security,
+                  Create and Manage Database, Create RESTful APIs, Security,
                   UI/UX Design, Figma Prototyping, Deployment, Present Demos,
                   Employee Training.
                 </p>
               </motion.div>
+              <motion.div className="w-full flex flex-col pl-6 md:pl-16 col-span-2">
+                {" "}
+                <h1 className="text-black text-start leading-loose tracking-wider text-xl font-bold pb-6">
+                  Learn more about Casa Chirilagua
+                </h1>
+                <Link
+                  href="https://casachirilagua.org/"
+                  className="text-sm md:text-m leading-loose tracking-wider text-blue-500"
+                >
+                  https://casachirilagua.org/
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>
-      </motion.div>
-
-      <div className="h-screen w-screen bg-white">
-        <ProjectSlider data={data} />
       </div>
+
+      {/* Welcome Page */}
+      <div className=" bg-white w-screen relative min-h-screen h-auto ${bgColor w-screen overflow-auto">
+        {data.map((item, index) => {
+          return (
+            <div className=" flex flex-col p-10 md:p-20">
+              <motion.div className="h-1/6 w-full flex items-top justify-center pt-10 pb-10 ">
+                <h1 className="text-2xl text-black font-bold ">{item.title}</h1>
+              </motion.div>
+              <p className="pb-10 leading-loose tracking-wider">{item.paragraph}</p>
+              <div className="w-full">
+                <img
+                  alt={item.name}
+                  src={item.imageUrl}
+                  loading="lazy"
+                ></img>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {/* <div className="h-screen w-screen bg-white">
+        <ProjectSlider data={data} />
+      </div> */}
       <div className="h-screen w-screen bg-black flex items-center justify-center">
-        <h1 className="text-6xl text-white">Comming Soon...</h1>
+        <h1 className="text-6xl text-white">Demo Comming Soon...</h1>
       </div>
     </section>
   );
