@@ -47,7 +47,7 @@ function Project1() {
     {
       opacity: 0.4,
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1703106149/Screenshot_44_eckb71.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1714515640/DashboardPage_x2yel3.png",
       title: "Dashboard Part 1",
       paragraph: (
         <ul>
@@ -66,7 +66,7 @@ function Project1() {
     {
       opacity: 0.5,
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1703106150/Screenshot_45_a8cnad.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1714515630/DashboardPagePart2_kgv66o.png",
       title: "Dashboard Part 2",
       paragraph:
         "Line graph created using recharts, displaying the number of students enrolled over time, along with additional reusable card components.",
@@ -74,7 +74,7 @@ function Project1() {
     {
       opacity: 0.3,
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1703106152/Screenshot_46_mwhpdj.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1714515574/StudentPage_jhq9nt.png",
       title: "Student Page",
       paragraph: (
         <ul>
