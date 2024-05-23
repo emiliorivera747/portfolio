@@ -206,8 +206,8 @@ export default function Home() {
     <Page>
       <section className="h-screen w-screen overflow-x-hidden">
         <HeaderSection
-          textEnter={textEnter}
-          textLeave={textLeave}
+          // textEnter={textEnter}
+          // textLeave={textLeave}
           videoUrl={
             "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
           }
@@ -218,8 +218,8 @@ export default function Home() {
             "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
           }
           buttonLabel={"Learn More"}
-          textEnter={textEnter}
-          textLeave={textLeave}
+          // textEnter={textEnter}
+          // textLeave={textLeave}
           titleColor={"text-white sm:text-black"}
           titleFont={"font-bold"}
           buttonTextColor={"text-white"}
@@ -267,7 +267,10 @@ export default function Home() {
           bgColor={"bg-white"}
           textColor={"text-black"}
         ></ToolsSection>
-        <Contact textEnter={textEnter} textLeave={textLeave}></Contact>
+        <Contact
+        //  textEnter={textEnter} 
+        // textLeave={textLeave}
+        ></Contact>
         <motion.div
           className="cursor"
           variants={variants}

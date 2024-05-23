@@ -23,7 +23,7 @@ function HeaderSection({ textEnter, textLeave }) {
   return (
     <section
       ref={ref}
-      className="bg-black relative min-h-screen h-auto w-screen overflow-auto"
+      className="bg-black relative min-h-screen h-auto w-screen"
     >
       {/* Description */}
       <motion.div
@@ -38,17 +38,6 @@ function HeaderSection({ textEnter, textLeave }) {
           overflow: "hidden",
         }}
       >
-        <div className="h-screen flex flex-row items-end justify-center">
-          <motion.div className="flex h-1/3 p-4 ">
-            <h1
-              onMouseEnter={textEnter}
-              onMouseLeave={textLeave}
-              className="font-semibold from-red-700 to-red-600 bg-gradient-to-r bg-clip-text text-transparent text-4xl lg:text-6xl"
-            >
-              {"Full Stack Engineer"}
-            </h1>
-          </motion.div>
-        </div>
       </motion.div>
 
       {/* NAME */}
@@ -56,31 +45,33 @@ function HeaderSection({ textEnter, textLeave }) {
         initial="initial"
         whileInView="animate"
         variants={variants}
-        className="lg:relative flex  flex-row h-screen items-center justify-center "
+        className="lg:relative flex flex-row h-screen items-center justify-center "
       >
-        <motion.div className="flex flex-col md:flex-col lg:flex-row justify-evenly w-full lg:gap-56 h-1/2">
-          <div className="">
+        <motion.div className="flex flex-col md:flex-col lg:flex-col w-full h-1/2 items-start justify-center mx-16 gap-6">
+          <div className="flex lg:flex-row flex-col 2xl:flex-col md:gap-4 text-[8rem] md:text-7xl 2xl:text-[14rem]">
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className=" text-white text-8xl sm:text-[12rem]  lg:text-[9rem] font-semibold  tracking-widest lg:tracking-wide text-center"
+              className="text-white font-bold  "
             >
               {"Emilio"}
             </h1>
-          </div>
-          <div className="">
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className=" text-white text-8xl sm:text-[11rem]  lg:text-[9rem] font-semibold tracking-widest lg:tracking-wide text-center "
+              className="text-white font-bold"
             >
               {"Rivera"}
             </h1>
           </div>
+          <h1
+            onMouseEnter={textEnter}
+            onMouseLeave={textLeave}
+            className="font-semibold to-zinc-500 from-zinc-200 bg-gradient-to-r bg-clip-text text-transparent sm:text-2xl text-6xl z-50 mx-5 sm:mx-1 2xl:text-[3rem]"
+          >
+            {"Full Stack Engineer"}
+          </h1>
         </motion.div>
-        <div className="h-1/2">
-
-        </div>
       </motion.div>
     </section>
   );
