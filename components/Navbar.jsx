@@ -24,7 +24,7 @@ function Navbar({ menuItems }) {
   };
 
   return (
-    <nav className="absolute px-12  bg-white w-screen">
+    <nav className="absolute sm:px-12  bg-transparent w-screen">
       {/*Flex Container For Nav Items  */}
       <div
         className="flex items-center justify-between
