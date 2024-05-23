@@ -1,15 +1,27 @@
 import React from "react";
 import Link from "next/link";
 import Page from "@/components/page";
+import Head from "next/head";
+
 
 export const metadata = {
   title: 'Projects | Emilio Rivera Portfolio',
   description: 'Learn more about projects created by Emilio Rivera to showcase his skills in React.js, Next.js, and Node.js.',
 }
- 
+
 function Project() {
   return (
     <Page>
+      <Head>
+        <title>
+          {metadata.title}
+        </title>
+        <meta
+          name="description"
+          content={metadata.description}
+          key="desc"
+        />
+      </Head>
       <section className="h-screen w-screen bg-black overflow-auto">
         <div className="flex items-center justify-center h-full w-full pt-20">
           <div className="container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0">

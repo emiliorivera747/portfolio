@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Page from "@/components/page";
 import TextTitleSection from "@/components/TextTitleSection";
+import Head from "next/head";
 
 export const metadata = {
   title: 'About Me | Emilio Rivera Portfolio',
@@ -11,6 +12,16 @@ export const metadata = {
 function About() {
   return (
     <Page>
+      <Head>
+        <title>
+          {metadata.title}
+        </title>
+        <meta
+          name="description"
+          content={metadata.description}
+          key="desc"
+        />
+      </Head>
       <section className="h-screen w-screen bg-black overflow-x-hidden">
         <div className="h-full flex items-center justify-center">
           {" "}

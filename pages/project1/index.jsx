@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
+import Head from "next/head";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -12,7 +13,7 @@ export const metadata = {
   title: 'Casa Chirilagua | Emilio Rivera Portfolio',
   description: 'Learn more about Casa Chiriagua project, a full stack web application developed by Emilio Rivera using MongoDB, Express.js, Node.js, and React.js.',
 }
- 
+
 //components
 import ProjectSlider from "@/components/ProjectSlider";
 const variants = {
@@ -178,7 +179,18 @@ function Project1() {
     "https://res.cloudinary.com/dcss55nem/image/upload/v1702849160/Copy_of_Space_and_Astronomy_Film_Video_Intro_18_wvt2b6.png";
 
   return (
+
     <section className={`h-screen w-screen overflow-x-hidden bg-black`}>
+      <Head>
+        <title>
+          {metadata.title}
+        </title>
+        <meta
+          name="description"
+          content={metadata.description}
+          key="desc"
+        />
+      </Head>
       {/* Title */}
       <motion.div className="relative h-screen w-screen">
         <div className="absolute inset-0 bg-black opacity-40"></div>
