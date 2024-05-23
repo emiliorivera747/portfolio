@@ -8,7 +8,11 @@ import "swiper/css/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { Pagination, Navigation, HashNavigation } from "swiper/modules";
-
+export const metadata = {
+  title: 'Casa Chirilagua | Emilio Rivera Portfolio',
+  description: 'Learn more about Casa Chiriagua project, a full stack web application developed by Emilio Rivera using MongoDB, Express.js, Node.js, and React.js.',
+}
+ 
 //components
 import ProjectSlider from "@/components/ProjectSlider";
 const variants = {

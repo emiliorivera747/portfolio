@@ -3,7 +3,11 @@ import Image from "next/image";
 import Page from "@/components/page";
 import TextTitleSection from "@/components/TextTitleSection";
 
-
+export const metadata = {
+  title: 'About Me | Emilio Rivera Portfolio',
+  description: 'Learn more about Emilio Rivera, a Full Stack Engineer based in San Jose, CA. specializing in React.js, Next.js, and Node.js.',
+}
+ 
 function About() {
   return (
     <Page>

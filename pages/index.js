@@ -6,6 +6,11 @@ import { motion } from "framer-motion";
 import Page from "@/components/page";
 import Contact from "@/components/Contact";
 
+export const metadata = {
+  title: 'Home | Emilio Rivera Portfolio',
+  description: 'Welcome to Emilio Rivera Portfolio, a Full Stack Engineer based in San Jose, CA. specializing in React.js, Next.js, and Node.js.',
+}
+ 
 export default function Home() {
   // const [screenWidth, setScreenWidth] = useState(window ? window.innerWidth : "" );
 

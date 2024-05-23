@@ -1,6 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import Page from "@/components/page";
+
+export const metadata = {
+  title: 'Projects | Emilio Rivera Portfolio',
+  description: 'Learn more about projects created by Emilio Rivera to showcase his skills in React.js, Next.js, and Node.js.',
+}
+ 
 function Project() {
   return (
     <Page>
