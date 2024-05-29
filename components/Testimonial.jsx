@@ -11,11 +11,11 @@ const Testimonial = () => {
             </div>
             <blockquote className=' pt-16 px-2 md:px-20 pb-2 flex md:flex-row flex-col gap-2'>
 
-                <h2 className="text-white text-lg md:text-2xl leading-loose tracking-wider p-14 flex rounded md:w-3/4 bg-zinc-400 bg-opacity-10">
+                <h2 className="text-white text-lg md:text-2xl leading-loose tracking-wider md:p-16 flex rounded md:w-3/4 bg-zinc-400 bg-opacity-10">
                     <div>
                         <FaQuoteLeft className="text-4xl"/>
                     </div>
-                    <p className="px-2 flex text-center justify-center items-center italic">
+                    <p className="px-2 flex text-center justify-center items-center italic leading-loose tracking-wider">
                         {`Emilio will pour his dedication, passion, and intelligence towards creating solutions with the client's best interests in mind. This was my experience. Emilio would be an incredible asset to any company, client, and/or organization.`}{" "}
                     </p>
                     <div className="flex items-end">
