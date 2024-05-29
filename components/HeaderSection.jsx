@@ -67,7 +67,7 @@ function HeaderSection({ textEnter, textLeave }) {
           <h1
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
-            className="font-semibold to-zinc-500 from-zinc-200 bg-gradient-to-r bg-clip-text text-transparent sm:text-2xl text-6xl z-50 mx-5 sm:mx-1 2xl:text-[3rem]"
+            className="font-semibold from-zinc-500 to-zinc-200 bg-gradient-to-r bg-clip-text text-transparent sm:text-2xl text-6xl z-50 mx-5 sm:mx-1 2xl:text-[3rem]"
           >
             {"Full Stack Engineer"}
           </h1>

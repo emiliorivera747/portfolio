@@ -7,6 +7,10 @@ import { motion } from "framer-motion";
 import Page from "@/components/page";
 import Contact from "@/components/Contact";
 
+
+//Components 
+import Testimonial from "@/components/Testimonial";
+
 export const metadata = {
   title: "Home | Emilio Rivera Portfolio",
   description:
@@ -246,11 +250,13 @@ export default function Home() {
           bgColor={"bg-black"}
           videoCover={"sm:object-cover"}
         />
+        
         <ToolsSection
           toolData={toolData}
           bgColor={"bg-black"}
           textColor={"text-white"}
         ></ToolsSection>
+        <Testimonial/>
         <ProjectSection
           title={"My Portfolio Website"}
           videoUrl={

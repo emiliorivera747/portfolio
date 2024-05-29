@@ -12,11 +12,6 @@ export default function App({ Component, pageProps }) {
   const router = useRouter();
   const navBarData = [
     {
-      id: 1,
-      label: "Home",
-      url: "/",
-    },
-    {
       id: 2,
       label: "Projects",
       url: "/projects",
