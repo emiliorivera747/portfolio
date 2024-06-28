@@ -43,10 +43,14 @@ function Slider({ data, reverseDirection, slides }) {
             <div className="flex flex-col ">
               <Image
                 alt={item.name}
-                className=" bg-zinc-100/5  rounded-lg p-12 backdrop-blur-sm "
+                className="  rounded-lg p-12 backdrop-blur-sm bg-black/5 "
                 src={item.imageUrl}
                 width={400}
                 height={400}
+                style={{
+                  boxShadow: `rgba(0, 0, 0, 0.12) 0px 6px 16px`,
+                  borderRadius: "5px",
+              }}
                 loading="lazy"
               ></Image>
               <div className="flex item-center justify-center pt-4">
