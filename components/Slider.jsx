@@ -39,16 +39,16 @@ function Slider({ data, reverseDirection, slides }) {
         }}
       >
         {data.map((item, index) => (
-          <SwiperSlide className="h-full w-full" key={index}>
-            <div className="flex flex-col ">
+          <SwiperSlide className="h-full w-full p-2" key={index}>
+            <div className="flex flex-col">
               <Image
                 alt={item.name}
-                className="  rounded-lg p-12 backdrop-blur-sm bg-black/5 "
+                className="  rounded-xl p-12 backdrop-blur-sm bg-black/2 "
                 src={item.imageUrl}
                 width={400}
                 height={400}
                 style={{
-                  boxShadow: `rgba(0, 0, 0, 0.12) 0px 6px 16px`,
+                  // boxShadow: `rgba(0, 0, 0, 0.12) 0px 6px 16px`,
                   borderRadius: "5px",
               }}
                 loading="lazy"
