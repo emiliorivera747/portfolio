@@ -9,21 +9,21 @@ const Testimonial = () => {
             <div className=' flex items-center justify-center text-center p-2'>
                 <h1 className='text-white text-4xl pt-10 font-semibold'>Client Testimonials</h1>
             </div>
-            <blockquote className=' pt-16 px-4 md:px-20  flex md:flex-col flex-col gap-10 min-h-screen h-auto'>
+            <blockquote className=' pt-6 px-4 md:px-20  flex md:flex-col flex-col gap-6 min-h-screen h-auto'>
 
-                <h2 className="text-white text-lg md:text-2xl leading-loose tracking-wider md:p-16 flex rounded ">
-                    <div>
+                <h2 className=" text-lg md:text-2xl leading-loose tracking-wider md:p-16 flex rounded ">
+                    {/* <div>
                         <FaQuoteLeft className="text-4xl" />
-                    </div>
-                    <p className="px-2 flex text-center justify-center items-center italic leading-loose tracking-wider">
+                    </div> */}
+                    <p className="  from-zinc-500 to-zinc-200 bg-gradient-to-r bg-clip-text text-transparent px-2 flex text-center justify-center items-center italic leading-loose tracking-wider ">
                         {`Emilio will pour his dedication, passion, and intelligence towards creating solutions with the client's best interests in mind. This was my experience. Emilio would be an incredible asset to any company, client, and/or organization.`}{" "}
                     </p>
-                    <div className="flex items-end">
+                    {/* <div className="flex items-end">
                         <FaQuoteRight className="text-4xl" />
-                    </div>
+                    </div> */}
                 </h2>
 
-                <div className="flex flex-row justify-center gap-6 items-center sm:h-auto rounded ">
+                <div className="flex flex-row justify-center gap-4 items-center sm:h-auto rounded ">
                     <div  className="rounded-full w-20 h-20 bg-blue-300">
                         <Image
                             src="https://res.cloudinary.com/dcss55nem/image/upload/v1716989872/roykag2ycegmrtfh20sg.jpg"
