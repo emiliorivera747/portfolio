@@ -230,13 +230,13 @@ export default function Home() {
           // textEnter={textEnter}
           // textLeave={textLeave}
           videoUrl={
-            "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
+            "https://res.cloudinary.com/dcss55nem/video/upload/v1723761408/njth0ximkbqfobcqtzov.mp4"
           }
         />
         <ProjectSection
           title={"Casa Chirilagua"}
           videoUrl={
-            "https://res.cloudinary.com/dcss55nem/video/upload/v1700334609/Space_and_Astronomy_Film_Video_Intro_2_flwyd5.mp4"
+            "https://res.cloudinary.com/dcss55nem/video/upload/v1723762264/brkdunsgwsjlxbclsq5c.mp4"
           }
           buttonLabel={"Learn More"}
           // textEnter={textEnter}
