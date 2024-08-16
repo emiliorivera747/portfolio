@@ -236,7 +236,7 @@ export default function Home() {
         <ProjectSection
           title={"Casa Chirilagua"}
           videoUrl={
-            "https://res.cloudinary.com/dcss55nem/video/upload/v1723762264/brkdunsgwsjlxbclsq5c.mp4"
+            "https://res.cloudinary.com/dcss55nem/video/upload/v1723783785/Untitled_design_4_stjdmq.mp4"
           }
           buttonLabel={"Learn More"}
           // textEnter={textEnter}
