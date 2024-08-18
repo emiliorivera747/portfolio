@@ -276,11 +276,11 @@ export default function Home() {
           titleColor={"text-black"}
           titleFont={"font-extrabold"}
           videoUrl={
-            "https://res.cloudinary.com/dcss55nem/video/upload/v1701612656/Space_and_Astronomy_Film_Video_Intro_19_flipwd.mp4"
+            "https://res.cloudinary.com/dcss55nem/video/upload/v1724007631/Untitled_design_8_urcmj0.mp4"
           }
           buttonLabel={"Learn More"}
-          buttonTextColor={"text-black"}
-          buttonBorderColor={"border-black"}
+          buttonTextColor={"text-white"}
+          buttonBorderColor={"border-white hover:border-black"}
           buttonBgColor={"hover:bg-black"}
           buttonHoverTextColor={"hover:text-white"}
           videoCover={"object-cover"}
