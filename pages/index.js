@@ -175,6 +175,8 @@ export default function Home() {
       window.removeEventListener("mousemove", mouseMove);
     };
   }, []);
+
+  //Test
   const variants = {
     default: {
       height: 20,
