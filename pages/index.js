@@ -1,15 +1,15 @@
 import { useEffect, useState, useRef } from "react";
-import Head from 'next/head';
+import Head from "next/head";
 import HeaderSection from "@/components/HeaderSection";
 import ProjectSection from "@/components/ProjectSection";
 import ToolsSection from "@/components/ToolsSection";
-import { motion } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Page from "@/components/page";
 import Contact from "@/components/Contact";
 //test
 //test
 // test 3
-//Components 
+//Components
 import Testimonial from "@/components/Testimonial";
 
 export const metadata = {
@@ -19,6 +19,27 @@ export const metadata = {
 };
 
 export default function Home() {
+  const { scrollY } = useScroll();
+
+  const [scrollDirection, setScrollDirection] = useState(null);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      console.log(currentScrollY);
+      const direction = currentScrollY > lastScrollY ? 'down' : 'up';
+      setScrollDirection(direction);
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  console.log(scrollDirection);
+
   // const [screenWidth, setScreenWidth] = useState(window ? window.innerWidth : "" );
 
   const frontEndData = [
@@ -164,6 +185,8 @@ export default function Home() {
     y: 0,
   });
   const [cursorVariant, setCursorVariant] = useState("default");
+
+
   useEffect(() => {
     const mouseMove = (e) => {
       setMousePosition({
@@ -176,6 +199,29 @@ export default function Home() {
       window.removeEventListener("mousemove", mouseMove);
     };
   }, []);
+
+  // useEffect(() => {
+  //   const unsubscribe = scrollY.on("change", (latest) => {
+  //     console.log(latest);
+  //   });
+  //   return () => unsubscribe();
+  // }, [scrollY]);
+
+
+  // useMotionValueEvent(scrollY, "change", (latest) => {
+  //   console.log("Page scroll: ", latest)
+  // })
+
+  // useMotionValueEvent(scrollY, "change", (latest) => {
+  //   console.log(latest);
+  //   const previous = scrollY.getPrevious();
+  //   console.log(previous);
+  //   if (latest > previous && latest > 150) {
+  //     setHidden(true);
+  //   } else {
+  //     setHidden(false);
+  //   }
+  // });
 
   //Test
   const variants = {
@@ -219,16 +265,10 @@ export default function Home() {
   return (
     <Page>
       <Head>
-        <title>
-          {metadata.title}
-        </title>
-        <meta
-          name="description"
-          content={metadata.description}
-          key="desc"
-        />
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} key="desc" />
       </Head>
-      <section className="h-screen w-screen overflow-x-hidden">
+      <section className="h-screen w-screen">
         <HeaderSection
           // textEnter={textEnter}
           // textLeave={textLeave}
@@ -253,13 +293,13 @@ export default function Home() {
           bgColor={"bg-black"}
           videoCover={"sm:object-cover"}
         />
-        
+
         <ToolsSection
           toolData={toolData}
           bgColor={"bg-black"}
           textColor={"text-white"}
         ></ToolsSection>
-        <Testimonial/>
+        <Testimonial />
         <ProjectSection
           title={"My Portfolio Website"}
           videoUrl={

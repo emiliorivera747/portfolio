@@ -1,7 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion"
+
 import Link from "next/link";
 import Image from "next/image";
 function Navbar({ menuItems }) {
+
+  const { scrollY } = useScroll();
+
+  const [hidden, setHidden] = useState(false);
+  const [bgColor, setBgColor] = useState("bg-transparent");
+  //   useMotionValueEvent(scrollY, "change", (latest) => {
+  //   console.log("Page scroll: ", latest)
+  // })
+  // useEffect(() => {
+
+  //   const unsubscribe = scrollY.on("change", (latest) => { console.log(latest); });
+  //   return () => unsubscribe();
+  // }, [scrollY]);
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    console.log("Latest: ",latest);
+    const previous = scrollY.getPrevious();
+    console.log("Pre: ",previous);
+    if(latest > previous && latest > 150){
+      setHidden(true);
+    }
+    else{
+      setHidden(false);
+    }
+
+    if(latest > 600){
+      setBgColor("bg-black");
+    }
+    else{
+      setBgColor("bg-transparent");
+    }
+  });
+
   const [openMenu, setOpenMenu] = useState(false);
   const [openClass, setOpenClass] = useState("");
   const [isHidden, setIsHidden] = useState("hidden");
@@ -24,11 +58,16 @@ function Navbar({ menuItems }) {
   };
 
   return (
-    <nav className="absolute sm:px-12  bg-transparent w-screen">
+    <motion.nav
+      variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
+      animate={hidden ? "hidden" : "visible"}
+      transition={{ duration: 0.2, ease: "easeInOut" }}
+      className={`fixed top-0 left-0 w-full z-50 sm:px-12 px-4  h-24 ${bgColor} flex items-center`}>
       {/*Flex Container For Nav Items  */}
       <div
+
         className="flex items-center justify-between
-space-x-20 my-2"
+space-x-20 my-2 w-full"
       >
         {/* Logo */}
         <div className="z-30 justify-self-start ">
@@ -36,7 +75,7 @@ space-x-20 my-2"
             href="/"
             className={`flex flewx-row tracking-widest hover:text-softRed  ${logoBgColor} rounded-lg p-2 ${logoTextColor} text-white font-bold`}
           >
-            <Image src="https://res.cloudinary.com/dcss55nem/image/upload/v1702588027/favicon_5_a5rhl0.png" height={30} width={30} className="pr-1 self-end" alt="logo"/> <h1 className="self-end font-bold tracking-widest">{"milio's Portfolio"}</h1>
+            <Image src="https://res.cloudinary.com/dcss55nem/image/upload/v1702588027/favicon_5_a5rhl0.png" height={30} width={30} className="pr-1 self-end" alt="logo" /> <h1 className="self-end font-bold tracking-widest">{"milio's Portfolio"}</h1>
           </Link>
         </div>
 
@@ -56,6 +95,8 @@ space-x-20 my-2"
               );
             })}
           </div>
+
+
           {/* Hamburger Button */}
           <button
             id="menu-btn"
@@ -89,7 +130,7 @@ space-x-20 my-2"
           );
         })}
       </div>
-    </nav>
+    </motion.nav>
   );
 }
 
