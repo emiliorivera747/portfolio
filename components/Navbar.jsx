@@ -9,6 +9,11 @@ function Navbar({ menuItems }) {
 
   const [hidden, setHidden] = useState(false);
   const [bgColor, setBgColor] = useState("bg-transparent");
+  const [openMenu, setOpenMenu] = useState(false);
+  const [openClass, setOpenClass] = useState("");
+  const [isHidden, setIsHidden] = useState("hidden");
+  const [logoTextColor, setLogoTextColor] = useState("text-black");
+  const [logoBgColor, setLogoBgColor] = useState("hover:bg-zinc-800");
   //   useMotionValueEvent(scrollY, "change", (latest) => {
   //   console.log("Page scroll: ", latest)
   // })
@@ -23,6 +28,8 @@ function Navbar({ menuItems }) {
     console.log("Pre: ",previous);
     if(latest > previous && latest > 150){
       setHidden(true);
+      setIsHidden("hidden");
+      setOpenClass("");
     }
     else{
       setHidden(false);
@@ -36,11 +43,7 @@ function Navbar({ menuItems }) {
     }
   });
 
-  const [openMenu, setOpenMenu] = useState(false);
-  const [openClass, setOpenClass] = useState("");
-  const [isHidden, setIsHidden] = useState("hidden");
-  const [logoTextColor, setLogoTextColor] = useState("text-black");
-  const [logoBgColor, setLogoBgColor] = useState("hover:bg-zinc-800");
+
 
   const handleMenuClick = () => {
     setOpenMenu(!openMenu);
@@ -62,7 +65,7 @@ function Navbar({ menuItems }) {
       variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.2, ease: "easeInOut" }}
-      className={`fixed top-0 left-0 w-full z-50 sm:px-12 px-4  h-24 ${bgColor} flex items-center`}>
+      className={`fixed top-0 left-0 w-full z-50 sm:px-12 px-4  h-24 ${bgColor} items-center block`}>
       {/*Flex Container For Nav Items  */}
       <div
 
@@ -100,7 +103,7 @@ space-x-20 my-2 w-full"
           {/* Hamburger Button */}
           <button
             id="menu-btn"
-            className={`${openClass} z-30 block focus:outline-none hamburger justify-end `}
+            className={`${openClass} z-50 block focus:outline-none hamburger justify-end `}
             onClick={handleMenuClick}
           >
             <span className="hamburger-top"></span>
@@ -113,11 +116,11 @@ space-x-20 my-2 w-full"
       {/* Mobile Menu */}
       <div
         id="menu"
-        className={` ${openClass} fixed inset-0 z-20 ${isHidden} flex-col items-center self-end w-full h-full m-h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500 opacity-90 bg-black`}
+        className={` ${openClass} fixed z-40 top-0 right-0 ${isHidden} flex flex-col items-center self-end w-full sm:w-80 h-screen m-h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500  bg-black opacity-90 transition-all duration-1000 ease-in-out`}
       >
         {menuItems.map((item, index) => {
           return (
-            <div key={index} className="w-full py-3 text-center">
+            <div key={index} className="w-full py-3 text-center ">
               <Link
                 key={item.id}
                 href={item.url}

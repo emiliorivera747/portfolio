@@ -263,12 +263,12 @@ export default function Home() {
   const textLeaveNone = () => setCursorVariant("none");
 
   return (
-    <Page>
+    <Page >
       <Head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} key="desc" />
       </Head>
-      <section className="h-screen w-screen">
+      <section className="h-screen w-screen mx-0 ">
         <HeaderSection
           // textEnter={textEnter}
           // textLeave={textLeave}
