@@ -286,7 +286,7 @@ export default function Home() {
           titleSize={"text-4xl"}
           title={"My Portfolio Website"}
           videoUrl={
-            "https://res.cloudinary.com/dcss55nem/video/upload/v1702685763/Space_and_Astronomy_Film_Video_Intro_20_ibjn2t.mp4"
+            "https://res.cloudinary.com/dcss55nem/video/upload/v1724616795/Untitled_design_22_q63p4f.mp4"
           }
           buttonLabel={"Learn More"}
           titleColor={"text-zinc-800"}
