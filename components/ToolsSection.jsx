@@ -56,8 +56,8 @@ function ToolsSection({ bgColor, frontEndData, backEndData, bothData, checkWhatD
         {/* Front End  */}
         {activeButton === 'Front End' && (
           <div className=" h-full w-full grid grid-cols-3 sm:grid-cols-4 grid-rows-[3rem,3rem, 3rem] gap-2 sm:px-44 pt-4 pb-10 px-10">
-            {frontEndData.map((item) => (
-              <div className="flex flex-col items-center justify-center gap-4 ">
+            {frontEndData.map((item, index) => (
+              <div key={index} className="flex flex-col items-center justify-center gap-4 ">
                 <Image
                   alt={item.name}
                   className="rounded-xl backdrop-blur-sm bg-black/2 "
@@ -86,8 +86,8 @@ function ToolsSection({ bgColor, frontEndData, backEndData, bothData, checkWhatD
         {
           activeButton === 'Back End' && (
             <div className=" h-full w-full grid grid-cols-3 sm:grid-cols-4 grid-rows-[3rem,3rem, 3rem] gap-2 sm:px-44 pt-4 pb-10 px-10">
-              {backEndData.map((item) => (
-                <div className="flex flex-col items-center justify-center gap-4  ">
+              {backEndData.map((item, index) => (
+                <div key={index} className="flex flex-col items-center justify-center gap-4  ">
                   <Image
                     alt={item.name}
                     className="  rounded-xl   backdrop-blur-sm bg-black/2 "
@@ -116,8 +116,8 @@ function ToolsSection({ bgColor, frontEndData, backEndData, bothData, checkWhatD
         {
           activeButton === 'Both' && (
             <div className="h-full w-full grid grid-cols-3 sm:grid-cols-4 grid-rows-[3rem,3rem, 3rem] gap-2 sm:px-44 pt-4 pb-10 px-10">
-              {bothData.map((item) => (
-                <div className="flex flex-col items-center justify-center gap-4 ">
+              {bothData.map((item, index) => (
+                <div key={index} className="flex flex-col items-center justify-center gap-4 ">
                   <Image
                     alt={item.name}
                     className="  rounded-xl   backdrop-blur-sm bg-black/2 "
