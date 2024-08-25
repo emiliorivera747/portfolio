@@ -65,11 +65,11 @@ function Navbar({ menuItems }) {
       variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.2, ease: "easeInOut" }}
-      className={`fixed top-0 left-0 w-full z-50 sm:px-12 px-4  h-24 ${bgColor} items-center block`}>
+      className={`fixed top-0 left-0 w-full z-50 sm:px-12 px-4  h-20 ${bgColor} opacity-90 items-center justify-center`}>
       {/*Flex Container For Nav Items  */}
       <div
 
-        className="flex items-center justify-between
+        className="flex items-center h-16 justify-between
 space-x-20 my-2 w-full"
       >
         {/* Logo */}

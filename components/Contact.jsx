@@ -52,7 +52,7 @@ function Contact({ textEnter, textLeave }) {
 
 
   return (
-    <section className="h-screen w-screen bg-black overflow-auto">
+    <section className="h-screen w-screen bg-white overflow-auto">
       <motion.div
         className="flex flex-col sm:flex-row items-start gap-50 p-12 md:p-24 max-w-full w-full"
         initial="initial"
@@ -63,7 +63,7 @@ function Contact({ textEnter, textLeave }) {
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
             variants={variants}
-            className="text-white text-5xl md:text-7xl font-bold leading-none w-full"
+            className="text-zinc-800 text-5xl md:text-7xl font-bold leading-none w-full"
           >
             {"Let's Work Together"}
           </motion.h1>
@@ -71,14 +71,14 @@ function Contact({ textEnter, textLeave }) {
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className="text-white font-bold"
+              className="text-zinc-800 font-bold"
             >
               Mail
             </h1>
             <span
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className="text-white text-sm"
+              className="text-zinc-800 text-sm"
             >
               emiliorivera174@gmail.com
             </span>
@@ -87,14 +87,14 @@ function Contact({ textEnter, textLeave }) {
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className="text-white font-bold "
+              className="text-zinc-800 font-bold "
             >
               Phone
             </h1>
             <span
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className="text-white text-sm"
+              className="text-zinc-800 text-sm"
             >
               (571) 970-8057
             </span>
@@ -112,24 +112,24 @@ function Contact({ textEnter, textLeave }) {
             <input
               type="text"
               name="from_name"
-              className="bg-transparent border-white p-2 text-white rounded-sm border"
+              className="bg-transparent border-zinc-800 p-2 text-zinc-800 rounded-sm border"
               placeholder="Name"
             />
             <input
               name="email"
               type="email"
-              className="bg-transparent border-white p-2 text-white rounded-sm border"
+              className="bg-transparent border-zinc-800 p-2 text-zinc-800 rounded-sm border"
               placeholder="Email"
             />
             <textarea
-              className="bg-transparent border-white p-2 text-white rounded-sm border"
+              className="bg-transparent border-zinc-800 p-2 text-zinc-800 rounded-sm border"
               name="message"
               id=""
               cols="30"
               rows="4"
               placeholder="Message"
             ></textarea>
-            <button className="text-white bg-black hover:bg-white hover:text-black border-4 border-white p-3 rounded-md">
+            <button className="text-zinc-800 bg-white hover:bg-zinc-800 hover:text-white border-2 border-zinc-800 p-3 rounded-md">
               Submit
             </button>
             {error && "Error"}

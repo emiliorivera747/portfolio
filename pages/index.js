@@ -62,7 +62,7 @@ export default function Home() {
     {
       name: "Figma",
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/17_lvirvm.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1724544103/Untitled_design_lygl7v.jpg",
     },
     {
       name: "Redux Tool Kit",
@@ -84,7 +84,7 @@ export default function Home() {
     {
       name: "Express",
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1701033384/Copy_of_Space_and_Astronomy_Film_Video_Intro_13_wooz0a.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1724547763/Untitled_design_1_byjzau.jpg",
     },
     {
       name: "Node js",
@@ -127,12 +127,12 @@ export default function Home() {
     {
       name: "GitHub",
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1701048416/31_kpgvez.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1724547300/10_kelmol.jpg",
     },
     {
       name: "Heroku",
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1701032032/28_zxknjp.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1724547303/11_rzl5ia.jpg",
     },
   ];
   const frontEndDataTwo = [
@@ -200,28 +200,6 @@ export default function Home() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const unsubscribe = scrollY.on("change", (latest) => {
-  //     console.log(latest);
-  //   });
-  //   return () => unsubscribe();
-  // }, [scrollY]);
-
-
-  // useMotionValueEvent(scrollY, "change", (latest) => {
-  //   console.log("Page scroll: ", latest)
-  // })
-
-  // useMotionValueEvent(scrollY, "change", (latest) => {
-  //   console.log(latest);
-  //   const previous = scrollY.getPrevious();
-  //   console.log(previous);
-  //   if (latest > previous && latest > 150) {
-  //     setHidden(true);
-  //   } else {
-  //     setHidden(false);
-  //   }
-  // });
 
   //Test
   const variants = {
@@ -277,6 +255,7 @@ export default function Home() {
           }
         />
         <ProjectSection
+          titleSize={"text-4xl"}
           title={"Casa Chirilagua"}
           videoUrl={
             "https://res.cloudinary.com/dcss55nem/video/upload/v1723783785/Untitled_design_4_stjdmq.mp4"
@@ -284,31 +263,35 @@ export default function Home() {
           buttonLabel={"Learn More"}
           // textEnter={textEnter}
           // textLeave={textLeave}
-          titleColor={"text-white sm:text-black"}
+          titleColor={"text-zinc-800"}
           titleFont={"font-bold"}
           buttonTextColor={"text-white"}
           buttonBorderColor={"border-white"}
           buttonBgColor={"hover:bg-white"}
-          buttonHoverTextColor={"hover:text-black"}
-          bgColor={"bg-black"}
+          buttonHoverTextColor={"hover:text-zinc-800"}
+          bgColor={"bg-white"}
           videoCover={"sm:object-cover"}
         />
 
         <ToolsSection
-          toolData={toolData}
-          bgColor={"bg-black"}
-          textColor={"text-white"}
+          frontEndData={frontEndData}
+          backEndData={backEndData}
+          bothData={bothData}
+          checkWhatDataToShow={{ frontEndData: true, backEndData: true, bothData: true }}
+          bgColor={"bg-white"}
+          textColor={"text-zinc-800"}
         ></ToolsSection>
         <Testimonial />
         <ProjectSection
+          titleSize={"text-4xl"}
           title={"My Portfolio Website"}
           videoUrl={
             "https://res.cloudinary.com/dcss55nem/video/upload/v1702685763/Space_and_Astronomy_Film_Video_Intro_20_ibjn2t.mp4"
           }
           buttonLabel={"Learn More"}
-          titleColor={"text-black"}
+          titleColor={"text-zinc-800"}
           titleFont={"font-extrabold"}
-          buttonTextColor={"text-black md:text-black"}
+          buttonTextColor={"text-zinc-800 md:text-zinc-800"}
           buttonBorderColor={"border-black md:border-black"}
           buttonBgColor={"hover:bg-black md:hover:bg-black"}
           buttonHoverTextColor={"hover:text-white md:hover:text-white"}
@@ -316,22 +299,24 @@ export default function Home() {
         />
         <ProjectSection
           title={"Responsive Design"}
-          titleColor={"text-black"}
+          titleSize={"text-3xl"}
+          titleColor={"text-zinc-800"}
           titleFont={"font-extrabold"}
           videoUrl={
-            "https://res.cloudinary.com/dcss55nem/video/upload/v1724007631/Untitled_design_8_urcmj0.mp4"
+            "https://res.cloudinary.com/dcss55nem/video/upload/v1724550161/Untitled_design_20_pg1n4r.mp4"
           }
           buttonLabel={"Learn More"}
-          buttonTextColor={"text-white"}
-          buttonBorderColor={"border-white hover:border-black"}
-          buttonBgColor={"hover:bg-black"}
+          buttonTextColor={"text-zinc-800 "}
+          buttonBorderColor={"border-zinc-800 hover:border-zinc-800"}
+          buttonBgColor={"hover:bg-zinc-800"}
           buttonHoverTextColor={"hover:text-white"}
           videoCover={"object-cover"}
         />
         <ToolsSection
-          toolData={toolDataTwo}
+          frontEndData={frontEndDataTwo}
+          checkWhatDataToShow={{ frontEndData: true, backEndData: false, bothData: false }}
           bgColor={"bg-white"}
-          textColor={"text-black"}
+          textColor={"text-zinc-800"}
         ></ToolsSection>
         <Contact
         //  textEnter={textEnter}

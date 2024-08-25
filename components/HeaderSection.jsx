@@ -86,7 +86,7 @@ function HeaderSection({ textEnter, textLeave }) {
       {/* VIDEO */}
       <div className="">
         <div
-          className="absolute top-0 left-0 w-full h-full bg-black opacity-50"
+          className="absolute top-0 left-0 w-full h-full bg-black opacity-30"
         ></div>
       </div>
       <video

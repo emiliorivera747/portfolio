@@ -16,6 +16,7 @@ function ProjectSection({
   buttonHoverTextColor,
   bgColor,
   videoCover,
+  titleSize,
 }) {
    
   const videoRef = useRef(null);
@@ -51,7 +52,7 @@ function ProjectSection({
         <h1
           onMouseEnter={textEnter}
           onMouseLeave={textLeave}
-          className={`absolute ${titleFont} text-4xl ${titleColor} pt-6`}
+          className={`absolute ${titleFont} ${titleSize} ${titleColor} pt-4`}
         >
           {title}
         </h1>
