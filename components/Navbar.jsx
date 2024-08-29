@@ -14,6 +14,8 @@ function Navbar({ menuItems }) {
   const [isHidden, setIsHidden] = useState("hidden");
   const [logoTextColor, setLogoTextColor] = useState("text-black");
   const [logoBgColor, setLogoBgColor] = useState("hover:bg-zinc-800");
+  const [menuTextColor, setMenuTextColor] = useState("text-white");
+  const [hamburgerBgColor, setHamburgerBgColor] = useState("bg-white");
   //   useMotionValueEvent(scrollY, "change", (latest) => {
   //   console.log("Page scroll: ", latest)
   // })
@@ -36,10 +38,15 @@ function Navbar({ menuItems }) {
     }
 
     if(latest > 600){
-      setBgColor("bg-black");
+      setBgColor("backdrop-blur-[10rem]");
+      setMenuTextColor("text-zinc-800");
+      setHamburgerBgColor("bg-zinc-800");
     }
     else{
       setBgColor("bg-transparent");
+      setMenuTextColor("text-white");
+      setHamburgerBgColor("bg-white");
+
     }
   });
 
@@ -65,7 +72,7 @@ function Navbar({ menuItems }) {
       variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.2, ease: "easeInOut" }}
-      className={`fixed top-0 left-0 w-full z-50 sm:px-12 px-4  h-20 ${bgColor} opacity-90 items-center justify-center`}>
+      className={`fixed top-0 left-0 w-full z-50 sm:px-12 px-4  h-20 ${bgColor} items-center justify-center`}>
       {/*Flex Container For Nav Items  */}
       <div
 
@@ -76,7 +83,7 @@ space-x-20 my-2 w-full"
         <div className="z-30 justify-self-start ">
           <Link
             href="/"
-            className={`flex flewx-row tracking-widest hover:text-softRed  ${logoBgColor} rounded-lg p-2 ${logoTextColor} text-white font-bold`}
+            className={`flex flewx-row tracking-widest hover:text-white  ${logoBgColor} rounded-lg p-[0.8rem] ${logoTextColor} ${menuTextColor} font-bold`}
           >
             <Image src="https://res.cloudinary.com/dcss55nem/image/upload/v1702588027/favicon_5_a5rhl0.png" height={30} width={30} className="pr-1 self-end" alt="logo" /> <h1 className="self-end font-bold tracking-widest">{"milio's Portfolio"}</h1>
           </Link>
@@ -91,7 +98,7 @@ space-x-20 my-2 w-full"
                 <Link
                   key={item.id}
                   href={item.url}
-                  className="tracking-widest hover:text-softRed hover:bg-zinc-800 rounded-lg p-2 text-white font-bold text-sm"
+                  className={`tracking-widest hover:text-white hover:bg-zinc-800 rounded-lg p-[0.8rem] ${menuTextColor}  font-bold text-sm`}
                 >
                   {item.label}
                 </Link>
@@ -103,12 +110,12 @@ space-x-20 my-2 w-full"
           {/* Hamburger Button */}
           <button
             id="menu-btn"
-            className={`${openClass} z-50 block focus:outline-none hamburger justify-end `}
+            className={`${openClass} z-50 block focus:outline-none hamburger justify-end  `}
             onClick={handleMenuClick}
           >
-            <span className="hamburger-top"></span>
-            <span className="hamburger-middle"></span>
-            <span className="hamburger-bottom"></span>
+            <span className={`hamburger-top ${hamburgerBgColor}`}></span>
+            <span className={`hamburger-middle ${hamburgerBgColor}`}></span>
+            <span className={`hamburger-bottom ${hamburgerBgColor}`}></span>
           </button>
         </div>
       </div>

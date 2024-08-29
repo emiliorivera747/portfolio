@@ -41,7 +41,7 @@
     height: 3px;
     top: 0;
     left: 0;
-    background: white;
+    // background: white;
     transform: rotate(0);
     transition: all 0.5s;
 }
@@ -51,7 +51,7 @@
 
 .hamburger-bottom{
     transform: translateY(14px);
-    background-color: white;
+    // background-color: white;
 }
 
 .open{
@@ -64,7 +64,7 @@
 
 .open .hamburger-top{
     transform: rotate(45deg) translateY(6px) translateX(6px);
-    background-color: white;
+    // background-color: white;
 }
 
 .open .hamburger-middle{
@@ -73,7 +73,7 @@
 
 .open .hamburger-bottom{
     transform: rotate(-45deg) translateY(6px) translateX(-6px);
-    background-color: white;
+    // background-color: white;
 
 }
 
