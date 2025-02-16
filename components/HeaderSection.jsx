@@ -1,6 +1,6 @@
-import { useEffect, useState, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useTypewriter, Cursor } from "react-simple-typewriter";
+import { useEffect, useRef } from "react";
+import { motion} from "framer-motion";
+
 const variants = {
   initial: {
     y: 500,
@@ -42,9 +42,6 @@ function HeaderSection({ textEnter, textLeave }) {
     // Cleanup the observer when component unmounts
     return () => observer.disconnect();
   }, []);
-  const ref = useRef(null);
-  const backgroundImageUrl =
-    "url(https://res.cloudinary.com/dcss55nem/image/upload/v1702766909/Website_Header_Picture_jem7z3.png)";
 
   return (
     <section
@@ -92,15 +89,12 @@ function HeaderSection({ textEnter, textLeave }) {
       <video
         ref={videoRef}
         className={`h-screen w-screen object-cover`}
-        src={"https://res.cloudinary.com/dcss55nem/video/upload/v1724197548/Casa_Website_Video_-_Made_with_Clipchamp_t2atbx.mp4"}
+        src={"https://res.cloudinary.com/dcss55nem/video/upload/v1739681557/Portfolio_Video_t0y4tc.mp4"}
         // autoPlay={true}
         loop
         muted
         playsInline
       ></video>
-
-      {/* NAME */}
-
     </section>
   );
 }

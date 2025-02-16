@@ -55,7 +55,7 @@ function ToolsSection({ bgColor, frontEndData, backEndData, bothData, checkWhatD
 
         {/* Front End  */}
         {activeButton === 'Front End' && (
-          <div className=" h-full w-full grid grid-cols-3 sm:grid-cols-4 grid-rows-[3rem,3rem, 3rem] gap-2 sm:px-10 pt-4 pb-10 px-10">
+          <div className=" h-full w-full grid grid-cols-3 sm:grid-cols-4 grid-rows-[3rem,3rem, 3rem] gap-2 sm:px-10 pt-4 pb-10 px-[20rem]">
             {frontEndData.map((item, index) => (
               <div key={index} className="flex flex-col items-center justify-center gap-4 ">
                 <Image
