@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
+import SecondaryHeader from "./titles/SecondaryHeader";
 
 //Components
 import Tools from "@/components/tools-section/Tools";
@@ -20,10 +21,10 @@ function ToolsSection({
 
   return (
     <section className={`h-[70vh] w-screen ${bgColor}`}>
-      <div className="h-20 flex items-center justify-center pb-10">
-        <h1 className={`font-bold text-3xl text-zinc-700 pt-6 pb-2`}>
-          Tools Used
-        </h1>
+      
+      {/* Header */}
+      <div className="p-8 flex flex-row items-center justify-center  ">
+        <SecondaryHeader title={"Tools Used"}/>
       </div>
 
       <div className=" w-full flex-col flex  justify-center items-start ">

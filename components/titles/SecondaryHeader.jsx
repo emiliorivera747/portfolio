@@ -1,9 +1,12 @@
-import React from "react";
+import React, { forwardRef } from 'react';
+import {cn} from '@/lib/utils';
 
-const SecondaryHeader = ({ title }) => {
+const SecondaryHeader = forwardRef(({ title, className }, ref) => {
+  const defaultClasses = "font-bold text-3xl text-primary-1000";
   return (
-    <h1 className={`font-bold text-3xl text-zinc-700 pt-6 pb-2`}>{title}</h1>
+    <div ref={ref} className={cn(defaultClasses, className)}>{title}</div>
   );
-};
+});
 
 export default SecondaryHeader;
+

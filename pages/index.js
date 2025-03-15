@@ -28,7 +28,6 @@ export default function Home() {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      console.log(currentScrollY);
       const direction = currentScrollY > lastScrollY ? "down" : "up";
       setScrollDirection(direction);
       lastScrollY = currentScrollY;
@@ -37,8 +36,6 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  console.log(scrollDirection);
 
   // const [screenWidth, setScreenWidth] = useState(window ? window.innerWidth : "" );
 
@@ -80,6 +77,8 @@ export default function Home() {
         "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/20_dj1kp5.png",
     },
   ];
+  
+
   const backEndData = [
     {
       name: "Express",
@@ -261,7 +260,7 @@ export default function Home() {
         buttonLabel={"Learn More"}
         // textEnter={textEnter}
         // textLeave={textLeave}
-        titleColor={"text-[#212529]"}
+        titleColor={"text-primary-1000"}
         titleFont={"font-semibold"}
         buttonTextColor={"text-[#495057]"}
         buttonBorderColor={"border-[#495057]"}
@@ -280,7 +279,7 @@ export default function Home() {
           bothData: true,
         }}
         bgColor={"bg-white"}
-        textColor={"text-zinc-800"}
+        textColor={"text-primary-1000"}
       ></ToolsSection>
       <Testimonial />
       <ProjectSection
@@ -290,8 +289,8 @@ export default function Home() {
           "https://res.cloudinary.com/dcss55nem/video/upload/v1724616795/Untitled_design_22_q63p4f.mp4"
         }
         buttonLabel={"Learn More"}
-        titleColor={"text-zinc-800"}
-        titleFont={"font-extrabold"}
+        titleColor={"text-primary-1000"}
+        titleFont={"font-bold"}
         buttonTextColor={"text-zinc-800 md:text-zinc-800"}
         buttonBorderColor={"border-black md:border-black"}
         buttonBgColor={"hover:bg-black md:hover:bg-black"}
@@ -301,8 +300,8 @@ export default function Home() {
       <ProjectSection
         title={"Responsive Design"}
         titleSize={"text-3xl"}
-        titleColor={"text-zinc-800"}
-        titleFont={"font-extrabold"}
+        titleColor={"text-primary-1000"}
+        titleFont={"font-bold"}
         videoUrl={
           "https://res.cloudinary.com/dcss55nem/video/upload/v1724550161/Untitled_design_20_pg1n4r.mp4"
         }
@@ -321,7 +320,7 @@ export default function Home() {
           bothData: false,
         }}
         bgColor={"bg-white"}
-        textColor={"text-zinc-800"}
+        textColor={"text-primary-1000"}
       ></ToolsSection>
       <Contact
       //  textEnter={textEnter}
