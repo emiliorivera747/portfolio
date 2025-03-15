@@ -261,7 +261,7 @@ export default function Home() {
         buttonLabel={"Learn More"}
         // textEnter={textEnter}
         // textLeave={textLeave}
-        titleColor={"text-zinc-800"}
+        titleColor={"text-[#212529]"}
         titleFont={"font-semibold"}
         buttonTextColor={"text-[#495057]"}
         buttonBorderColor={"border-[#495057]"}
