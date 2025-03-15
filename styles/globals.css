@@ -1,9 +1,17 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-@import "tailwindcss";
 
-
+.cursor{
+  background-color: black;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left:0;
+  pointer-events: none;
+}
 
 @layer base {
   :root {
@@ -56,8 +64,7 @@
 
     --chart-5: 27 87% 67%;
 
-    --radius: 0.5rem
-  }
+    --radius: 0.5rem}
   .dark {
 
     --background: 0 0% 3.9%;
@@ -106,8 +113,7 @@
 
     --chart-4: 280 65% 60%;
 
-    --chart-5: 340 75% 55%
-  }
+    --chart-5: 340 75% 55%}
 }
 
 
