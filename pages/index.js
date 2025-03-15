@@ -256,15 +256,15 @@ export default function Home() {
         titleSize={"text-4xl"}
         title={"Casa Chirilagua"}
         videoUrl={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1723783785/Untitled_design_4_stjdmq.mp4"
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1724269948/Untitled_design_16_lix4yw.mp4"
         }
         buttonLabel={"Learn More"}
         // textEnter={textEnter}
         // textLeave={textLeave}
         titleColor={"text-zinc-800"}
-        titleFont={"font-bold"}
-        buttonTextColor={"text-white"}
-        buttonBorderColor={"border-white"}
+        titleFont={"font-semibold"}
+        buttonTextColor={"text-[#495057]"}
+        buttonBorderColor={"border-[#495057]"}
         buttonBgColor={"hover:bg-white"}
         buttonHoverTextColor={"hover:text-zinc-800"}
         bgColor={"bg-white"}
