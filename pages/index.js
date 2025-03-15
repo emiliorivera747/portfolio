@@ -29,13 +29,13 @@ export default function Home() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       console.log(currentScrollY);
-      const direction = currentScrollY > lastScrollY ? 'down' : 'up';
+      const direction = currentScrollY > lastScrollY ? "down" : "up";
       setScrollDirection(direction);
       lastScrollY = currentScrollY;
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   console.log(scrollDirection);
@@ -186,7 +186,6 @@ export default function Home() {
   });
   const [cursorVariant, setCursorVariant] = useState("default");
 
-
   useEffect(() => {
     const mouseMove = (e) => {
       setMousePosition({
@@ -199,7 +198,6 @@ export default function Home() {
       window.removeEventListener("mousemove", mouseMove);
     };
   }, []);
-
 
   //Test
   const variants = {
@@ -241,93 +239,99 @@ export default function Home() {
   const textLeaveNone = () => setCursorVariant("none");
 
   return (
-    <Page >
+    <Page>
       <Head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} key="desc" />
       </Head>
-      <section className="h-screen w-screen mx-0 ">
-        <HeaderSection
-          // textEnter={textEnter}
-          // textLeave={textLeave}
-          videoUrl={
-            "https://res.cloudinary.com/dcss55nem/video/upload/v1723761408/njth0ximkbqfobcqtzov.mp4"
-          }
-        />
-        <ProjectSection
-          titleSize={"text-4xl"}
-          title={"Casa Chirilagua"}
-          videoUrl={
-            "https://res.cloudinary.com/dcss55nem/video/upload/v1723783785/Untitled_design_4_stjdmq.mp4"
-          }
-          buttonLabel={"Learn More"}
-          // textEnter={textEnter}
-          // textLeave={textLeave}
-          titleColor={"text-zinc-800"}
-          titleFont={"font-bold"}
-          buttonTextColor={"text-white"}
-          buttonBorderColor={"border-white"}
-          buttonBgColor={"hover:bg-white"}
-          buttonHoverTextColor={"hover:text-zinc-800"}
-          bgColor={"bg-white"}
-          videoCover={"sm:object-cover"}
-        />
 
-        <ToolsSection
-          frontEndData={frontEndData}
-          backEndData={backEndData}
-          bothData={bothData}
-          checkWhatDataToShow={{ frontEndData: true, backEndData: true, bothData: true }}
-          bgColor={"bg-white"}
-          textColor={"text-zinc-800"}
-        ></ToolsSection>
-        <Testimonial />
-        <ProjectSection
-          titleSize={"text-4xl"}
-          title={"My Portfolio Website"}
-          videoUrl={
-            "https://res.cloudinary.com/dcss55nem/video/upload/v1724616795/Untitled_design_22_q63p4f.mp4"
-          }
-          buttonLabel={"Learn More"}
-          titleColor={"text-zinc-800"}
-          titleFont={"font-extrabold"}
-          buttonTextColor={"text-zinc-800 md:text-zinc-800"}
-          buttonBorderColor={"border-black md:border-black"}
-          buttonBgColor={"hover:bg-black md:hover:bg-black"}
-          buttonHoverTextColor={"hover:text-white md:hover:text-white"}
-          videoCover={"sm:object-cover"}
-        />
-        <ProjectSection
-          title={"Responsive Design"}
-          titleSize={"text-3xl"}
-          titleColor={"text-zinc-800"}
-          titleFont={"font-extrabold"}
-          videoUrl={
-            "https://res.cloudinary.com/dcss55nem/video/upload/v1724550161/Untitled_design_20_pg1n4r.mp4"
-          }
-          buttonLabel={"Learn More"}
-          buttonTextColor={"text-zinc-800 "}
-          buttonBorderColor={"border-zinc-800 hover:border-zinc-800"}
-          buttonBgColor={"hover:bg-zinc-800"}
-          buttonHoverTextColor={"hover:text-white"}
-          videoCover={"object-cover"}
-        />
-        <ToolsSection
-          frontEndData={frontEndDataTwo}
-          checkWhatDataToShow={{ frontEndData: true, backEndData: false, bothData: false }}
-          bgColor={"bg-white"}
-          textColor={"text-zinc-800"}
-        ></ToolsSection>
-        <Contact
-        //  textEnter={textEnter}
+      <HeaderSection
+        // textEnter={textEnter}
         // textLeave={textLeave}
-        ></Contact>
-        <motion.div
-          className="cursor"
-          variants={variants}
-          animate={cursorVariant}
-        />
-      </section>
+        videoUrl={
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1723761408/njth0ximkbqfobcqtzov.mp4"
+        }
+      />
+      <ProjectSection
+        titleSize={"text-4xl"}
+        title={"Casa Chirilagua"}
+        videoUrl={
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1723783785/Untitled_design_4_stjdmq.mp4"
+        }
+        buttonLabel={"Learn More"}
+        // textEnter={textEnter}
+        // textLeave={textLeave}
+        titleColor={"text-zinc-800"}
+        titleFont={"font-bold"}
+        buttonTextColor={"text-white"}
+        buttonBorderColor={"border-white"}
+        buttonBgColor={"hover:bg-white"}
+        buttonHoverTextColor={"hover:text-zinc-800"}
+        bgColor={"bg-white"}
+        videoCover={"sm:object-cover"}
+      />
+      <ToolsSection
+        frontEndData={frontEndData}
+        backEndData={backEndData}
+        bothData={bothData}
+        checkWhatDataToShow={{
+          frontEndData: true,
+          backEndData: true,
+          bothData: true,
+        }}
+        bgColor={"bg-white"}
+        textColor={"text-zinc-800"}
+      ></ToolsSection>
+      <Testimonial />
+      <ProjectSection
+        titleSize={"text-4xl"}
+        title={"My Portfolio Website"}
+        videoUrl={
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1724616795/Untitled_design_22_q63p4f.mp4"
+        }
+        buttonLabel={"Learn More"}
+        titleColor={"text-zinc-800"}
+        titleFont={"font-extrabold"}
+        buttonTextColor={"text-zinc-800 md:text-zinc-800"}
+        buttonBorderColor={"border-black md:border-black"}
+        buttonBgColor={"hover:bg-black md:hover:bg-black"}
+        buttonHoverTextColor={"hover:text-white md:hover:text-white"}
+        videoCover={"sm:object-cover"}
+      />
+      <ProjectSection
+        title={"Responsive Design"}
+        titleSize={"text-3xl"}
+        titleColor={"text-zinc-800"}
+        titleFont={"font-extrabold"}
+        videoUrl={
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1724550161/Untitled_design_20_pg1n4r.mp4"
+        }
+        buttonLabel={"Learn More"}
+        buttonTextColor={"text-zinc-800 "}
+        buttonBorderColor={"border-zinc-800 hover:border-zinc-800"}
+        buttonBgColor={"hover:bg-zinc-800"}
+        buttonHoverTextColor={"hover:text-white"}
+        videoCover={"object-cover"}
+      />
+      <ToolsSection
+        frontEndData={frontEndDataTwo}
+        checkWhatDataToShow={{
+          frontEndData: true,
+          backEndData: false,
+          bothData: false,
+        }}
+        bgColor={"bg-white"}
+        textColor={"text-zinc-800"}
+      ></ToolsSection>
+      <Contact
+      //  textEnter={textEnter}
+      // textLeave={textLeave}
+      ></Contact>
+      <motion.div
+        className="cursor"
+        variants={variants}
+        animate={cursorVariant}
+      />
     </Page>
   );
 }

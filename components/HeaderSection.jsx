@@ -45,7 +45,7 @@ function HeaderSection({ textEnter, textLeave }) {
 
   return (
     <section
-      className="relative min-h-screen h-auto w-screen  bg-black"
+      className="relative h-screen w-screen bg-black"
     >
       <motion.div
         initial="initial"
@@ -54,18 +54,18 @@ function HeaderSection({ textEnter, textLeave }) {
         className="flex flex-row w-full h-full absolute sm:self-center sm:items-center sm:justify-center justify-end items-end self-end "
       >
         <motion.div className="flex flex-col md:flex-col lg:flex-col w-full h-1/2 items-start justify-center sm:mx-16 mx-4 sm:gap-2 z-10 gap-1">
-          <div className="flex lg:flex-row flex-row gap-2 2xl:flex-col md:gap-4 text-4xl  md:text-7xl 2xl:text-[14rem] mb-4 sm:mb-8 ">
+          <div className="flex lg:flex-row flex-row gap-2 2xl:flex-col md:gap-4 text-4xl  md:text-7xl 2xl:text-[12rem] mb-4 sm:mb-8 ">
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className="text-white font-bold"
+              className="text-white font-semibold"
             >
               {"Emilio"}
             </h1>
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
-              className="text-white font-bold"
+              className="text-white font-semibold"
             >
               {"Rivera"}
             </h1>
@@ -73,7 +73,7 @@ function HeaderSection({ textEnter, textLeave }) {
           <h1
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
-            className="font-bold from-zinc-400 to-zinc-200 bg-gradient-to-r bg-clip-text text-transparent sm:text-2xl text-xl z-50  sm:mx-1 2xl:text-[3rem] pl-1 sm:pl-0"
+            className="font-semibold from-zinc-400 to-zinc-200 bg-gradient-to-r bg-clip-text text-transparent sm:text-2xl text-xl z-50  sm:mx-1 2xl:text-[3rem] pl-1 sm:pl-0"
           >
             {"Full Stack Engineer"}
           </h1>
@@ -88,7 +88,7 @@ function HeaderSection({ textEnter, textLeave }) {
       </div>
       <video
         ref={videoRef}
-        className={`h-screen w-screen object-cover`}
+        className={`object-cover w-full h-full`}
         src={"https://res.cloudinary.com/dcss55nem/video/upload/v1739681557/Portfolio_Video_t0y4tc.mp4"}
         // autoPlay={true}
         loop
