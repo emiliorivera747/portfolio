@@ -3,7 +3,8 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 
 import Link from "next/link";
 import Image from "next/image";
-function Navbar({ menuItems }) {
+
+export default function Navbar({ menuItems }) {
 
   const { scrollY } = useScroll();
 
@@ -144,4 +145,4 @@ space-x-20 my-2 w-full"
   );
 }
 
-export default Navbar;
+

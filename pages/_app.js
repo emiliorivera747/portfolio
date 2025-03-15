@@ -1,7 +1,8 @@
 import "../styles/globals.scss";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
-import Navbar from "@/components/Navbar";
+
+import Navbar from "../components/Navbar";
 import { Open_Sans } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import Head from "next/head";

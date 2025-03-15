@@ -29,9 +29,9 @@ function ToolsSection({
       <div className=" w-full flex-col flex  justify-center items-start ">
         {/* Buttons */}
         <div className=" h-20  flex flex-row items-center justify-center gap-1 px-10 sm:px-0 sm:gap-2 w-full mb-20 p-10">
-          {checkWhatDataToShow.frontEndData === true && (
+          {checkWhatDataToShow.frontEndData && (
             <button
-              className={`rounded-full border   w-40 h-[2.8rem] self-center justify-center text-center p-2 bottom-0 text-base font-medium
+              className={`rounded-full border w-40 h-[2.8rem] self-center justify-center text-center p-2 bottom-0 text-base font-medium
               ${
                 activeButton === "Front End"
                   ? "bg-blue-500 text-white border-blue-500"
@@ -57,7 +57,7 @@ function ToolsSection({
               Back End
             </button>
           )}
-          {checkWhatDataToShow.bothData === true && (
+          {checkWhatDataToShow.bothData && (
             <button
               className={`rounded-full border  w-40 h-[2.8rem] self-center justify-center text-center p-2 bottom-0 text-base font-medium
               ${

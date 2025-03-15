@@ -23,11 +23,14 @@
     "swiper": "^11.0.5"
   },
   "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.2",
     "postcss": "^8",
     "sass": "^1.69.5",
-    "tailwindcss": "^3.3.0"
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5.8.2"
   }
 }
