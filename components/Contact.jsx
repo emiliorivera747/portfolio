@@ -4,8 +4,6 @@ import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import Link from "next/link";
 
-//Components
-import SocialMediaLink from "@/components/social-media/socialMediaLink";
 import "react-toastify/dist/ReactToastify.css";
 
 const variants = {
