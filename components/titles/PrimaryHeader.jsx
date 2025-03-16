@@ -9,4 +9,5 @@ const PrimaryHeader = forwardRef(({ title, className }, ref) => {
   );
 });
 
+PrimaryHeader.displayName = 'PrimaryHeader';
 export default PrimaryHeader;

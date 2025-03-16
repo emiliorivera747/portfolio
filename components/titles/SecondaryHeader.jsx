@@ -8,5 +8,7 @@ const SecondaryHeader = forwardRef(({ title, className }, ref) => {
   );
 });
 
+SecondaryHeader.displayName = 'SecondaryHeader';
+
 export default SecondaryHeader;
 
