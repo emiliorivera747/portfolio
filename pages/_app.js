@@ -3,6 +3,9 @@ import "@/styles/globals.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
+import Amplify, { Analytics } from '@aws-amplify/core';
+import awsconfig from '../src/aws-exports'; // Adjust path if needed
+
 import Navbar from "../components/Navbar";
 import { Open_Sans } from "next/font/google";
 import { ToastContainer } from "react-toastify";
@@ -10,6 +13,11 @@ import Head from "next/head";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 const openSans = Open_Sans({ subsets: ["latin"], weight: ["400"] });
+
+// Configure Amplify once when the app loads
+Amplify.configure(awsconfig);
+
+
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   const navBarData = [
