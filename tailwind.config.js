@@ -13,6 +13,7 @@ module.exports = {
   			'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
   		},
   		colors: {
+			
   			primary: {
   				'100': '#f8f9fa',
   				'200': '#f1f3f5',
@@ -27,6 +28,18 @@ module.exports = {
   				DEFAULT: 'hsl(var(--primary))',
   				foreground: 'hsl(var(--primary-foreground))'
   			},
+			secondary:{
+				'100': '#edf2ff',
+				'200': '#dbe4ff',
+				'300': '#bac8ff',
+				'400': '#91a7ff',
+				'500': '#748ffc',
+				'600': '#5c7cfa',
+				'700': '#4c6ef5',
+				'800': '#4263eb',
+				'900': '#3b5bdb',
+				'1000': '#364fc7',
+			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

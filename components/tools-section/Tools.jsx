@@ -10,7 +10,7 @@ import Image from 'next/image'
 const Tools = ({toolsData}) => {
 
   return (
-    <div className=" h-full w-screen flex overflow-auto sm:px-60 pb-10 items-center justify-center gap-4">
+    <div className=" h-full w-screen flex overflow-auto sm:px-60 pb-10 items-center justify-center gap-10">
     {toolsData.map((item, i) => (
       <div key={i} className="flex flex-col items-center justify-center gap-4 backdrop-blur-md">
         <Image

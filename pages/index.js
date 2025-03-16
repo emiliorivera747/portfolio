@@ -323,8 +323,6 @@ export default function Home() {
         textColor={"text-primary-1000"}
       ></ToolsSection>
       <Contact
-      //  textEnter={textEnter}
-      // textLeave={textLeave}
       ></Contact>
       <motion.div
         className="cursor"

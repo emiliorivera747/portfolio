@@ -26,9 +26,7 @@ export default function Navbar({ menuItems }) {
   //   return () => unsubscribe();
   // }, [scrollY]);
   useMotionValueEvent(scrollY, "change", (latest) => {
-    console.log("Latest: ",latest);
     const previous = scrollY.getPrevious();
-    console.log("Pre: ",previous);
     if(latest > previous && latest > 150){
       setHidden(true);
       setIsHidden("hidden");
