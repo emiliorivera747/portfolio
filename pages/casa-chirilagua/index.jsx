@@ -10,9 +10,10 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 import { Pagination, Navigation, HashNavigation } from "swiper/modules";
 export const metadata = {
-  title: 'Casa Chirilagua | Emilio Rivera Portfolio',
-  description: 'Learn more about Casa Chiriagua project, a full stack web application developed by Emilio Rivera using MongoDB, Express.js, Node.js, and React.js.',
-}
+  title: "Casa Chirilagua | Emilio Rivera Portfolio",
+  description:
+    "Learn more about Casa Chiriagua project, a full stack web application developed by Emilio Rivera using MongoDB, Express.js, Node.js, and React.js.",
+};
 
 //components
 import ProjectSlider from "@/components/ProjectSlider";
@@ -149,28 +150,28 @@ function Project1() {
     {
       opacity: 0.5,
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1703106161/Screenshot_50_loutw3.png",
+        "https://res.cloudinary.com/dxxdfgpdh/image/upload/v1746120962/Screenshot_2025-05-01_at_9.15.39_AM_mpl5sb.png",
       title: "Student Registration Part 1",
       paragraph: "",
     },
     {
       opacity: 0.5,
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1703106162/Screenshot_51_irucos.png",
+        "https://res.cloudinary.com/dxxdfgpdh/image/upload/v1746121046/Screenshot_2025-05-01_at_9.42.24_AM_lbxund.png",
       title: "Student Registration Part 2",
       paragraph: "",
     },
     {
       opacity: 0.5,
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1703106162/Screenshot_52_cr7otq.png",
+        "https://res.cloudinary.com/dxxdfgpdh/image/upload/v1746121063/Screenshot_2025-05-01_at_9.42.37_AM_rljoqx.png",
       title: "Student Registration Part 3",
       paragraph: "",
     },
     {
       opacity: 0.5,
       imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1703106166/Screenshot_54_db2ybx.png",
+        "https://res.cloudinary.com/dxxdfgpdh/image/upload/v1746121074/Screenshot_2025-05-01_at_9.45.37_AM_xamd6j.png",
       title: "Student Registration Part 4",
       paragraph: "",
     },
@@ -179,17 +180,10 @@ function Project1() {
     "https://res.cloudinary.com/dcss55nem/image/upload/v1702849160/Copy_of_Space_and_Astronomy_Film_Video_Intro_18_wvt2b6.png";
 
   return (
-
     <section className={`h-screen w-screen overflow-x-hidden bg-black`}>
       <Head>
-        <title>
-          {metadata.title}
-        </title>
-        <meta
-          name="description"
-          content={metadata.description}
-          key="desc"
-        />
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} key="desc" />
       </Head>
       {/* Title */}
       <motion.div className="relative h-screen w-screen">
@@ -211,22 +205,22 @@ function Project1() {
         initial="initial"
         whileInView="animate"
         variants={variants}
-        className="w-screen bg-white h-auto min-h-screen"
+        className="w-screen bg-white h-[60vh] "
       >
-        <motion.div className=" h-full">
+        <motion.div className=" h-full  mx-[6%]">
           <motion.div className="h-1/6 w-full flex items-top justify-center pt-10">
             <h1 className="text-3xl text-black font-bold"> What did I do?</h1>
           </motion.div>
           <motion.div className="h-full w-full bg-white">
             {" "}
-            <h1 className="p-6 text-black text-start leading-loose tracking-wider md:text-xl md:p-16">
+            <h1 className="font-light p-6 text-[#343a40] text-start leading-loose tracking-wider md:text-xl md:p-16">
               Developed an internal website using MongoDB, Express.js, Node.js,
               and React to help manage programs for Casa Chirilagua, a
               non-profit organization based in the City of Alexandria, Virginia.
             </h1>
             <div className=" grid gap-5 md:gap-1 md:grid-cols-5 w-full pt-6">
               <div className="w-full flex flex-col pl-6 md:pl-16 col-span-1">
-                <h1 className="text-black text-start leading-loose tracking-wider text-xl  font-bold pb-6">
+                <h1 className="text-[#343a40] text-start leading-loose tracking-wider text-xl  font-bold pb-6">
                   Role
                 </h1>
                 <p className="text-md text-black">Full Stack Engineer</p>
@@ -261,20 +255,28 @@ function Project1() {
       </div>
 
       {/* Welcome Page */}
-      <div className=" bg-white w-screen relative min-h-screen h-auto ${bgColor w-screen overflow-auto">
+      <div className=" bg-white w-screen relative min-h-screen h-auto ${bgColor} w-screen overflow-auto">
         {data.map((item, index) => {
           return (
-            <div className=" flex flex-col p-10 md:p-20" key={index}>
-              <motion.div className="h-1/6 w-full flex items-top justify-center pt-10 pb-10 ">
-                <h1 className="text-2xl text-black font-bold ">{item.title}</h1>
+            <div className="flex flex-col p-10 mx-[6%]" key={index}>
+              <motion.div className="h-1/6 w-full flex items-top justify-center pt-10 pb-10">
+                <h1 className="text-2xl text-black font-bold">{item.title}</h1>
               </motion.div>
-              <p className="pb-6 leading-loose tracking-wider">{item.paragraph}</p>
-              <div className="w-full">
-                <img
+              <div className="pb-6 leading-loose tracking-wider">
+                {item.paragraph}
+              </div>
+              <div
+                style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
+                className="p-10 relative w-full h-[70vh] rounded-[12px] overflow-hidden shadow-md hover:shadow-xl"
+              >
+                <Image
                   alt={item.name}
                   src={item.imageUrl}
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-[12px]"
                   loading="lazy"
-                ></img>
+                />
               </div>
             </div>
           );
@@ -284,7 +286,7 @@ function Project1() {
         <ProjectSlider data={data} />
       </div> */}
       <div className="h-screen w-screen bg-black flex items-center justify-center">
-        <h1 className="text-6xl text-white">Demo Comming Soon...</h1>
+        <h1 className="text-6xl text-white">Demo Coming Soon...</h1>
       </div>
     </section>
   );

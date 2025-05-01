@@ -3,8 +3,6 @@ import "@/styles/globals.css";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
-import Amplify, { Analytics } from '@aws-amplify/core';
-
 import Navbar from "../components/Navbar";
 import { Open_Sans } from "next/font/google";
 import { ToastContainer } from "react-toastify";
@@ -12,11 +10,6 @@ import Head from "next/head";
 // import { Analytics } from "@vercel/analytics/react";
 // import { SpeedInsights } from "@vercel/speed-insights/next";
 const openSans = Open_Sans({ subsets: ["latin"], weight: ["400"] });
-
-// Configure Amplify once when the app loads
-import outputs from '../amplify_outputs.json';
-
-Amplify.configure(outputs);
 
 
 export default function App({ Component, pageProps }) {
@@ -49,8 +42,6 @@ export default function App({ Component, pageProps }) {
           exit={{ scaleY: 1 }}
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         ></motion.div>
-        {/* <Analytics /> */}
-        {/* <SpeedInsights /> */}
       </motion.div>
     </AnimatePresence>
   );

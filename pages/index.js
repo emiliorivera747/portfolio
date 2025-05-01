@@ -77,7 +77,6 @@ export default function Home() {
         "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/20_dj1kp5.png",
     },
   ];
-  
 
   const backEndData = [
     {
@@ -252,6 +251,7 @@ export default function Home() {
         }
       />
       <ProjectSection
+        url={"/casa-chirilagua"}
         titleSize={"text-4xl"}
         title={"Casa Chirilagua"}
         videoUrl={
@@ -283,6 +283,7 @@ export default function Home() {
       ></ToolsSection>
       <Testimonial />
       <ProjectSection
+        url={"/my-portfolio"}
         titleSize={"text-4xl"}
         title={"My Portfolio Website"}
         videoUrl={
@@ -298,6 +299,7 @@ export default function Home() {
         videoCover={"sm:object-cover"}
       />
       <ProjectSection
+        url={"/my-portfolio"}
         title={"Responsive Design"}
         titleSize={"text-3xl"}
         titleColor={"text-primary-1000"}
@@ -322,8 +324,7 @@ export default function Home() {
         bgColor={"bg-white"}
         textColor={"text-primary-1000"}
       ></ToolsSection>
-      <Contact
-      ></Contact>
+      <Contact></Contact>
       <motion.div
         className="cursor"
         variants={variants}
