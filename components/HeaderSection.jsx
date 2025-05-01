@@ -30,10 +30,14 @@ function HeaderSection({ textEnter, textLeave }) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           // Video is in the viewport, play it
-          videoRef.current.play();
+          if (videoRef.current.paused) {
+            videoRef.current.play();
+          }
         } else {
           // Video is outside the viewport, pause it
-          videoRef.current.pause();
+          if (videoRef.current && !videoRef.current.paused) {
+            videoRef.current.pause();
+          }
         }
       });
     };
@@ -84,6 +88,7 @@ function HeaderSection({ textEnter, textLeave }) {
             organizations.{" "}
           </p>
           <CalendlyPopupButton />
+          {/* <CalendlyEmbed url={process.env.CALENDLY_EVENT_LINK} /> */}
         </motion.div>
       </motion.div>
       {/* VIDEO */}
