@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import { motion} from "framer-motion";
+import { motion } from "framer-motion";
+import CalendlyPopupButton from "@/features/calendly/CalendlyPopupButton";
 
 const variants = {
   initial: {
@@ -15,6 +16,7 @@ const variants = {
     },
   },
 };
+
 function HeaderSection({ textEnter, textLeave }) {
   const videoRef = useRef(null);
   useEffect(() => {
@@ -44,9 +46,7 @@ function HeaderSection({ textEnter, textLeave }) {
   }, []);
 
   return (
-    <section
-      className="relative h-screen w-screen bg-black"
-    >
+    <section className="relative h-screen w-screen bg-black">
       <motion.div
         initial="initial"
         whileInView="animate"
@@ -77,19 +77,25 @@ function HeaderSection({ textEnter, textLeave }) {
           >
             {"Full Stack Engineer"}
           </h1>
-          <p className="text-zinc-200 sm:w-1/2 pl-1"> Develop minimalist web and front-end applications using modern frameworks, tailored for small businesses and non-profit organizations. </p>
+          <p className="text-zinc-200 sm:w-1/2 pl-1 pb-4">
+            {" "}
+            Develop minimalist web and front-end applications using modern
+            frameworks, tailored for small businesses and non-profit
+            organizations.{" "}
+          </p>
+          <CalendlyPopupButton />
         </motion.div>
       </motion.div>
       {/* VIDEO */}
       <div className="">
-        <div
-          className="absolute top-0 left-0 w-full h-full bg-black opacity-30"
-        ></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-30"></div>
       </div>
       <video
         ref={videoRef}
         className={`object-cover w-full h-full`}
-        src={"https://res.cloudinary.com/dcss55nem/video/upload/v1739681557/Portfolio_Video_t0y4tc.mp4"}
+        src={
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1739681557/Portfolio_Video_t0y4tc.mp4"
+        }
         // autoPlay={true}
         loop
         muted

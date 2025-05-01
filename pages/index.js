@@ -244,8 +244,6 @@ export default function Home() {
       </Head>
 
       <HeaderSection
-        // textEnter={textEnter}
-        // textLeave={textLeave}
         videoUrl={
           "https://res.cloudinary.com/dcss55nem/video/upload/v1723761408/njth0ximkbqfobcqtzov.mp4"
         }
