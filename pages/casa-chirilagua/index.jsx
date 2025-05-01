@@ -213,24 +213,24 @@ function Project1() {
           </motion.div>
           <motion.div className="h-full w-full bg-white">
             {" "}
-            <h1 className="font-light p-6 text-[#343a40] text-start leading-loose tracking-wider md:text-xl md:p-16">
+            <h1 className="font-light p-6 text-primary-800 text-start leading-loose tracking-wider md:text-xl md:p-16">
               Developed an internal website using MongoDB, Express.js, Node.js,
               and React to help manage programs for Casa Chirilagua, a
               non-profit organization based in the City of Alexandria, Virginia.
             </h1>
             <div className=" grid gap-5 md:gap-1 md:grid-cols-5 w-full pt-6">
               <div className="w-full flex flex-col pl-6 md:pl-16 col-span-1">
-                <h1 className="text-[#343a40] text-start leading-loose tracking-wider text-xl  font-bold pb-6">
+                <h1 className="text-primary-1000 text-start leading-loose tracking-wider text-xl  font-bold pb-6">
                   Role
                 </h1>
-                <p className="text-md text-black">Full Stack Engineer</p>
+                <p className="font-light text-md text-primary-800">Full Stack Engineer</p>
               </div>
               <motion.div className="w-full flex flex-col pl-6 md:pl-16 col-span-2">
                 {" "}
                 <h1 className="text-black text-start leading-loose tracking-wider text-xl font-bold pb-6 ">
                   Responsibility
                 </h1>
-                <p className="text-sm md:text-md text-black leading-loose tracking-wider">
+                <p className="text-sm md:text-md font-light text-md text-primary-800 leading-loose tracking-wider">
                   Consultation, Front End Architecture, Back End Development,
                   Create and Manage Database, Create RESTful APIs, Security,
                   UI/UX Design, Figma Prototyping, Deployment, Present Demos,
@@ -254,15 +254,14 @@ function Project1() {
         </motion.div>
       </div>
 
-      {/* Welcome Page */}
       <div className=" bg-white w-screen relative min-h-screen h-auto ${bgColor} w-screen overflow-auto">
         {data.map((item, index) => {
           return (
             <div className="flex flex-col p-10 mx-[6%]" key={index}>
-              <motion.div className="h-1/6 w-full flex items-top justify-center pt-10 pb-10">
+              <motion.div className="h-1/6 w-full flex items-top justify-center pt-10 pb-10 text-primary-1000">
                 <h1 className="text-2xl text-black font-bold">{item.title}</h1>
               </motion.div>
-              <div className="pb-6 leading-loose tracking-wider">
+              <div className="pb-6 leading-loose tracking-wider font-light text-md text-primary-800">
                 {item.paragraph}
               </div>
               <div

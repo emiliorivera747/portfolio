@@ -35,7 +35,7 @@ function Project() {
             {/* Items Container */}
             <div className="flex flex-col w-full space-y-6 text-2xl text-white uppercase md:flex-row md:space-y-0 md:space-x-8 ">
               <div className="group relative overflow-hidden md:w-full">
-                <Link href="/project1">
+                <Link href="/casa-chirilagua">
                   <img
                     src="https://res.cloudinary.com/dcss55nem/image/upload/v1701526592/Space_and_Astronomy_Film_Video_Intro_4_iuwnwv.png"
                     className="w-full duration-200 md-block group-hover:scale-110"
@@ -48,7 +48,7 @@ function Project() {
                 </Link>
               </div>
               <div className="group relative overflow-hidden md:w-full">
-                <Link href="/project2">
+                <Link href="/my-portfolio">
                   <img
                     src="https://res.cloudinary.com/dcss55nem/image/upload/v1701525646/Space_and_Astronomy_Film_Video_Intro_3_jij1s1.png"
                     className="w-full duration-200 md-block group-hover:scale-110"
