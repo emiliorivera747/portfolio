@@ -2,25 +2,20 @@ import React from "react";
 import Link from "next/link";
 import Page from "@/components/page";
 import Head from "next/head";
-
+import Image from "next/image";
 
 export const metadata = {
-  title: 'Projects | Emilio Rivera Portfolio',
-  description: 'Learn more about projects created by Emilio Rivera to showcase his skills in React.js, Next.js, and Node.js.',
-}
+  title: "Projects | Emilio Rivera Portfolio",
+  description:
+    "Learn more about projects created by Emilio Rivera to showcase his skills in React.js, Next.js, and Node.js.",
+};
 
 function Project() {
   return (
     <Page>
       <Head>
-        <title>
-          {metadata.title}
-        </title>
-        <meta
-          name="description"
-          content={metadata.description}
-          key="desc"
-        />
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} key="desc" />
       </Head>
       <section className="h-screen w-screen bg-black overflow-auto">
         <div className="flex items-center justify-center h-full w-full pt-20">
@@ -34,27 +29,35 @@ function Project() {
 
             {/* Items Container */}
             <div className="flex flex-col w-full space-y-6 text-2xl text-white uppercase md:flex-row md:space-y-0 md:space-x-8 ">
-              <div className="group relative overflow-hidden md:w-full">
+              <div className="group relative overflow-hidden md:w-full rounded-[12px]" style={{ position: "relative", width: "100%", height: "300px" }}>
                 <Link href="/casa-chirilagua">
-                  <img
-                    src="https://res.cloudinary.com/dcss55nem/image/upload/v1701526592/Space_and_Astronomy_Film_Video_Intro_4_iuwnwv.png"
+                  <Image
+                    alt="Casa Chirilagua Image"
+                    fill
                     className="w-full duration-200 md-block group-hover:scale-110"
-                  ></img>
+                    src={
+                      "https://res.cloudinary.com/dcss55nem/image/upload/v1701526592/Space_and_Astronomy_Film_Video_Intro_4_iuwnwv.png"
+                    }
+                  />
                   {/* Gradient */}
-                  <div className="absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-gray-900 group-hover:from-gray-50 group-hover:to-white group-hover:opacity-70"></div>
+                  <div className="absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-gray-900 group-hover:from-primary-500 group-hover:to-white group-hover:opacity-70"></div>
                   <h5 className="absolute px-6 duration-200 w-52 bottom-4 md-bottom-8 md:px-10 group-hover:scale-110 group-hover:text-black">
                     Casa Chirilagua
                   </h5>
                 </Link>
               </div>
-              <div className="group relative overflow-hidden md:w-full">
+              <div className="group relative overflow-hidden md:w-full rounded-[12px]">
                 <Link href="/my-portfolio">
-                  <img
-                    src="https://res.cloudinary.com/dcss55nem/image/upload/v1701525646/Space_and_Astronomy_Film_Video_Intro_3_jij1s1.png"
+                  <Image
+                    alt="Casa Chirilagua Image"
+                    fill
                     className="w-full duration-200 md-block group-hover:scale-110"
-                  ></img>
+                    src={
+                      "https://res.cloudinary.com/dcss55nem/image/upload/v1701525646/Space_and_Astronomy_Film_Video_Intro_3_jij1s1.png"
+                    }
+                  />
                   {/* Gradient */}
-                  <div className="absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-gray-900 group-hover:from-gray-50 group-hover:to-white group-hover:opacity-70"></div>
+                  <div className="absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-gray-900 group-hover:from-primary-400 group-hover:to-primary-100 group-hover:opacity-70"></div>
                   <h5 className="absolute px-6 duration-200 w-52 bottom-4 md-bottom-8 md:px-10 group-hover:scale-110 group-hover:text-black">
                     Portfolio Website
                   </h5>
