@@ -54,7 +54,7 @@ function HeaderSection({ textEnter, textLeave }) {
         className="flex flex-row w-full h-full absolute sm:self-center sm:items-center sm:justify-center justify-end items-end self-end "
       >
         <motion.div className="flex flex-col md:flex-col lg:flex-col w-full h-1/2 items-start justify-center sm:mx-16 mx-4 sm:gap-2 z-10 gap-1">
-          <div className="flex lg:flex-row flex-row gap-2 2xl:flex-col md:gap-4 text-4xl  md:text-7xl 2xl:text-[12rem] mb-4 sm:mb-8 ">
+          <div className="flex lg:flex-row flex-row gap-2  md:gap-4 text-4xl  md:text-7xl 2xl:text-[5rem] mb-4 sm:mb-8 ">
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
@@ -73,7 +73,7 @@ function HeaderSection({ textEnter, textLeave }) {
           <h1
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
-            className="font-semibold from-primary-700 to-primary-500 bg-gradient-to-r bg-clip-text text-transparent sm:text-2xl text-xl z-50  sm:mx-1 2xl:text-[3rem] pl-1 sm:pl-0"
+            className="font-semibold from-primary-700 to-primary-500 bg-gradient-to-r bg-clip-text text-transparent sm:text-2xl text-xl z-50  sm:mx-1 2xl:text-[2rem] pl-1 sm:pl-0 pb-1"
           >
             {"Full Stack Engineer"}
           </h1>
