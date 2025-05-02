@@ -32,7 +32,7 @@ const CalendlyPopupButton = () => {
 
   return (
     <PopupButton
-      className="border-2 border-white px-6 py-4 font-semibold text-white hover:bg-white hover:text-primary-1000 rounded-full"
+      className="calendlyButton border-2 px-6 py-4 font-semibold rounded-full"
       url={calendlyUrl}
       rootElement={rootElementRef.current as HTMLElement}
       text="Schedule Consultation"
