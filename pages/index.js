@@ -253,7 +253,7 @@ export default function Home() {
         titleSize={"text-4xl"}
         title={"Casa Chirilagua"}
         videoUrl={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1724269948/Untitled_design_16_lix4yw.mp4"
+          "https://res.cloudinary.com/dxxdfgpdh/video/upload/v1746659110/Untitled_design_1_tdxxes.mp4"
         }
         buttonLabel={"Learn More"}
         // textEnter={textEnter}
