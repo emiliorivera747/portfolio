@@ -201,7 +201,7 @@
   position: absolute;
   z-index: -1;
   inset: -1;
-  padding: 4px;
+  padding: 3px;
   border-radius: 9999px;
   transition: all 3s ease;
   -webkit-mask: 
