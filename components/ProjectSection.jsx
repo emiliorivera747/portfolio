@@ -53,7 +53,7 @@ function ProjectSection({
         <h1
           onMouseEnter={textEnter}
           onMouseLeave={textLeave}
-          className={`absolute ${titleFont} ${titleSize} ${titleColor} pt-4`}
+          className={`absolute ${titleFont} ${titleSize} ${titleColor} pt-9`}
         >
           {title}
         </h1>
