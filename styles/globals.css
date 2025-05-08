@@ -171,6 +171,8 @@
     transform: rotate(-45deg) translateY(6px) translateX(-6px);
 }
 
+
+
 .calendlyButton {
   border: 2px solid white; /* Blue border */
   padding: 1rem 1.5rem;
@@ -178,10 +180,58 @@
   color: #ffffff; /* White text */
   border-radius: 9999px; /* Fully rounded */
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 10;
+  border: 2px solid white;
+}
+
+.no-border{
+  border: none;
+}
+
+.popup-button-wrapper{
+  position: relative;
+  display: inline-block;
+  border-radius: 9999px;
+  background-color: transparent;
+  transition: all 3s ease in-out;
+  padding: 1px;
+
+}
+
+.popup-button-border {
+  position: absolute;
+  z-index: -1;
+  inset: -1;
+  padding: 3px;
+  border-radius: 9999px;
+  transition: all 3s ease;
+
+  -webkit-mask: 
+     linear-gradient(#fff 0 0) content-box, 
+     linear-gradient(#fff 0 0);
+          mask: 
+     linear-gradient(#fff 0 0) content-box, 
+     linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
 }
 
 .calendlyButton:hover {
   background-color: white; /* Darker blue on hover */
   border-color: white;
   color: black;
+  position: relative;
+}
+
+.popup-button-container{
+  position: relative;
+}
+
+.popup-button-border{
+  position: absolute;
+  inset: -3px;
+  
+}
+.rainbow {
 }
