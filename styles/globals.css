@@ -174,7 +174,6 @@
 
 
 .calendlyButton {
-  border: 2px solid white; /* Blue border */
   padding: 1rem 1.5rem;
   font-weight: 600;
   color: #ffffff; /* White text */
@@ -185,8 +184,8 @@
   border: 2px solid white;
 }
 
-.no-border{
-  border: none;
+.border-transparent {
+  border: 2px solid transparent;
 }
 
 .popup-button-wrapper{
@@ -195,7 +194,6 @@
   border-radius: 9999px;
   background-color: transparent;
   transition: all 3s ease in-out;
-  padding: 1px;
 
 }
 
@@ -203,10 +201,9 @@
   position: absolute;
   z-index: -1;
   inset: -1;
-  padding: 3px;
+  padding: 4px;
   border-radius: 9999px;
   transition: all 3s ease;
-
   -webkit-mask: 
      linear-gradient(#fff 0 0) content-box, 
      linear-gradient(#fff 0 0);

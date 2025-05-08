@@ -11,7 +11,7 @@ const CalendlyPopupButton = () => {
   const rotate = useTransform(time, [0, 3000], [0, 360], { clamp: false });
 
   const rotatingBg = useTransform(rotate, (r) => {
-    return `conic-gradient(from ${r}deg, #ff4545, #00ff99, #006aff, #ff0095, #ff4545)`;
+    return `conic-gradient(from ${r}deg, #f59f00, #51cf66, #4c6ef5, #ff0095, #f59f00)`;
   });
 
   useEffect(() => {
@@ -56,19 +56,20 @@ const CalendlyPopupButton = () => {
   return (
     <div className="popup-button-wrapper">
       <PopupButton
-        className={`calendlyButton px-6 py-4 font-semibold rounded-full `}
+        className={`calendlyButton px-6 py-4 font-semibold rounded-full ${
+          isVisible ? "border-transparent" : ""
+        }`}
         url={calendlyUrl}
         rootElement={rootElementRef.current as HTMLElement}
         text="Schedule Consultation"
       />
-      {isVisible && (
-        <motion.div
-          style={{
-            background: rotatingBg,
-          }}
-          className="popup-button-border"
-        ></motion.div>
-      )}
+
+      {isVisible && <motion.div
+        style={{
+          background: rotatingBg,
+        }}
+        {...{ className: "popup-button-border" }}
+      />}
     </div>
   );
 };
