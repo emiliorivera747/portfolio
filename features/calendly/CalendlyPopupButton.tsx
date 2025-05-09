@@ -8,10 +8,10 @@ const CalendlyPopupButton = () => {
   const rootElementRef = useRef<HTMLElement | null>(null);
   const [isReady, setIsReady] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const rotate = useTransform(time, [0, 3000], [0, 360], { clamp: false });
+  const rotate = useTransform(time, [0, 2000], [0, 360], { clamp: false });
 
   const rotatingBg = useTransform(rotate, (r) => {
-    return `conic-gradient(from ${r}deg, #f59f00, #51cf66, #4c6ef5, #ff0095, #f59f00)`;
+    return `conic-gradient(from ${r}deg, #e03131, #4263eb, #4263eb,#fcc419, #e03131)`;
   });
 
   useEffect(() => {
@@ -64,12 +64,14 @@ const CalendlyPopupButton = () => {
         text="Schedule Consultation"
       />
 
-      {isVisible && <motion.div
-        style={{
-          background: rotatingBg,
-        }}
-        {...{ className: "popup-button-border" }}
-      />}
+      {isVisible && (
+        <motion.div
+          style={{
+            background: rotatingBg,
+          }}
+          {...{ className: "popup-button-border" }}
+        />
+      )}
     </div>
   );
 };
