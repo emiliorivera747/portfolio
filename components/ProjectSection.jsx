@@ -19,7 +19,7 @@ function ProjectSection({
   titleSize,
   url,
 }) {
-   
+
   const videoRef = useRef(null);
   useEffect(() => {
     const options = {
@@ -49,14 +49,15 @@ function ProjectSection({
 
   return (
     <section className={`relative h-screen w-screen ${bgColor}`}>
-      <motion.div className="flex flex-col items-center justify-start h-screen">
-        <h1
-          onMouseEnter={textEnter}
-          onMouseLeave={textLeave}
-          className={`absolute ${titleFont} ${titleSize} ${titleColor} pt-9`}
-        >
-          {title}
-        </h1>
+      <motion.div className="flex flex-col items-center justify-start h-full w-full ">
+        <div className="absolute h-16 flex items-center ">
+          <h1
+            onMouseEnter={textEnter}
+            onMouseLeave={textLeave}
+            className={`${titleFont} ${titleSize} ${titleColor}`}
+          >
+            {title}
+          </h1></div>
         <video
           ref={videoRef}
           className={`h-full w-full ${videoCover}`}
