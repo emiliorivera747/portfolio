@@ -50,7 +50,7 @@ function ProjectSection({
   return (
     <section className={`relative h-screen w-screen ${bgColor}`}>
       <motion.div className="flex flex-col items-center justify-start h-full w-full ">
-        <div className="absolute h-16 flex items-center ">
+        <div className="absolute h-20 flex items-center ">
           <h1
             onMouseEnter={textEnter}
             onMouseLeave={textLeave}
@@ -66,8 +66,8 @@ function ProjectSection({
           loop
           muted
           playsInline
-        ></video>
-        <div className="flex items-end justify-center ">
+        />
+        <div className="flex items-end justify-center">
           {" "}
           <Link
             href={url}

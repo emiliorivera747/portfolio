@@ -1,13 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { FaQuoteLeft } from "react-icons/fa";
-import { FaQuoteRight } from "react-icons/fa";
 
-//test 4
 const Testimonial = () => {
   return (
-    <section className=" relative h-[70vh] w-screen border-b-2 border-zinc-100">
+    <section className=" relative h-[100vh] w-screen border-b-2 border-zinc-100 overflow-y-scroll">
       <div className=" flex items-center justify-center text-center">
         <h1 className="text-primary-1000 text-3xl pt-10 font-semibold">
           Client Testimonials
