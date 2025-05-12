@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion"
+import { useState} from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { CldImage } from 'next-cloudinary';
 
 import Link from "next/link";
 import Image from "next/image";
@@ -84,7 +85,7 @@ space-x-20 my-2 w-full"
             href="/"
             className={`flex flex-row tracking-widest hover:text-white hover:backdrop-blur-md rounded-lg p-[0.8rem] ${logoTextColor} ${menuTextColor} font-semibold`}
           >
-            <Image src="https://res.cloudinary.com/dcss55nem/image/upload/v1702588027/favicon_5_a5rhl0.png" height={30} width={30} className="pr-1 self-end" alt="logo" /> <h1 className="self-end font-bold tracking-widest">{"milio's Portfolio"}</h1>
+            <CldImage src="https://res.cloudinary.com/dcss55nem/image/upload/v1702588027/favicon_5_a5rhl0.png" height={30} width={30} className="pr-1 self-end" alt="logo" /> <h1 className="self-end font-bold tracking-widest">{"milio's Portfolio"}</h1>
           </Link>
         </div>
 

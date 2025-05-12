@@ -1,6 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
-
+import { CldImage } from 'next-cloudinary';
 
 const Testimonial = () => {
   return (
@@ -19,13 +18,13 @@ const Testimonial = () => {
 
         <div className="flex flex-row justify-center gap-4 items-center sm:h-auto rounded p-6">
           <div className="rounded-full w-16 h-16">
-            <Image
+            <CldImage
               src="https://res.cloudinary.com/dcss55nem/image/upload/v1716989872/roykag2ycegmrtfh20sg.jpg"
               // fill
               alt="Picture of Adriana Schellhaas"
-              width={10}
-              height={10}
-              className="w-16 h-16 rounded-full"
+              width={100}
+              height={100}
+              className="rounded-full object-cover"
             />
           </div>
 
