@@ -29,9 +29,9 @@ function ToolsSection({
         <SecondaryHeader title={"Tools Used"} />
       </div>
 
-      <div className=" w-full flex-col flex  justify-center items-start  overflow-x-scroll">
+      <div className=" w-full flex-col flex  justify-center items-start ">
         {/* Buttons */}
-        <div className=" h-20  flex flex-row items-center justify-center gap-1 px-10 sm:px-0 sm:gap-2 w-full mb-[5rem] p-10">
+        <div className=" h-20 flex flex-row items-center justify-center gap-1 px-10 sm:px-0 sm:gap-2 w-full mb-[5rem] p-10">
           {checkWhatDataToShow.frontEndData && (           
             <PrimaryButton
               text={"Front End"}
