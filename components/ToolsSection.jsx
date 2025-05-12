@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Image from "next/image";
 import SecondaryHeader from "./titles/SecondaryHeader";
 import PrimaryButton from "@/components/buttons/PrimaryButton";
 
@@ -20,8 +19,11 @@ function ToolsSection({
     setActiveButton(buttonName);
   };
 
+  const buttonDefaultStyle = 'hover:text-white bg-gradient-to-r from-secondary-600 to-secondary-800 text-zinc-900 bg-white border border-primary-200';
+  const buttonActiveStyle = 'bg-gradient-to-r from-[#3b5bdb] to-[#364fc7] text-white';
+
   return (
-    <section className={`h-[70vh] w-screen ${bgColor}`}>
+    <section className={`min-h-[70vh] h-auto w-screen ${bgColor}`}>
       {/* Header */}
       <div className="p-20 flex flex-row items-center justify-center  ">
         <SecondaryHeader title={"Tools Used"} />
@@ -36,8 +38,8 @@ function ToolsSection({
               actionFunction={() => handleClick("Front End")}
               className={` w-40 ${
                 activeButton === "Front End"
-                  ? ""
-                  : "hover:text-white bg-gradient-to-r from-secondary-700 to-secondary-800 text-zinc-900 bg-white border border-primary-200"
+                  ? buttonActiveStyle
+                  : buttonDefaultStyle
               }`}
             />
           )}
@@ -47,8 +49,8 @@ function ToolsSection({
               actionFunction={() => handleClick("Back End")}
               className={`w-40 ${
                 activeButton === "Back End"
-                  ? "bg-blue-500 text-white border-blue-500"
-                  : "hover:text-white bg-gradient-to-r from-secondary-700 to-secondary-800 text-zinc-900 bg-white border border-primary-200"
+                  ? buttonActiveStyle
+                  : buttonDefaultStyle
               }`}
             />
           )}
@@ -58,8 +60,8 @@ function ToolsSection({
               actionFunction={() => handleClick("Both")}
               className={` w-40 ${
                 activeButton === "Both"
-                  ? "bg-blue-500 text-white border-blue-500"
-                  : "hover:text-white bg-gradient-to-r from-secondary-700 to-secondary-800 text-zinc-900 bg-white border border-primary-200"
+                  ? buttonActiveStyle
+                  : buttonDefaultStyle
               }`}
             />
           )}

@@ -61,8 +61,6 @@ function ProjectSection({
             {title}
           </h1>
         </div>
-
-
           <video
             ref={videoRef}
             className={`h-full w-full ${videoCover}`}
@@ -73,8 +71,6 @@ function ProjectSection({
             muted
             playsInline
           />
-
-
         <div className="flex items-end justify-center">
           {" "}
           <Link
