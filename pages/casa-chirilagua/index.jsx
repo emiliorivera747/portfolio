@@ -1,22 +1,18 @@
 import React from "react";
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
 import Head from "next/head";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion} from "framer-motion";
 import Link from "next/link";
-import { Pagination, Navigation, HashNavigation } from "swiper/modules";
 export const metadata = {
   title: "Casa Chirilagua | Emilio Rivera Portfolio",
   description:
     "Learn more about Casa Chiriagua project, a full stack web application developed by Emilio Rivera using MongoDB, Express.js, Node.js, and React.js.",
 };
 
-//components
-import ProjectSlider from "@/components/ProjectSlider";
 const variants = {
   initial: {
     y: 500,
@@ -176,8 +172,6 @@ function Project1() {
       paragraph: "",
     },
   ];
-  const backgroundImageUrl =
-    "https://res.cloudinary.com/dcss55nem/image/upload/v1702849160/Copy_of_Space_and_Astronomy_Film_Video_Intro_18_wvt2b6.png";
 
   return (
     <section className={`h-screen w-screen overflow-x-hidden bg-black`}>
@@ -281,9 +275,6 @@ function Project1() {
           );
         })}
       </div>
-      {/* <div className="h-screen w-screen bg-white">
-        <ProjectSlider data={data} />
-      </div> */}
       <div className="h-screen w-screen bg-black flex items-center justify-center">
         <h1 className="text-6xl text-white">Demo Coming Soon...</h1>
       </div>

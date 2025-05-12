@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import Page from "@/components/page";
-import TextTitleSection from "@/components/TextTitleSection";
 import Head from "next/head";
 
 export const metadata = {

@@ -18,14 +18,7 @@ export default function Navbar({ menuItems }) {
   const [logoBgColor, setLogoBgColor] = useState("hover:bg-zinc-800");
   const [menuTextColor, setMenuTextColor] = useState("text-white");
   const [hamburgerBgColor, setHamburgerBgColor] = useState("bg-white");
-  //   useMotionValueEvent(scrollY, "change", (latest) => {
-  //   console.log("Page scroll: ", latest)
-  // })
-  // useEffect(() => {
 
-  //   const unsubscribe = scrollY.on("change", (latest) => { console.log(latest); });
-  //   return () => unsubscribe();
-  // }, [scrollY]);
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
     if(latest > previous && latest > 150){
