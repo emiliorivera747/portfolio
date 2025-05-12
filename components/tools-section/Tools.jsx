@@ -24,7 +24,7 @@ const Tools = ({ toolsData }) => {
             height={100}
           />
           <div className="flex item-center justify-center">
-            <p className="text-primary-600 text-xs"> {item.name}</p>
+            <p className="text-primary-700 text-xs"> {item.name}</p>
           </div>
         </div>
       ))}

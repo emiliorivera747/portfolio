@@ -5,11 +5,18 @@ const nextConfig = {
   reactStrictMode: true,
   output: "export",
   sassOptions: {
-    includePath: [path.join(__dirname, "styles")],
+    includePaths: [path.join(__dirname, "styles")],
   },
   images: {
-    unoptimized: true,
-    domains: ["res.cloudinary.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        pathname: "/**",
+      },
+    ],
+    loader: "custom", // Use a custom loader
+    loaderFile: "./cloudinary-loader.js", // Path to custom loader
   },
 };
 
