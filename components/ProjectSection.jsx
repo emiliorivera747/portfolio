@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
@@ -41,7 +41,9 @@ function ProjectSection({
     };
 
     const observer = new IntersectionObserver(callback, options);
-    observer.observe(videoRef.current);
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
 
     // Cleanup the observer when component unmounts
     return () => observer.disconnect();
@@ -57,16 +59,22 @@ function ProjectSection({
             className={`${titleFont} ${titleSize} ${titleColor}`}
           >
             {title}
-          </h1></div>
-        <video
-          ref={videoRef}
-          className={`h-full w-full ${videoCover}`}
-          src={videoUrl}
-          autoPlay={true}
-          loop
-          muted
-          playsInline
-        />
+          </h1>
+        </div>
+
+
+          <video
+            ref={videoRef}
+            className={`h-full w-full ${videoCover}`}
+            src={videoUrl}
+            preload="none"
+            onmouseenter="event.target.setAttribute('preload','metadata')"
+            loop
+            muted
+            playsInline
+          />
+
+
         <div className="flex items-end justify-center">
           {" "}
           <Link

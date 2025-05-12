@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, Suspense } from "react";
 import { motion } from "framer-motion";
 import CalendlyPopupButton from "@/features/calendly/CalendlyPopupButton";
 
@@ -43,7 +43,9 @@ function HeaderSection({ textEnter, textLeave }) {
     };
 
     const observer = new IntersectionObserver(callback, options);
-    observer.observe(videoRef.current);
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
 
     // Cleanup the observer when component unmounts
     return () => observer.disconnect();
@@ -95,17 +97,20 @@ function HeaderSection({ textEnter, textLeave }) {
       <div className="">
         <div className="absolute top-0 left-0 w-full h-full bg-black opacity-30"></div>
       </div>
-      <video
-        ref={videoRef}
-        className={`object-cover w-full h-full`}
-        src={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1739681557/Portfolio_Video_t0y4tc.mp4"
-        }
-        // autoPlay={true}
-        loop
-        muted
-        playsInline
-      ></video>
+
+        <video
+          ref={videoRef}
+          className={`object-cover w-full h-full`}
+          src={
+            "https://res.cloudinary.com/dcss55nem/video/upload/v1739681557/Portfolio_Video_t0y4tc.mp4"
+          }
+          loop
+          onmouseenter="event.target.setAttribute('preload','metadata')"
+          preload="none"
+          muted
+          playsInline
+        ></video>
+
     </section>
   );
 }
