@@ -51,8 +51,6 @@ export default function Navbar({ menuItems }) {
     }
   });
 
-
-
   const handleMenuClick = () => {
     setOpenMenu(!openMenu);
     if (openMenu) {
@@ -98,12 +96,12 @@ space-x-20 my-2 w-full"
               <NavigationMenuList className="gap-2">
                 {menuItems.map((item) => {
                   return (
-                    <NavigationMenuItem>
+                    <NavigationMenuItem key={item.id} className="relative">
                       <NavigationMenuTrigger className={`uppercase bg-transparent text-white font-bold hover:text-white hover:backdrop-blur-md hover:bg-transparent focus:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} font-bold text-sm tracking-wider focus:text-white data-[state=open]:hover:bg-transparent data-[state=open]:text-white `}>{item.label}</NavigationMenuTrigger>
                       <NavigationMenuContent className="py-4  px-6 pb-6 bg-white rounded-lg shadow-lg flex flex-col gap-2">
                         {item.content.map((subItem) => {
                           return (
-                            <NavigationMenuLink className="w-[10rem]">
+                            <NavigationMenuLink key={subItem.id} className="w-[10rem]">
                               <Link
                                 key={subItem.id}
                                 href={subItem.url}
@@ -114,7 +112,6 @@ space-x-20 my-2 w-full"
                             </NavigationMenuLink>
                           )
                         })}
-
                       </NavigationMenuContent>
                     </NavigationMenuItem>
                   );
