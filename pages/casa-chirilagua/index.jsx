@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import Head from "next/head";
 // Import Swiper styles
 import "swiper/css";

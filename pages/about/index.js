@@ -2,24 +2,20 @@ import React from "react";
 import Image from "next/image";
 import Page from "@/components/page";
 import Head from "next/head";
+import { CldImage } from "next-cloudinary";
 
 export const metadata = {
-  title: 'About Me | Emilio Rivera Portfolio',
-  description: 'Learn more about Emilio Rivera, a Full Stack Engineer based in San Jose, CA. specializing in React.js, Next.js, and Node.js.',
-}
- 
+  title: "About Me | Emilio Rivera Portfolio",
+  description:
+    "Learn more about Emilio Rivera, a Full Stack Engineer based in San Jose, CA. specializing in React.js, Next.js, and Node.js.",
+};
+
 function About() {
   return (
     <Page>
       <Head>
-        <title>
-          {metadata.title}
-        </title>
-        <meta
-          name="description"
-          content={metadata.description}
-          key="desc"
-        />
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} key="desc" />
       </Head>
       <section className="h-screen w-screen bg-black overflow-x-hidden">
         <div className="h-full flex items-center justify-center">
@@ -44,11 +40,12 @@ function About() {
             <h1></h1>
           </div>
           <div className="text-black ">
-            <Image
+            <CldImage
               src="https://res.cloudinary.com/dcss55nem/image/upload/v1701486445/20221216_115051_ezqxrn.jpg"
               height={500}
-              width={500}
+              width={600}
               alt="Virginia Tech Graduation"
+              className="rounded-[12px] shadow-lg"
             />
             <h2 className="md:text-sm pt-2 text-center">
               Virginia Tech Graduation Cermony December 2022
@@ -58,14 +55,16 @@ function About() {
 
         <div className="bg-white p-10 flex flex-col md:flex-row h-screen items-center justify-center gap-0 md:gap-10 ">
           <div className="text-black order-last md:order-first">
-            <Image
+            <CldImage
               src="https://res.cloudinary.com/dcss55nem/image/upload/v1701747663/IMG_2215_kypj32.jpg"
-              height={500}
-              width={500}
+              height={600}
+              width={600}
               alt="Old Town Alexandria Toastmasters"
+              className="rounded-[12px] shadow-lg"
             />
             <h2 className="pt-2 text-sm text-center ">
-              Intramural <span className="font-bold">Soccer</span> at Virginia Tech
+              Intramural <span className="font-bold">Soccer</span> at Virginia
+              Tech
             </h2>
           </div>
           <div className="flex flex-col h-1/2 md:w-1/2  items-center justify-center">
@@ -101,11 +100,12 @@ I am a member of the City of Alexandria Toastmasters, Crystal City Evening Toast
             <h1></h1>
           </div>
           <div className="text-black">
-            <Image
+            <CldImage
               src="https://res.cloudinary.com/dcss55nem/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1701476514/old_town_toastmasters_tjjtwn.jpg"
               height={500}
-              width={500}
+              width={600}
               alt="Old Town Alexandria Toastmasters"
+              className="rounded-[12px] shadow-lg"
             />
             <h2 className="md:text-sm pt-2 text-center">
               Old Town Toastmasters Club
