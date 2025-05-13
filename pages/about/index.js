@@ -39,7 +39,7 @@ function About() {
               I am a <strong>magician</strong> of the 21st century, using
               software engineering to create <strong>magic</strong>. Much like a
               <strong> magician</strong> equips themselves with the right tools,
-              I've explored technologies such as React.js and Next.js to add to
+              I&apos;ve explored technologies such as React.js and Next.js to add to
               my toolbox, continually learning and embracing the latest
               technology.
             </p>
