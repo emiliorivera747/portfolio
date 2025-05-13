@@ -124,6 +124,9 @@ space-x-20 my-2 w-full"
           {/* Hamburger Button */}
           <button
             id="menu-btn"
+            aria-label="Toggle Menu"
+            aria-expanded={openMenu}
+            aria-controls="menu"
             className={`${openClass} z-50 block focus:outline-none hamburger justify-end  `}
             onClick={handleMenuClick}
           >
@@ -137,6 +140,9 @@ space-x-20 my-2 w-full"
       {/* Mobile Menu */}
       <div
         id="menu"
+        role="menu"
+        aria-hidden={!openMenu}
+        aria-label="Main Navigation"
         className={` ${openClass} fixed z-40 top-0 right-0 ${isHidden} flex flex-col items-center self-end w-full sm:w-80 h-screen m-h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500  bg-black opacity-90 transition-all duration-1000 ease-in-out`}
       >
         {menuItems.map((item, index) => {

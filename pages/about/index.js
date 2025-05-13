@@ -19,11 +19,10 @@ function About() {
       <section className="h-screen w-screen bg-black overflow-x-hidden">
         <div className="h-full flex items-center justify-center">
           {" "}
-          <h6 className=" text-4xl md:text-8xl text-white font-bold text-center">
+          <h1 className=" text-4xl md:text-8xl text-white font-bold text-center">
             About Me.
-          </h6>
+          </h1>
         </div>
-        {/* <TextTitleSection bgColor={'bg-black'}/> */}
         <div className="bg-white p-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10 relative min-h-screen h-auto w-screen overflow-auto">
           <div className="flex flex-col md:w-1/2 items-center justify-center">
             <h1 className="text-black font-bold text-2xl md:text-4xl pb-3 md:pb-6">
@@ -46,7 +45,7 @@ function About() {
               alt="Virginia Tech Graduation"
               className="rounded-[12px] shadow-lg"
             />
-            <h2 className="md:text-sm pt-2 text-center">
+            <h2 className="md:text-2sm pt-4 text-center text-primary-800">
               Virginia Tech Graduation Cermony December 2022
             </h2>
           </div>
@@ -72,9 +71,9 @@ function About() {
             </h1>
             <p className="text- black text-start leading-loose tracking-wider ">
               In my free time, I enjoy playing
-              <span className="font-bold "> soccer</span>, practicing
-              <span className="font-bold "> public speaking</span>, and
-              <span className="font-bold"> volunteering </span>in my community.
+              <strong> soccer</strong>, practicing
+              <strong> public speaking</strong>, and
+              <strong> volunteering </strong>in my community.
             </p>
             <h1></h1>
           </div>
@@ -82,7 +81,7 @@ function About() {
         <div className="bg-white p-10 flex flex-col md:flex-col h-screen text-center items-center justify-center gap-0  ">
           <h2 className="text-black text-4xl md:p-10 leading-loose tracking-wider ">
             {`"Everyone has a story but there is no one better than for you to tell it. Do not let the fear of`}{" "}
-            <span className="font-bold">public speaking </span>
+            <strong>public speaking </strong>
             {'get in your way."'}
           </h2>
         </div>
@@ -100,8 +99,8 @@ I am a member of the City of Alexandria Toastmasters, Crystal City Evening Toast
           </div>
           <div className="text-black">
             <CldImage
-              src="https://res.cloudinary.com/dcss55nem/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1701476514/old_town_toastmasters_tjjtwn.jpg"
-              height={500}
+              src="https://res.cloudinary.com/dcss55nem/image/upload/v1747113468/Contest_Picture_o67qjf.png"
+              height={600}
               width={600}
               alt="Old Town Alexandria Toastmasters"
               className="rounded-[12px] shadow-lg"
