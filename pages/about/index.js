@@ -29,13 +29,13 @@ function About() {
             <h1 className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6">
               My Journey
             </h1>
-            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
+            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
               Building software is like <strong>magic</strong>. At one point
               flying was impossible, but now we have planes. Going to the moon
               was once a dream, but now we have rockets.
             </p>
             <br></br>
-            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
+            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
               I am a <strong>magician</strong> of the 21st century, using
               software engineering to create <strong>magic</strong>. Much like a
               <strong> magician</strong> equips themselves with the right tools,
@@ -44,7 +44,7 @@ function About() {
               technology.
             </p>
             <br></br>
-            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
+            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
               {`I earned my bachelor's degree in Computer Science from Virginia Tech, graduating in December 2022. Since then, I've freelanced to refine my skills in both front-end and back-end systems.`}
             </p>
           </div>
