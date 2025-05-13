@@ -2,6 +2,7 @@ import React from "react";
 import Page from "@/components/page";
 import Head from "next/head";
 import { CldImage } from "next-cloudinary";
+import Link from "next/link";
 
 export const metadata = {
   title: "About Me | Emilio Rivera Portfolio",
@@ -23,53 +24,64 @@ function About() {
             About Me.
           </h1>
         </div>
-        <div className="bg-white p-10 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10 relative min-h-screen h-auto w-screen overflow-auto">
+        <section className=" px-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 relative pt-10  w-screen overflow-auto h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2 items-center justify-center">
-            <h1 className="text-black font-bold text-2xl md:text-4xl pb-3 md:pb-6">
+            <h1 className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6">
               My Journey
             </h1>
-            <p className="text-black text-start leading-loose tracking-wider">
-              {`Over the years, the words of Arthur C. Clarke, 'Any sufficiently advanced technology is indistinguishable from magic,' have stuck with me, and I've realized that I am a magician of the 21st century, using software engineering to create magic. Much like a magician equips themselves with the right tools, I've explored additional technologies such as React.js and Next.js to add to my toolbox, continually learning and embracing the latest technology.`}
+            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
+              Building software is like <strong>magic</strong>. At one point
+              flying was impossible, but now we have planes. Going to the moon
+              was once a dream, but now we have rockets.
             </p>
             <br></br>
-            <p className="text-black text-start leading-loose tracking-wider ">
+            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
+              I am a <strong>magician</strong> of the 21st century, using
+              software engineering to create <strong>magic</strong>. Much like a
+              <strong> magician</strong> equips themselves with the right tools,
+              I've explored technologies such as React.js and Next.js to add to
+              my toolbox, continually learning and embracing the latest
+              technology.
+            </p>
+            <br></br>
+            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
               {`I earned my bachelor's degree in Computer Science from Virginia Tech, graduating in December 2022. Since then, I've freelanced to refine my skills in both front-end and back-end systems.`}
             </p>
             <h1></h1>
           </div>
-          <div className="text-black ">
+          <div className="text-secondary-900">
             <CldImage
               src="https://res.cloudinary.com/dcss55nem/image/upload/v1701486445/20221216_115051_ezqxrn.jpg"
-              height={500}
-              width={600}
+              height={700}
+              width={700}
               alt="Virginia Tech Graduation"
-              className="rounded-[12px] shadow-lg"
+              className="rounded-[12px] shadow-lg hover:scale-105 transition-transform duration-300"
             />
             <h2 className="md:text-2sm pt-4 text-center text-primary-800">
               Virginia Tech Graduation Cermony December 2022
             </h2>
           </div>
-        </div>
+        </section>
 
-        <div className="bg-white p-10 flex flex-col md:flex-row h-screen items-center justify-center gap-0 md:gap-10 ">
+        <section className=" px-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 relative  w-screen overflow-auto  bg-white py-20 ">
           <div className="text-black order-last md:order-first">
             <CldImage
               src="https://res.cloudinary.com/dcss55nem/image/upload/v1701747663/IMG_2215_kypj32.jpg"
-              height={600}
-              width={600}
+              height={700}
+              width={700}
               alt="Old Town Alexandria Toastmasters"
-              className="rounded-[12px] shadow-lg"
+              className="rounded-[12px] shadow-lg hover:scale-105 transition-transform duration-300"
             />
-            <h2 className="pt-2 text-sm text-center ">
+            <h2 className="md:text-2sm pt-4 text-center text-primary-800">
               Intramural <span className="font-bold">Soccer</span> at Virginia
               Tech
             </h2>
           </div>
           <div className="flex flex-col h-1/2 md:w-1/2  items-center justify-center">
-            <h1 className="text-black font-bold text-2xl md:text-4xl pb-3 md:pb-6">
+            <h1 className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6">
               Hobbies
             </h1>
-            <p className="text- black text-start leading-loose tracking-wider ">
+            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
               In my free time, I enjoy playing
               <strong> soccer</strong>, practicing
               <strong> public speaking</strong>, and
@@ -77,39 +89,51 @@ function About() {
             </p>
             <h1></h1>
           </div>
-        </div>
-        <div className="bg-white p-10 flex flex-col md:flex-col h-screen text-center items-center justify-center gap-0  ">
-          <h2 className="text-black text-4xl md:p-10 leading-loose tracking-wider ">
+        </section>
+        <div className="bg-white p-10 flex flex-col md:flex-col h-auto min-h-[70vh] text-center items-center justify-center gap-0 ">
+          <h2 className=" bg-gradient-to-r bg-clip-text text-transparent from-primary-1000 to-primary-800 text-4xl md:p-10 leading-loose tracking-wider ">
             {`"Everyone has a story but there is no one better than for you to tell it. Do not let the fear of`}{" "}
             <strong>public speaking </strong>
             {'get in your way."'}
           </h2>
         </div>
-        <div className="bg-white flex flex-col md:flex-row h-screen items-center justify-center gap-0 md:gap-10 ">
-          <div className="flex flex-col md:w-1/2 h-screen items-center justify-center p-10">
-            <h1 className="text-2xl md:text-4xl pb-3 md:pb-6 text-black font-bold">
+        <section className=" bg-white px-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 relative w-screen overflow-auto pb-10 pt-20 ">
+          <div className="flex flex-col md:w-1/2  items-center justify-center p-10">
+            <h1 className="text-2xl md:text-4xl pb-3 md:pb-6 text-primary-900 font-bold">
               Public Speaking
             </h1>
-            <p className="text-black text-start leading-loose tracking-wider ">
-              {`
-I am a member of the City of Alexandria Toastmasters, Crystal City Evening Toastmasters, and Old Town Alexandria Toastmaster. I'm currently enrolled in the visionary communication pathways program to enhance my skills as a strategic communicator and leader by writing and delivering speeches. My goal is to one day use my public speaking skills to lead and introduce new ideas to my team, community, and to the world.
-`}
+            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
+              I love <strong>public speaking</strong> and hope to start my own
+              public speaking organization someday.
+            </p>
+            <br></br>
+            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
+              Fall 2024, I got the privilege to represent{" "}
+              <Link
+                className="text-secondary-800 text-blue-600 hover:underline"
+                href={
+                  "https://www.toastmasters.org/Find-a-Club/00003572-saratoga-toastmasters-club"
+                }
+              >
+                Saratoga Toastmasters{" "}
+              </Link>
+              at the Divison level speech contest and was awarded 2nd place.
             </p>
             <h1></h1>
           </div>
-          <div className="text-black">
+          <div className="text-primary-900">
             <CldImage
               src="https://res.cloudinary.com/dcss55nem/image/upload/v1747113468/Contest_Picture_o67qjf.png"
-              height={600}
-              width={600}
-              alt="Old Town Alexandria Toastmasters"
-              className="rounded-[12px] shadow-lg"
+              height={700}
+              width={700}
+              alt="Saratoga Toastmasters Speech Contest"
+              className="rounded-[12px] shadow-lg hover:scale-105 transition-transform duration-300"
             />
-            <h2 className="md:text-sm pt-2 text-center">
-              Old Town Toastmasters Club
+            <h2 className="md:text-2sm pt-4 text-center text-primary-800">
+              Saratoga Toastmasters Speech Contest Club Level
             </h2>
           </div>
-        </div>
+        </section>
       </section>
     </Page>
   );

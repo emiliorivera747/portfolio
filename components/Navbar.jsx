@@ -74,7 +74,6 @@ export default function Navbar({ menuItems }) {
       className={`fixed top-0 left-0 w-full z-50 sm:px-12 px-4  h-20 ${bgColor} items-center justify-center`}>
       {/*Flex Container For Nav Items  */}
       <div
-
         className="flex items-center h-16 justify-between
 space-x-20 my-2 w-full"
       >
