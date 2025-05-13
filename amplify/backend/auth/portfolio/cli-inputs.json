@@ -1,0 +1,12 @@
+{
+  "version": "1",
+  "cognitoConfig": {
+    "identityPoolName": "portfolio_identitypool_fba286aa",
+    "allowUnauthenticatedIdentities": true,
+    "authSelections": "identityPoolOnly",
+    "resourceName": "portfolio",
+    "sharedId": "fba286aa",
+    "serviceName": "Cognito",
+    "useDefault": "manual"
+  }
+}
