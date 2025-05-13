@@ -80,6 +80,7 @@ function Contact({ textEnter, textLeave }) {
             <Link
               href="mailto:emiliorivera174@gmail.com"
               className="text-zinc-800 text-sm"
+              aria-label="Email"
             >
               emiliorivera174@gmail.com
             </Link>
@@ -106,6 +107,7 @@ function Contact({ textEnter, textLeave }) {
               <Link
                 href="https://github.com/emiliorivera747"
                 className="border rounded-[12px] p-6 border-primary-200 hover:bg-primary-200"
+                aria-label="Emilio's GitHub"
               >
                 {" "}
                 <svg
@@ -121,6 +123,7 @@ function Contact({ textEnter, textLeave }) {
               <Link
                 href="https://linkedin.com/in/emilio-rivera-3a1912167"
                 className="border rounded-[12px] p-6 border-primary-200 hover:bg-primary-200"
+                aria-label="Emilio's LinkedIn"
               >
                 {" "}
                 <svg
@@ -137,6 +140,7 @@ function Contact({ textEnter, textLeave }) {
               <Link
                 href="https://www.youtube.com/@emiliorivera2270"
                 className="border rounded-[12px] p-6 border-primary-200 hover:bg-primary-200"
+                aria-label="Emilio's YouTube"
               >
                 {" "}
                 <svg

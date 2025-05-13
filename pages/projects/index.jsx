@@ -47,9 +47,9 @@ function Project() {
                 </Link>
               </div>
               <div className="group relative overflow-hidden md:w-full rounded-[12px]">
-                <Link href="/my-portfolio">
+                <Link href="/my-portfolio" aria-label="Link to Portfolio Project Section">
                   <Image
-                    alt="Casa Chirilagua Image"
+                    alt="Portfolio Image"
                     fill
                     className="w-full duration-200 md-block group-hover:scale-110"
                     src={

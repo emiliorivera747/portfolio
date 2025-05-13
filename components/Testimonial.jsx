@@ -39,6 +39,7 @@ const Testimonial = () => {
               <Link
                 href="https://casachirilagua.org/"
                 className="text-blue-400 text-xs"
+                aria-label="Casa Chirilagua Website"
               >
                 Casa Chirilagua
               </Link>

@@ -82,6 +82,7 @@ space-x-20 my-2 w-full"
           <Link
             href="/"
             className={`flex flex-row tracking-widest hover:text-white hover:backdrop-blur-md rounded-lg p-[0.8rem] ${logoTextColor} ${menuTextColor} font-semibold`}
+            aria-label="Logo"
           >
             <CldImage src="https://res.cloudinary.com/dcss55nem/image/upload/v1702588027/favicon_5_a5rhl0.png" height={30} width={30} className="pr-1 self-end" alt="logo" /> <h1 className="self-end font-bold tracking-widest">{"milio's Portfolio"}</h1>
           </Link>
@@ -105,6 +106,7 @@ space-x-20 my-2 w-full"
                                 key={subItem.id}
                                 href={subItem.url}
                                 className={`block text-[1.1rem] text-primary-1000 rounded-lg p-[0.2rem] font-semibold hover:underline hover:underline-offset-4 hover:decoration-2`}
+                                aria-label={subItem.label}
                               >
                                 {subItem.label}
                               </Link>
@@ -151,6 +153,7 @@ space-x-20 my-2 w-full"
                 key={item.id}
                 href={item.url}
                 className="block hover:text-zinc-400"
+                aria-label={item.label}
                 onClick={handleMenuClick}
               >
                 {item.label}

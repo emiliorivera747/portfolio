@@ -33,9 +33,9 @@ const CalendlyPopupButton = () => {
         rootElementRef.current = root;
         setIsReady(true);
       } else {
-        console.error(
-          "Root element not found. Ensure the DOM contains an element with id='__next' or 'root'."
-        );
+        // console.error(
+        //   "Root element not found. Ensure the DOM contains an element with id='__next' or 'root'."
+        // );
       }
     }
   }, []);
@@ -47,9 +47,9 @@ const CalendlyPopupButton = () => {
 
   const calendlyUrl = "https://calendly.com/emiliorivera747/30min";
   if (!calendlyUrl) {
-    console.error(
-      "Calendly URL is missing. Please set NEXT_PUBLIC_CALENDLY_EVENT_LINK in .env."
-    );
+    // console.error(
+    //   "Calendly URL is missing. Please set NEXT_PUBLIC_CALENDLY_EVENT_LINK in .env."
+    // );
     return <div>Error: Calendly URL not configured</div>;
   }
 

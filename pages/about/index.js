@@ -39,15 +39,14 @@ function About() {
               I am a <strong>magician</strong> of the 21st century, using
               software engineering to create <strong>magic</strong>. Much like a
               <strong> magician</strong> equips themselves with the right tools,
-              I&apos;ve explored technologies such as React.js and Next.js to add to
-              my toolbox, continually learning and embracing the latest
+              I&apos;ve explored technologies such as React.js and Next.js to
+              add to my toolbox, continually learning and embracing the latest
               technology.
             </p>
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
               {`I earned my bachelor's degree in Computer Science from Virginia Tech, graduating in December 2022. Since then, I've freelanced to refine my skills in both front-end and back-end systems.`}
             </p>
-            <h1></h1>
           </div>
           <div className="text-secondary-900">
             <CldImage
@@ -69,7 +68,7 @@ function About() {
               src="https://res.cloudinary.com/dcss55nem/image/upload/v1701747663/IMG_2215_kypj32.jpg"
               height={700}
               width={700}
-              alt="Old Town Alexandria Toastmasters"
+              alt="Intramural Soccer at Virginia Tech Fall 2022"
               className="rounded-[12px] shadow-lg hover:scale-105 transition-transform duration-300"
             />
             <h2 className="md:text-2sm pt-4 text-center text-primary-800">
@@ -114,6 +113,7 @@ function About() {
                 href={
                   "https://www.toastmasters.org/Find-a-Club/00003572-saratoga-toastmasters-club"
                 }
+                aria-label="Saratoga Toastmasters Website"
               >
                 Saratoga Toastmasters{" "}
               </Link>

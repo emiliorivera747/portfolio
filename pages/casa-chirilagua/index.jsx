@@ -241,6 +241,7 @@ function Project1() {
                 <Link
                   href="https://casachirilagua.org/"
                   className="text-sm md:text-m leading-loose tracking-wider text-blue-500"
+                  aria-label="Casa Chirilagua Website"
                 >
                   https://casachirilagua.org/
                 </Link>
