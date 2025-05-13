@@ -11,8 +11,8 @@ const Testimonial = () => {
       </div>
       <blockquote className="absolute  px-6 pt-10 md:px-18  flex md:flex-col flex-col h-auto gap-4 sm:pt-2">
         <h2 className=" text-lg md:text-[1.6rem] leading-loose tracking-wider md:mx-44 md:pt-12 md:pb-6 flex rounded  font-extralight">
-          <p className="  from-primary-800 to-primary-600 bg-gradient-to-r bg-clip-text text-transparent px-2 flex text-center justify-center items-center leading-loose tracking-wider font-thin ">
-            {`"Emilio will pour his dedication, passion, and intelligence towards creating solutions with the client's best interests in mind. This was my experience. Emilio would be an incredible asset to any company, client, and/or organization."`}{" "}
+          <p className="  from-primary-900 to-primary-800 bg-gradient-to-r bg-clip-text text-transparent px-2 flex text-center justify-center items-center leading-loose tracking-wider font-thin ">
+            Emilio will pour his dedication, passion, and intelligence towards creating solutions with the client&apos;s best interests in mind. This was my experience. Emilio would be an incredible asset to any company, client, and/or organization.
           </p>
         </h2>
 

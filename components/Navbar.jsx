@@ -1,9 +1,17 @@
-import { useState} from "react";
+import { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { CldImage } from 'next-cloudinary';
 
 import Link from "next/link";
-import Image from "next/image";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu"
+
 
 export default function Navbar({ menuItems }) {
 
@@ -21,21 +29,21 @@ export default function Navbar({ menuItems }) {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
-    if(latest > previous && latest > 150){
+    if (latest > previous && latest > 150) {
       setHidden(true);
       setIsHidden("hidden");
       setOpenClass("");
     }
-    else{
+    else {
       setHidden(false);
     }
 
-    if(latest > 600){
+    if (latest > 600) {
       setBgColor("backdrop-blur-[10rem]");
       setMenuTextColor("text-zinc-800");
       setHamburgerBgColor("bg-zinc-800");
     }
-    else{
+    else {
       setBgColor("bg-transparent");
       setMenuTextColor("text-white");
       setHamburgerBgColor("bg-white");
@@ -85,18 +93,34 @@ space-x-20 my-2 w-full"
         {/*Nav Items*/}
         <div className="flex flex-row items-center justify-end">
           {" "}
-          <div className="hidden items-center justify-end space-x-10 uppercase  md:flex pr-10 z-30 ">
-            {menuItems.map((item) => {
-              return (
-                <Link
-                  key={item.id}
-                  href={item.url}
-                  className={`tracking-widest hover:text-white hover:backdrop-blur-md rounded-lg p-[0.8rem] ${menuTextColor}  font-semibold text-sm`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+          <div className="hidden items-center justify-end space-x-10  md:flex pr-10 z-30 ">
+            <NavigationMenu>
+              <NavigationMenuList className="gap-2">
+                {menuItems.map((item) => {
+                  return (
+                    <NavigationMenuItem>
+                      <NavigationMenuTrigger className={`uppercase bg-transparent text-white font-bold hover:text-white hover:backdrop-blur-md hover:bg-transparent focus:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} font-bold text-sm tracking-wider focus:text-white data-[state=open]:hover:bg-transparent data-[state=open]:text-white `}>{item.label}</NavigationMenuTrigger>
+                      <NavigationMenuContent className="py-4  px-6 pb-6 bg-white rounded-lg shadow-lg flex flex-col gap-2">
+                        {item.content.map((subItem) => {
+                          return (
+                            <NavigationMenuLink className="w-[10rem]">
+                              <Link
+                                key={subItem.id}
+                                href={subItem.url}
+                                className={`block text-[1.1rem] text-primary-1000 rounded-lg p-[0.2rem] font-semibold hover:underline hover:underline-offset-4 hover:decoration-2`}
+                              >
+                                {subItem.label}
+                              </Link>
+                            </NavigationMenuLink>
+                          )
+                        })}
+
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  );
+                })}
+              </NavigationMenuList>
+            </NavigationMenu>
           </div>
 
 

@@ -21,16 +21,11 @@ export const metadata = {
 };
 
 export default function Home() {
-  const { scrollY } = useScroll();
-
-  const [scrollDirection, setScrollDirection] = useState(null);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      const direction = currentScrollY > lastScrollY ? "down" : "up";
-      setScrollDirection(direction);
       lastScrollY = currentScrollY;
     };
 
