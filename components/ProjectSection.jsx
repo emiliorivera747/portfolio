@@ -78,7 +78,7 @@ function ProjectSection({
             className={`absolute rounded-md border-2 ${buttonBorderColor} bg-transparent ${buttonTextColor} w-60 h-12 font-semibold self-center justify-center text-center p-2 bottom-0 ${buttonBgColor} ${buttonHoverTextColor} mb-6`}
             aria-label={`Learn more about ${title}`}
           >
-            {buttonLabel}
+            {buttonLabel} <span className="text-transparent">.</span>
           </Link>
         </div>
       </motion.div>
