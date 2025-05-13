@@ -5,45 +5,11 @@ import { useRouter } from "next/router";
 import Navbar from "../components/Navbar";
 import { ToastContainer } from "react-toastify";
 import Head from "next/head";
+import { navBarData } from "@/utils/data/navbar/navbarData";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
-  const navBarData = [
-    {
-      id: 2,
-      label: "Projects",
-      url: "/projects",
-      content: [
-        {
-          id: 1,
-          label: "Casa Chirilagua",
-          url: "/casa-chirilagua",
-        },
-        {
-          id: 2,
-          label: "Portfolio",
-          url: "/my-portfolio",
-        },
-      ],
-    },
-    {
-      id: 3,
-      label: "About",
-      url: "/about",
-      content: [
-        {
-          id: 1,
-          label: "About Me",
-          url: "/about",
-        },
-        {
-          id: 2,
-          label: "Contact",
-          url: "/#",
-        },
-      ],
-    },
-  ];
+
   return (
     <AnimatePresence mode="wait">
       <motion.div key={router.pathname} className={"h-auto"}>

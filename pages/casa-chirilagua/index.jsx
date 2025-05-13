@@ -5,8 +5,11 @@ import Head from "next/head";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { motion} from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
+import { CldImage } from 'next-cloudinary';
+
+
 export const metadata = {
   title: "Casa Chirilagua | Emilio Rivera Portfolio",
   description:
@@ -260,15 +263,14 @@ function Project1() {
               </div>
               <div
                 style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
-                className="p-10 relative w-full h-[70vh] rounded-[12px] overflow-hidden shadow-md hover:shadow-xl"
+                className="p-10 relative w-full h-[85vh] rounded-[12px] overflow-hidden shadow-md hover:shadow-xl"
               >
-                <Image
+                <CldImage
                   alt={item.name}
                   src={item.imageUrl}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: "cover" }}
                   className="rounded-[12px]"
-                  loading="lazy"
                 />
               </div>
             </div>
