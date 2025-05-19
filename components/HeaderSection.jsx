@@ -29,12 +29,11 @@ function HeaderSection({ textEnter, textLeave }) {
     const callback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Video is in the viewport, play it
           if (videoRef.current.paused) {
             videoRef.current.play();
           }
         } else {
-          // Video is outside the viewport, pause it
+
           if (videoRef.current && !videoRef.current.paused) {
             videoRef.current.pause();
           }
@@ -105,7 +104,6 @@ function HeaderSection({ textEnter, textLeave }) {
             "https://res.cloudinary.com/dcss55nem/video/upload/v1739681557/Portfolio_Video_t0y4tc.mp4"
           }
           loop
-          onmouseenter="event.target.setAttribute('preload','metadata')"
           preload="none"
           muted
           playsInline

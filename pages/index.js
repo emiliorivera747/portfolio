@@ -1,17 +1,17 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import HeaderSection from "@/components/HeaderSection";
 import ProjectSection from "@/components/ProjectSection";
 import ToolsSection from "@/components/ToolsSection";
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import Page from "@/components/page";
 import Contact from "@/components/Contact";
 
 //Components
 import Testimonial from "@/components/Testimonial";
 
-//Data 
-import {toolsData} from "@/utils/data/tools/allToolsData";
+//Data
+import { toolsData } from "@/utils/data/tools/allToolsData";
 
 // Meta Data
 export const metadata = {
@@ -21,7 +21,6 @@ export const metadata = {
 };
 
 export default function Home() {
-
   useEffect(() => {
     let lastScrollY = window.scrollY;
     const handleScroll = () => {
@@ -84,7 +83,6 @@ export default function Home() {
       mixBlendMode: "difference",
     },
   };
-
 
   return (
     <Page>
@@ -169,7 +167,7 @@ export default function Home() {
         bgColor={"bg-white"}
         textColor={"text-primary-1000"}
       ></ToolsSection>
-      <Contact/>
+      <Contact />
       <motion.div
         className="cursor"
         variants={variants}

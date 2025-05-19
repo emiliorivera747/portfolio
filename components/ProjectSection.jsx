@@ -66,7 +66,6 @@ function ProjectSection({
             className={`h-full w-full ${videoCover}`}
             src={videoUrl}
             preload="none"
-            onmouseenter="event.target.setAttribute('preload','metadata')"
             loop
             muted
             playsInline

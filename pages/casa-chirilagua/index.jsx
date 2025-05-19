@@ -1,5 +1,7 @@
 import React from "react";
 import Head from "next/head";
+
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -148,29 +150,22 @@ function Project1() {
     {
       opacity: 0.5,
       imageUrl:
-        "https://res.cloudinary.com/dxxdfgpdh/image/upload/v1746120962/Screenshot_2025-05-01_at_9.15.39_AM_mpl5sb.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1747624565/registration-part-1_lhvrsu.png",
       title: "Student Registration Part 1",
       paragraph: "",
     },
     {
       opacity: 0.5,
       imageUrl:
-        "https://res.cloudinary.com/dxxdfgpdh/image/upload/v1746121046/Screenshot_2025-05-01_at_9.42.24_AM_lbxund.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1747624579/Screenshot_2025-05-01_at_9.42.37_AM_rljoqx_rnm0dj.png",
       title: "Student Registration Part 2",
       paragraph: "",
     },
     {
       opacity: 0.5,
       imageUrl:
-        "https://res.cloudinary.com/dxxdfgpdh/image/upload/v1746121063/Screenshot_2025-05-01_at_9.42.37_AM_rljoqx.png",
+        "https://res.cloudinary.com/dcss55nem/image/upload/v1747624565/registration-part-1_lhvrsu.png",
       title: "Student Registration Part 3",
-      paragraph: "",
-    },
-    {
-      opacity: 0.5,
-      imageUrl:
-        "https://res.cloudinary.com/dxxdfgpdh/image/upload/v1746121074/Screenshot_2025-05-01_at_9.45.37_AM_xamd6j.png",
-      title: "Student Registration Part 4",
       paragraph: "",
     },
   ];
@@ -266,7 +261,7 @@ function Project1() {
                 className="p-10 relative w-full h-[85vh] rounded-[12px] overflow-hidden shadow-md hover:shadow-xl"
               >
                 <CldImage
-                  alt={item.name}
+                  alt={item.title}
                   src={item.imageUrl}
                   fill
                   style={{ objectFit: "cover" }}

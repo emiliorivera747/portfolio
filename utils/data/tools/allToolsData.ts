@@ -2,38 +2,38 @@ const frontEndData = [
   {
     name: "React",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/14_k0egpe.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/react.png",
   },
   {
     name: "Tailwind",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/15_pzbsyb.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/tailwind.png",
   },
   {
     name: "Sass",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/16_bonjj4.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/sass.png",
   },
 
   {
     name: "Figma",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1724544103/Untitled_design_lygl7v.jpg",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1724544103/figma.jpg",
   },
   {
     name: "Redux Tool Kit",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/19_tvxcu4.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/Redux.png",
   },
   {
     name: "CSS",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032024/18_krpore.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032024/css.png",
   },
   {
     name: "HTML",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/20_dj1kp5.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/HTML.png",
   },
 ];
 
@@ -41,39 +41,39 @@ const backEndData = [
   {
     name: "Express",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1724547763/Untitled_design_1_byjzau.jpg",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/21_cwuqxj.png",
   },
   {
-    name: "Node js",
+    name: "Node.js",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/22_p333bu.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/nodejs.png",
   },
   {
     name: "MongoDB",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/23_xbkhqi.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/mongoDB.png",
   },
   {
     name: "Mongoose",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/23_xbkhqi.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1747623658/mongoose_cchiii.png",
   },
   {
     name: "Postman",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032032/27_jorltd.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032032/postman.png",
   },
 ];
 const bothData = [
   {
     name: "Auth0",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/24_rox9ad.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/auth0.png",
   },
   {
     name: "JavaScript",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032031/25_cfrb7c.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032031/javascript.png",
   },
   {
     name: "Cloudinary",
@@ -84,44 +84,44 @@ const bothData = [
   {
     name: "GitHub",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1724547300/10_kelmol.jpg",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1724547300/Github.jpg",
   },
   {
     name: "Heroku",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1724547303/11_rzl5ia.jpg",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1724547303/heroku.jpg",
   },
 ];
 const frontEndDataTwo = [
   {
-    name: "Nextjs",
+    name: "Next.js",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701048415/29_wbkxgo.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701048415/nextjs-black.png",
   },
   {
     name: "React",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/14_k0egpe.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/react.png",
   },
   {
     name: "Tailwind",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/15_pzbsyb.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/tailwind.png",
   },
   {
     name: "Sass",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/16_bonjj4.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/sass.png",
   },
   {
-    name: "Git Hub",
+    name: "GitHub",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032032/26_iyfvkr.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1724547300/Github.jpg",
   },
   {
     name: "HTML",
     imageUrl:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/20_dj1kp5.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/HTML.png",
   },
   {
     name: "Cloudinary",
