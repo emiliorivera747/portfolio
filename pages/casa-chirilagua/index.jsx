@@ -35,14 +35,6 @@ const variants = {
 function Project1() {
   const data = [
     {
-      opacity: 0.5,
-      imageUrl:
-        "https://res.cloudinary.com/dcss55nem/image/upload/v1714516754/LoginPageCasa_u12gzy.png",
-      title: "Welcome Page",
-      paragraph:
-        "Included an image of program participants with a purple background, consistent with the organization's official colors of purple, green, and orange.",
-    },
-    {
       opacity: 0.4,
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1747625338/Screenshot_2025-05-18_at_8.23.36_PM_sqxg9w.png",
@@ -250,7 +242,7 @@ function Project1() {
               </div>
               <div
                 style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
-                className="p-10 relative w-full h-[85vh] rounded-[12px] overflow-hidden shadow-md hover:shadow-xl"
+                className="p-10 relative w-full h-[87vh] rounded-[12px] overflow-hidden shadow-md hover:shadow-xl"
               >
                 <CldImage
                   alt={item.title}
