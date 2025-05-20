@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
 import Navbar from "../components/Navbar";
-import { ToastContainer } from "react-toastify";
 import Head from "next/head";
 import { navBarData } from "@/utils/data/navbar/navbarData";
 
@@ -20,7 +19,6 @@ export default function App({ Component, pageProps }) {
         </Head>
         <Navbar menuItems={navBarData} />
         <Component {...pageProps} />
-        <ToastContainer />
         <motion.div
           className="absolute top-0 left-0 w-screen h-screen bg-black z-50"
           initial={{ scaleY: 0 }}
