@@ -35,15 +35,9 @@ function Contact({ textEnter, textLeave }) {
       )
       .then(
         (result) => {
-          // toast.success("Thank You! I will be in touch with you shortly.", {
-          //   position: toast.POSITION.TOP_RIGHT,
-          // });
           setSuccess(true);
         },
         (error) => {
-          // toast.error("An Error occurred on Submission" + error, {
-          //   position: toast.POSITION.TOP_RIGHT,
-          // });
           setError(true);
         }
       );
