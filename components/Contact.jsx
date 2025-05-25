@@ -42,6 +42,7 @@ function Contact({ textEnter, textLeave }) {
         }
       );
   };
+  
 
   return (
     <section className="h-screen w-screen bg-white overflow-auto">
