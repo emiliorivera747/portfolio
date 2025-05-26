@@ -166,7 +166,7 @@ export default function Home() {
         }}
         bgColor={"bg-white"}
         textColor={"text-primary-1000"}
-      ></ToolsSection>
+     />
       <Contact />
       <motion.div
         className="cursor"
