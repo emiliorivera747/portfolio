@@ -6,8 +6,12 @@ import Navbar from "../components/Navbar";
 import Head from "next/head";
 import { navBarData } from "@/utils/data/navbar/navbarData";
 
-
-
+/**
+ *  Main App component that wraps around all pages.
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 export default function App({ Component, pageProps }) {
   const router = useRouter();
 
