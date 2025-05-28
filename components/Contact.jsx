@@ -18,6 +18,13 @@ const variants = {
   },
 };
 
+/**
+ * Displays the contact section where users can reach out via email or phone.
+ * 
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 function Contact({ textEnter, textLeave }) {
   const form = useRef();
   const [error, setError] = useState(false);
@@ -42,7 +49,7 @@ function Contact({ textEnter, textLeave }) {
         }
       );
   };
-  
+
 
   return (
     <section className="h-screen w-screen bg-white overflow-auto">
