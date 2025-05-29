@@ -97,7 +97,7 @@ function Contact({ textEnter, textLeave }) {
               onMouseLeave={textLeave}
               className="text-zinc-800 text-sm"
             >
-              (571) 970-8057
+              +1 (571) 970-8057
             </span>
           </motion.div>
           <motion.div variants={variants} className="w-full h-full pt-10">
