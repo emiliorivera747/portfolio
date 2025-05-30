@@ -17,6 +17,12 @@ const variants = {
   },
 };
 
+/**
+ * Primary section  
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 function HeaderSection({ textEnter, textLeave }) {
   const videoRef = useRef(null);
   useEffect(() => {
