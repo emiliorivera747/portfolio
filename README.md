@@ -2,9 +2,6 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ![Alt text](path/to/image)
 
-<video src="[videos/demo.mp4](https://res.cloudinary.com/dcss55nem/video/upload/v1724616795/Untitled_design_22_q63p4f.mp4)" controls width="600">
-  Your browser does not support the video tag.
-</video>
 
 ## Getting Started
 
