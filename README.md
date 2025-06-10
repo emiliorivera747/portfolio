@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-[![Alt text](path/to/image)](https://res.cloudinary.com/dcss55nem/video/upload/v1747627984/Untitled_design_23_gbdkes_inbtze.mp4)
+![img alt](https://res.cloudinary.com/dcss55nem/video/upload/v1747627984/Untitled_design_23_gbdkes_inbtze.mp4)
 
 
 ## Getting Started
