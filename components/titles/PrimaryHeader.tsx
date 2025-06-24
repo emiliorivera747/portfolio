@@ -1,7 +1,12 @@
 import React, { forwardRef } from 'react';
 import {cn} from '@/lib/utils';
 
-const PrimaryHeader = forwardRef(({ title, className }, ref) => {
+interface PrimaryHeaderProps {
+  title: string;
+  className?: string;
+}
+
+const PrimaryHeader = forwardRef<HTMLDivElement, PrimaryHeaderProps>(({ title, className }, ref) => {
   const defaultClasses = "font-bold text-3xl text-zinc-700";
 
   return (

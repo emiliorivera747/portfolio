@@ -2,6 +2,24 @@ import React, { useRef, useEffect, Suspense } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+interface ProjectSectionProps {
+  title: string;
+  videoUrl: string;
+  buttonLabel: string;
+  textEnter?: () => void;
+  textLeave?: () => void;
+  titleColor: string;
+  titleFont: string;
+  buttonTextColor: string;
+  buttonBgColor: string;
+  buttonBorderColor: string;
+  buttonHoverTextColor: string;
+  bgColor: string;
+  videoCover: string;
+  titleSize: string;
+  url: string;
+}
+
 function ProjectSection({
   title,
   videoUrl,
@@ -18,9 +36,9 @@ function ProjectSection({
   videoCover,
   titleSize,
   url,
-}) {
+}: ProjectSectionProps) {
 
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   useEffect(() => {
     const options = {
       root: null,
@@ -28,14 +46,14 @@ function ProjectSection({
       threshold: 0.5, // Adjust this threshold based on your requirement
     };
 
-    const callback = (entries) => {
-      entries.forEach((entry) => {
+    const callback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry: IntersectionObserverEntry) => {
         if (entry.isIntersecting) {
           // Video is in the viewport, play it
-          videoRef.current.play();
+          videoRef.current?.play();
         } else {
           // Video is outside the viewport, pause it
-          videoRef.current.pause();
+          videoRef.current?.pause();
         }
       });
     };
@@ -51,7 +69,7 @@ function ProjectSection({
 
   return (
     <section className={`relative h-screen w-screen ${bgColor}`}>
-      <motion.div className="flex flex-col items-center justify-start h-full w-full ">
+      <motion.div {...({ className: "flex flex-col items-center justify-start h-full w-full " } as any)}>
         <div className="absolute h-20 flex items-center ">
           <h1
             onMouseEnter={textEnter}

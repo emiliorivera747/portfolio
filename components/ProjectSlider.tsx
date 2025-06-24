@@ -7,8 +7,20 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, HashNavigation } from "swiper/modules";
 import { Suspense } from "react";
+
+interface ProjectSliderItem {
+  imageUrl: string;
+  title: string;
+  paragraph: string | React.ReactNode;
+  opacity: number;
+}
+
+interface ProjectSliderProps {
+  data: ProjectSliderItem[];
+}
+
 //test
-function ProjectSlider({ data }) {
+function ProjectSlider({ data }: ProjectSliderProps) {
   return (
     <Suspense fallback={<p>Loading feed...</p>}>
       <Swiper
@@ -23,7 +35,7 @@ function ProjectSlider({ data }) {
         modules={[Pagination, Navigation, HashNavigation]}
         className="w-full h-full m-0"
       >
-        {data.map((item, index) => {
+        {data.map((item: ProjectSliderItem, index: number) => {
           return (
             <SwiperSlide data-hash="slide1" key={index} className="bg-black">
               <div className="relative h-screen w-screen">

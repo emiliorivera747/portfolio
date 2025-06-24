@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState, FormEvent, MutableRefObject } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import Link from "next/link";
@@ -18,6 +18,11 @@ const variants = {
   },
 };
 
+interface ContactProps {
+  textEnter?: () => void;
+  textLeave?: () => void;
+}
+
 /**
  * Displays the contact section where users can reach out via email or phone.
  * 
@@ -25,19 +30,19 @@ const variants = {
  * @param {*} param0 
  * @returns 
  */
-function Contact({ textEnter, textLeave }) {
-  const form = useRef();
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
+const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
+  const form = useRef<HTMLFormElement | null>(null);
+  const [error, setError] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
-  const sendEmail = (e) => {
+  const sendEmail = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     emailjs
       .sendForm(
         "service_d5ckpya",
         "template_dy3465k",
-        form.current,
+        form.current as HTMLFormElement,
         "KREG4OVfIOrUuqIh3"
       )
       .then(
@@ -54,22 +59,27 @@ function Contact({ textEnter, textLeave }) {
   return (
     <section className="h-screen w-screen bg-white overflow-auto">
       <motion.div
-        className="flex flex-col sm:flex-row items-start gap-50 p-12 md:p-24 max-w-full w-full h-full "
-        initial="initial"
-        whileInView="animate"
+        {...({
+          className: "flex flex-col sm:flex-row items-start gap-50 p-12 md:p-24 max-w-full w-full h-full ",
+          initial: "initial",
+          whileInView: "animate",
+        } as any)}
       >
-        <motion.div variants={variants} className="flex-1 flex flex-col gap-4 h-full">
+        <motion.div
+          {...({ variants: variants, className: "flex-1 flex flex-col gap-4 h-full" } as any)}
+        >
           <motion.h1
-            onMouseEnter={textEnter}
-            onMouseLeave={textLeave}
-            variants={variants}
-            className="text-primary-1000 text-5xl md:text-6xl font-bold leading-none  w-full"
+            {...({
+              onMouseEnter: textEnter,
+              onMouseLeave: textLeave,
+              variants: variants,
+              className: "text-primary-1000 text-5xl md:text-6xl font-bold leading-none  w-full",
+            } as any)}
           >
             {"Let's Work Together"}
           </motion.h1>
-          <motion.div variants={variants} className="w-full">
+          <motion.div {...({ variants: variants, className: "w-full" } as any)}>
             <h1
-              type="email"
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
               className="text-zinc-800 font-bold"
@@ -84,7 +94,7 @@ function Contact({ textEnter, textLeave }) {
               emiliorivera174@gmail.com
             </Link>
           </motion.div>
-          <motion.div variants={variants} className="w-full">
+          <motion.div {...({ variants: variants, className: "w-full" } as any)}>
             <h1
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
@@ -100,7 +110,7 @@ function Contact({ textEnter, textLeave }) {
               +1 (571) 970-8057
             </span>
           </motion.div>
-          <motion.div variants={variants} className="w-full h-full pt-10">
+          <motion.div {...({ variants: variants, className: "w-full h-full pt-10" } as any)}>
             <div className="flex flex-row gap-6 items-center ">
               <Link
                 href="https://github.com/emiliorivera747"
@@ -153,14 +163,16 @@ function Contact({ textEnter, textLeave }) {
             </div>
           </motion.div>
         </motion.div>
-        <motion.div className="flex-1">
+        <motion.div {...({ className: "flex-1" } as any)}>
           <motion.form
-            ref={form}
-            onSubmit={sendEmail}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 1 }}
-            className="flex flex-col gap-4 pt-6 "
+            {...({
+              ref: form,
+              onSubmit: sendEmail,
+              initial: { opacity: 0 },
+              whileInView: { opacity: 1 },
+              transition: { delay: 1, duration: 1 },
+              className: "flex flex-col gap-4 pt-6 ",
+            } as any)}
           >
             <input
               type="text"
@@ -178,8 +190,8 @@ function Contact({ textEnter, textLeave }) {
               className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border "
               name="message"
               id=""
-              cols="20"
-              rows="10"
+              cols={20}
+              rows={10}
               placeholder="Message"
             ></textarea>
             <button className="text-zinc-800 bg-white hover:bg-zinc-800 hover:text-white border-2 border-zinc-800 p-3 rounded-md">
@@ -192,6 +204,6 @@ function Contact({ textEnter, textLeave }) {
       </motion.div>
     </section>
   );
-}
+};
 
 export default Contact;

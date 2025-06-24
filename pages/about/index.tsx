@@ -1,5 +1,5 @@
 import React from "react";
-import Page from "@/components/page";
+import Page from '@/components/page';
 import Head from "next/head";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";

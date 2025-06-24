@@ -1,9 +1,28 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import SecondaryHeader from "./titles/SecondaryHeader";
 import PrimaryButton from "@/components/buttons/PrimaryButton";
 
 //Components
 import Tools from "@/components/tools-section/Tools";
+
+interface ToolItem {
+  name: string;
+  imageUrl: string;
+}
+
+interface CheckWhatDataToShow {
+  frontEndData: boolean;
+  backEndData: boolean;
+  bothData: boolean;
+}
+
+interface ToolsSectionProps {
+  bgColor: string;
+  frontEndData: ToolItem[];
+  backEndData: ToolItem[];
+  bothData: ToolItem[];
+  checkWhatDataToShow: CheckWhatDataToShow;
+}
 
 function ToolsSection({
   bgColor,
@@ -11,11 +30,11 @@ function ToolsSection({
   backEndData,
   bothData,
   checkWhatDataToShow,
-}) {
+}: ToolsSectionProps) {
   // State to track which button (if any) is currently active
-  const [activeButton, setActiveButton] = useState("Front End");
+  const [activeButton, setActiveButton] = useState<string>("Front End");
 
-  const handleClick = (buttonName) => {
+  const handleClick = (buttonName: string) => {
     setActiveButton(buttonName);
   };
 
