@@ -3,6 +3,11 @@ import React, {forwardRef} from "react";
 import { SubmitButtonPropsV2 } from "@/types/buttons";
 import { cn } from "@/lib/utils";
 
+
+/**
+ * PrimarySubmitButton is a styled button component used for form submissions.
+ * 
+ */
 const PrimarySubmitButton = forwardRef<HTMLButtonElement, SubmitButtonPropsV2>(({
   text = "Submit",
   className,
