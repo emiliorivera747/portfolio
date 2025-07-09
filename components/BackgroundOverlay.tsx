@@ -15,7 +15,7 @@ const BackgroundOverlay = ({ opacity = 0.3 }: OverlayProps) => {
     <div className="">
       <div
         style={{ opacity }}
-        className="absolute top-0 left-0 w-full h-full bg-black opacity-30"
+        className="absolute top-0 left-0 w-full h-full bg-black"
       ></div>
     </div>
   );

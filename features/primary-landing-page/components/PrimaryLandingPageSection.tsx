@@ -30,7 +30,7 @@ const variants = {
  *
  * @returns
  */
-function PrimaryLandingPageSection() {
+function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   useEffect(() => {
     const options = {
@@ -68,7 +68,8 @@ function PrimaryLandingPageSection() {
           initial: "initial",
           whileInView: "animate",
           variants: variants,
-          className:"absolute h-full z-20 flex items-center justify-center w-full",
+          className:
+            "absolute h-full z-20 flex items-center justify-center w-full",
         } as any)}
       >
         <motion.div
@@ -92,7 +93,8 @@ function PrimaryLandingPageSection() {
         ref={videoRef}
         className={`object-cover w-full h-full`}
         src={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1739681557/Portfolio_Video_t0y4tc.mp4"
+          videoUrl ||
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1724616795/Untitled_design_22_q63p4f.mp4"
         }
         loop
         preload="none"

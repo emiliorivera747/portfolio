@@ -40,7 +40,12 @@ export default function Home() {
   const [cursorVariant, setCursorVariant] = useState("default");
 
   useEffect(() => {
-    const mouseMove = (e) => {
+    interface MousePosition {
+      x: number;
+      y: number;
+    }
+
+    const mouseMove = (e: MouseEvent): void => {
       setMousePosition({
         x: e.clientX,
         y: e.clientY,
@@ -94,7 +99,7 @@ export default function Home() {
 
       <PrimaryLandingPageSection
         videoUrl={
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1723761408/njth0ximkbqfobcqtzov.mp4"
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1739681557/Portfolio_Video_t0y4tc.mp4"
         }
       />
 
