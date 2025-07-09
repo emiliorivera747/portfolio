@@ -11,16 +11,16 @@ interface ToolItem {
 }
 
 interface CheckWhatDataToShow {
-  frontEndData: boolean;
-  backEndData: boolean;
-  bothData: boolean;
+  frontEndData?: boolean;
+  backEndData?: boolean;
+  bothData?: boolean;
 }
 
 interface ToolsSectionProps {
   bgColor: string;
-  frontEndData: ToolItem[];
-  backEndData: ToolItem[];
-  bothData: ToolItem[];
+  frontEndData?: ToolItem[];
+  backEndData?: ToolItem[];
+  bothData?: ToolItem[];
   checkWhatDataToShow: CheckWhatDataToShow;
 }
 
@@ -31,7 +31,8 @@ function ToolsSection({
   bothData,
   checkWhatDataToShow,
 }: ToolsSectionProps) {
-  // State to track which button (if any) is currently active
+
+
   const [activeButton, setActiveButton] = useState<string>("Front End");
 
   const handleClick = (buttonName: string) => {
@@ -49,8 +50,10 @@ function ToolsSection({
       </div>
 
       <div className=" w-full flex-col flex  justify-center items-start ">
+       
         {/* Buttons */}
         <div className=" h-20 flex flex-row items-center justify-center gap-1 px-10 sm:px-0 sm:gap-2 w-full mb-[2rem] ">
+          
           {checkWhatDataToShow.frontEndData && (           
             <PrimaryButton
               text={"Front End"}
@@ -62,6 +65,7 @@ function ToolsSection({
               }`}
             />
           )}
+
           {checkWhatDataToShow.backEndData && (
             <PrimaryButton
               text={"Back End"}

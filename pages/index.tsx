@@ -130,7 +130,6 @@ export default function Home() {
           bothData: true,
         }}
         bgColor={"bg-white"}
-        textColor={"text-primary-1000"}
       />
       <Testimonial />
       <ProjectSection
@@ -173,7 +172,7 @@ export default function Home() {
           bothData: false,
         }}
         bgColor={"bg-white"}
-        textColor={"text-primary-1000"}
+
       />
       <Contact />
       <motion.div
