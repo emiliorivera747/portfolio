@@ -24,7 +24,7 @@ function About() {
             About Me.
           </h1>
         </div>
-        <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
+        <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2 items-center justify-center">
             <h1 className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6">
               My Journey
@@ -62,7 +62,9 @@ function About() {
           </div>
         </section>
 
-        <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">          <div className="text-black order-last md:order-first">
+        <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
+          {" "}
+          <div className="text-black order-last md:order-first">
             <CldImage
               src="https://res.cloudinary.com/dcss55nem/image/upload/v1701747663/IMG_2215_kypj32.jpg"
               height={700}
@@ -95,7 +97,7 @@ function About() {
             {'get in your way."'}
           </h2>
         </div>
-        <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
+        <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2  items-center justify-center p-10">
             <h1 className="text-2xl md:text-4xl pb-3 md:pb-6 text-primary-900 font-bold">
               Public Speaking

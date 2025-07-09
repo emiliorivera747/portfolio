@@ -4,7 +4,7 @@ import HeaderSection from "@/components/HeaderSection";
 import ProjectSection from "@/components/ProjectSection";
 import ToolsSection from "@/components/ToolsSection";
 import { motion } from "framer-motion";
-import Page from "@/components/page";
+import Page from "@/components/Page";
 import Contact from "@/components/Contact";
 
 //Components
