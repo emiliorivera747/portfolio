@@ -1,5 +1,5 @@
 import React from "react";
-import Page from '@/components/page';
+import Page from "@/components/Page";
 import Head from "next/head";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
@@ -17,14 +17,14 @@ function About() {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} key="desc" />
       </Head>
-      <section className="h-screen w-screen bg-black overflow-x-hidden">
+      <section className="h-screen w-full bg-black overflow-x-hidden">
         <div className="h-full flex items-center justify-center">
           {" "}
           <h1 className=" text-4xl md:text-8xl text-white font-bold text-center">
             About Me.
           </h1>
         </div>
-        <section className=" px-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 relative pt-10  w-screen overflow-auto h-[90vh] bg-white">
+        <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2 items-center justify-center">
             <h1 className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6">
               My Journey
@@ -37,7 +37,7 @@ function About() {
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
               I am a <strong>magician</strong> of the 21st century, using
-              software engineering to create <strong>magic</strong>. Much like a
+              engineering to create <strong>magic</strong>. Much like a
               <strong> magician</strong> equips themselves with the right tools,
               I&apos;ve explored technologies such as React.js and Next.js to
               add to my toolbox, continually learning and embracing the latest
@@ -62,8 +62,7 @@ function About() {
           </div>
         </section>
 
-        <section className=" px-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 relative  w-screen overflow-auto  bg-white py-20 ">
-          <div className="text-black order-last md:order-first">
+        <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">          <div className="text-black order-last md:order-first">
             <CldImage
               src="https://res.cloudinary.com/dcss55nem/image/upload/v1701747663/IMG_2215_kypj32.jpg"
               height={700}
@@ -96,7 +95,7 @@ function About() {
             {'get in your way."'}
           </h2>
         </div>
-        <section className=" bg-white px-10 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 relative w-screen overflow-auto pb-10 pt-20 ">
+        <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2  items-center justify-center p-10">
             <h1 className="text-2xl md:text-4xl pb-3 md:pb-6 text-primary-900 font-bold">
               Public Speaking
