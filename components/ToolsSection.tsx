@@ -5,25 +5,15 @@ import PrimaryButton from "@/components/buttons/PrimaryButton";
 //Components
 import Tools from "@/components/tools-section/Tools";
 
-interface ToolItem {
-  name: string;
-  imageUrl: string;
-}
+//Types
+import { ToolsSectionProps } from "@/types/tools";
 
-interface CheckWhatDataToShow {
-  frontEndData?: boolean;
-  backEndData?: boolean;
-  bothData?: boolean;
-}
 
-interface ToolsSectionProps {
-  bgColor: string;
-  frontEndData?: ToolItem[];
-  backEndData?: ToolItem[];
-  bothData?: ToolItem[];
-  checkWhatDataToShow: CheckWhatDataToShow;
-}
-
+/**
+ * Displays a section with tools used in projects, allowing users to filter by Front End, Back End, or Both.
+ * 
+ * @returns tools section component
+ */
 function ToolsSection({
   bgColor,
   frontEndData,
