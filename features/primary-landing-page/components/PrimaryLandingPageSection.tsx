@@ -1,11 +1,14 @@
 import React, { useEffect, useRef } from "react";
+
+// External Libraries
 import { motion } from "framer-motion";
-import CalendlyPopupButton from "@/features/calendly/CalendlyPopupButton";
 
 // Components
 import MissionStatement from "@/features/primary-landing-page/components/MissionStatement";
 import Role from "@/features/primary-landing-page/components/Role";
 import FullName from "@/features/primary-landing-page/components/FullName";
+import CalendlyPopupButton from "@/features/calendly/CalendlyPopupButton";
+import BackgroundOverlay from "@/components/BackgroundOverlay";
 
 const variants = {
   initial: {
@@ -23,18 +26,17 @@ const variants = {
 };
 
 /**
- * Primary section
+ *  Primary section
  *
- * @param {*} param0
  * @returns
  */
-function HeaderSection() {
+function PrimaryLandingPageSection() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.5, // Adjust this threshold based on your requirement
+      threshold: 0.5,
     };
 
     const callback = (entries: IntersectionObserverEntry[]) => {
@@ -56,7 +58,6 @@ function HeaderSection() {
       observer.observe(videoRef.current);
     }
 
-    // Cleanup the observer when component unmounts
     return () => observer.disconnect();
   }, []);
 
@@ -67,15 +68,14 @@ function HeaderSection() {
           initial: "initial",
           whileInView: "animate",
           variants: variants,
-          className:
-            "flex flex-row w-full h-full absolute sm:self-center sm:items-center sm:justify-center justify-end items-end self-end",
+          className:"absolute h-full z-20 flex items-center justify-center w-full",
         } as any)}
       >
         <motion.div
-          {...({
+          {...{
             className:
-              "flex flex-col md:flex-col lg:flex-col w-full h-1/2 items-start justify-center sm:mx-16 mx-4 sm:gap-2 z-10 gap-1 bg-white-300",
-          } as any)}
+              "flex flex-col md:flex-col lg:flex-col w-full h-1/2 items-start justify-center sm:mx-16 mx-4 sm:gap-2 z-10 gap-1 mt-[40%] ",
+          }}
         >
           <FullName firstName={"Emilio"} lastName={"Rivera"} />
           <Role role={"Software Consultant"} />
@@ -84,10 +84,10 @@ function HeaderSection() {
         </motion.div>
       </motion.div>
 
+      {/* OVERLAY */}
+      <BackgroundOverlay />
+
       {/* VIDEO */}
-      <div className="">
-        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-30"></div>
-      </div>
       <video
         ref={videoRef}
         className={`object-cover w-full h-full`}
@@ -103,4 +103,4 @@ function HeaderSection() {
   );
 }
 
-export default HeaderSection;
+export default PrimaryLandingPageSection;

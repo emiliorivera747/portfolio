@@ -9,6 +9,7 @@ import Contact from "@/components/Contact";
 
 //Components
 import Testimonial from "@/components/Testimonial";
+import PrimaryLandingPageSection from "@/features/primary-landing-page/components/PrimaryLandingPageSection";
 
 //Data
 import { toolsData } from "@/utils/data/tools/allToolsData";
@@ -90,11 +91,13 @@ export default function Home() {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} key="desc" />
       </Head>
-      <HeaderSection
+
+      <PrimaryLandingPageSection
         videoUrl={
           "https://res.cloudinary.com/dcss55nem/video/upload/v1723761408/njth0ximkbqfobcqtzov.mp4"
         }
       />
+
       <ProjectSection
         url={"/casa-chirilagua"}
         titleSize={"text-4xl"}
@@ -166,7 +169,7 @@ export default function Home() {
         }}
         bgColor={"bg-white"}
         textColor={"text-primary-1000"}
-     />
+      />
       <Contact />
       <motion.div
         className="cursor"
