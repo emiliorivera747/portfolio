@@ -86,7 +86,7 @@ export default function Home() {
       x: mousePosition.x - 75,
       y: mousePosition.y - 75,
       backgroundColor: "white",
-      mixBlendMode: "difference",
+      mixBlendMode: "difference" as const,
     },
   };
 
@@ -102,7 +102,6 @@ export default function Home() {
           "https://res.cloudinary.com/dcss55nem/video/upload/v1739681557/Portfolio_Video_t0y4tc.mp4"
         }
       />
-
       <ProjectSection
         url={"/casa-chirilagua"}
         titleSize={"text-4xl"}
@@ -146,6 +145,7 @@ export default function Home() {
         buttonBorderColor={"border-black md:border-black"}
         buttonBgColor={"hover:bg-black md:hover:bg-black"}
         buttonHoverTextColor={"hover:text-white md:hover:text-white"}
+        bgColor={"bg-white"}
         videoCover={"sm:object-cover"}
       />
       <ProjectSection
@@ -163,6 +163,7 @@ export default function Home() {
         buttonBgColor={"hover:bg-zinc-800"}
         buttonHoverTextColor={"hover:text-white"}
         videoCover={"object-cover"}
+        bgColor={"bg-white"}
       />
       <ToolsSection
         frontEndData={toolsData["my-portfolio"].frontEnd}
@@ -172,13 +173,12 @@ export default function Home() {
           bothData: false,
         }}
         bgColor={"bg-white"}
-
       />
       <Contact />
       <motion.div
-        className="cursor"
         variants={variants}
         animate={cursorVariant}
+        {...{ className: "cursor" }}
       />
     </Page>
   );

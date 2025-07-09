@@ -31,16 +31,16 @@ function ToolsSection({
   bothData,
   checkWhatDataToShow,
 }: ToolsSectionProps) {
-
-
   const [activeButton, setActiveButton] = useState<string>("Front End");
 
   const handleClick = (buttonName: string) => {
     setActiveButton(buttonName);
   };
 
-  const buttonDefaultStyle = 'hover:text-white bg-gradient-to-r from-secondary-600 to-secondary-800 text-zinc-900 bg-white border border-primary-200';
-  const buttonActiveStyle = 'bg-gradient-to-r from-[#3b5bdb] to-[#364fc7] text-white';
+  const buttonDefaultStyle =
+    "hover:text-white bg-gradient-to-r from-secondary-600 to-secondary-800 text-zinc-900 bg-white border border-primary-200";
+  const buttonActiveStyle =
+    "bg-gradient-to-r from-[#3b5bdb] to-[#364fc7] text-white";
 
   return (
     <section className={`min-h-[70vh] h-auto w-screen ${bgColor}`}>
@@ -50,11 +50,9 @@ function ToolsSection({
       </div>
 
       <div className=" w-full flex-col flex  justify-center items-start ">
-       
         {/* Buttons */}
         <div className=" h-20 flex flex-row items-center justify-center gap-1 px-10 sm:px-0 sm:gap-2 w-full mb-[2rem] ">
-          
-          {checkWhatDataToShow.frontEndData && (           
+          {checkWhatDataToShow.frontEndData && (
             <PrimaryButton
               text={"Front End"}
               actionFunction={() => handleClick("Front End")}
@@ -82,22 +80,26 @@ function ToolsSection({
               text={"Both"}
               actionFunction={() => handleClick("Both")}
               className={` w-40 ${
-                activeButton === "Both"
-                  ? buttonActiveStyle
-                  : buttonDefaultStyle
+                activeButton === "Both" ? buttonActiveStyle : buttonDefaultStyle
               }`}
             />
           )}
         </div>
 
         {/* Front End  */}
-        {activeButton === "Front End" && <Tools toolsData={frontEndData} />}
+        {activeButton === "Front End" && (
+          <Tools toolsData={frontEndData ? frontEndData : []} />
+        )}
 
         {/* Back End */}
-        {activeButton === "Back End" && <Tools toolsData={backEndData} />}
+        {activeButton === "Back End" && (
+          <Tools toolsData={backEndData ? backEndData : []} />
+        )}
 
         {/* Both */}
-        {activeButton === "Both" && <Tools toolsData={bothData} />}
+        {activeButton === "Both" && (
+          <Tools toolsData={bothData ? bothData : []} />
+        )}
       </div>
     </section>
   );
