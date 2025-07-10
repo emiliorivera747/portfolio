@@ -71,7 +71,7 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
             "absolute h-full w-full flex flex-col items- justify-center z-30",
         } as any)}
       >
-        <div style={{ width: " 50vw", paddingLeft: '4rem' }}>
+        <div style={{ width: " 50vw", paddingLeft: '4rem' }} className="w-[50%]">
           <PrimaryHeader />
           <MissionStatement />
           <CalendlyPopupButton />
