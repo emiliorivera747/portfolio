@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import Page from "@/components/page";
+import Page from "@/components/Page";
 import Head from "next/head";
 import Image from "next/image";
 

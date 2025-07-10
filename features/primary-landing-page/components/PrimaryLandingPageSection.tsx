@@ -94,7 +94,7 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
         className={`object-cover w-full h-full`}
         src={
           videoUrl ||
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1724616795/Untitled_design_22_q63p4f.mp4"
+          "https://res.cloudinary.com/dcss55nem/video/upload/v1724550161/Untitled_design_20_pg1n4r.mp4"
         }
         loop
         preload="none"
