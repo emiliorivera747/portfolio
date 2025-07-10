@@ -102,6 +102,7 @@ export default function Home() {
           "https://res.cloudinary.com/dcss55nem/video/upload/v1739681557/Portfolio_Video_t0y4tc.mp4"
         }
       />
+
       <ProjectSection
         url={"/casa-chirilagua"}
         titleSize={"text-4xl"}
@@ -113,9 +114,9 @@ export default function Home() {
         titleColor={"text-primary-1000"}
         titleFont={"font-semibold"}
         buttonTextColor={"text-[#495057]"}
-        buttonBorderColor={"border-[#495057]"}
-        buttonBgColor={"hover:bg-white"}
-        buttonHoverTextColor={"hover:text-zinc-800"}
+        buttonBorderColor={"border-zinc-800 hover:border-zinc-800"}
+        buttonBgColor={"hover:bg-primary-1000"}
+        buttonHoverTextColor={"hover:text-white"}
         bgColor={"bg-white"}
         videoCover={"sm:object-cover"}
       />
@@ -143,7 +144,7 @@ export default function Home() {
         titleFont={"font-bold"}
         buttonTextColor={"text-zinc-800 md:text-zinc-800"}
         buttonBorderColor={"border-black md:border-black"}
-        buttonBgColor={"hover:bg-black md:hover:bg-black"}
+        buttonBgColor={"hover:bg-primary-1000"}
         buttonHoverTextColor={"hover:text-white md:hover:text-white"}
         bgColor={"bg-white"}
         videoCover={"sm:object-cover"}
@@ -160,7 +161,7 @@ export default function Home() {
         buttonLabel={"Learn More"}
         buttonTextColor={"text-zinc-800 "}
         buttonBorderColor={"border-zinc-800 hover:border-zinc-800"}
-        buttonBgColor={"hover:bg-zinc-800"}
+        buttonBgColor={"hover:bg-primary-1000"}
         buttonHoverTextColor={"hover:text-white"}
         videoCover={"object-cover"}
         bgColor={"bg-white"}

@@ -1,5 +1,3 @@
-import React from "react";
-
 import { OverlayProps } from "@/types/overlays";
 
 /**
@@ -10,7 +8,7 @@ import { OverlayProps } from "@/types/overlays";
  * @param opacity - The opacity of the overlay, default is 0.3
  * @returns
  */
-const BackgroundOverlay = ({ opacity = 0.3 }: OverlayProps) => {
+const BackgroundOverlay = ({ opacity = 0.4 }: OverlayProps) => {
   return (
     <div className="">
       <div

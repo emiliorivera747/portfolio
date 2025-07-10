@@ -69,7 +69,7 @@ function ProjectSection({
 
   return (
     <section className={`relative h-screen w-screen ${bgColor}`}>
-      <motion.div {...({ className: "flex flex-col items-center justify-start h-full w-full " } as any)}>
+      <motion.div {...({ className: "flex flex-col items-center justify-start h-full w-full" } as any)}>
         <div className="absolute h-20 flex items-center ">
           <h1
             onMouseEnter={textEnter}
@@ -92,7 +92,7 @@ function ProjectSection({
           {" "}
           <Link
             href={url}
-            className={`absolute rounded-md border-2 ${buttonBorderColor} bg-transparent ${buttonTextColor} w-60 h-12 font-semibold self-center justify-center text-center p-2 bottom-0 ${buttonBgColor} ${buttonHoverTextColor} mb-6`}
+            className={`flex items-center absolute rounded-md border-2 ${buttonBorderColor} bg-transparent ${buttonTextColor} w-60 h-[3.4rem] font-semibold self-center justify-center text-center p-2 bottom-0 ${buttonBgColor} ${buttonHoverTextColor} mb-6`}
             aria-label={`Learn more about ${title}`}
           >
             {buttonLabel} <span className="text-transparent">.</span>

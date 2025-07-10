@@ -5,10 +5,9 @@ import { motion } from "framer-motion";
 
 // Components
 import MissionStatement from "@/features/primary-landing-page/components/MissionStatement";
-import Role from "@/features/primary-landing-page/components/Role";
-import FullName from "@/features/primary-landing-page/components/FullName";
 import CalendlyPopupButton from "@/features/calendly/CalendlyPopupButton";
 import BackgroundOverlay from "@/components/BackgroundOverlay";
+import PrimaryHeader from "@/features/primary-landing-page/components/PrimaryHeader";
 
 const variants = {
   initial: {
@@ -62,27 +61,21 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
   }, []);
 
   return (
-    <section className="relative h-screen w-screen">
+    <section className="relative h-screen w-screen bg-black">
       <motion.div
         {...({
           initial: "initial",
           whileInView: "animate",
-          variants: variants,
+          variants,
           className:
-            "absolute h-full z-20 flex items-center justify-center w-full",
+            "absolute h-full w-full flex flex-col items- justify-center z-30",
         } as any)}
       >
-        <motion.div
-          {...{
-            className:
-              "flex flex-col md:flex-col lg:flex-col w-full h-1/2 items-start justify-center sm:mx-16 mx-4 sm:gap-2 z-10 gap-1 mt-[40%] ",
-          }}
-        >
-          <FullName firstName={"Emilio"} lastName={"Rivera"} />
-          <Role role={"Software Consultant"} />
+        <div style={{ width: " 50vw", paddingLeft: '4rem' }}>
+          <PrimaryHeader />
           <MissionStatement />
           <CalendlyPopupButton />
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* OVERLAY */}
