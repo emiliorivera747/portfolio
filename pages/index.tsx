@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
 import Head from "next/head";
-import HeaderSection from "@/components/HeaderSection";
-import ProjectSection from "@/components/ProjectSection";
-import ToolsSection from "@/components/ToolsSection";
-import { motion } from "framer-motion";
-import Page from "@/components/Page";
-import Contact from "@/components/Contact";
 
 //Components
 import Testimonial from "@/components/Testimonial";
 import PrimaryLandingPageSection from "@/features/primary-landing-page/components/PrimaryLandingPageSection";
+import Page from "@/components/Page";
+
+//Sections
+import Contact from "@/components/Contact";
+import ProjectSection from "@/components/ProjectSection";
+import ToolsSection from "@/components/ToolsSection";
 
 //Data
 import { toolsData } from "@/utils/data/tools/allToolsData";
@@ -22,74 +21,6 @@ export const metadata = {
 };
 
 export default function Home() {
-  useEffect(() => {
-    let lastScrollY = window.scrollY;
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      lastScrollY = currentScrollY;
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const [mousePosition, setMousePosition] = useState({
-    x: 0,
-    y: 0,
-  });
-  const [cursorVariant, setCursorVariant] = useState("default");
-
-  useEffect(() => {
-    interface MousePosition {
-      x: number;
-      y: number;
-    }
-
-    const mouseMove = (e: MouseEvent): void => {
-      setMousePosition({
-        x: e.clientX,
-        y: e.clientY,
-      });
-    };
-    window.addEventListener("mousemove", mouseMove);
-    return () => {
-      window.removeEventListener("mousemove", mouseMove);
-    };
-  }, []);
-
-  //Test
-  const variants = {
-    default: {
-      height: 20,
-      width: 20,
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      backgroundColor: "white",
-    },
-    none: {
-      height: 0,
-      width: 0,
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      // backgroundColor: "white",
-    },
-    default2: {
-      height: 20,
-      width: 20,
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      backgroundColor: "white",
-    },
-    text: {
-      height: 150,
-      width: 150,
-      x: mousePosition.x - 75,
-      y: mousePosition.y - 75,
-      backgroundColor: "white",
-      mixBlendMode: "difference" as const,
-    },
-  };
-
   return (
     <Page>
       <Head>
@@ -176,11 +107,6 @@ export default function Home() {
         bgColor={"bg-white"}
       />
       <Contact />
-      <motion.div
-        variants={variants}
-        animate={cursorVariant}
-        {...{ className: "cursor" }}
-      />
     </Page>
   );
 }

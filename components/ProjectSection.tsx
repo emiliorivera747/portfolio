@@ -6,8 +6,6 @@ interface ProjectSectionProps {
   title: string;
   videoUrl: string;
   buttonLabel: string;
-  textEnter?: () => void;
-  textLeave?: () => void;
   titleColor: string;
   titleFont: string;
   buttonTextColor: string;
@@ -24,8 +22,6 @@ function ProjectSection({
   title,
   videoUrl,
   buttonLabel,
-  textEnter,
-  textLeave,
   titleColor,
   titleFont,
   buttonTextColor,
@@ -43,7 +39,7 @@ function ProjectSection({
     const options = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.5, // Adjust this threshold based on your requirement
+      threshold: 0.5, 
     };
 
     const callback = (entries: IntersectionObserverEntry[]) => {
@@ -63,17 +59,14 @@ function ProjectSection({
       observer.observe(videoRef.current);
     }
 
-    // Cleanup the observer when component unmounts
     return () => observer.disconnect();
   }, []);
 
   return (
     <section className={`relative h-screen w-screen ${bgColor}`}>
       <motion.div {...({ className: "flex flex-col items-center justify-start h-full w-full" } as any)}>
-        <div className="absolute h-20 flex items-center ">
+        <div className="absolute h-[7rem] flex items-center ">
           <h1
-            onMouseEnter={textEnter}
-            onMouseLeave={textLeave}
             className={`${titleFont} ${titleSize} ${titleColor}`}
           >
             {title}
@@ -92,7 +85,7 @@ function ProjectSection({
           {" "}
           <Link
             href={url}
-            className={`flex items-center absolute rounded-md border-2 ${buttonBorderColor} bg-transparent ${buttonTextColor} w-60 h-[3.4rem] font-semibold self-center justify-center text-center p-2 bottom-0 ${buttonBgColor} ${buttonHoverTextColor} mb-6`}
+            className={`flex items-center absolute rounded-[12px] border-2 ${buttonBorderColor} bg-transparent ${buttonTextColor} w-60 h-[3.6rem] font-semibold self-center justify-center text-center p-2 bottom-0 ${buttonBgColor} ${buttonHoverTextColor} mb-6 rounded-[12px]`}
             aria-label={`Learn more about ${title}`}
           >
             {buttonLabel} <span className="text-transparent">.</span>

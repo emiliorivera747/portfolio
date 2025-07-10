@@ -7,7 +7,7 @@
  */
 const MissionStatement = () => {
   return (
-    <p style={{color: "#ced4da"}} className="sm:w-1/2 pl-1 pb-4 text-white">
+    <p style={{color: "#ced4da"}} className="sm:w-1/2 pl-1 pb-10 text-white">
       Develop minimalist web and front-end applications using modern frameworks,
       tailored for small businesses and non-profit organizations.
     </p>

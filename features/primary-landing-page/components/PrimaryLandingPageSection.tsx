@@ -61,7 +61,7 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
   }, []);
 
   return (
-    <section className="relative h-screen w-screen bg-black">
+    <section className="relative h-screen w-screen">
       <motion.div
         {...({
           initial: "initial",
