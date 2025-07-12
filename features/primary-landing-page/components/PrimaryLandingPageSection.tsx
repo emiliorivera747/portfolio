@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 // External Libraries
 import { motion } from "framer-motion";
 
-// Components
+// Component
 import MissionStatement from "@/features/primary-landing-page/components/MissionStatement";
 import CalendlyPopupButton from "@/features/calendly/CalendlyPopupButton";
 import BackgroundOverlay from "@/components/BackgroundOverlay";

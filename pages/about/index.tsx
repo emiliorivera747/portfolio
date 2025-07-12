@@ -10,6 +10,12 @@ export const metadata = {
     "Learn more about Emilio Rivera, a Full Stack Engineer based in San Jose, CA. specializing in React.js, Next.js, and Node.js.",
 };
 
+
+/**
+ *  Displays information about me
+ * 
+ * @returns 
+ */
 function About() {
   return (
     <Page>
