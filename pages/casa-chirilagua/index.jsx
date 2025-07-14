@@ -32,6 +32,12 @@ const variants = {
   },
 };
 
+
+/**
+ * Casa Chirilagua Project
+ * 
+ * @returns 
+ */
 function Project1() {
   const data = [
     {
