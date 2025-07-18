@@ -9,6 +9,9 @@ export interface FullNameProp {
   lastName: string;
 }
 
+/**
+ * Role Prop
+ */
 export interface RoleProp {
   role: string;
 }
