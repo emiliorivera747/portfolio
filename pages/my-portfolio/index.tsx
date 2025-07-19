@@ -5,6 +5,12 @@ export const metadata = {
   description: 'Learn more about Portfolio project created by Emilio Rivera to shocase his skills in React.js, Next.js, and Node.js.',
 }
  
+
+/**
+ * Displays Portfolio Project
+ * 
+ * @returns 
+ */
 function Project2() {
   return (
     <section className="h-screen w-screen bg-black">
