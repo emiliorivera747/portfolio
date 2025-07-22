@@ -88,7 +88,7 @@ export default function Navbar({ menuItems }: NavbarProps) {
         variants: { visible: { y: 0 }, hidden: { y: "-100%" } },
         animate: hidden ? "hidden" : "visible",
         transition: { duration: 0.2, ease: "easeInOut" },
-        className: `fixed top-0 left-0 w-full z-50 sm:px-12 px-4  h-20 ${bgColor} items-center justify-center`,
+        className: `fixed top-0 left-0 w-full z-50 sm:px-12 px-4  h-20 ${bgColor} items-center justify-center nav-bar`,
       } as any)}
     >
       {/*Flex Container For Nav Items  */}

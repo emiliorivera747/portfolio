@@ -260,3 +260,7 @@
     width: 40rem;
   }
 }
+
+.nav-bar{
+  z-index:100;
+}
