@@ -62,16 +62,33 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
 
   return (
     <section className="relative h-screen w-screen bg-black">
-      <motion.div
+      {/* <motion.div
         {...({
           initial: "initial",
           whileInView: "animate",
           variants,
           className:
-            "absolute h-full w-full flex flex-col items- justify-center z-30",
+            "absolute h-full w-full flex flex-col items- justify-center z-30 bg-blue-300",
         } as any)}
       >
         <div style={{ width: " 50vw", paddingLeft: '4rem' }} className="w-[50%]">
+          <PrimaryHeader />
+          <MissionStatement />
+          <CalendlyPopupButton />
+        </div>
+      </motion.div> */}
+
+      <motion.div
+        style={{ zIndex: 50 }}
+        {...{
+          initial: "initial",
+          whileInView: "animate",
+          variants,
+          className:
+            "absolute h-full w-full flex flex-col justify-center bg-blue-300 landing-page-primary-section",
+        }}
+      >
+        <div className="w-[50%] bg-yellow-300 landing-page-section-containter">
           <PrimaryHeader />
           <MissionStatement />
           <CalendlyPopupButton />

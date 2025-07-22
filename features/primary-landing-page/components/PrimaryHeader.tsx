@@ -11,7 +11,7 @@ const PrimaryHeader = () => {
   return (
     <header className="flex flex-col gap-8">
       <FullName firstName={"Emilio"} lastName={"Rivera"} />
-      <Role role={"Software Consultant"} />
+      <Role role={"Software Engineer"} />
     </header>
   );
 };

@@ -233,3 +233,26 @@
 }
 .rainbow {
 }
+
+.landing-page-primary-section{
+  z-index: 50;
+}
+
+.landing-page-section-containter{
+  width: 70%;
+  padding-left: 4%;
+}
+
+.role-heading{
+  background: linear-gradient(90deg, #adb5bd, #212529);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  font-size: 1.7rem;
+  padding-bottom: 0.4rem;
+}
+
+.mission-statement{
+  color: #ced4da;
+  width: 40rem;
+}
