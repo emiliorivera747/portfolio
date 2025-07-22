@@ -97,11 +97,10 @@ function About() {
           </div>
         </section>
         <div className="bg-white p-10 flex flex-col md:flex-col h-auto min-h-[70vh] text-center items-center justify-center gap-0 ">
-          <h2 className=" bg-gradient-to-r bg-clip-text text-transparent from-primary-1000 to-primary-800 text-4xl md:p-10 leading-loose tracking-wider ">
-            {`"Everyone has a story but there is no one better than for you to tell it. Do not let the fear of`}{" "}
-            <strong>public speaking </strong>
-            {'get in your way."'}
+          <h2 className=" bg-gradient-to-r bg-clip-text text-transparent from-primary-1000 to-primary-800 text-4xl md:p-10 leading-loose tracking-wider pb-10">
+            {`"Everyone has a story but there is no one better than for you to tell it."`}
           </h2>
+          <p className="text-xl font-light text-[#868e96]">- Emilio Rivera</p>
         </div>
         <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2  items-center justify-center p-10">
