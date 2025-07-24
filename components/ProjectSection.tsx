@@ -18,6 +18,28 @@ interface ProjectSectionProps {
   url: string;
 }
 
+const variants = {
+  initial: {
+    y: 200,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+/**
+ *
+ * Displays different projects on the main landing page
+ *
+ * @param param0
+ * @returns
+ */
 function ProjectSection({
   title,
   videoUrl,
@@ -33,13 +55,12 @@ function ProjectSection({
   titleSize,
   url,
 }: ProjectSectionProps) {
-
   const videoRef = useRef<HTMLVideoElement | null>(null);
   useEffect(() => {
     const options = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.5, 
+      threshold: 0.5,
     };
 
     const callback = (entries: IntersectionObserverEntry[]) => {
@@ -64,23 +85,26 @@ function ProjectSection({
 
   return (
     <section className={`relative h-screen w-screen ${bgColor}`}>
-      <motion.div {...({ className: "flex flex-col items-center justify-start h-full w-full" } as any)}>
-        <div className="absolute h-[7rem] flex items-center ">
-          <h1
-            className={`${titleFont} ${titleSize} ${titleColor}`}
-          >
-            {title}
-          </h1>
-        </div>
-          <video
-            ref={videoRef}
-            className={`h-full w-full ${videoCover}`}
-            src={videoUrl}
-            preload="none"
-            loop
-            muted
-            playsInline
-          />
+      <motion.div
+        {...({
+          className: "flex flex-col items-center justify-start h-full w-full",
+        } as any)}
+      >
+        <motion.div
+          className="absolute h-[7rem] flex items-center"
+          {...({ initial: "initial", whileInView: "animate", variants } as any)}
+        >
+          <h1 className={`${titleFont} ${titleSize} ${titleColor}`}>{title}</h1>
+        </motion.div>
+        <video
+          ref={videoRef}
+          className={`h-full w-full ${videoCover}`}
+          src={videoUrl}
+          preload="none"
+          loop
+          muted
+          playsInline
+        />
         <div className="flex items-end justify-center">
           {" "}
           <Link
