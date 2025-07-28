@@ -1,4 +1,4 @@
-import React from "react";
+'use client'
 import Head from "next/head";
 
 
@@ -11,11 +11,11 @@ import Link from "next/link";
 import { CldImage } from 'next-cloudinary';
 
 
-export const metadata = {
-  title: "Casa Chirilagua | Emilio Rivera Portfolio",
-  description:
-    "Learn more about Casa Chiriagua project, a full stack web application developed by Emilio Rivera using MongoDB, Express.js, Node.js, and React.js.",
-};
+// export const metadata = {
+//   title: "Casa Chirilagua | Emilio Rivera Portfolio",
+//   description:
+//     "Learn more about Casa Chiriagua project, a full stack web application developed by Emilio Rivera using MongoDB, Express.js, Node.js, and React.js.",
+// };
 
 const variants = {
   initial: {
@@ -162,10 +162,10 @@ function Project1() {
 
   return (
     <section className={`h-screen w-screen overflow-x-hidden bg-black`}>
-      <Head>
+      {/* <Head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} key="desc" />
-      </Head>
+      </Head> */}
       {/* Title */}
       <motion.div className="relative h-screen w-screen">
         <div className="absolute inset-0 bg-black opacity-40"></div>

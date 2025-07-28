@@ -1,14 +1,15 @@
+'use client'
 import React from "react";
 import Page from "@/components/Page";
 import Head from "next/head";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 
-export const metadata = {
-  title: "About Me | Emilio Rivera Portfolio",
-  description:
-    "Learn more about Emilio Rivera, a Full Stack Engineer based in San Jose, CA. specializing in React.js, Next.js, and Node.js.",
-};
+// export const metadata = {
+//   title: "About Me | Emilio Rivera Portfolio",
+//   description:
+//     "Learn more about Emilio Rivera, a Full Stack Engineer based in San Jose, CA. specializing in React.js, Next.js, and Node.js.",
+// };
 
 
 /**
@@ -19,10 +20,6 @@ export const metadata = {
 function About() {
   return (
     <Page>
-      <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} key="desc" />
-      </Head>
       <section className="h-screen w-full bg-black overflow-x-hidden">
         <div className="h-full flex items-center justify-center">
           {" "}

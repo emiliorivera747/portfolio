@@ -120,7 +120,7 @@ space-x-20 my-2 w-full"
                       <NavigationMenuContent className="py-4  px-6 pb-6 bg-white flex flex-col gap-2 rounded-lg border-none">
                         {item.content?.map((subItem: SubMenuItem) => {
                           return (
-                            <NavigationMenuLink key={subItem.id} className="w-[10rem]">
+                            <NavigationMenuLink key={subItem.id} className="w-[10rem]" asChild>
                               <Link
                                 key={subItem.id}
                                 href={subItem.url}
