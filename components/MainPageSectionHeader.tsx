@@ -8,6 +8,14 @@ interface MainPageSectionHeaderProps {
   textSizeSm: string;
 }
 
+
+/**
+ * 
+ * Shows the main page section header
+ * 
+ * @param 
+ * @returns 
+ */
 function MainPageSectionHeader({ title, textColor, textSizeLg, textSizeSm }: MainPageSectionHeaderProps) {
   const ref = useRef<HTMLElement | null>(null);
   const { scrollYProgress } = useScroll({
