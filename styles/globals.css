@@ -2,7 +2,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.cursor{
+.cursor
+{
   background-color: black;
   height: 32px;
   width: 32px;
@@ -182,7 +183,6 @@
   position: relative;
   z-index: 10;
   border: 2px solid white;
-  
 }
 
 .border-transparent {
@@ -195,7 +195,6 @@
   border-radius: 9999px;
   background-color: transparent;
   transition: all 3s ease in-out;
-
 }
 
 .popup-button-border {
@@ -256,7 +255,6 @@
 .mission-statement {
   color: #ced4da;
   width: 100%;
-
   @media (min-width: 640px) {
     width: 40rem;
   }
