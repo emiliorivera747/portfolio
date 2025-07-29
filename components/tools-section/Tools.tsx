@@ -1,8 +1,6 @@
 import React from 'react'
 import { CldImage } from 'next-cloudinary';
 
-
-
 /**
  * Displays tools 
  * 
