@@ -152,18 +152,15 @@ function Project1() {
 
   return (
     <section className={`h-screen w-screen overflow-x-hidden bg-black`}>
-      {/* <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} key="desc" />
-      </Head> */}
+
       {/* Title */}
-      <motion.div className="relative h-screen w-screen">
+      <motion.div {...{className:"relative h-screen w-screen"}}>
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <motion.div
           initial="initial"
           whileInView="animate"
           variants={variants}
-          className="absolute inset-0 flex items-center p-40 justify-center h-full w-full"
+          {...{className:"absolute inset-0 flex items-center p-40 justify-center h-full w-full"}}
         >
           <h6 className=" text-4xl md:text-8xl text-white font-bold text-center text-trans">
             Casa Chirilagua
@@ -182,8 +179,7 @@ function Project1() {
           <motion.div {...{className:"h-1/6 w-full flex items-top justify-center pt-10"}}>
             <h1 className="text-3xl text-black font-bold"> What did I do?</h1>
           </motion.div>
-          <motion.div {...{ className: "h-full w-full bg-white" }}>
-            {" "}
+          <motion.div {...{className:"h-full w-full bg-white" }}>
             <h1 className="font-light p-6 text-primary-800 text-start leading-loose tracking-wider md:text-xl md:p-16">
               Developed an internal website using MongoDB, Express.js, Node.js,
               and React to help manage programs for Casa Chirilagua, a
@@ -208,7 +204,7 @@ function Project1() {
                   Employee Training.
                 </p>
               </motion.div>
-              <motion.div className="w-full flex flex-col pl-6 md:pl-16 col-span-2">
+              <motion.div {...{className:"w-full flex flex-col pl-6 md:pl-16 col-span-2"}}>
                 {" "}
                 <h1 className="text-black text-start leading-loose tracking-wider text-xl font-bold pb-6">
                   Learn more about Casa Chirilagua

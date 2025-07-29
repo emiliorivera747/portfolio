@@ -29,7 +29,6 @@ const Tools = ({ toolsData }: ToolsProps) => {
       >
         <CldImage
         alt={item.name}
-        name={item.name}
         src={item.imageUrl}
         width={100}
         height={100}
