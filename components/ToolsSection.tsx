@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from "react";
 import SecondaryHeader from "./titles/SecondaryHeader";
 import PrimaryButton from "@/components/buttons/PrimaryButton";

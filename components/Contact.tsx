@@ -1,4 +1,5 @@
-import React, { useRef, useState, FormEvent, MutableRefObject } from "react";
+'use client'
+import React, { useRef, useState, FormEvent } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import Link from "next/link";

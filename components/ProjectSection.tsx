@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, Suspense } from "react";
+
+import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 

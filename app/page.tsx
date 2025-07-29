@@ -1,12 +1,6 @@
-"use client";
-
-import type { AppProps } from "next/app";
+'use client'
 import "@/styles/globals.css";
 import { motion, AnimatePresence } from "framer-motion";
-
-import Navbar from "../components/Navbar";
-import Head from "next/head";
-import { navBarData } from "@/utils/data/navbar/navbarData";
 
 //Components
 import Testimonial from "@/components/Testimonial";
@@ -27,17 +21,7 @@ import { toolsData } from "@/utils/data/tools/allToolsData";
  * @param {*} param0
  * @returns
  */
-export default function App({ Component, pageProps }: AppProps) {
-  // Convert navBarData id to string for Navbar prop compatibility
-  const navBarDataStringId = navBarData.map((item) => ({
-    ...item,
-    id: String(item.id),
-    content:
-      item.content?.map((subItem) => ({
-        ...subItem,
-        id: String(subItem.id),
-      })) || [],
-  }));
+export default function App() {
 
   return (
     <AnimatePresence mode="wait">
