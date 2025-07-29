@@ -1,25 +1,50 @@
-'use client'
+"use client";
 import React from "react";
 import Page from "@/components/Page";
 import Head from "next/head";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 
+// External Libraries
+import { motion } from "framer-motion";
+
+const variants = {
+  initial: {
+    y: 500,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
 /**
  *  Displays information about me
- * 
- * @returns 
+ *
+ * @returns
  */
 function About() {
   return (
     <Page>
       <section className="h-screen w-full bg-black overflow-x-hidden">
-        <div className="h-full flex items-center justify-center">
+        <motion.div
+          {...{
+            initial: "initial",
+            whileInView: "animate",
+            variants,
+            className: "h-full flex items-center justify-center",
+          }}
+        >
           {" "}
           <h1 className=" text-4xl md:text-8xl text-white font-bold text-center">
             About Me.
           </h1>
-        </div>
+        </motion.div>
         <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2 items-center justify-center">
             <h1 className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6">
