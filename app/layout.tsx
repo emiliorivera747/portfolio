@@ -3,7 +3,7 @@ import "../styles/globals.css";
 
 export const metadata = {
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon.png',
     
   },
   title: "Home | Emilio Rivera Portfolio",
@@ -16,6 +16,14 @@ export const metadata = {
 import { navBarData } from "@/utils/data/navbar/navbarData";
 import Navbar from "../components/Navbar";
 
+
+/**
+ * 
+ * The root layout for all of the pages 
+ * 
+ * @param children - the child componeent in this case woul be the page.tsx
+ * @returns root layout
+ */
 export default function RootLayout({
   children,
 }: {
