@@ -5,6 +5,14 @@ export const metadata = {
     "Welcome to the about page where you can learn more about Emilio Rivera's Software Engineering journey",
 };
 
+
+/**
+ * 
+ * Layout for the about me page
+ * 
+ * @param children - in this case would be the about page
+ * @returns layout
+ */
 export default function RootLayout({
   children,
 }: {
