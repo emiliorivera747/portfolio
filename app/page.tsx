@@ -9,7 +9,7 @@ import Page from "@/components/Page";
 import DotLoader from "@/components/loading/DotLoader";
 
 //Sections
-import Contact from "@/features/contact/Contact";
+import Contact from "@/components/Contact";
 import ProjectSection from "@/components/ProjectSection";
 import ToolsSection from "@/components/ToolsSection";
 

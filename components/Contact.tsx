@@ -164,7 +164,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
             </div>
           </motion.div>
         </motion.div>
-        <motion.div {...({ className: "flex-1" } as any)}>
+        <motion.div {...({ className: "flex-1 w-full" } as any)}>
           <motion.form
             {...({
               ref: form,
@@ -172,7 +172,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
               initial: { opacity: 0 },
               whileInView: { opacity: 1 },
               transition: { delay: 1, duration: 1 },
-              className: "flex flex-col gap-4 pt-6 ",
+              className: "flex flex-col gap-4 pt-6 w-full ",
             } as any)}
           >
             <input
