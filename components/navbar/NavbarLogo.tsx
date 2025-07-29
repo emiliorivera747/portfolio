@@ -5,6 +5,13 @@ import Link from "next/link";
 import {NavbarLogoProp} from '@/types/navbar'
 
 
+/**
+ * Stores the logo for the navbae
+ * 
+ * @param logoTextColor - text color
+ * @param menuTextColor - the menu text color
+ * @returns logo
+ */
 const NavbarLogo = ({logoTextColor, menuTextColor }: NavbarLogoProp) => {
   return (
     <div className="z-30 justify-self-start ">
