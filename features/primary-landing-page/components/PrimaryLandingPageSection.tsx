@@ -10,8 +10,6 @@ import BackgroundOverlay from "@/components/BackgroundOverlay";
 import PrimaryHeader from "@/features/primary-landing-page/components/PrimaryHeader";
 
 
-
-
 const variants = {
   initial: {
     y: 500,

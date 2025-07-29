@@ -1,8 +1,4 @@
 'use client'
-import Head from "next/head";
-
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -10,12 +6,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { CldImage } from 'next-cloudinary';
 
-
-// export const metadata = {
-//   title: "Casa Chirilagua | Emilio Rivera Portfolio",
-//   description:
-//     "Learn more about Casa Chiriagua project, a full stack web application developed by Emilio Rivera using MongoDB, Express.js, Node.js, and React.js.",
-// };
 
 const variants = {
   initial: {
@@ -182,17 +172,17 @@ function Project1() {
       </motion.div>
 
       {/* Description */}
-      <div
+      <motion.div
         initial="initial"
         whileInView="animate"
         variants={variants}
-        className="w-screen bg-white h-[60vh] "
+        {...{ className: "w-screen bg-white h-[60vh]" }}
       >
-        <motion.div className=" h-full  mx-[6%]">
-          <motion.div className="h-1/6 w-full flex items-top justify-center pt-10">
+        <motion.div {...{ className: "h-full mx-[6%]" }}>
+          <motion.div {...{className:"h-1/6 w-full flex items-top justify-center pt-10"}}>
             <h1 className="text-3xl text-black font-bold"> What did I do?</h1>
           </motion.div>
-          <motion.div className="h-full w-full bg-white">
+          <motion.div {...{ className: "h-full w-full bg-white" }}>
             {" "}
             <h1 className="font-light p-6 text-primary-800 text-start leading-loose tracking-wider md:text-xl md:p-16">
               Developed an internal website using MongoDB, Express.js, Node.js,
@@ -206,7 +196,7 @@ function Project1() {
                 </h1>
                 <p className="font-light text-md text-primary-800">Full Stack Engineer</p>
               </div>
-              <motion.div className="w-full flex flex-col pl-6 md:pl-16 col-span-2">
+              <motion.div {...{className:"w-full flex flex-col pl-6 md:pl-16 col-span-2"}}>
                 {" "}
                 <h1 className="text-black text-start leading-loose tracking-wider text-xl font-bold pb-6 ">
                   Responsibility
@@ -234,13 +224,13 @@ function Project1() {
             </div>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
       <div className=" bg-white w-screen relative min-h-screen h-auto ${bgColor} w-screen overflow-auto">
         {data.map((item, index) => {
           return (
             <div className="flex flex-col p-10 mx-[6%]" key={index}>
-              <motion.div className="h-1/6 w-full flex items-top justify-center pt-10 pb-10 text-primary-1000">
+              <motion.div {...{className:"h-1/6 w-full flex items-top justify-center pt-10 pb-10 text-primary-1000"}}>
                 <h1 className="text-2xl text-black font-bold">{item.title}</h1>
               </motion.div>
               <div className="pb-6 leading-loose tracking-wider font-light text-md text-primary-800">
