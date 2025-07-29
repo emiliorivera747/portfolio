@@ -14,7 +14,7 @@ export const metadata = {
 
 //Data
 import { navBarData } from "@/utils/data/navbar/navbarData";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar/Navbar";
 
 
 /**

@@ -12,23 +12,16 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
 
-interface MenuItem {
-  id?: number,
-  label: string;
-  url: string;
-  content?: SubMenuItem[];
-}
+// Types 
+import {MenuItem, SubMenuItem, NavbarProps} from '@/types/navbar';
 
-interface SubMenuItem {
-  id?: number;
-  label: string;
-  url: string;
-}
 
-interface NavbarProps {
-  menuItems: MenuItem[];
-}
-
+/**
+ *  Displays the main navigation bar.
+ * 
+ * @param menuItems - Items for  the navigation bar
+ * @returns Navbar
+ */
 export default function Navbar({ menuItems }: NavbarProps) {
 
   const { scrollY } = useScroll();
