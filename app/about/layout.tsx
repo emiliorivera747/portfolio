@@ -2,7 +2,7 @@
 export const metadata = {
   title: "About | Emilio Rivera Portfolio",
   description:
-    "Welcome to the about page where you can learn more about Emilio Rivera's Software Engineering journey",
+    "Welcome to the about page where you can learn more about Emilio Rivera's Software Engineering journey. As well as his other hobbies and interest",
 };
 
 
