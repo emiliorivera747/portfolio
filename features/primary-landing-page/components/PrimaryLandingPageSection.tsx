@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 // Component
 import MissionStatement from "@/features/primary-landing-page/components/MissionStatement";
 import CalendlyPopupButton from "@/features/calendly/CalendlyPopupButton";
-import BackgroundOverlay from "@/components/BackgroundOverlay";
+import BackgroundOverlay from "@/components/overlays/BackgroundOverlay";
 import PrimaryHeader from "@/features/primary-landing-page/components/PrimaryHeader";
 
 
