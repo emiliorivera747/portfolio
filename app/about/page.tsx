@@ -5,13 +5,6 @@ import Head from "next/head";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 
-// export const metadata = {
-//   title: "About Me | Emilio Rivera Portfolio",
-//   description:
-//     "Learn more about Emilio Rivera, a Full Stack Engineer based in San Jose, CA. specializing in React.js, Next.js, and Node.js.",
-// };
-
-
 /**
  *  Displays information about me
  * 
