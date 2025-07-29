@@ -15,6 +15,9 @@ import {
 // Types 
 import {MenuItem, SubMenuItem, NavbarProps} from '@/types/navbar';
 
+// Components
+import NavbarLogo from '@/components/navbar/NavbarLogo'
+
 
 /**
  *  Displays the main navigation bar.
@@ -88,16 +91,7 @@ export default function Navbar({ menuItems }: NavbarProps) {
         className="flex items-center h-16 justify-between
 space-x-20 my-2 w-full"
       >
-        {/* Logo */}
-        <div className="z-30 justify-self-start ">
-          <Link
-            href="/"
-            className={`flex flex-row tracking-widest hover:text-white hover:backdrop-blur-md rounded-lg p-[0.8rem] ${logoTextColor} ${menuTextColor} font-semibold`}
-            aria-label="Logo"
-          >
-            <CldImage src="https://res.cloudinary.com/dcss55nem/image/upload/v1702588027/favicon_5_a5rhl0.png" fetchPriority="high" height={30} width={30} className="pr-1 self-end" alt="logo" /> <h1 className="self-end font-bold tracking-widest">{"milio's Portfolio"}</h1>
-          </Link>
-        </div>
+        <NavbarLogo logoTextColor={logoTextColor} menuTextColor={menuTextColor}/>
 
         {/*Nav Items*/}
         <div className="flex flex-row items-center justify-end">

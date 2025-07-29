@@ -14,3 +14,9 @@ export interface SubMenuItem {
 export interface NavbarProps {
   menuItems: MenuItem[];
 }
+
+
+export interface NavbarLogoProp {
+    logoTextColor: string,
+    menuTextColor: string,
+}
