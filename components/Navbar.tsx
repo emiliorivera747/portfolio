@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { CldImage } from 'next-cloudinary';
-
 import Link from "next/link";
 import {
   NavigationMenu,
@@ -14,14 +13,14 @@ import {
 } from "@/components/ui/navigation-menu"
 
 interface MenuItem {
-  id: string;
+  id?: number,
   label: string;
   url: string;
   content?: SubMenuItem[];
 }
 
 interface SubMenuItem {
-  id: string;
+  id?: number;
   label: string;
   url: string;
 }
@@ -33,7 +32,6 @@ interface NavbarProps {
 export default function Navbar({ menuItems }: NavbarProps) {
 
   const { scrollY } = useScroll();
-
   const [hidden, setHidden] = useState(false);
   const [bgColor, setBgColor] = useState("bg-transparent");
   const [openMenu, setOpenMenu] = useState(false);
@@ -147,7 +145,7 @@ space-x-20 my-2 w-full"
             aria-label="Toggle Menu"
             aria-expanded={openMenu}
             aria-controls="menu"
-            className={`${openClass} z-50 block focus:outline-none hamburger justify-end  `}
+            className={`${openClass} z-50 block focus:outline-none hamburger justify-end`}
             onClick={handleMenuClick}
           >
             <span className={`hamburger-top ${hamburgerBgColor}`}></span>
