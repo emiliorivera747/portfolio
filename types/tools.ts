@@ -16,3 +16,8 @@ export interface ToolsSectionProps {
   bothData?: ToolItem[];
   checkWhatDataToShow: CheckWhatDataToShow;
 }
+
+
+export interface ToolsProps {
+  toolsData: ToolItem[];
+}

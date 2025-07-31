@@ -1,20 +1,6 @@
 import React from 'react'
 import { CldImage } from 'next-cloudinary';
-
-/**
- * Displays tools 
- * 
- * @param {*} param0 
- * @returns 
- */
-interface ToolItem {
-  name: string;
-  imageUrl: string;
-}
-
-interface ToolsProps {
-  toolsData: ToolItem[];
-}
+import { ToolsProps, ToolItem } from '@/types/tools';
 
 /**
  * Component to display a list of tools.
