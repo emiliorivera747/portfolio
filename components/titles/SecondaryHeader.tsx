@@ -1,10 +1,6 @@
 import React, { forwardRef } from 'react';
 import {cn} from '@/lib/utils';
-
-interface SecondaryHeaderProps {
-  title: string;
-  className?: string;
-}
+import { SecondaryHeaderProps } from '@/types/headers';
 
 const SecondaryHeader = forwardRef<HTMLDivElement, SecondaryHeaderProps>(
   ({ title, className }, ref) => {
