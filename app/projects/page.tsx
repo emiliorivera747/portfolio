@@ -53,7 +53,7 @@ function Project() {
                     fill
                     className="w-full duration-200 md-block group-hover:scale-110"
                     src={
-                      "https://res.cloudinary.com/dcss55nem/image/upload/v1701525646/Space_and_Astronomy_Film_Video_Intro_3_jij1s1.png"
+                      "https://res.cloudinary.com/dcss55nem/image/upload/v1753932226/Screenshot_2025-07-30_at_8.22.13_PM_eu24ir.png"
                     }
                   />
                   {/* Gradient */}
