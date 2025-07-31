@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Testimonial from "@/components/Testimonial";
 import PrimaryLandingPageSection from "@/features/primary-landing-page/components/PrimaryLandingPageSection";
 import Page from "@/components/Page";
-import DotLoader from "@/components/loading/DotLoader";
 
 //Sections
 import Contact from "@/components/Contact";
