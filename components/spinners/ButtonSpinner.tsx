@@ -1,7 +1,11 @@
 import React from "react";
 import DotLoader from "@/components/loading/DotLoader";
 
-
+/**
+ * Button spinner used to show button is loading
+ * 
+ * @returns a spinner
+ */
 const ButtonSpinner = () => {
   return (
     <div className="w-screen h-screen flex flex-col gap-2 items-center justify-center ">
