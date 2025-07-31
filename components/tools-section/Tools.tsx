@@ -16,6 +16,13 @@ interface ToolsProps {
   toolsData: ToolItem[];
 }
 
+/**
+ * Component to display a list of tools.
+ * 
+ * @param {Object} props - The component props.
+ * @param {ToolItem[]} props.toolsData - Array of tools with name and imageUrl.
+ * @returns {JSX.Element} The rendered Tools component.
+ */
 const Tools = ({ toolsData }: ToolsProps) => {
 
   return (
