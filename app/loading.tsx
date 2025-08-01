@@ -1,5 +1,12 @@
 import React from "react";
 import DotLoader from "@/components/loading/DotLoader";
+
+/**
+ * 
+ * Loading page show Leonardo da Vinci qoute
+ * 
+ * @returns loading page
+ */
 const loading = () => {
   return (
     <div className="flex items-center justify-center bg-black h-screen w-screen text-white ">
