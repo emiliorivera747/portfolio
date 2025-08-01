@@ -10,7 +10,6 @@ export const metadata = {
     "Learn more about projects created by Emilio Rivera to showcase his skills in React.js, Next.js, and Node.js.",
 };
 
-
 /**
  * 
  * Shows list of all projects
