@@ -4,9 +4,8 @@ import "../styles/globals.css";
 export const metadata = {
   icons: {
     icon: '/favicon.png',
-    
   },
-  title: "Home | Emilio Rivera Portfolio",
+  title: "Home | Emilio Rivera's Portfolio",
   description:
     "Welcome to Emilio Rivera's Portfolio, a Software Engineer based in San Jose, CA. specializing in React.js, Next.js, and Node.js.",
 };

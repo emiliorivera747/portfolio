@@ -5,7 +5,7 @@ import Head from "next/head";
 import Image from "next/image";
 
 export const metadata = {
-  title: "Projects | Emilio Rivera Portfolio",
+  title: "Projects | Emilio Rivera's Portfolio",
   description:
     "Learn more about projects created by Emilio Rivera to showcase his skills in React.js, Next.js, and Node.js.",
 };
