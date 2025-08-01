@@ -1,8 +1,17 @@
 'use client'
 import React, { useState } from "react";
+
+// External Lib
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { CldImage } from 'next-cloudinary';
+
+// Next.js
 import Link from "next/link";
+
+// Types 
+import {MenuItem, SubMenuItem, NavbarProps} from '@/types/navbar';
+
+// Components
+import NavbarLogo from '@/components/navbar/NavbarLogo'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,13 +20,6 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-
-// Types 
-import {MenuItem, SubMenuItem, NavbarProps} from '@/types/navbar';
-
-// Components
-import NavbarLogo from '@/components/navbar/NavbarLogo'
-
 
 /**
  *  Displays the main navigation bar.

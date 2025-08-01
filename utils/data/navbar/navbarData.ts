@@ -14,6 +14,11 @@ export const navBarData = [
           label: "Portfolio",
           url: "/my-portfolio",
         },
+        {
+          id: 3,
+          label: "All Projects",
+          url: "/projects",
+        },
       ],
     },
     {
