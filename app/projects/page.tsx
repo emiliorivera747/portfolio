@@ -1,7 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import Page from "@/components/Page";
-import Head from "next/head";
 import Image from "next/image";
 
 export const metadata = {
@@ -11,69 +9,75 @@ export const metadata = {
 };
 
 /**
- * 
+ *
  * Shows list of all projects
- * 
+ *
  * @returns project list
  */
 function Project() {
   return (
-    <Page>
-      <Head>
-        <title>{metadata.title}</title>
-        <meta name="description" content={metadata.description} key="desc" />
-      </Head>
-      <section className="h-screen w-screen bg-black overflow-auto">
-        <div className="flex items-center justify-center h-full w-full pt-20">
-          <div className="container max-w-6xl mx-auto my-32 px-6 text-gray-900 md:px-0">
-            {/* My Projects Header */}
-            <div className="flex justify-center mb-20 md:justify-between">
-              <h2 className="text-4xl text-center uppercase md-tex-left text-white">
-                My Projects
-              </h2>
+    <section className="h-screen h-min-screen w-screen bg-black overflow-auto">
+      <div className="h-full w-full pt-20 px-[8%]">
+        <div className="w-full my-32 text-gray-900 md:px-0">
+          {/* My Projects Header */}
+          <div className="flex justify-center mb-20 md:justify-between">
+            <h2 className="text-4xl text-center  md-tex-left text-white">
+              Projects
+            </h2>
+          </div>
+
+          {/* Items Container */}
+          <div className="grid grid-cols-[1fr] sm:grid-cols-[1fr_1fr] grid-rows-[22rem_22rem] gap-8 text-2xl text-primary-100  h-full w-full ">
+            <div
+              className="group relative overflow-hidden w-full rounded-[12px] h-full bg-blue-300"
+              style={{ position: "relative" }}
+            >
+              <Link href="/casa-chirilagua">
+                <Image
+                  alt="Casa Chirilagua Image"
+                  fill
+                  className="w-full duration-200 md-block group-hover:scale-110"
+                  src={
+                    "https://res.cloudinary.com/dcss55nem/image/upload/v1701526592/Space_and_Astronomy_Film_Video_Intro_4_iuwnwv.png"
+                  }
+                />
+
+                {/* Gradient */}
+                <div className="absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-gray-900 group-hover:from-primary-500 group-hover:to-white group-hover:opacity-70"></div>
+                <h5 className="absolute px-6 duration-200 w-52 bottom-4 md-bottom-8 md:px-10 group-hover:scale-110 group-hover:text-black">
+                  Casa Chirilagua
+                </h5>
+              </Link>
             </div>
 
-            {/* Items Container */}
-            <div className="flex flex-col w-full space-y-6 text-2xl text-white uppercase md:flex-row md:space-y-0 md:space-x-8 ">
-              <div className="group relative overflow-hidden md:w-full rounded-[12px]" style={{ position: "relative", width: "100%", height: "300px" }}>
-                <Link href="/casa-chirilagua">
-                  <Image
-                    alt="Casa Chirilagua Image"
-                    fill
-                    className="w-full duration-200 md-block group-hover:scale-110"
-                    src={
-                      "https://res.cloudinary.com/dcss55nem/image/upload/v1701526592/Space_and_Astronomy_Film_Video_Intro_4_iuwnwv.png"
-                    }
-                  />
-                  {/* Gradient */}
-                  <div className="absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-gray-900 group-hover:from-primary-500 group-hover:to-white group-hover:opacity-70"></div>
-                  <h5 className="absolute px-6 duration-200 w-52 bottom-4 md-bottom-8 md:px-10 group-hover:scale-110 group-hover:text-black">
-                    Casa Chirilagua
-                  </h5>
-                </Link>
-              </div>
-              <div className="group relative overflow-hidden md:w-full rounded-[12px]">
-                <Link href="/my-portfolio" aria-label="Link to Portfolio Project Section">
-                  <Image
-                    alt="Portfolio Image"
-                    fill
-                    className="w-full duration-200 md-block group-hover:scale-110"
-                    src={
-                      "https://res.cloudinary.com/dcss55nem/image/upload/v1753932226/Screenshot_2025-07-30_at_8.22.13_PM_eu24ir.png"
-                    }
-                  />
-                  {/* Gradient */}
-                  <div className="absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-gray-900 group-hover:from-primary-400 group-hover:to-primary-100 group-hover:opacity-70"></div>
-                  <h5 className="absolute px-6 duration-200 w-52 bottom-4 md-bottom-8 md:px-10 group-hover:scale-110 group-hover:text-black">
-                    Portfolio Website
-                  </h5>
-                </Link>
-              </div>
+            <div
+              className="group relative overflow-hidden w-full rounded-[12px] h-full bg-blue-300"
+              style={{ position: "relative" }}
+            >
+              <Link
+                href="/my-portfolio"
+                aria-label="Link to Portfolio Project Section"
+              >
+                <Image
+                  alt="Portfolio Image"
+                  fill
+                  className="w-full duration-200 md-block group-hover:scale-110"
+                  src={
+                    "https://res.cloudinary.com/dcss55nem/image/upload/v1753932226/Screenshot_2025-07-30_at_8.22.13_PM_eu24ir.png"
+                  }
+                />
+
+                {/* Gradient */}
+                <div className="absolute top-0 bottom-0 right-0 left-0 bg-gradient-to-b from-transparent to-gray-900 group-hover:from-primary-400 group-hover:to-primary-100 group-hover:opacity-70"></div>
+                <h5 className="absolute px-6 duration-200 w-52 bottom-4 md-bottom-8 md:px-10 group-hover:scale-110 group-hover:text-black">
+                  Portfolio Website
+                </h5>
+              </Link>
             </div>
           </div>
         </div>
-      </section>
-    </Page>
+      </div>
+    </section>
   );
 }
 
