@@ -29,7 +29,7 @@ function Project() {
           {/* Items Container */}
           <div className="grid grid-cols-[1fr] sm:grid-cols-[1fr_1fr] grid-rows-[22rem_22rem] gap-8 text-2xl text-primary-100  h-full w-full ">
             <div
-              className="group relative overflow-hidden w-full rounded-[12px] h-full bg-blue-300"
+              className="group relative overflow-hidden w-full rounded-[12px] h-full"
               style={{ position: "relative" }}
             >
               <Link href="/casa-chirilagua">
@@ -51,7 +51,7 @@ function Project() {
             </div>
 
             <div
-              className="group relative overflow-hidden w-full rounded-[12px] h-full bg-blue-300"
+              className="group relative overflow-hidden w-full rounded-[12px] h-full "
               style={{ position: "relative" }}
             >
               <Link

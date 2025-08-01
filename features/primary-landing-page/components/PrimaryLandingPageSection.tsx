@@ -71,7 +71,7 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
           whileInView: "animate",
           variants,
           className:
-            "absolute h-full w-full flex flex-col justify-center bg-blue-300 landing-page-primary-section",
+            "absolute h-full w-full flex flex-col justify-center landing-page-primary-section",
         }}
       >
         <div className="w-[50%] bg-yellow-300 landing-page-section-containter">
