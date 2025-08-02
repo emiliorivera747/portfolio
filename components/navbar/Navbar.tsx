@@ -41,6 +41,7 @@ export default function Navbar({ menuItems }: NavbarProps) {
   const [hamburgerBgColor, setHamburgerBgColor] = useState("bg-white");
 
   useMotionValueEvent(scrollY, "change", (latest) => {
+    
     const previous = scrollY.getPrevious();
     if (latest > previous && latest > 150) {
       setHidden(true);
