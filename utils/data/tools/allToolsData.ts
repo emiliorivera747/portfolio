@@ -104,6 +104,11 @@ const frontEndDataTwo = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/react.png",
   },
   {
+    name: "Google Analytics",
+    imageUrl:
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1754260222/Google_Analytics_zer4br.png",
+  },
+  {
     name: "Tailwind",
     imageUrl:
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/tailwind.png",
