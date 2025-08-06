@@ -2,9 +2,6 @@ import "../styles/globals.css";
 import Script from "next/script";
 
 export const metadata = {
-  icons: {
-    icon: "/favicon.png",
-  },
   title: "Home | Emilio Rivera's Portfolio",
   description:
     "Welcome to Emilio Rivera's Portfolio, a Software Engineer based in San Jose, CA. specializing in React.js, Next.js, and Node.js.",
