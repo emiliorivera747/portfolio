@@ -25,7 +25,7 @@ const variants = {
 /**
  *  Displays information about me
  *
- * @returns
+ * @returns the about page
  */
 function About() {
   return (
