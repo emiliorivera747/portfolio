@@ -15,11 +15,11 @@ import DashboardRedirect from "@/features/auth/components/private-route/Dashboar
 
 const LoginPage = () => {
   return (
-    <DashboardRedirect>
+    // <DashboardRedirect>
       <div className="flex flex-col items-center justify-center m-h-screen h-auto min-w-screen w-auto">
         <SignInForm />
       </div>
-    </DashboardRedirect>
+    // </DashboardRedirect>
   );
 };
 
