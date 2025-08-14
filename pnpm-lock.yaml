@@ -119,6 +119,9 @@ importers:
       zod:
         specifier: ^4.0.17
         version: 4.0.17
+      zxcvbn:
+        specifier: ^4.4.2
+        version: 4.4.2
     devDependencies:
       '@types/node':
         specifier: ^22.13.10
@@ -3671,6 +3674,9 @@ packages:
 
   zod@4.0.17:
     resolution: {integrity: sha512-1PHjlYRevNxxdy2JZ8JcNAw7rX8V9P1AKkP+x/xZfxB0K5FYfuV+Ug6P/6NVSR2jHQ+FzDDoDHS04nYUsOIyLQ==}
+
+  zxcvbn@4.4.2:
+    resolution: {integrity: sha512-Bq0B+ixT/DMyG8kgX2xWcI5jUvCwqrMxSFam7m0lAf78nf04hv6lNCsyLYdyYTrCVMqNDY/206K7eExYCeSyUQ==}
 
 snapshots:
 
@@ -7848,3 +7854,5 @@ snapshots:
   zod@3.24.4: {}
 
   zod@4.0.17: {}
+
+  zxcvbn@4.4.2: {}
