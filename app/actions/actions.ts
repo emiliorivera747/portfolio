@@ -154,6 +154,8 @@ export async function signUp(
 }
 
 /**
+ * 
+ * Signout server action
  *
  * @returns
  */
