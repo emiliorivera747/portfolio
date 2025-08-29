@@ -1,5 +1,11 @@
 import { NextResponse, NextRequest } from "next/server";
 
+/**
+ * 
+ * Gets hello world message
+ * 
+ * @returns 
+ */
 export async function GET() {
   try {
     return NextResponse.json({
