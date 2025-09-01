@@ -74,7 +74,7 @@ const SignInForm = () => {
   return (
     <PrimaryAuthContainer>
       {/*  Sign in form */}
-      <form action={formAction} className="flex flex-col gap-2">
+      <form action={formAction} className="flex flex-col gap-2 bg-red-300">
         <PrimaryAuthHeader label="Sign in" />
         <div className="flex flex-col mb-2">
           <TextInput
