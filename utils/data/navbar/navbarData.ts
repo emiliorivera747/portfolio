@@ -38,4 +38,16 @@ export const navBarData = [
         },
       ],
     },
+    {
+      id:4,
+      label: 'Sign In',
+      url:'/sign-in',
+      content: [
+        {
+          id: 1,
+          label: "Sign In",
+          url: "/sign-in",
+        },
+      ],
+    }
   ];
