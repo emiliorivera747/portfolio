@@ -1,5 +1,5 @@
 "use client";
-import React, { useActionState, useRef, useEffect} from "react";
+import React, { useActionState, useRef} from "react";
 
 //External libraries
 import { useForm } from "react-hook-form";
@@ -74,7 +74,7 @@ const SignInForm = () => {
   return (
     <PrimaryAuthContainer>
       {/*  Sign in form */}
-      <form action={formAction} className="flex flex-col gap-2 bg-red-300">
+      <form action={formAction} className="flex flex-col gap-2">
         <PrimaryAuthHeader label="Sign in" />
         <div className="flex flex-col mb-2">
           <TextInput
