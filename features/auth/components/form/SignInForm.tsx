@@ -95,7 +95,7 @@ const SignInForm = () => {
       </form>
 
       {/* Forgot password */}
-      <ForgotPassword />
+      {/* <ForgotPassword /> */}
 
       {/* Error message */}
       {err && <PrimaryErrorMessage errMsg={err} />}
@@ -104,12 +104,12 @@ const SignInForm = () => {
       {/* Sign Up with google or create account */}
       <GoogleButton label={"Continue with Google"} ref={buttonRef} />
 
-      <Link
+      {/* <Link
         href="/sign-up"
         className="w-full px-[.94118rem] py-[1.05882rem] h-[3.2941176471rem] rounded-[12px] text-sm font-medium text-gray-700 bg-[#e9ecef] shadow-sm hover:bg-[#dee2e6] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 flex items-center justify-center gap-4 mb-4"
       >
         <span>Create Account</span>
-      </Link>
+      </Link> */}
     </PrimaryAuthContainer>
   );
 };

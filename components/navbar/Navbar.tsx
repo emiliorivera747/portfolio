@@ -86,13 +86,13 @@ export default function Navbar({ menuItems }: NavbarProps) {
         variants: { visible: { y: 0 }, hidden: { y: "-100%" } },
         animate: hidden ? "hidden" : "visible",
         transition: { duration: 0.2, ease: "easeInOut" },
-        className: `rounded-full fixed top-2 w-full z-50 sm:px-12 px-4  h-20 ${bgColor} items-center justify-center nav-bar`,
+        className: `rounded-full fixed top-2 w-full z-50 sm:px-12 px-4  h-16 ${bgColor} items-center justify-center nav-bar`,
       } as any)}
     >
       {/*Flex Container For Nav Items  */}
       <div
         className="flex items-center h-16 justify-between
-space-x-20 my-2 w-full"
+// space-x-20  w-full"
       >
         <NavbarLogo logoTextColor={logoTextColor} menuTextColor={menuTextColor}/>
 
