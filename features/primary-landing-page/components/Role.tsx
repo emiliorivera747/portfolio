@@ -7,7 +7,7 @@ import { RoleProp } from "@/features/primary-landing-page/types/props";
  */
 const Role = ({ role }: RoleProp) => {
   return (
-    <div className="role-heading">
+    <div className="role-heading ">
       <h1>{role}</h1>
     </div>
   );

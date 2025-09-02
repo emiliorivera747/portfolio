@@ -9,7 +9,7 @@ import FullName from "@/features/primary-landing-page/components/FullName";
  */
 const PrimaryHeader = () => {
   return (
-    <header className="flex flex-col gap-8">
+    <header className="flex flex-col ">
       <FullName firstName={"Emilio"} lastName={"Rivera"} />
       <Role role={"Software Engineer"} />
     </header>

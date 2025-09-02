@@ -7,7 +7,7 @@
  */
 const MissionStatement = () => {
   return (
-    <p  className="sm:w-1/2 pl-1 pb-10 text-white mission-statement">
+    <p  className="sm:w-2/3 pl-1 pb-10 text-white mission-statement">
       Develop minimalist web and front-end applications using modern frameworks,
       tailored for small businesses and non-profit organizations.
     </p>
