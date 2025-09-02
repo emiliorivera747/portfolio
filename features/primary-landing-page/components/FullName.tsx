@@ -11,7 +11,7 @@ import { FullNameProp } from "@/features/primary-landing-page/types/props";
  */
 const FullName = ({ firstName, lastName }: FullNameProp) => {
   return (
-    <div className="flex lg:flex-row flex-row gap-2  md:gap-4 text-6xl  md:text-7xl 2xl:text-[5rem] mb-10 sm:mb-8 bg-white-300 ">
+    <div className="flex lg:flex-row flex-row gap-1  md:gap-3 text-5xl  md:text-6xl 2xl:text-[5rem] mb-10 sm:mb-8 bg-white-300 ">
       <h1 className="text-white font-semibold">{firstName}</h1>
       <h1 className="text-white font-semibold">{lastName}</h1>
     </div>
