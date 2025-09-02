@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Sign In | Emilio Rivera's Portfolio",
-  description: "Sign in to your Emilio's Portfolio account",
+  description: "Sign in to your account",
 };
 
 import SignInForm from "@/features/auth/components/form/SignInForm";
