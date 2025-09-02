@@ -2,7 +2,7 @@
 
 // Next and React
 import React, { useState, useActionState, useRef } from "react";
-import { useFormStatus } from "react-dom";
+// Removed invalid import
 
 // External libraries
 import { useForm } from "react-hook-form";
@@ -39,7 +39,7 @@ import { SignUpInputs } from "@/features/auth/schemas/formSchemas";
 export default function Signup() {
   const buttonRef = useRef(null);
   
-  const { pending } = useFormStatus();
+  // Removed invalid usage of useFormStatus
   const [state, formAction] = useActionState<State, FormData>(signUp, null);
   const [email, setEmail] = useState<string | null>(null);
 
@@ -88,12 +88,9 @@ export default function Signup() {
             />
           </div>
           <PrimarySubmitButton
-            bgColor="bg-primary-700"
-            textColor="text-white"
-            hoverBgColor="hover:bg-primary-900"
             text="Create Account"
           />
-          {pending && <span>Loading...</span>}
+          {/* Removed pending state check */}
         </form>
       )}
 

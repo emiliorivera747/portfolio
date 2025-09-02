@@ -1,5 +1,5 @@
 "use client";
-import React, { useActionState, useRef} from "react";
+import React, { useActionState, useRef } from "react";
 
 //External libraries
 import { useForm } from "react-hook-form";
@@ -27,22 +27,21 @@ import {
 } from "@/features/auth/schemas/formSchemas";
 
 // Server actions
-import { login} from "@/app/actions/actions";
+import { login } from "@/app/actions/actions";
 import { State } from "@/types/serverActionState";
 
 //Hooks
 import { useHandleActionState } from "@/features/auth/hooks/useHandleActionState";
 
 /**
- * 
+ *
  * Displays the sign in form with email and password fields.
- * 
+ *
  * @returns SignInForm component
  */
 const SignInForm = () => {
-
   const buttonRef = useRef(null);
-  
+
   const {
     register,
     formState: { errors },
@@ -56,7 +55,7 @@ const SignInForm = () => {
   const onSuccessFn = () => {
     router.push("/dashboard");
   };
-  
+
   const [state, formAction] = useActionState<State, FormData>(login, null);
 
   const { err } = useHandleActionState(
@@ -66,10 +65,9 @@ const SignInForm = () => {
     "Signed in successfully!"
   );
 
-
   /**
    * This component is responsible for rendering the sign in form.
-   * 
+   *
    */
   return (
     <PrimaryAuthContainer>
@@ -93,12 +91,7 @@ const SignInForm = () => {
             register={register}
           />
         </div>
-        <PrimarySubmitButton
-          bgColor="bg-primary-700"
-          textColor="text-white"
-          hoverBgColor="hover:bg-primary-900"
-          text="Sign In"
-        />
+        <PrimarySubmitButton text="Sign In" />
       </form>
 
       {/* Forgot password */}
