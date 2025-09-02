@@ -14,7 +14,7 @@ import SignInForm from "@/features/auth/components/form/SignInForm";
  */
 const LoginPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center m-h-screen h-auto min-w-screen">
+    <div className="flex flex-col items-center justify-center m-h-screen h-auto min-w-screen mt-[6%]">
       <SignInForm />
     </div>
   );
