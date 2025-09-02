@@ -72,9 +72,9 @@ const SignInForm = () => {
   return (
     <PrimaryAuthContainer>
       {/*  Sign in form */}
-      <form action={formAction} className="flex flex-col gap-2">
+      <form action={formAction} className="flex flex-col gap-2 ">
         <PrimaryAuthHeader label="Sign in" />
-        <div className="flex flex-col mb-2">
+        <div className="flex flex-col mb-2 bg-yellow-50">
           <TextInput
             type="email"
             id="email"
