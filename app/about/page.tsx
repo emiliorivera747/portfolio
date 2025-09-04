@@ -3,6 +3,7 @@ import React from "react";
 import Page from "@/components/Page";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
+import PrimaryHeader from "@/components/titles/PrimaryHeader";
 
 // External Libraries
 import { motion } from "framer-motion";
@@ -112,7 +113,8 @@ function About() {
         </section>
         <div className="bg-white p-10 flex flex-col md:flex-col h-auto min-h-[70vh] text-center items-center justify-center gap-0 ">
           <h2 className=" bg-gradient-to-r bg-clip-text text-transparent from-primary-1000 to-primary-800 text-4xl md:p-10 leading-loose tracking-wider pb-10">
-            {`"Everyone has a story, an idea, or message to share and there is no one better than for you to share it through Public Speaking."`}
+            {`"Everyone has a story, an idea, or message to share and there is no one better than for you to share it through`}{" "}
+            <strong>Public Speaking</strong> <span>{`"`}</span>
           </h2>
           <p className="text-xl font-light text-[#868e96]">- Emilio Rivera</p>
         </div>
@@ -152,6 +154,17 @@ function About() {
             <h2 className="md:text-2sm pt-4 text-center text-primary-800">
               Saratoga Toastmasters Speech Contest Club Level
             </h2>
+          </div>
+        </section>
+        <section className="px-[8%] flex flex-col items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
+          <PrimaryHeader className="text-4xl" title={"Serving"} />
+          <div className="w-full h-[80vh] rounded-[12px] relative bg-black mb-40">
+            <iframe
+              className="w-full absolute top-0 right-0 h-full"
+              src="https://player.vimeo.com/video/906510596?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+              allow="autoplay; fullscreen; picture-in-picture"
+              title="1119 CM"
+            ></iframe>
           </div>
         </section>
       </section>
