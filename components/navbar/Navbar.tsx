@@ -27,7 +27,7 @@ import {
  * @param menuItems - Items for  the navigation bar
  * @returns Navbar
  */
-export default function Navbar({ menuItems }: NavbarProps) {
+export default function Navbar({ menuItems, primaryColors }: NavbarProps) {
 
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
@@ -41,14 +41,15 @@ export default function Navbar({ menuItems }: NavbarProps) {
   const [hamburgerBgColor, setHamburgerBgColor] = useState("bg-white");
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    
     const previous = scrollY.getPrevious();
-    if (latest > previous && latest > 150) {
+    if (latest > previous && latest > 150) 
+    {
       setHidden(true);
       setIsHidden("hidden");
       setOpenClass("");
     }
-    else {
+    else 
+    {
       setHidden(false);
     }
 
