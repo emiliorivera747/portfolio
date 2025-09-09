@@ -13,10 +13,15 @@ export interface SubMenuItem {
 
 export interface NavbarProps {
   menuItems: MenuItem[];
-  primaryColors: boolean;
+  primaryColors?: boolean;
 }
 
 export interface NavbarLogoProp {
   logoTextColor: string;
+  menuTextColor: string;
+}
+
+export interface NavMenuItems {
+  menuItems: MenuItem[];
   menuTextColor: string;
 }

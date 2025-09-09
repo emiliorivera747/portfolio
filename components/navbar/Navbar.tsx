@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 
 // External Lib
@@ -7,29 +7,22 @@ import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 // Next.js
 import Link from "next/link";
 
-// Types 
-import {MenuItem, SubMenuItem, NavbarProps} from '@/types/navbar';
+// Types
+import { MenuItem, SubMenuItem, NavbarProps } from "@/types/navbar";
 
 // Components
-import NavbarLogo from '@/components/navbar/NavbarLogo'
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu"
+import NavbarLogo from "@/components/navbar/NavbarLogo";
+import NavMenu from "@/components/navbar/NavMenu";
 
 /**
  *  Displays the main navigation bar.
- * 
+ *
  * @param menuItems - Items for  the navigation bar
  * @returns Navbar
  */
 export default function Navbar({ menuItems, primaryColors }: NavbarProps) {
-
   const { scrollY } = useScroll();
+
   const [hidden, setHidden] = useState(false);
   const [bgColor, setBgColor] = useState("bg-transparent");
   const [openMenu, setOpenMenu] = useState(false);
@@ -42,14 +35,12 @@ export default function Navbar({ menuItems, primaryColors }: NavbarProps) {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
-    if (latest > previous && latest > 150) 
-    {
+
+    if (latest > previous && latest > 150) {
       setHidden(true);
       setIsHidden("hidden");
       setOpenClass("");
-    }
-    else 
-    {
+    } else {
       setHidden(false);
     }
 
@@ -57,12 +48,10 @@ export default function Navbar({ menuItems, primaryColors }: NavbarProps) {
       setBgColor("backdrop-blur-[10rem]");
       setMenuTextColor("text-zinc-800");
       setHamburgerBgColor("bg-zinc-800");
-    }
-    else {
+    } else {
       setBgColor("bg-transparent");
       setMenuTextColor("text-white");
       setHamburgerBgColor("bg-white");
-
     }
   });
 
@@ -95,41 +84,15 @@ export default function Navbar({ menuItems, primaryColors }: NavbarProps) {
         className="flex items-center h-16 justify-between
 // space-x-20  w-full"
       >
-        <NavbarLogo logoTextColor={logoTextColor} menuTextColor={menuTextColor}/>
+        <NavbarLogo
+          logoTextColor={logoTextColor}
+          menuTextColor={menuTextColor}
+        />
 
         {/*Nav Items*/}
         <div className="flex flex-row items-center justify-end">
           {" "}
-          <div className="hidden items-center justify-end space-x-10  md:flex pr-10 z-30 ">
-            <NavigationMenu>
-              <NavigationMenuList className="gap-2">
-                {menuItems.map((item: MenuItem) => {
-                  return (
-                    <NavigationMenuItem key={item.id} className="relative">
-                      <NavigationMenuTrigger className={`uppercase bg-transparent text-white font-bold hover:text-white hover:backdrop-blur-md hover:bg-transparent focus:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} font-bold text-sm tracking-wider focus:text-white data-[state=open]:hover:bg-transparent data-[state=open]:text-white `}>{item.label}</NavigationMenuTrigger>
-                      <NavigationMenuContent className="py-4  px-6 pb-6 bg-white flex flex-col gap-2 rounded-lg border-none">
-                        {item.content?.map((subItem: SubMenuItem) => {
-                          return (
-                            <NavigationMenuLink key={subItem.id} className="w-[10rem]" asChild>
-                              <Link
-                                key={subItem.id}
-                                href={subItem.url}
-                                className={`block text-[1.1rem] text-primary-1000 rounded-lg p-[0.2rem] font-semibold hover:underline hover:underline-offset-4 hover:decoration-2`}
-                                aria-label={subItem.label}
-                              >
-                                {subItem.label}
-                              </Link>
-                            </NavigationMenuLink>
-                          )
-                        })}
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-                  );
-                })}
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
-
+          <NavMenu menuItems={menuItems} menuTextColor={menuTextColor} />
           {/* Hamburger Button */}
           <button
             id="menu-btn"
@@ -173,5 +136,3 @@ export default function Navbar({ menuItems, primaryColors }: NavbarProps) {
     </motion.nav>
   );
 }
-
-
