@@ -9,7 +9,8 @@ export const metadata: Metadata = {
 import SignInForm from "@/features/auth/components/form/SignInForm";
 
 /**
- *
+ * The login page
+ * 
  * @returns
  */
 const LoginPage = () => {
