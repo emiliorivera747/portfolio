@@ -37,15 +37,7 @@ export function useHandleActionState<TFields extends FieldValues>(
 
     if (state.status === "success") {
       if (successMessage) toast.success(successMessage, { theme: "colored" });
-      const stripePaymentLink = localStorage.getItem("stripePaymentLink");
-      if (stripePaymentLink && state?.user?.email) {
-        localStorage.removeItem("stripePaymentLink");
-        router.push(
-          stripePaymentLink + `?prefilled_email=${state?.user.email}`
-        );
-      } else {
-        if (onSuccessFn) onSuccessFn();
-      }
+      if (onSuccessFn) onSuccessFn();
     }
   }, [state, setError]);
 
