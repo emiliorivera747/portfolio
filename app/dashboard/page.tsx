@@ -2,7 +2,7 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>Dashboard</div>
+    <div className='flex items-center justify-center h-screen w-screen text-4xl font-semibold'>Dashboard</div>
   )
 }
 
