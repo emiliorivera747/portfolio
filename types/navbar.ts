@@ -13,7 +13,7 @@ export interface SubMenuItem {
 
 export interface NavbarProps {
   menuItems: MenuItem[];
-  primaryColors?: boolean;
+  mode?: "dark" | "light";
 }
 
 export interface NavbarLogoProp {

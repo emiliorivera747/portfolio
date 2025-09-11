@@ -20,7 +20,7 @@ import NavMenu from "@/components/navbar/NavMenu";
  * @param menuItems - Items for  the navigation bar
  * @returns Navbar
  */
-export default function Navbar({ menuItems, primaryColors }: NavbarProps) {
+export default function Navbar({ menuItems, mode='light' }: NavbarProps) {
   const { scrollY } = useScroll();
 
   const [hidden, setHidden] = useState(false);
@@ -45,7 +45,7 @@ export default function Navbar({ menuItems, primaryColors }: NavbarProps) {
     }
 
     if (latest > 600) {
-      setBgColor("backdrop-blur-[10rem]");
+      setBgColor("backdrop-blur bg-tertiary-300/80");
       setMenuTextColor("text-zinc-800");
       setHamburgerBgColor("bg-zinc-800");
     } else {
