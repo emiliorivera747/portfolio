@@ -31,7 +31,9 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
   const [logoTextColor, setLogoTextColor] = useState("text-black");
   const [logoBgColor, setLogoBgColor] = useState("hover:bg-zinc-800");
   const [menuTextColor, setMenuTextColor] = useState("text-white");
-  const [hamburgerBgColor, setHamburgerBgColor] = useState("bg-white");
+  const [hamburgerBgColor, setHamburgerBgColor] = useState(
+    mode === "light" ? "bg-white" : "bg-primary-800"
+  );
   const [navbarClass, setNavbarClass] = useState(
     "backdrop-blur bg-tertiary-300/80"
   );
@@ -49,10 +51,10 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
 
     if (latest > 600) {
       setNavbarClass("backdrop-blur bg-tertiary-300/80");
-      setMenuTextColor("text-zinc-800");
+      setMenuTextColor(mode === "light" ? "text-zinc-800" : "text-white");
     } else {
       setNavbarClass("bg-transparent");
-      setMenuTextColor("text-white");
+      setMenuTextColor(mode === "light" ? "text-white" : "text-zinc-800");
     }
   });
 

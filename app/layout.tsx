@@ -10,10 +10,6 @@ export const metadata = {
     "Welcome to Emilio Rivera's Portfolio, a Software Engineer based in San Jose, CA. specializing in React.js, Next.js, and Node.js.",
 };
 
-// Data
-import { navBarData } from "@/utils/data/navbar/navbarData";
-import Navbar from "../components/navbar/Navbar";
-
 /**
  *
  * The root layout for all of the pages
@@ -42,7 +38,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body>
-        <Navbar menuItems={navBarData} />
+
         {children}
       </body>
     </html>
