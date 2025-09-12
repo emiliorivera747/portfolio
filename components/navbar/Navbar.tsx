@@ -20,7 +20,7 @@ import NavMenu from "@/components/navbar/NavMenu";
  * @param menuItems - Items for  the navigation bar
  * @returns Navbar
  */
-export default function Navbar({ menuItems, mode='light' }: NavbarProps) {
+export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
   const { scrollY } = useScroll();
 
   const [hidden, setHidden] = useState(false);
@@ -32,6 +32,9 @@ export default function Navbar({ menuItems, mode='light' }: NavbarProps) {
   const [logoBgColor, setLogoBgColor] = useState("hover:bg-zinc-800");
   const [menuTextColor, setMenuTextColor] = useState("text-white");
   const [hamburgerBgColor, setHamburgerBgColor] = useState("bg-white");
+  const [navbarClass, setNavbarClass] = useState(
+    "backdrop-blur bg-tertiary-300/80"
+  );
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -45,13 +48,11 @@ export default function Navbar({ menuItems, mode='light' }: NavbarProps) {
     }
 
     if (latest > 600) {
-      setBgColor("backdrop-blur bg-tertiary-300/80");
+      setNavbarClass("backdrop-blur bg-tertiary-300/80");
       setMenuTextColor("text-zinc-800");
-      setHamburgerBgColor("bg-zinc-800");
     } else {
-      setBgColor("bg-transparent");
+      setNavbarClass("bg-transparent");
       setMenuTextColor("text-white");
-      setHamburgerBgColor("bg-white");
     }
   });
 
@@ -76,7 +77,7 @@ export default function Navbar({ menuItems, mode='light' }: NavbarProps) {
         variants: { visible: { y: 0 }, hidden: { y: "-100%" } },
         animate: hidden ? "hidden" : "visible",
         transition: { duration: 0.2, ease: "easeInOut" },
-        className: `rounded-full fixed top-2 w-full z-50 sm:px-12 px-4  h-16 ${bgColor} items-center justify-center nav-bar`,
+        className: `rounded-full fixed top-2 w-full z-50 sm:px-12 px-4  h-16 ${navbarClass} items-center justify-center nav-bar`,
       } as any)}
     >
       {/*Flex Container For Nav Items  */}
