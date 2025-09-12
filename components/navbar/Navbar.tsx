@@ -24,49 +24,32 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
-
-  const [classes, setClasses] = useState({
-    navBarClass: "backdrop-blur bg-tertiary-300/80",
-  });
   const [logoTextColor, setLogoTextColor] = useState("text-black");
-  const [logoBgColor, setLogoBgColor] = useState("hover:bg-zinc-800");
   const [menuTextColor, setMenuTextColor] = useState("text-white");
 
   const [hamburgerBgColor, setHamburgerBgColor] = useState(
-    mode === "light" ? "bg-white" : "bg-primary-800"
+    mode === "light" ? "bg-white" : "bg-primary-1000"
   );
+
   const [navbarClass, setNavbarClass] = useState(
-    "backdrop-blur bg-tertiary-300/80"
+    "backdrop-blur bg-tertiary-300/90"
   );
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
 
-    if (latest > previous && latest > 150) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
+    if (latest > previous && latest > 150) setHidden(true);
+    else setHidden(false);
 
     if (latest > 600) {
       setNavbarClass("backdrop-blur bg-tertiary-300/90");
       setMenuTextColor(mode === "light" ? "text-zinc-800" : "text-white");
+      setHamburgerBgColor(mode === "light" ? "text-zinc-800" : "text-white");
     } else {
       setNavbarClass("bg-transparent");
       setMenuTextColor(mode === "light" ? "text-white" : "text-black");
     }
   });
-
-  const handleMenuClick = () => {
-    setOpenMenu(!openMenu);
-    if (openMenu) {
-      setLogoTextColor("text-white");
-      setLogoBgColor("hover:bg-black");
-    } else {
-      setLogoTextColor("text-black");
-      setLogoBgColor("hover:bg-zinc-800");
-    }
-  };
 
   return (
     <motion.nav
@@ -78,7 +61,7 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
       } as any)}
     >
       {/* Flex Container For Nav Items  */}
-      <div className="flex items-center h-16 justify-between space-x-20  w-full">
+      <div className="flex items-center h-16 justify-between space-x-20 w-full">
         <NavbarLogo
           logoTextColor={logoTextColor}
           menuTextColor={menuTextColor}
@@ -87,6 +70,7 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
         {/* Nav Items */}
         <div className="flex flex-row items-center justify-end">
           <NavMenu menuItems={menuItems} menuTextColor={menuTextColor} />
+
           {/* Hamburger Button */}
           <button
             id="menu-btn"
@@ -96,7 +80,7 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
             className={`${
               openMenu ? "open" : ""
             } z-50 block focus:outline-none hamburger justify-end`}
-            onClick={handleMenuClick}
+            onClick={() => setOpenMenu(!openMenu)}
           >
             <span className={`hamburger-top ${hamburgerBgColor}`}></span>
             <span className={`hamburger-middle ${hamburgerBgColor}`}></span>
@@ -113,7 +97,7 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
         aria-label="Main Navigation"
         className={` ${openMenu ? "open" : ""} fixed z-40 top-0 right-0 ${
           openMenu ? "flex" : "hidden"
-        } flex-col items-center self-end w-full sm:w-80 h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500  bg-black opacity-90 transition-all duration-1000 ease-in-out`}
+        } flex flex-col items-center self-end w-full sm:w-80 h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500 bg-black opacity-90 transition-all duration-1000 ease-in-out`}
       >
         {menuItems.map((item: MenuItem, index: number) => {
           return (
@@ -123,7 +107,7 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
                 href={item.url}
                 className="block hover:text-zinc-400"
                 aria-label={item.label}
-                onClick={handleMenuClick}
+                onClick={() => setOpenMenu(!openMenu)}
               >
                 {item.label}
               </Link>
