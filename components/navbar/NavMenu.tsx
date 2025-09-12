@@ -14,7 +14,7 @@ import Link from "next/link";
 
 const NavMenu = ({ menuItems, menuTextColor }: NavMenuItems) => {
   return (
-    <div className="hidden items-center justify-end space-x-10  md:flex pr-10 z-30 ">
+    <div className="hidden items-center justify-end space-x-10  md:flex pr-10 z-30">
       <NavigationMenu>
         <NavigationMenuList className="gap-2">
           {menuItems.map((item: MenuItem) => {
