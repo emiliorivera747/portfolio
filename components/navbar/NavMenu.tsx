@@ -21,7 +21,7 @@ const NavMenu = ({ menuItems, menuTextColor }: NavMenuItems) => {
             return (
               <NavigationMenuItem key={item.id} className="relative">
                 <NavigationMenuTrigger
-                  className={`uppercase bg-transparent text-white font-bold hover:text-white hover:backdrop-blur-md hover:bg-transparent focus:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} font-bold text-sm tracking-wider focus:text-white data-[state=open]:hover:bg-transparent data-[state=open]:text-white`}
+                  className={`uppercase bg-transparent text-white font-bold hover:text-white hover:backdrop-blur-md hover:bg-transparent focus:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} font-bold text-sm tracking-wider focus:text-white data-[state=open]:hover:bg-transparent data-[state=open]:text-primary-400`}
                 >
                   {item.label}
                 </NavigationMenuTrigger>

@@ -43,11 +43,14 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
 
     if (latest > 600) {
       setNavbarClass("backdrop-blur bg-tertiary-300/90");
-      setMenuTextColor(mode === "light" ? "text-zinc-800" : "text-white");
-      setHamburgerBgColor(mode === "light" ? "text-zinc-800" : "text-white");
+      setMenuTextColor(
+        mode === "light" ? "text-primary-1000" : "text-primary-100"
+      );
     } else {
       setNavbarClass("bg-transparent");
-      setMenuTextColor(mode === "light" ? "text-white" : "text-black");
+      setMenuTextColor(
+        mode === "light" ? "text-primary-100" : "text-primary-1000"
+      );
     }
   });
 
