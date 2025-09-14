@@ -1,6 +1,12 @@
 import React from "react";
 import Link from "next/link";
 
+/**
+ *
+ * The dashboard page will display a post composer which will allow the user
+ * to create posts.
+ *
+ */
 const page = () => {
   return (
     <section className="h-screen w-screen">
