@@ -25,7 +25,7 @@ const NavMenu = ({ menuItems, menuTextColor }: NavMenuItems) => {
                 >
                   {item.label}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="py-4  px-6 pb-6 bg-white flex flex-col gap-2 rounded-lg border-none">
+                <NavigationMenuContent className="py-4 px-6 pb-6 backdrop-blur bg-primary-300/20 flex flex-col gap-2 rounded-lg border-none outline-none ">
                   {item.content?.map((subItem: SubMenuItem) => {
                     return (
                       <NavigationMenuLink
