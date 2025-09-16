@@ -19,6 +19,7 @@ import { toolsData } from "@/utils/data/tools/allToolsData";
 import { navBarData } from "@/utils/data/navbar/navbarData";
 import Navbar from "@/components/navbar/Navbar";
 
+import Footer from "@/components/footers/Footer";
 /**
  *  Main App component that wraps around all pages.
  *
@@ -110,6 +111,7 @@ export default function App() {
               bgColor={"bg-white"}
             />
             <Contact />
+            <Footer />
           </Page>
           <motion.div
             {...({
