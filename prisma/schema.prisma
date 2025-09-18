@@ -23,4 +23,16 @@ model User {
   email_verified Boolean? @default(false)
   phone_verified Boolean? @default(false)
   phone          String?
+
+  // Relationships
+  posts    Post[]
+}
+
+model Post {
+  id         Int      @id @default(autoincrement())
+  User       User?    @relation(fields: [user_id], references: [id])
+  user_id    Int?
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+  updated_at DateTime @updatedAt @db.Timestamptz(3)
+
 }
