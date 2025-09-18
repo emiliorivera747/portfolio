@@ -37,6 +37,7 @@ model Post {
 
   // Relationships
   content_block ContentBlock[] // One-to-many ContentBlock
+  Comments      Comments[]
 }
 
 model ContentBlock {
@@ -60,4 +61,16 @@ model Media {
   // Relationships
   content_block    ContentBlock @relation(fields: [content_block_id], references: [id])
   content_block_id Int
+}
+
+model Comments {
+  id         Int      @id @default(autoincrement())
+  content    String
+  email      String
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+  updated_at DateTime @updatedAt @db.Timestamptz(3)
+
+  // Relationships
+  post    Post @relation(fields: [post_id], references: [id])
+  post_id Int
 }
