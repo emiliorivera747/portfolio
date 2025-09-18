@@ -25,7 +25,7 @@ model User {
   phone          String?
 
   // Relationships
-  posts    Post[]
+  posts Post[]
 }
 
 model Post {
@@ -35,4 +35,15 @@ model Post {
   created_at DateTime @default(now()) @db.Timestamptz(3)
   updated_at DateTime @updatedAt @db.Timestamptz(3)
 
+  // Relationships
+  content_block ContentBlock[] // One-to-many ContentBlock
+}
+
+model ContentBlock {
+  id           Int    @id @default(autoincrement())
+  order        Int
+  content_type String
+  content_data String
+  Post         Post   @relation(fields: [post_id], references: [id])
+  post_id      Int
 }
