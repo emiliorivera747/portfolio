@@ -38,6 +38,7 @@ model Post {
   // Relationships
   content_block ContentBlock[] // One-to-many ContentBlock
   Comments      Comments[]
+  PostTag       PostTag[]
 }
 
 model ContentBlock {
@@ -73,4 +74,23 @@ model Comments {
   // Relationships
   post    Post @relation(fields: [post_id], references: [id])
   post_id Int
+}
+
+model Tag {
+  id      Int       @id @default(autoincrement())
+  name    String    @unique
+  
+  
+  PostTag PostTag[] // Many-to-mant with Post vie PostTag
+}
+
+model PostTag {
+  post_id Int
+  tag_id  Int
+
+  post Post @relation(fields: [post_id], references: [id])
+  tag  Tag  @relation(fields: [tag_id], references: [id])
+
+  // Relationships
+  @@id([post_id, tag_id])
 }
