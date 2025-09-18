@@ -13,6 +13,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum ContentType {
+  title
+  subtitle
+  paragraph
+  list
+  image
+  video
+}
+
 model User {
   id             Int      @id @default(autoincrement())
   email          String   @unique
@@ -25,46 +34,48 @@ model User {
   phone          String?
 
   // Relationships
-  posts Post[]
+  posts Post[] // One-to-many post 
 }
 
 model Post {
-  id         Int      @id @default(autoincrement())
-  User       User?    @relation(fields: [user_id], references: [id])
-  user_id    Int?
-  created_at DateTime @default(now()) @db.Timestamptz(3)
-  updated_at DateTime @updatedAt @db.Timestamptz(3)
+  id          Int      @id @default(autoincrement())
+  user_id     Int?
+  created_at  DateTime @default(now()) @db.Timestamptz(3)
+  updated_at  DateTime @updatedAt @db.Timestamptz(3)
+  description String? // Optional description for metadat
 
   // Relationships
+  User          User?          @relation(fields: [user_id], references: [id])
   content_block ContentBlock[] // One-to-many ContentBlock
-  Comments      Comments[]
+  comments      Comment[] // One-to-many comments
   PostTag       PostTag[]
 }
 
 model ContentBlock {
-  id           Int    @id @default(autoincrement())
-  order        Int
-  content_type String
-  content_data String
+  id            Int         @id @default(autoincrement())
+  content_order Int
+  content_type  ContentType
+  content_data  String
 
   // Relatitonships
-  post    Post    @relation(fields: [post_id], references: [id])
-  post_id Int
-  Media   Media[]
+  post     Post   @relation(fields: [post_id], references: [id])
+  post_id  Int
+  media    Media? @relation(fields: [media_id], references: [id])
+  media_id Int?   @unique
 }
 
 model Media {
-  id          Int    @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   url         String
   media_type  String
   description String
+  created_at  DateTime @default(now()) @db.Timestamptz(3)
 
   // Relationships
-  content_block    ContentBlock @relation(fields: [content_block_id], references: [id])
-  content_block_id Int
+  contentBlock ContentBlock?
 }
 
-model Comments {
+model Comment {
   id         Int      @id @default(autoincrement())
   content    String
   email      String
@@ -77,19 +88,17 @@ model Comments {
 }
 
 model Tag {
-  id      Int       @id @default(autoincrement())
-  name    String    @unique
-  
-  
-  PostTag PostTag[] // Many-to-mant with Post vie PostTag
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  postTag PostTag[] // Many-to-many with Post via PostTag
 }
 
 model PostTag {
   post_id Int
   tag_id  Int
-
-  post Post @relation(fields: [post_id], references: [id])
-  tag  Tag  @relation(fields: [tag_id], references: [id])
+  post    Post @relation(fields: [post_id], references: [id])
+  tag     Tag  @relation(fields: [tag_id], references: [id])
 
   // Relationships
   @@id([post_id, tag_id])
