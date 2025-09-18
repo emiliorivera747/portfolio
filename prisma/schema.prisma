@@ -44,6 +44,20 @@ model ContentBlock {
   order        Int
   content_type String
   content_data String
-  Post         Post   @relation(fields: [post_id], references: [id])
-  post_id      Int
+
+  // Relatitonships
+  post    Post    @relation(fields: [post_id], references: [id])
+  post_id Int
+  Media   Media[]
+}
+
+model Media {
+  id          Int    @id @default(autoincrement())
+  url         String
+  media_type  String
+  description String
+
+  // Relationships
+  content_block    ContentBlock @relation(fields: [content_block_id], references: [id])
+  content_block_id Int
 }
