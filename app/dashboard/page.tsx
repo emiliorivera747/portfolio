@@ -13,13 +13,15 @@ import BackToButton from "@/components/buttons/BackToButton";
 const page = () => {
   return (
     <section className="h-screen w-screen">
-      <div className="grid grid-cols-[1fr_90vw] h-full w-full mt-10">
-        <div className="px-10 mt-2">
+      <div className="grid grid-cols-[1fr_10fr] h-full w-full mt-10">
+        <div className="px-6 mt-2">
           <BackToButton />
         </div>
 
-        <div className="px-10">
-          <h2 className="font-bold text-4xl text-primary-1000 mb-4">Create Post</h2>
+        <div className="px-10 flex flex-col  items-center ">
+          <h2 className="font-semibold text-4xl text-transparent bg-clip-text bg-gradient-to-r to-primary-700 from-primary-900 mb-10">
+            Create Post
+          </h2>
           <Tiptap />
         </div>
       </div>

@@ -11,7 +11,7 @@ const BackToButton = ({ url = "/" }: BackToProps) => {
   return (
     <Link
       href={url}
-      className="border rounded-[12px] text-primary-800 font-semibold flex items-center justify-center border-primary-500 gap-2  hover:text-primary-1000 w-[3rem] h-[3rem]"
+      className="hover:bg-primary-200 border rounded-[12px] text-primary-800 font-semibold flex items-center justify-center border-primary-500 gap-2  hover:text-primary-1000 w-[3rem] h-[3rem]"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
