@@ -27,6 +27,8 @@
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.55.0",
     "@tailwindcss/postcss": "^4.0.14",
+    "@tiptap/extension-highlight": "^3.4.4",
+    "@tiptap/extension-text-align": "^3.4.4",
     "@tiptap/pm": "^3.4.4",
     "@tiptap/react": "^3.4.4",
     "@tiptap/starter-kit": "^3.4.4",

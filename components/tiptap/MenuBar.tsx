@@ -107,3 +107,5 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
     </div>
   );
 };
+
+export default MenuBar;
