@@ -23,10 +23,13 @@ export interface SubmitButtonProps {
   rounded?: string;
 }
 
-
 export interface SubmitButtonPropsV2 {
   ref: React.ButtonHTMLAttributes<HTMLButtonElement>;
   className?: string;
   text?: string;
   isLoading?: boolean;
+}
+
+export interface BackToProps {
+  url?: string;
 }

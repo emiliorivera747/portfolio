@@ -1,5 +1,8 @@
 import React from "react";
-import Link from "next/link";
+
+// Components
+import Tiptap from "@/components/tiptap/Tiptap";
+import BackToButton from "@/components/buttons/BackToButton";
 
 /**
  *
@@ -10,25 +13,16 @@ import Link from "next/link";
 const page = () => {
   return (
     <section className="h-screen w-screen">
-      <Link
-        href="/"
-        className="py-4 px-2 border rounded-[12px] text-primary-800 font-semibold flex items-center justify-center border-primary-500 gap-2 m-10 hover:text-primary-1000 w-[3rem] h-[3rem]"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="size-4"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15.75 19.5 8.25 12l7.5-7.5"
-          />
-        </svg>
-      </Link>
+      <div className="grid grid-cols-[1fr_90vw] h-full w-full mt-10">
+        <div className="px-10 mt-2">
+          <BackToButton />
+        </div>
+
+        <div className="px-10">
+          <h2 className="font-bold text-4xl text-primary-1000 mb-4">Create Post</h2>
+          <Tiptap />
+        </div>
+      </div>
     </section>
   );
 };
