@@ -1,23 +1,23 @@
+"use client";
 import React from "react";
-import { CldImage } from 'next-cloudinary';
+import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 
-import {NavbarLogoProp} from '@/types/navbar'
-
+import { NavbarLogoProp } from "@/types/navbar";
 
 /**
  * Stores the logo for the navbae
- * 
+ *
  * @param logoTextColor - text color
  * @param menuTextColor - the menu text color
  * @returns logo
  */
-const NavbarLogo = ({logoTextColor, menuTextColor }: NavbarLogoProp) => {
+const NavbarLogo = ({ logoTextColor, menuTextColor }: NavbarLogoProp) => {
   return (
-    <div className="z-30 justify-self-start ">
+    <div className="z-30 justify-self-start">
       <Link
         href="/"
-        className={`flex flex-row tracking-widest hover:text-white hover:backdrop-blur-md rounded-lg p-[0.8rem] ${logoTextColor} ${menuTextColor} font-semibold`}
+        className={`flex flex-row tracking-widest hover:text-primary-500 hover:backdrop-blur-md rounded-lg p-[0.8rem] ${logoTextColor} ${menuTextColor} font-semibold`}
         aria-label="Logo"
       >
         <CldImage

@@ -16,7 +16,7 @@ const Tiptap = () => {
   return (
     <EditorContent
       editor={editor}
-      className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl border rounded-[12px] p-4 w-[50rem] border-primary-600"
+      className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl border rounded-[12px] p-4 w-[40rem] border-primary-600 "
     />
   );
 };
