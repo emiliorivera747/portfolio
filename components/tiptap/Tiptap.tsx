@@ -1,22 +1,16 @@
 "use client";
 
-import { useEditor, EditorContent } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
+import { EditorContent } from "@tiptap/react";
+import { Editor } from "@tiptap/react";
 
 /**
  * The editor allows the user to update and style their code.
  */
-const Tiptap = () => {
-  const editor = useEditor({
-    extensions: [StarterKit],
-    content: "<p>Hello World! 🌎️</p>",
-    immediatelyRender: false,
-  });
-
+const Tiptap = ({ editor }: { editor: Editor | null }) => {
   return (
     <EditorContent
       editor={editor}
-      className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl border rounded-[12px] p-4 w-[40rem] border-primary-600 "
+      className="prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl border  w-[40rem] border-primary-600 "
     />
   );
 };

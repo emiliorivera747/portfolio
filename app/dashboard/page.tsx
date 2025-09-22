@@ -67,12 +67,12 @@ const Page = () => {
           />
         </div>
 
-        <div className="px-10 flex flex-col items-center mt-20">
+        <div className="px-10 flex flex-col items-center mt-20 ">
           <h2 className="font-semibold text-3xl text-transparent bg-clip-text bg-gradient-to-r to-primary-700 from-primary-900 mb-10">
             Create post
           </h2>
           <MenuBar editor={editor} />
-          <Tiptap />
+          <Tiptap editor={editor} />
         </div>
       </div>
     </section>

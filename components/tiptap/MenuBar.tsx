@@ -13,8 +13,8 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
   }
 
   return (
-    <div className="control-group">
-      <div className="button-group">
+    <div className="control-group bg-primary-200 py-4 px-4 rounded-[12px] mb-4 w-full">
+      <div className="button-group flex justify-between">
         <button
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 1 }).run()
