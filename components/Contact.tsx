@@ -41,7 +41,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
 
     emailjs
       .sendForm(
-        "service_d5ckpya",
+        "service_hdvlhug",
         "template_dy3465k",
         form.current as HTMLFormElement,
         "KREG4OVfIOrUuqIh3"
@@ -214,7 +214,11 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
                 <p className="text-red-600 text-md">{error}</p>
               </div>
             )}
-            {success && "Success"}
+            {success && (
+              <div className="bg-[#ebfbee] rounded-[12px] flex items-center justify-center py-10 border-[#2b8a3e] border">
+                <p className="text-[#2b8a3e] text-md">Email successfully sent!</p>
+              </div>
+            )}
           </motion.form>
         </motion.div>
       </motion.div>
