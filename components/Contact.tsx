@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useRef, useState, FormEvent } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
@@ -26,14 +26,14 @@ interface ContactProps {
 
 /**
  * Displays the contact section where users can reach out via email or phone.
- * 
- * 
- * @param {*} param0 
- * @returns 
+ *
+ *
+ * @param {*} param0
+ * @returns
  */
 const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
   const form = useRef<HTMLFormElement | null>(null);
-  const [error, setError] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
 
   const sendEmail = (e: FormEvent<HTMLFormElement>) => {
@@ -49,32 +49,38 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
       .then(
         (result) => {
           setSuccess(true);
+          setError(null);
         },
         (error) => {
-          setError(true);
+          setError("Failed to send email. Please try again later.");
+          setSuccess(false);
         }
       );
   };
-
 
   return (
     <section className="h-screen w-screen bg-white overflow-auto">
       <motion.div
         {...({
-          className: "flex flex-col sm:flex-row items-start gap-50 p-12 md:p-24 max-w-full w-full h-full ",
+          className:
+            "flex flex-col sm:flex-row items-start gap-50 p-12 md:p-24 max-w-full w-full h-full ",
           initial: "initial",
           whileInView: "animate",
         } as any)}
       >
         <motion.div
-          {...({ variants: variants, className: "flex-1 flex flex-col gap-4 h-full" } as any)}
+          {...({
+            variants: variants,
+            className: "flex-1 flex flex-col gap-4 h-full",
+          } as any)}
         >
           <motion.h1
             {...({
               onMouseEnter: textEnter,
               onMouseLeave: textLeave,
               variants: variants,
-              className: "text-primary-1000 text-5xl md:text-6xl font-bold leading-none  w-full",
+              className:
+                "text-primary-1000 text-5xl md:text-6xl font-bold leading-none  w-full",
             } as any)}
           >
             {"Let's Work Together"}
@@ -111,7 +117,12 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
               +1 (571) 970-8057
             </span>
           </motion.div>
-          <motion.div {...({ variants: variants, className: "w-full h-full pt-10" } as any)}>
+          <motion.div
+            {...({
+              variants: variants,
+              className: "w-full h-full pt-10",
+            } as any)}
+          >
             <div className="flex flex-row gap-6 items-center ">
               <Link
                 href="https://github.com/emiliorivera747"
@@ -164,7 +175,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
             </div>
           </motion.div>
         </motion.div>
-        <motion.div {...({ className: "flex-1 w-full" } as any)}>
+        <motion.div {...({ className: "flex-1 w-full h-full" } as any)}>
           <motion.form
             {...({
               ref: form,
@@ -172,7 +183,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
               initial: { opacity: 0 },
               whileInView: { opacity: 1 },
               transition: { delay: 1, duration: 1 },
-              className: "flex flex-col gap-4 pt-6 w-full ",
+              className: "flex flex-col gap-4 pt-6 w-full  ",
             } as any)}
           >
             <input
@@ -198,7 +209,11 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
             <button className="text-zinc-800 bg-white hover:bg-zinc-800 hover:text-white border-2 border-zinc-800 p-3 rounded-md">
               Submit
             </button>
-            {error && "Error"}
+            {error && (
+              <div className="bg-red-100 rounded-[12px] flex items-center justify-center py-10 border-red-600 border">
+                <p className="text-red-600 text-md">{error}</p>
+              </div>
+            )}
             {success && "Success"}
           </motion.form>
         </motion.div>
