@@ -1,11 +1,10 @@
-'use client'
+"use client";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { CldImage } from 'next-cloudinary';
-
+import { CldImage } from "next-cloudinary";
 
 const variants = {
   initial: {
@@ -22,11 +21,10 @@ const variants = {
   },
 };
 
-
 /**
  * Casa Chirilagua Project
- * 
- * @returns 
+ *
+ * @returns
  */
 function Project1() {
   const data = [
@@ -117,8 +115,7 @@ function Project1() {
       imageUrl:
         "https://res.cloudinary.com/dcss55nem/image/upload/v1747625378/Screenshot_2025-05-18_at_8.27.30_PM_rdolf3.png",
       title: "Student Profile Part 3",
-      paragraph:
-        "Notes section allows users to add notes about the student.",
+      paragraph: "Notes section allows users to add notes about the student.",
     },
     {
       opacity: 0.4,
@@ -152,15 +149,17 @@ function Project1() {
 
   return (
     <section className={`h-screen w-screen overflow-x-hidden bg-black`}>
-
       {/* Title */}
-      <motion.div {...{className:"relative h-screen w-screen"}}>
+      <motion.div {...{ className: "relative h-screen w-screen" }}>
         <div className="absolute inset-0 bg-black opacity-40"></div>
         <motion.div
           initial="initial"
           whileInView="animate"
           variants={variants}
-          {...{className:"absolute inset-0 flex items-center p-40 justify-center h-full w-full"}}
+          {...{
+            className:
+              "absolute inset-0 flex items-center p-40 justify-center h-full w-full",
+          }}
         >
           <h6 className=" text-4xl md:text-8xl text-white font-bold text-center text-trans">
             Casa Chirilagua
@@ -169,32 +168,39 @@ function Project1() {
       </motion.div>
 
       {/* Description */}
-      <motion.div
-        initial="initial"
-        whileInView="animate"
-        variants={variants}
-        {...{ className: "w-screen bg-white h-[60vh]" }}
-      >
-        <motion.div {...{ className: "h-full mx-[6%]" }}>
-          <motion.div {...{className:"h-1/6 w-full flex items-top justify-center pt-10"}}>
-            <h1 className="text-3xl text-black font-bold"> What did I do?</h1>
-          </motion.div>
-          <motion.div {...{className:"h-full w-full bg-white" }}>
-            <h1 className="font-light p-6 text-primary-800 text-start leading-loose tracking-wider md:text-xl md:p-16">
-              Developed an internal website using MongoDB, Express.js, Node.js,
-              and React to help manage programs for Casa Chirilagua, a
-              non-profit organization based in the City of Alexandria, Virginia.
+      <div className="w-screen bg-white min-h-screen h-auto flex items-center justify-center ">
+        <div className="mx-[10%]">
+          <div className="h-1/6 w-full flex items-top justify-center pt-10">
+            <h1 className="text-4xl text-primary-900 font-bold ">
+              {" "}
+              What did I do?
             </h1>
-            <div className=" grid gap-5 md:gap-1 md:grid-cols-5 w-full pt-6">
-              <div className="w-full flex flex-col pl-6 md:pl-16 col-span-1">
-                <h1 className="text-primary-1000 text-start leading-loose tracking-wider text-xl  font-bold pb-6">
+          </div>
+          <div className="h-full w-full bg-white">
+            <h1 className="font-extralight p-6 text-primary-800 text-start text-xl leading-loose tracking-wider md:text-xl md:p-16">
+              Developed an internal web application using{" "}
+              <strong>MongoDB</strong>, <strong>Express.js</strong>,{" "}
+              <strong>Node.js</strong>, <strong>Next.js</strong>, and{" "}
+              <strong>React.js</strong> to help manage programs for Casa
+              Chirilagua, a non-profit organization based in the City of
+              Alexandria, Virginia.
+            </h1>
+            <div className=" grid gap-4 md:grid-cols-5 w-full pt-6">
+              <div className="w-full flex flex-col pl-6 md:pl-16 col-span-1 border py-6 px-4 rounded-[12px]">
+                <h1 className="text-primary-1000 text-start leading-loose tracking-wider text-xl  font-bold ">
                   Role
                 </h1>
-                <p className="font-light text-md text-primary-800">Full Stack Engineer</p>
+                <p className="font-light text-md text-primary-800">
+                  Full Stack Engineer
+                </p>
               </div>
-              <motion.div {...{className:"w-full flex flex-col pl-6 md:pl-16 col-span-2"}}>
+              <motion.div
+                {...{
+                  className: "w-full flex flex-col pl-6 md:pl-16 col-span-2 border py-6 px-4 rounded-[12px]",
+                }}
+              >
                 {" "}
-                <h1 className="text-black text-start leading-loose tracking-wider text-xl font-bold pb-6 ">
+                <h1 className="text-black text-start leading-loose tracking-wider text-xl font-bold ">
                   Responsibility
                 </h1>
                 <p className="text-sm md:text-md font-light text-md text-primary-800 leading-loose tracking-wider">
@@ -204,29 +210,38 @@ function Project1() {
                   Employee Training.
                 </p>
               </motion.div>
-              <motion.div {...{className:"w-full flex flex-col pl-6 md:pl-16 col-span-2"}}>
+              <motion.div
+                {...{
+                  className: "w-full flex flex-col pl-6 md:pl-16 col-span-2 border py-6 px-4 rounded-[12px]",
+                }}
+              >
                 {" "}
-                <h1 className="text-black text-start leading-loose tracking-wider text-xl font-bold pb-6">
+                <h1 className="text-black text-start leading-loose tracking-wider text-xl font-bold">
                   Learn more about Casa Chirilagua
                 </h1>
                 <Link
                   href="https://casachirilagua.org/"
-                  className="text-sm md:text-m leading-loose tracking-wider text-blue-500"
+                  className="text-md md:text-md leading-loose tracking-wider text-blue-600"
                   aria-label="Casa Chirilagua Website"
                 >
                   https://casachirilagua.org/
                 </Link>
               </motion.div>
             </div>
-          </motion.div>
-        </motion.div>
-      </motion.div>
+          </div>
+        </div>
+      </div>
 
       <div className=" bg-white w-screen relative min-h-screen h-auto ${bgColor} w-screen overflow-auto">
         {data.map((item, index) => {
           return (
             <div className="flex flex-col p-10 mx-[6%]" key={index}>
-              <motion.div {...{className:"h-1/6 w-full flex items-top justify-center pt-10 pb-10 text-primary-1000"}}>
+              <motion.div
+                {...{
+                  className:
+                    "h-1/6 w-full flex items-top justify-center pt-10 pb-10 text-primary-1000",
+                }}
+              >
                 <h1 className="text-2xl text-black font-bold">{item.title}</h1>
               </motion.div>
               <div className="pb-6 leading-loose tracking-wider font-light text-md text-primary-800">

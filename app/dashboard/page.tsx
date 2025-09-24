@@ -8,6 +8,7 @@ import StarterKit from "@tiptap/starter-kit";
 
 // Components
 import Tiptap from "@/components/tiptap/Tiptap";
+
 // Removed unused import BackToButton
 import NavbarLogo from "@/components/navbar/NavbarLogo";
 import MenuBar from "@/components/tiptap/MenuBar";
