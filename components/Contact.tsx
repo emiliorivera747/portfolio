@@ -59,7 +59,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
   };
 
   return (
-    <section className="h-screen w-screen bg-white overflow-auto">
+    <section className="min-h-screen w-screen bg-white h-auto">
       <motion.div
         {...({
           className:
@@ -80,10 +80,10 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
               onMouseLeave: textLeave,
               variants: variants,
               className:
-                "text-primary-1000 text-5xl md:text-6xl font-bold leading-none  w-full",
+                "text-primary-1000 text-5xl md:text-6xl font-bold leading-none  w-full mb-4",
             } as any)}
           >
-            {"Let's Work Together"}
+            {"Contact"}
           </motion.h1>
           <motion.div {...({ variants: variants, className: "w-full" } as any)}>
             <h1
