@@ -185,9 +185,9 @@ function Project1() {
               Chirilagua, a non-profit organization based in the City of
               Alexandria, Virginia.
             </h1>
-            <div className=" grid gap-4 md:grid-cols-5 w-full pt-6">
-              <div className="w-full flex flex-col pl-6 md:pl-16 col-span-1 border py-6 px-4 rounded-[12px]">
-                <h1 className="text-primary-1000 text-start leading-loose tracking-wider text-xl  font-bold ">
+            <div className=" grid gap-4 md:grid-cols-6 w-full p-6 ">
+              <div className="w-full flex flex-col col-span-2 border p-6 rounded-[12px] md:p-16 backdrop-blur">
+                <h1 className="text-primary-900 text-start leading-loose tracking-wider text-xl  font-bold ">
                   Role
                 </h1>
                 <p className="font-light text-md text-primary-800">
@@ -196,11 +196,12 @@ function Project1() {
               </div>
               <motion.div
                 {...{
-                  className: "w-full flex flex-col pl-6 md:pl-16 col-span-2 border py-6 px-4 rounded-[12px]",
+                  className:
+                    "w-full flex flex-col pl-6 md:p-16 col-span-2 border p-6 rounded-[12px]",
                 }}
               >
                 {" "}
-                <h1 className="text-black text-start leading-loose tracking-wider text-xl font-bold ">
+                <h1 className="text-primary-900 text-start leading-loose tracking-wider text-xl font-bold ">
                   Responsibility
                 </h1>
                 <p className="text-sm md:text-md font-light text-md text-primary-800 leading-loose tracking-wider">
@@ -212,11 +213,12 @@ function Project1() {
               </motion.div>
               <motion.div
                 {...{
-                  className: "w-full flex flex-col pl-6 md:pl-16 col-span-2 border py-6 px-4 rounded-[12px]",
+                  className:
+                    "w-full flex flex-col p-6 md:p-16 col-span-2 border rounded-[12px]",
                 }}
               >
                 {" "}
-                <h1 className="text-black text-start leading-loose tracking-wider text-xl font-bold">
+                <h1 className="text-primary-900 text-start leading-loose tracking-wider text-xl font-bold">
                   Learn more about Casa Chirilagua
                 </h1>
                 <Link
@@ -247,18 +249,17 @@ function Project1() {
               <div className="pb-6 leading-loose tracking-wider font-light text-md text-primary-800">
                 {item.paragraph}
               </div>
-              <div
-                style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
-                className="p-10 relative w-full h-[87vh] rounded-[12px] overflow-hidden shadow-md hover:shadow-xl"
-              >
+                <div
+                // style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
+                className="p-10 relative w-full sm:h-[87vh] h-[20vh] rounded-[12px] overflow-hidden shadow-md hover:shadow-xl "
+                >
                 <CldImage
                   alt={item.title}
                   src={item.imageUrl}
                   fill
-                  style={{ objectFit: "cover" }}
-                  className="rounded-[12px]"
+                  className="rounded-[12px] sm:object-cover object-contain"
                 />
-              </div>
+                </div>
             </div>
           );
         })}
