@@ -61,7 +61,7 @@ const PasswordInput = <TFieldValues extends FieldValues>({
         className={`border-box rounded-[12px] align-text-bottom w-full px-[1rem] pt-[1.05882rem] h-[3.2941176471rem] border leading-[1.23536] ${
           errors[fieldName]
             ? "border-red-500 bg-[#fff5f5] text-red-500"
-            : "border-tertiary-600"
+            : "border-tertiary-600 bg-zinc-50"
         } rounded-[12px] focus:outline-none focus:ring-2 ${
           errors[fieldName]
             ? "focus:ring-red-500"
