@@ -7,7 +7,7 @@ import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 
 // Components
-import Tiptap from "@/components/tiptap/Tiptap";
+import Tiptap from "@/components/tiptap/RichTextEditor";
 
 // Removed unused import BackToButton
 import NavbarLogo from "@/components/navbar/NavbarLogo";
@@ -55,6 +55,12 @@ const Page = () => {
         (devs, they wanna, wanna have fun, devs wanna have)
       </p>
     `,
+    editorProps: {
+      attributes: {
+        class:
+          "prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl border  w-[40rem] border-primary-600 rounded-[12px] p-8",
+      },
+    },
   });
 
   if (!editor) return null;
