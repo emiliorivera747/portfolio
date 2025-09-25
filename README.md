@@ -4,6 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 <img width="1508" alt="Screenshot 2025-06-10 at 9 49 17 AM" src="https://github.com/user-attachments/assets/1e92421d-85dc-4ce6-85d2-1f3559afd7f8" />
 
+<img width="1512" height="904" alt="Screenshot 2025-09-25 at 4 37 09 PM" src="https://github.com/user-attachments/assets/9071a58c-88df-4253-9700-219cc4a83b62" />
 
 
 ## Getting Started
