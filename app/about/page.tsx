@@ -158,7 +158,7 @@ function About() {
           </div>
         </section>
         <section className="px-[8%] flex flex-col items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
-          <PrimaryHeader className="text-4xl" title={"Serving"} />
+          <PrimaryHeader className="text-4xl" title={"Volunteering"} />
           <div className="w-full h-[80vh] rounded-[12px] relative bg-black mb-40">
             <iframe
               className="w-full absolute top-0 right-0 h-full"
