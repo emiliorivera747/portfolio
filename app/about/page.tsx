@@ -145,14 +145,14 @@ function About() {
           </div>
           <div className="text-primary-900">
             <CldImage
-              src="https://res.cloudinary.com/dcss55nem/image/upload/v1747113468/Contest_Picture_o67qjf.png"
+              src="https://res.cloudinary.com/dcss55nem/image/upload/v1758821016/Screenshot_2025-09-25_at_10.22.39_AM_yse58q.png"
               height={700}
               width={700}
-              alt="Saratoga Toastmasters Speech Contest"
+              alt="Toastmasters Open House 2025"
               className="rounded-[12px] shadow-lg hover:scale-105 transition-transform duration-300"
             />
             <h2 className="md:text-2sm pt-4 text-center text-primary-800">
-              Saratoga Toastmasters Speech Contest Club Level
+              Toastmasters Open House 2025
             </h2>
           </div>
         </section>
