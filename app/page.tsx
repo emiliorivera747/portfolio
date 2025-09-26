@@ -103,10 +103,12 @@ export default function App() {
             />
             <ToolsSection
               frontEndData={toolsData["my-portfolio"].frontEnd}
+              backEndData={toolsData["my-portfolio"].backEnd}
+              bothData={toolsData["my-portfolio"].both}
               checkWhatDataToShow={{
                 frontEndData: true,
-                backEndData: false,
-                bothData: false,
+                backEndData: true,
+                bothData: true,
               }}
               bgColor={"bg-white"}
             />

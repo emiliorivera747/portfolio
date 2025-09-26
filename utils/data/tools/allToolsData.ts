@@ -135,6 +135,57 @@ const frontEndDataTwo = [
   },
 ];
 
+const backEndDataTwo = [
+  {
+    name: "PgAdmin",
+    imageUrl:
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1758909388/PgAdmin_qhjyuf.svg",
+  },
+  {
+    name: "Next.js",
+    imageUrl:
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701048415/nextjs-black.png",
+  },
+  {
+    name: "PostgreSQL",
+    imageUrl:
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1758909501/PostgreSQL_esvzut.svg",
+  },
+  {
+    name: "Prisma",
+    imageUrl:
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1758908682/PostgreSQL_1_vg0yyt.svg",
+  },
+  {
+    name: "Postman",
+    imageUrl:
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032032/postman.png",
+  },
+];
+
+const bothDataTwo = [
+  {
+    name: "Supabase",
+    imageUrl:
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1758909397/Supabase_ultsfo.svg",
+  },
+  {
+    name: "JavaScript",
+    imageUrl:
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1701032031/javascript.png",
+  },
+  {
+    name: "GitHub",
+    imageUrl:
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1724547300/Github.jpg",
+  },
+  {
+    name: "AWS Amplify",
+    imageUrl:
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1758909382/Amplify_zk384x.svg",
+  },
+];
+
 export const toolsData = {
   "casa-chirilagua": {
     frontEnd: frontEndData,
@@ -143,5 +194,7 @@ export const toolsData = {
   },
   "my-portfolio": {
     frontEnd: frontEndDataTwo,
+    backEnd: backEndDataTwo,
+    both: bothDataTwo,
   },
 };
