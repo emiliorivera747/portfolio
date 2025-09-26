@@ -206,7 +206,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
               rows={10}
               placeholder="Message"
             ></textarea>
-            <button className="text-zinc-800 bg-white hover:bg-zinc-800 hover:text-white border-2 border-zinc-800 p-3 rounded-md">
+            <button className="text-zinc-800 bg-white hover:bg-zinc-800 hover:text-white border-2 border-zinc-800 p-4 rounded-[12px]">
               Submit
             </button>
             {error && (
