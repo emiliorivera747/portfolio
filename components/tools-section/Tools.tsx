@@ -12,7 +12,7 @@ import { ToolsProps, ToolItem } from '@/types/tools';
 const Tools = ({ toolsData }: ToolsProps) => {
 
   return (
-    <div className="h-full  w-screen flex overflow-auto px-[0.4rem] sm:px-60 pb-10 items-center justify-center gap-10 flex-wrap pt-2">
+    <div className="h-full  w-screen flex overflow-auto px-[0.4rem] sm:px-60 pb-10 items-center justify-center gap-3 sm:gap-10 flex-wrap pt-2">
       {toolsData.map((item: ToolItem, i: number) => (
       <div
         key={i}
