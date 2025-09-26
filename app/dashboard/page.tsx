@@ -54,6 +54,7 @@ const Page = () => {
             Create post
           </h2>
           <MenuBar editor={editor} />
+          
           <RichTextEditor editor={editor} />
           <PrimarySubmitButton
             className="mt-4"
