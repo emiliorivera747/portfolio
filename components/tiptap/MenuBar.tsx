@@ -98,9 +98,7 @@ const getOptions = (editor: Editor | null) => [
  */
 const MenuBar = ({ editor }: { editor: Editor | null }) => {
   const options = getOptions(editor);
-  if (!editor) {
-    return null;
-  }
+  if (!editor) return null;
 
   return (
     <div className="control-group bg-primary-200 py-4 px-4 rounded-[12px] mb-4 w-full">
