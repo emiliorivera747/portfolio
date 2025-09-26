@@ -20,7 +20,7 @@ import SignOutButton from "@/features/auth/components/buttons/SignOutButton";
 const UserProfileAvatarMenu = () => {
   const { theme, setTheme } = useTheme();
   const { user } = useFetchUser();
-  const signOutButtonRef = useRef<HTMLButtonElement>(null);
+  const signOutButtonRef = useRef<HTMLButtonElement>(null) as React.RefObject<HTMLButtonElement>;
   return (
     <HoverCard>
       <HoverCardTrigger>
