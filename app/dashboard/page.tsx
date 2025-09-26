@@ -9,6 +9,8 @@ import StarterKit from "@tiptap/starter-kit";
 // Components
 import RichTextEditor from "@/components/tiptap/RichTextEditor";
 import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 // Removed unused import BackToButton
 import MenuBar from "@/components/tiptap/MenuBar";
@@ -47,15 +49,31 @@ const Page = () => {
   if (!editor) return null;
 
   return (
-    <section className="w-full box-border max-h-screen overflow-y-scroll flex flex-row gap-4 h-full">
-      <div className=" h-full w-full px-[15%]">
+    <section className="w-full box-border max-h-screen overflow-y-scroll flex flex-row gap-4 h-full  items-center justify-center">
+      <div className="h-full w-[36rem] ">
         <div className="flex flex-col items-center mt-[3.5rem] w-full">
           <h2 className="font-semibold text-3xl text-transparent bg-clip-text bg-gradient-to-r to-primary-800 from-primary-1000 mb-10">
             Create post
           </h2>
-          <MenuBar editor={editor} />
-          
-          <RichTextEditor editor={editor} />
+
+          <div className="flex flex-col items-start w-full mb-10">
+            <label htmlFor="title" className="mb-2  text-primary-900 font-semibold">
+              Title
+            </label>
+            <input
+              type="text"
+              placeholder="Title"
+              id="title"
+              className="py-4 px-4 w-full bg-zinc-50 rounded-[12px] border border-primary-600"
+            />
+          </div>
+
+          <div className="w-full">
+            <h1 className="mb-4 font-semibold ">Content</h1>
+            <MenuBar editor={editor} />
+            <RichTextEditor editor={editor} />
+          </div>
+
           <PrimarySubmitButton
             className="mt-4"
             ref={buttonRef}
