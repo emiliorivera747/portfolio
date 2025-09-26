@@ -2,21 +2,19 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.cursor
-{
+.cursor {
   background-color: black;
   height: 32px;
   width: 32px;
   border-radius: 50%;
   position: fixed;
   top: 0;
-  left:0;
+  left: 0;
   pointer-events: none;
 }
 
 @layer base {
   :root {
-
     --background: 0 0% 100%;
 
     --foreground: 0 0% 3.9%;
@@ -65,9 +63,9 @@
 
     --chart-5: 27 87% 67%;
 
-    --radius: 0.5rem}
+    --radius: 0.5rem;
+  }
   .dark {
-
     --background: 0 0% 3.9%;
 
     --foreground: 0 0% 98%;
@@ -114,10 +112,9 @@
 
     --chart-4: 280 65% 60%;
 
-    --chart-5: 340 75% 55%}
+    --chart-5: 340 75% 55%;
+  }
 }
-
-
 
 *,
 *::after,
@@ -137,42 +134,40 @@
 .hamburger-top,
 .hamburger-middle,
 .hamburger-bottom {
-    content: '';
-    position: absolute;
-    width: 24px;
-    height: 3px;
-    top: 0;
-    left: 0;
-    transform: rotate(0);
-    transition: all 0.5s;
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 3px;
+  top: 0;
+  left: 0;
+  transform: rotate(0);
+  transition: all 0.5s;
 }
 .hamburger-middle {
-    transform: translateY(7px);
+  transform: translateY(7px);
 }
 
-.hamburger-bottom{
-    transform: translateY(14px);
+.hamburger-bottom {
+  transform: translateY(14px);
 }
 
-.open{
-    transform: rotate(90deg);
-    transform: translateY(0px);
-    position: fixed;
+.open {
+  transform: rotate(90deg);
+  transform: translateY(0px);
+  position: fixed;
 }
 
-.open .hamburger-top{
-    transform: rotate(45deg) translateY(6px) translateX(6px);
+.open .hamburger-top {
+  transform: rotate(45deg) translateY(6px) translateX(6px);
 }
 
-.open .hamburger-middle{
-    display: none;
+.open .hamburger-middle {
+  display: none;
 }
 
-.open .hamburger-bottom{
-    transform: rotate(-45deg) translateY(6px) translateX(-6px);
+.open .hamburger-bottom {
+  transform: rotate(-45deg) translateY(6px) translateX(-6px);
 }
-
-
 
 .calendlyButton {
   padding: 1rem 1.5rem;
@@ -189,7 +184,7 @@
   border: 2px solid transparent;
 }
 
-.popup-button-wrapper{
+.popup-button-wrapper {
   position: relative;
   display: inline-block;
   border-radius: 9999px;
@@ -204,14 +199,10 @@
   padding: 3px;
   border-radius: 9999px;
   transition: all 3s ease;
-  -webkit-mask: 
-     linear-gradient(#fff 0 0) content-box, 
-     linear-gradient(#fff 0 0);
-          mask: 
-     linear-gradient(#fff 0 0) content-box, 
-     linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-          mask-composite: exclude;
+  mask-composite: exclude;
 }
 
 .calendlyButton:hover {
@@ -221,29 +212,28 @@
   position: relative;
 }
 
-.popup-button-container{
+.popup-button-container {
   position: relative;
 }
 
-.popup-button-border{
+.popup-button-border {
   position: absolute;
   inset: -3px;
-  
 }
 .rainbow {
 }
 
-.landing-page-primary-section{
+.landing-page-primary-section {
   z-index: 50;
 }
 
-.landing-page-section-containter{
+.landing-page-section-containter {
   width: 70%;
   padding-left: 4%;
   background-color: transparent;
 }
 
-.role-heading{
+.role-heading {
   background: linear-gradient(90deg, #adb5bd, #212529);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -260,15 +250,14 @@
   }
 }
 
-.nav-bar{
-  z-index:100;
+.nav-bar {
+  z-index: 100;
 }
 
 .loading-dots {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .dot {
@@ -344,7 +333,6 @@ input:-webkit-autofill:active {
   border: transparent !important;
 }
 
-
 /* Basic editor styles */
 .tiptap {
   :first-child {
@@ -412,7 +400,7 @@ input:-webkit-autofill:active {
     background: var(--black);
     border-radius: 0.5rem;
     color: var(--white);
-    font-family: 'JetBrainsMono', monospace;
+    font-family: "JetBrainsMono", monospace;
     margin: 1.5rem 0;
     padding: 0.75rem 1rem;
 
@@ -442,4 +430,11 @@ input:-webkit-autofill:active {
     border-top: 1px solid var(--gray-2);
     margin: 2rem 0;
   }
+}
+
+.source-code-button:hover {
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  transform: scale(1.1);
+  transition: 0.7s ease-out 0.4s;
+  font-weight: 900;
 }

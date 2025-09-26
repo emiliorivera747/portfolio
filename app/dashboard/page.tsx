@@ -9,10 +9,8 @@ import StarterKit from "@tiptap/starter-kit";
 // Components
 import RichTextEditor from "@/components/tiptap/RichTextEditor";
 import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
-import SideNavigationBar from "@/components/navigation/SideNavigationBar";
 
 // Removed unused import BackToButton
-import NavbarLogo from "@/components/navbar/NavbarLogo";
 import MenuBar from "@/components/tiptap/MenuBar";
 
 /**
@@ -49,10 +47,9 @@ const Page = () => {
   if (!editor) return null;
 
   return (
-    <section className="h-screen w-screen">
-      <div className="grid grid-cols-[1fr_10fr] h-full w-full ">
-        <SideNavigationBar />
-        <div className="px-[20%] flex flex-col items-center mt-20 ">
+    <section className="w-full box-border max-h-screen overflow-y-scroll flex flex-row gap-4 h-full">
+      <div className=" h-full w-full px-[15%]">
+        <div className="flex flex-col items-center mt-[3.5rem] w-full">
           <h2 className="font-semibold text-3xl text-transparent bg-clip-text bg-gradient-to-r to-primary-800 from-primary-1000 mb-10">
             Create post
           </h2>
