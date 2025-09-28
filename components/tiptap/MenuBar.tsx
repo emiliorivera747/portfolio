@@ -106,7 +106,9 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         {options.map(({ icon, pressed, clickFn, name }) => {
           return (
             <button key={name} onClick={clickFn} className={pressed}>
-              {icon}
+              <span className="icon-wrapper" style={{ fontSize: "2px" }}>
+                {icon}
+              </span>
             </button>
           );
         })}

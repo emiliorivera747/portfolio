@@ -51,8 +51,8 @@ const Page = () => {
   return (
     <section className="w-full box-border max-h-screen overflow-y-scroll flex flex-row gap-4 h-full  items-center justify-center">
       <div className="h-full w-[36rem] ">
-        <div className="flex flex-col items-center mt-[3.5rem] w-full">
-          <h2 className="font-semibold text-3xl text-transparent bg-clip-text bg-gradient-to-r to-primary-800 from-primary-1000 mb-10">
+        <div className="flex flex-col items-center mt-[20%] w-full">
+          <h2 className="font-semibold text-4xl text-transparent bg-clip-text bg-gradient-to-r to-primary-800 from-primary-900 mb-4">
             Create post
           </h2>
 
