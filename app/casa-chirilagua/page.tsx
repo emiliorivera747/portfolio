@@ -148,10 +148,10 @@ function Project1() {
   ];
 
   return (
-    <section className={`h-screen w-screen overflow-x-hidden bg-black`}>
+    <section className={`h-screen w-screen overflow-x-hidden bg-white`}>
       {/* Title */}
       <motion.div {...{ className: "relative h-screen w-screen" }}>
-        <div className="absolute inset-0 bg-black opacity-40"></div>
+        {/* <div className="absolute inset-0 bg-black opacity-40"></div> */}
         <motion.div
           initial="initial"
           whileInView="animate"
@@ -161,7 +161,7 @@ function Project1() {
               "absolute inset-0 flex items-center p-40 justify-center h-full w-full",
           }}
         >
-          <h6 className=" text-4xl md:text-8xl text-white font-bold text-center text-trans">
+          <h6 className=" text-4xl md:text-8xl text-primary-1000 font-bold text-center text-trans">
             Casa Chirilagua
           </h6>
         </motion.div>

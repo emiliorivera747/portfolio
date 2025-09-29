@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <div>
       <main>
-        <Navbar menuItems={navBarData} />
+        <Navbar menuItems={navBarData} mode="dark" />
         {children}
       </main>
     </div>
