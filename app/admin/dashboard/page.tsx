@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import Highlight from "@tiptap/extension-highlight";
 import TextAlign from "@tiptap/extension-text-align";
@@ -35,6 +35,8 @@ const extensions: any[] = [
  */
 const Page = () => {
   const buttonRef = useRef(null);
+  const [blog, setBlog] = useState();
+
   const editor = useEditor({
     extensions: extensions,
     immediatelyRender: false,
@@ -46,9 +48,7 @@ const Page = () => {
       },
     },
     onUpdate: ({ editor }) => {
-      const html = editor.getHTML();
       const json = editor.getJSON();
-      console.log("Content updated", json);
     },
   });
 
@@ -56,7 +56,7 @@ const Page = () => {
 
   return (
     <section className="w-full box-border max-h-screen overflow-y-scroll flex flex-row gap-4 h-full  items-center justify-center">
-      <div className="h-full w-[36rem] ">
+      <div className="h-full w-[36rem]">
         <div className="flex flex-col items-center mt-[20%] w-full">
           <h2 className="font-semibold text-4xl text-transparent bg-clip-text bg-gradient-to-r to-primary-800 from-primary-900 mb-4">
             Create post

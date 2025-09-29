@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import Highlight from "@tiptap/extension-highlight";
 import TextAlign from "@tiptap/extension-text-align";
@@ -13,6 +13,20 @@ import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
 // Removed unused import BackToButton
 import MenuBar from "@/components/tiptap/MenuBar";
 
+const extensions: any[] = [
+  StarterKit.configure({
+    paragraph: {
+      HTMLAttributes: {
+        class: "mb-6",
+      },
+    },
+  }),
+  TextAlign.configure({
+    types: ["heading", "paragraph"],
+  }),
+  Highlight,
+];
+
 /**
  *
  * The dashboard page will display a post composer which will allow the user
@@ -21,20 +35,10 @@ import MenuBar from "@/components/tiptap/MenuBar";
  */
 const Page = () => {
   const buttonRef = useRef(null);
+  const [blog, setState] = useState(null);
+
   const editor = useEditor({
-    extensions: [
-      StarterKit.configure({
-        paragraph: {
-          HTMLAttributes: {
-            class: "mb-6",
-          },
-        },
-      }),
-      TextAlign.configure({
-        types: ["heading", "paragraph"],
-      }),
-      Highlight,
-    ],
+    extensions: extensions,
     immediatelyRender: false,
     content: "",
     editorProps: {
@@ -44,7 +48,6 @@ const Page = () => {
       },
     },
     onUpdate: ({ editor }) => {
-      const html = editor.getHTML();
       const json = editor.getJSON();
       console.log("Content updated", json);
     },
@@ -53,9 +56,9 @@ const Page = () => {
   if (!editor) return null;
 
   return (
-    <section className="w-full box-border max-h-screen overflow-y-scroll flex flex-row gap-4 h-full  items-center justify-center">
-      <div className="h-full w-[36rem] ">
-        <div className="flex flex-col items-center mt-[20%] w-full">
+    <section className="w-full max-h-screen overflow-y-scroll">
+      <div className="h-auto flex items-center justify-center mb-10">
+        <div className="flex flex-col items-center  w-[40rem] pt-[4rem]">
           <h2 className="font-semibold text-4xl text-transparent bg-clip-text bg-gradient-to-r to-primary-800 from-primary-900 mb-4">
             Create post
           </h2>
@@ -87,6 +90,10 @@ const Page = () => {
             text="Publish"
           />
         </div>
+      </div>
+
+      <div className="h-screen flex bg-yellow-300 w-full">
+        <h1>Displays the blog</h1>
       </div>
     </section>
   );
