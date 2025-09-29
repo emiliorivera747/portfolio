@@ -51,16 +51,14 @@ function About() {
               My Journey
             </h1>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              Building software is like <strong>magic</strong>. At one point
-              flying was impossible, but now we have planes. Going to the moon
-              was once a dream, but now we have rockets.
+              Building software is like <strong>magic</strong>.
             </p>
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
               I am a <strong>magician</strong> of the 21st century, using
               engineering to create <strong>magic</strong>. Much like a
               <strong> magician</strong> equips themselves with the right tools,
-              I&apos;ve explored technologies such as React.js and Next.js to
+              I&apos;ve explored technologies such as React.js, Node.js, and Next.js to
               add to my toolbox, continually learning and embracing the latest
               technology.
             </p>
