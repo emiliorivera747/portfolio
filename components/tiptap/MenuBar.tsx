@@ -13,18 +13,22 @@ import { Toggle } from "@/components/ui/toggle";
  */
 const MenuBar = ({ editor }: { editor: Editor | null }) => {
   const options = getOptions(editor);
-  
+
   if (!editor) return null;
 
   return (
     <div className="control-group bg-primary-100 py-4 px-4 rounded-[12px] mb-4 w-full">
       <div className="button-group flex justify-between">
         {options.map(({ icon, pressed, clickFn, name }) => {
+          console.log(name, pressed);
           return (
             <Toggle
               key={name}
               pressed={pressed}
               onPressedChange={clickFn}
+              className={
+                pressed ? "bg-accent text-accent-foreground font-bold" : ""
+              }
             >
               {icon}
             </Toggle>

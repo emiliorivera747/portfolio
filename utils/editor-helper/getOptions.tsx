@@ -76,7 +76,7 @@ export const getOptions = (editor: Editor | null) => [
     pressed: editor?.isActive({ textAlign: "center" }),
   },
   {
-    icon: <AlignRight />,
+    icon: <AlignRight className="bu"/>,
     name: "alignRight",
     clickFn: () => editor?.chain().focus().setTextAlign("right").run(),
     pressed: editor?.isActive({ textAlign: "right" }),

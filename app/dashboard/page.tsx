@@ -48,7 +48,7 @@ const Page = () => {
     onUpdate: ({ editor }) => {
       const html = editor.getHTML();
       const json = editor.getJSON();
-      console.log("Content updated", json, html);
+      console.log("Content updated", json);
     },
   });
 
