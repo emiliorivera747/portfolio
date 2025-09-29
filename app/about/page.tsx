@@ -117,7 +117,7 @@ function About() {
             <strong>Public Speaking</strong>
             <span>{`"`}</span>
           </h2>
-          <p className="text-xl font-light text-[#868e96]">- Emilio Rivera</p>
+          {/* <p className="text-xl font-light text-[#868e96]">- Emilio Rivera</p> */}
         </div>
         <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2  items-center justify-center p-10">
