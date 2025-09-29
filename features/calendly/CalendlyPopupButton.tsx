@@ -17,7 +17,7 @@ const CalendlyPopupButton = () => {
   const rotate = useTransform(time, [0, 2000], [0, 360], { clamp: false });
 
   const rotatingBg = useTransform(rotate, (r) => {
-    return `conic-gradient(from ${r}deg, #e03131, #4263eb, #4263eb,#fcc419, #e03131)`;
+    return `conic-gradient(from ${r}deg, #e03131, #4263eb, transparent,#fcc419, #e03131)`;
   });
 
 
