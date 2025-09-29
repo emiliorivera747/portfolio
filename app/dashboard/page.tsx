@@ -25,7 +25,13 @@ const Page = () => {
   const buttonRef = useRef(null);
   const editor = useEditor({
     extensions: [
-      StarterKit,
+      StarterKit.configure({
+        paragraph: {
+          HTMLAttributes: {
+            class: "mb-6",
+          },
+        },
+      }),
       TextAlign.configure({
         types: ["heading", "paragraph"],
       }),
@@ -40,9 +46,9 @@ const Page = () => {
       },
     },
     onUpdate: ({ editor }) => {
-      // const html = editor.getHTML();
+      const html = editor.getHTML();
       const json = editor.getJSON();
-      console.log("Content updated", json);
+      console.log("Content updated", json, html);
     },
   });
 
@@ -57,7 +63,10 @@ const Page = () => {
           </h2>
 
           <div className="flex flex-col items-start w-full mb-10">
-            <label htmlFor="title" className="mb-2  text-primary-900 font-semibold">
+            <label
+              htmlFor="title"
+              className="mb-2  text-primary-900 font-semibold"
+            >
               Title
             </label>
             <input
