@@ -16,12 +16,12 @@ export const metadata = {
  */
 function Project() {
   return (
-    <section className="h-screen h-min-screen w-screen bg-black overflow-auto">
+    <section className="h-screen h-min-screen w-screen bg-white overflow-auto">
       <div className="h-full w-full pt-20 px-[8%]">
         <div className="w-full my-32 text-gray-900 md:px-0">
           {/* My Projects Header */}
           <div className="flex justify-center mb-20 md:justify-between">
-            <h2 className="text-4xl text-center  md-tex-left text-white">
+            <h2 className="text-4xl text-center  md-tex-left text-primary-1000">
               Projects
             </h2>
           </div>
