@@ -31,20 +31,21 @@ const variants = {
 function About() {
   return (
     <Page>
-      <section className="h-screen w-full bg-black overflow-x-hidden">
+      <section className="h-screen w-full bg-white overflow-x-hidden">
         <motion.div
           {...{
             initial: "initial",
             whileInView: "animate",
             variants,
-            className: "h-full flex items-center justify-center",
+            className: "h-full flex items-center justify-center bg-white",
           }}
         >
           {" "}
-          <h1 className=" text-4xl md:text-8xl text-white font-bold text-center">
+          <h1 className=" text-4xl md:text-8xl text-primary-1000 font-bold text-center">
             About Me.
           </h1>
         </motion.div>
+        
         <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2 items-center justify-center">
             <h1 className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6">
