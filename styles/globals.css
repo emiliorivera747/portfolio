@@ -433,8 +433,21 @@ input:-webkit-autofill:active {
 }
 
 .source-code-button:hover {
-  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   transform: scale(1.1);
   transition: 0.7s ease-out 0.4s;
   font-weight: 900;
+}
+
+.blog-content p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--foreground);
+}
+
+.blog-content h1{
+  font-size: 2rem;
 }

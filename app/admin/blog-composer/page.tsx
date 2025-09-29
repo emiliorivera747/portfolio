@@ -1,10 +1,13 @@
 "use client";
 import React, { useRef, useState } from "react";
 
+//External Lib
 import Highlight from "@tiptap/extension-highlight";
 import TextAlign from "@tiptap/extension-text-align";
 import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
+import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
+import DOMPurify from "dompurify";
 
 // Components
 import RichTextEditor from "@/components/tiptap/RichTextEditor";
@@ -35,7 +38,7 @@ const extensions: any[] = [
  */
 const Page = () => {
   const buttonRef = useRef(null);
-  const [blog, setState] = useState(null);
+  const [blogContent, setBlogContent] = useState<string | null>(null);
 
   const editor = useEditor({
     extensions: extensions,
@@ -49,9 +52,16 @@ const Page = () => {
     },
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
-      console.log("Content updated", json);
+      const html = renderTipTapJSON(json);
+      setBlogContent(
+        DOMPurify.sanitize(html, {
+          ADD_TAGS: ["h1", "h2", "h3", "h4", "h5", "h6"],
+          ADD_ATTR: ["class", "style"],
+        })
+      );
     },
   });
+  console.log(blogContent)
 
   if (!editor) return null;
 
@@ -92,8 +102,9 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="h-screen flex bg-yellow-300 w-full">
-        <h1>Displays the blog</h1>
+      <div className="h-screen flex  w-full flex-col">
+        <h1 className='text-4xl mb-10'>Displays the blog</h1>
+        <div className="blog-content" dangerouslySetInnerHTML={{ __html: blogContent || "" }} />
       </div>
     </section>
   );
