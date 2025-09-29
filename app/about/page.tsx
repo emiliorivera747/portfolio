@@ -50,17 +50,16 @@ function About() {
             <h1 className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6">
               My Journey
             </h1>
-            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              Building software is like <strong>magic</strong>.
-            </p>
+
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              I am a <strong>magician</strong> of the 21st century, using
-              engineering to create <strong>magic</strong>. Much like a
+              Building software is like <strong>magic</strong>. I am a{" "}
+              <strong>magician</strong> of the 21st century, using engineering
+              to create <strong>magic</strong>. Much like a
               <strong> magician</strong> equips themselves with the right tools,
-              I&apos;ve explored technologies such as React.js, Node.js, and Next.js to
-              add to my toolbox, continually learning and embracing the latest
-              technology.
+              I&apos;ve explored technologies such as React.js, Node.js, and
+              Next.js to add to my toolbox, continually learning and embracing
+              the latest technology.
             </p>
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
