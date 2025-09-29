@@ -25,7 +25,9 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
   const [hidden, setHidden] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
   const [logoTextColor, setLogoTextColor] = useState("text-black");
-  const [menuTextColor, setMenuTextColor] = useState("text-white");
+  const [menuTextColor, setMenuTextColor] = useState(
+    mode === "light" ? "text-white" : "text-primary-1000"
+  );
 
   const [hamburgerBgColor, setHamburgerBgColor] = useState(
     mode === "light" ? "bg-white" : "bg-primary-1000"
