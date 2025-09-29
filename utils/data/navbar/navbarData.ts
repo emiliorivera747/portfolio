@@ -41,12 +41,12 @@ export const navBarData = [
   {
     id: 5,
     label: "Dashboard",
-    url: "/dashboard",
+    url: "/admin/dashboard",
     content: [
       {
         id: 1,
         label: "Dashboard",
-        url: "/dashboard",
+        url: "/admin/dashboard",
       },
     ],
   },

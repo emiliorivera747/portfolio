@@ -11,7 +11,6 @@ import UserProfileAvatarMenu from "@/features/user-account/components/UserProfil
 
 import Link from "next/link";
 
-import Image from "next/image";
 import { CldImage } from "next-cloudinary";
 
 const SideNavigationBar: React.FC = () => {
