@@ -72,8 +72,8 @@ importers:
         specifier: ^3.6.2
         version: 3.6.2(@tiptap/pm@3.4.4)
       '@tiptap/extension-highlight':
-        specifier: ^3.4.4
-        version: 3.4.4(@tiptap/core@3.6.2(@tiptap/pm@3.4.4))
+        specifier: ^3.6.2
+        version: 3.6.2(@tiptap/core@3.6.2(@tiptap/pm@3.4.4))
       '@tiptap/extension-text-align':
         specifier: ^3.6.2
         version: 3.6.2(@tiptap/core@3.6.2(@tiptap/pm@3.4.4))
@@ -2061,10 +2061,10 @@ packages:
     peerDependencies:
       '@tiptap/core': ^3.6.2
 
-  '@tiptap/extension-highlight@3.4.4':
-    resolution: {integrity: sha512-kGXPwG1JFslCunJDuCWI5HPY+cpQ/mtsueuXwnQSpx6iNWeTxeGXFhmA6AZfaGzxSTW+s/F3BQZsioIV5wITbw==}
+  '@tiptap/extension-highlight@3.6.2':
+    resolution: {integrity: sha512-Q3eUVphUM1D86d4jQZ88nTbleKBokxMNjiEJc3N43+UXJPQWXWgDgqWUiaYmROSCdo3leuh9JpsDP/KYcclWUA==}
     peerDependencies:
-      '@tiptap/core': ^3.4.4
+      '@tiptap/core': ^3.6.2
 
   '@tiptap/extension-horizontal-rule@3.6.2':
     resolution: {integrity: sha512-3TlPqedPDM9QkRTUPhOTxNxQVPSsBwlsuLrAZOgyM1y871Xi7M1DFX0h9LLXuqzPndYzUY16NjrfBGFJX+O56w==}
@@ -6754,7 +6754,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 3.6.2(@tiptap/pm@3.4.4)
 
-  '@tiptap/extension-highlight@3.4.4(@tiptap/core@3.6.2(@tiptap/pm@3.4.4))':
+  '@tiptap/extension-highlight@3.6.2(@tiptap/core@3.6.2(@tiptap/pm@3.4.4))':
     dependencies:
       '@tiptap/core': 3.6.2(@tiptap/pm@3.4.4)
 

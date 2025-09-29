@@ -9,11 +9,23 @@ import StarterKit from "@tiptap/starter-kit";
 // Components
 import RichTextEditor from "@/components/tiptap/RichTextEditor";
 import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 
 // Removed unused import BackToButton
 import MenuBar from "@/components/tiptap/MenuBar";
+
+const extensions: any[] = [
+  StarterKit.configure({
+    paragraph: {
+      HTMLAttributes: {
+        class: "mb-6",
+      },
+    },
+  }),
+  TextAlign.configure({
+    types: ["heading", "paragraph"],
+  }),
+  Highlight,
+];
 
 /**
  *
@@ -24,19 +36,7 @@ import MenuBar from "@/components/tiptap/MenuBar";
 const Page = () => {
   const buttonRef = useRef(null);
   const editor = useEditor({
-    extensions: [
-      StarterKit.configure({
-        paragraph: {
-          HTMLAttributes: {
-            class: "mb-6",
-          },
-        },
-      }),
-      TextAlign.configure({
-        types: ["heading", "paragraph"],
-      }),
-      Highlight,
-    ],
+    extensions: extensions,
     immediatelyRender: false,
     content: "",
     editorProps: {
