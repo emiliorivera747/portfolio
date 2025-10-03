@@ -40,26 +40,26 @@ export const navBarData = [
   },
   {
     id: 5,
-    label: "Dashboard",
+    label: "Sign In",
     url: "/admin/dashboard",
     content: [
       {
         id: 1,
-        label: "Dashboard",
+        label: "Sign In",
         url: "/admin/dashboard",
       },
     ],
   },
-  {
-    id: 4,
-    label: "Sign In",
-    url: "/sign-in",
-    content: [
-      {
-        id: 1,
-        label: "Sign In",
-        url: "/sign-in",
-      },
-    ],
-  },
+  // {
+  //   id: 4,
+  //   label: "Sign In",
+  //   url: "/sign-in",
+  //   content: [
+  //     {
+  //       id: 1,
+  //       label: "Sign In",
+  //       url: "/sign-in",
+  //     },
+  //   ],
+  // },
 ];
