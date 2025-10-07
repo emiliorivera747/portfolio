@@ -63,7 +63,7 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
   }, []);
 
   return (
-    <section className="relative h-screen w-screen bg-black">
+    <section className="relative h-screen w-screen bg-white">
       <motion.div
         style={{ zIndex: 50 }}
         {...{
@@ -74,7 +74,7 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
             "absolute h-full w-full flex flex-col justify-center landing-page-primary-section",
         }}
       >
-        <div className="w-[50%] landing-page-section-containter">
+        <div className="sm:w-[70%] pl-[4%] w-full pt-[18rem] sm:pt-0">
           <PrimaryHeader />
           <MissionStatement />
           <CalendlyPopupButton />

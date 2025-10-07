@@ -12,6 +12,7 @@ import DOMPurify from "dompurify";
 // Components
 import RichTextEditor from "@/components/tiptap/RichTextEditor";
 import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
+import CreatPost from "@/features/blog-composer/components/headings/CreatPost";
 
 // Removed unused import BackToButton
 import MenuBar from "@/components/tiptap/MenuBar";
@@ -61,7 +62,7 @@ const Page = () => {
       );
     },
   });
-  console.log(blogContent)
+  console.log(blogContent);
 
   if (!editor) return null;
 
@@ -69,9 +70,7 @@ const Page = () => {
     <section className="w-full max-h-screen overflow-y-scroll">
       <div className="h-auto flex items-center justify-center mb-10">
         <div className="flex flex-col items-center  w-[40rem] pt-[4rem]">
-          <h2 className="font-semibold text-4xl text-transparent bg-clip-text bg-gradient-to-r to-primary-800 from-primary-900 mb-4">
-            Create post
-          </h2>
+          <CreatPost />
 
           <div className="flex flex-col items-start w-full mb-10">
             <label
@@ -103,8 +102,11 @@ const Page = () => {
       </div>
 
       <div className="h-screen flex  w-full flex-col">
-        <h1 className='text-4xl mb-10'>Displays the blog</h1>
-        <div className="blog-content" dangerouslySetInnerHTML={{ __html: blogContent || "" }} />
+        <h1 className="text-4xl mb-10">Displays the blog</h1>
+        <div
+          className="blog-content"
+          dangerouslySetInnerHTML={{ __html: blogContent || "" }}
+        />
       </div>
     </section>
   );
