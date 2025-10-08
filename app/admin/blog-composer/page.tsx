@@ -52,6 +52,7 @@ const Page = () => {
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
       const html = renderTipTapJSON(json);
+      console.log(json);
       setBlogContent(
         DOMPurify.sanitize(html, {
           ADD_TAGS: ["h1", "h2", "h3", "h4", "h5", "h6"],
