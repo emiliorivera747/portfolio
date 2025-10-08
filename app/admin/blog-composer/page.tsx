@@ -65,7 +65,7 @@ const Page = () => {
   if (!editor) return null;
 
   return (
-    <section className="w-full min-h-screen overflow-y-scroll">
+    <section className="w-full max-h-screen overflow-y-scroll">
       <div className="h-auto flex items-center justify-center mb-10">
         <div className="flex flex-col items-center  w-[40rem] pt-[4rem]">
           <CreatPost />
