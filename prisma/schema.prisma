@@ -55,13 +55,17 @@ model ContentBlock {
   id            Int         @id @default(autoincrement())
   content_order Int
   content_type  ContentType
-  content_data  String
+  content_data  Json        @default("{}")
 
   // Relatitonships
   post     Post   @relation(fields: [post_id], references: [id])
   post_id  Int
   media    Media? @relation(fields: [media_id], references: [id])
   media_id Int?   @unique
+
+  // Timestamps
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+  updated_at DateTime @updatedAt @db.Timestamptz(3)
 }
 
 model Media {

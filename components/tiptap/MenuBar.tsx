@@ -20,7 +20,6 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
     <div className="control-group bg-primary-100 py-4 px-4 rounded-[12px] mb-4 w-full">
       <div className="button-group flex justify-between">
         {options.map(({ icon, pressed, clickFn, name }) => {
-          console.log(name, pressed);
           return (
             <Toggle
               key={name}

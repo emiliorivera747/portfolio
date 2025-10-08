@@ -13,8 +13,6 @@ import DOMPurify from "dompurify";
 import RichTextEditor from "@/components/tiptap/RichTextEditor";
 import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
 import CreatPost from "@/features/blog-composer/components/headings/CreatPost";
-
-// Removed unused import BackToButton
 import MenuBar from "@/components/tiptap/MenuBar";
 
 const extensions: any[] = [
@@ -54,6 +52,7 @@ const Page = () => {
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
       const html = renderTipTapJSON(json);
+      console.log(json)
       setBlogContent(
         DOMPurify.sanitize(html, {
           ADD_TAGS: ["h1", "h2", "h3", "h4", "h5", "h6"],
@@ -62,12 +61,11 @@ const Page = () => {
       );
     },
   });
-  console.log(blogContent);
 
   if (!editor) return null;
 
   return (
-    <section className="w-full max-h-screen overflow-y-scroll">
+    <section className="w-full min-h-screen overflow-y-scroll">
       <div className="h-auto flex items-center justify-center mb-10">
         <div className="flex flex-col items-center  w-[40rem] pt-[4rem]">
           <CreatPost />
