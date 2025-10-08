@@ -23,6 +23,21 @@ const variants = {
   },
 };
 
+const variantsTwo = {
+  initial: {
+    y: 400,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
 /**
  *  Displays information about me
  *
@@ -48,9 +63,18 @@ function About() {
 
         <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2 items-center justify-center">
-            <h1 className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6">
+            <motion.h1
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, amount: 0.5 }}
+              variants={{
+                initial: { x: -200, opacity: 0 },
+                animate: { x: 0, opacity: 1, transition: { duration: 1 } },
+              }}
+              className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6"
+            >
               My Journey
-            </h1>
+            </motion.h1>
 
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
@@ -95,9 +119,18 @@ function About() {
             </h2>
           </div>
           <div className="flex flex-col h-1/2 md:w-1/2  items-center justify-center">
-            <h1 className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6">
+            <motion.h1
+              className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6"
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, amount: 0.5 }}
+              variants={{
+                initial: { x: 200, opacity: 0 },
+                animate: { x: 0, opacity: 1, transition: { duration: 1 } },
+              }}
+            >
               Hobbies
-            </h1>
+            </motion.h1>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
               In my free time, I enjoy playing
               <strong> soccer</strong>, practicing
@@ -108,18 +141,35 @@ function About() {
           </div>
         </section>
         <div className="bg-white p-10 flex flex-col md:flex-col h-auto min-h-[70vh] text-center items-center justify-center gap-0 ">
-          <h2 className=" bg-gradient-to-r bg-clip-text text-transparent from-primary-1000 to-primary-800 text-4xl md:p-10 leading-loose tracking-wider pb-10">
+          <motion.h2
+            {...{
+              className:
+                "bg-gradient-to-r bg-clip-text text-transparent from-primary-1000 to-primary-800 text-4xl md:p-10 leading-loose tracking-wider pb-10",
+              initial: "initial",
+              whileInView: "animate",
+              variants,
+            }}
+          >
             {`"Everyone has a story, an idea, or message to share with the world and there is no one better than for you to share it through`}{" "}
             <strong>Public Speaking</strong>
             <span>{`"`}</span>
-          </h2>
+          </motion.h2>
           {/* <p className="text-xl font-light text-[#868e96]">- Emilio Rivera</p> */}
         </div>
         <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2  items-center justify-center p-10">
-            <h1 className="text-2xl md:text-4xl pb-3 md:pb-6 text-primary-900 font-bold">
+            <motion.h1
+              className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6"
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, amount: 0.5 }}
+              variants={{
+                initial: { x: -200, opacity: 0 },
+                animate: { x: 0, opacity: 1, transition: { duration: 1 } },
+              }}
+            >
               Public Speaking
-            </h1>
+            </motion.h1>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
               I love <strong>public speaking</strong> and hope to start my own
               public speaking organization someday.
