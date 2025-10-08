@@ -116,3 +116,32 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+export async function GET() {
+  try {
+    const posts = await prisma.post.findMany({
+      include: {
+        content_block: {
+          orderBy: {
+            content_order: "asc",
+          },
+        },
+      },
+    });
+    return NextResponse.json(
+      { data: posts, status: "success" },
+      { status: 200 }
+    );
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "unknown error";
+    console.log(errorMessage)
+    return NextResponse.json(
+      {
+        message: errorMessage,
+        data: null,
+      },
+      { status: 500 }
+    );
+  }
+}
