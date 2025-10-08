@@ -69,14 +69,17 @@ model ContentBlock {
 }
 
 model Media {
-  id          Int      @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   url         String
   media_type  String
   description String
-  created_at  DateTime @default(now()) @db.Timestamptz(3)
 
   // Relationships
   contentBlock ContentBlock?
+
+  // Timestamps
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+  updated_at DateTime @updatedAt @db.Timestamptz(3)
 }
 
 model Comment {

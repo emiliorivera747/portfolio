@@ -52,7 +52,6 @@ const Page = () => {
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
       const html = renderTipTapJSON(json);
-      console.log(json)
       setBlogContent(
         DOMPurify.sanitize(html, {
           ADD_TAGS: ["h1", "h2", "h3", "h4", "h5", "h6"],
@@ -100,7 +99,7 @@ const Page = () => {
       </div>
 
       <div className="h-screen flex  w-full flex-col">
-        <h1 className="text-4xl mb-10">Displays the blog</h1>
+        <h1 className="text-2xl mb-10">Displays the blog</h1>
         <div
           className="blog-content"
           dangerouslySetInnerHTML={{ __html: blogContent || "" }}

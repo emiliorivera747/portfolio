@@ -10,6 +10,7 @@ export const config = {
     "/admin/dashboard",
     "/admin/:path*",
     "/admin/:path*",
+    '/api/plaid/:path*',
     /*
      * Match all request paths except for the ones starting with:
      * - _next/static (static files)
