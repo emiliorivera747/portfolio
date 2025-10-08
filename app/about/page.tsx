@@ -41,7 +41,7 @@ function About() {
           }}
         >
           {" "}
-          <h1 className=" text-4xl md:text-8xl text-primary-1000 font-bold text-center">
+          <h1 className=" text-transparent bg-clip-text bg-gradient-to-r from-primary-900 to-primary-800 text-4xl md:text-8xl font-bold text-center">
             About Me.
           </h1>
         </motion.div>
