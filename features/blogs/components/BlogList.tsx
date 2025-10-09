@@ -14,7 +14,7 @@ const BlogList = ({ posts }: PostListProps) => {
     <div>
       {posts.map(({ image_url, title, description }: Post) => {
         return (
-          <div key={title} className="border-y py-8 flex gap-10">
+          <div key={title} className="border-y py-8 flex gap-10 border-primary-200">
             <CldImage
               src={
                 image_url

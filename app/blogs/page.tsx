@@ -10,8 +10,8 @@ const Page = () => {
   if (isLoadingPosts) return <div>Loading...</div>;
   return (
     <section className="w-screen min-h-screen">
-      <div className="mx-[10%]">
-        <div className="text-primary-1000 text-6xl pt-[10rem] pb-4 font-semibold">
+      <div className="mx-[5%]">
+        <div className="text-primary-1000 text-6xl pt-[10rem] pb-8 font-semibold">
           Latest Posts
         </div>
         <BlogList posts={postResponse.data} />
