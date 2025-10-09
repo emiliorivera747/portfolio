@@ -2,21 +2,19 @@ import React from "react";
 import { Post, PostListProps } from "@/features/blogs/types/post";
 import { CldImage } from "next-cloudinary";
 
-
-
 /**
- * 
- * Displays a blog list 
- * 
- * @param param0 
- * @returns 
+ *
+ * Displays a blog list
+ *
+ * @param param0
+ * @returns
  */
 const BlogList = ({ posts }: PostListProps) => {
   return (
     <div>
       {posts.map(({ image_url, title, description }: Post) => {
         return (
-          <div key={title} className="mx-14 border-y py-8 flex gap-10">
+          <div key={title} className="border-y py-8 flex gap-10">
             <CldImage
               src={
                 image_url
@@ -28,7 +26,10 @@ const BlogList = ({ posts }: PostListProps) => {
               alt={title || "Default alt text"}
               className="rounded-[12px]"
             />
-            <span>{description}</span>
+            <div className="w-[20rem] flex flex-col gap-4">
+              <h1 className="font-semibold text-primary-1000 text-2xl">{title}</h1>
+              <span>{description ? description: "No description provided for the blog"}</span>
+            </div>
           </div>
         );
       })}
