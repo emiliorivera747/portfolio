@@ -56,7 +56,10 @@ function About() {
                 initial: { x: -200, opacity: 0 },
                 animate: { x: 0, opacity: 1, transition: { duration: 1 } },
               }}
-              className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6"
+              {...({
+                className:
+                  "text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6",
+              } as any)}
             >
               My Journey
             </motion.h1>
@@ -105,7 +108,10 @@ function About() {
           </div>
           <div className="flex flex-col h-1/2 md:w-1/2  items-center justify-center">
             <motion.h1
-              className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6"
+              {...({
+                className:
+                  "text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6",
+              } as any)}
               initial="initial"
               whileInView="animate"
               viewport={{ once: true, amount: 0.5 }}
@@ -144,7 +150,10 @@ function About() {
         <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2  items-center justify-center p-10">
             <motion.h1
-              className="text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6"
+              {...({
+                className:
+                  "text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6",
+              } as any)}
               initial="initial"
               whileInView="animate"
               viewport={{ once: true, amount: 0.5 }}
