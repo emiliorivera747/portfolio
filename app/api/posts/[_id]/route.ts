@@ -17,6 +17,8 @@ export const GET = async (
       );
     }
 
+    const post = 
+
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "unknown error";

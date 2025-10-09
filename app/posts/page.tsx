@@ -15,7 +15,7 @@ const Page = () => {
         <div className="text-6xl pt-[10rem] pb-8 font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-primary-900 to-primary-800 ">
           Latest Posts
         </div>
-        <BlogList posts={postResponse.data} />
+        <BlogList posts={postResponse?.data} />
       </div>
     </section>
   );
