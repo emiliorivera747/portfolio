@@ -7,34 +7,37 @@ import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 
 const Page = () => {
   const { id } = useParams();
-  const { postResponse, isLoadingPost, isErrorPost } = useFetchPostById({
+  const { postResponse } = useFetchPostById({
     id: id ? (Array.isArray(id) ? id[0] : id) : "",
   });
 
   return (
-    <section className="h-screen w-screen flex flex-col items-center justify-center text-xl font-bold">
-      <h1>Page is in the works!</h1>
-      <span className="text-primary-700 font-light">post id: {id}</span>
-      {/* {postResponse?.data?.content_block.map(
-        ({
-          content_data,
-          content_order,
-        }: {
-          content_data: any;
-          content_order: any;
-        }) => {
-          return (
-            <div
-              key={content_order}
-              className="blog-content"
-              dangerouslySetInnerHTML={{
-                __html: renderTipTapJSON(content_data) || "",
-              }}
-            />
-          );
-        }
-      )} */}
-    </section>
+    <article className="h-screen w-screen">
+      <div className="pt-[10rem] mx-[8%] text-4xl">
+        <h1 className="text-primary-1000 font-semibold mb-4">
+          {postResponse?.data?.title}
+        </h1>
+        {postResponse?.data?.content_block?.map(
+          ({
+            content_data,
+            content_order,
+          }: {
+            content_data: any;
+            content_order: any;
+          }) => {
+            return (
+              <div
+                key={content_order}
+                className="blog-content"
+                dangerouslySetInnerHTML={{
+                  __html: renderTipTapJSON(content_data) || "",
+                }}
+              />
+            );
+          }
+        )}
+      </div>
+    </article>
   );
 };
 
