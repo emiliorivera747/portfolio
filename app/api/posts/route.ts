@@ -1,8 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
-import type { PrismaClient } from "@prisma/client";
-
 import { z } from "zod";
+import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
 
 // Validation schema for the request body
 const postSchema = z.object({
@@ -32,6 +31,9 @@ const postSchema = z.object({
  *
  */
 export async function POST(req: NextRequest) {
+  const result = await authenticateUser();
+  if (result instanceof NextResponse) return result;
+
   const body = await req.json();
   const parsed = postSchema.safeParse(body);
 
@@ -45,9 +47,7 @@ export async function POST(req: NextRequest) {
   const { user_id, title, content_blocks } = parsed.data;
 
   try {
-    
     const post = await prisma.$transaction(async (prisma: any) => {
-      
       /**
        * Create a new post
        */
@@ -119,8 +119,6 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
   try {
-    
-    
     const posts = await prisma.post.findMany({
       include: {
         content_block: {
@@ -130,14 +128,12 @@ export async function GET() {
         },
       },
     });
-   
 
     return NextResponse.json(
       { data: posts, status: "success" },
       { status: 200 }
     );
   } catch (error) {
-    
     const errorMessage =
       error instanceof Error ? error.message : "unknown error";
     return NextResponse.json(
@@ -149,4 +145,3 @@ export async function GET() {
     );
   }
 }
-
