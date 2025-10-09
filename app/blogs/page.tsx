@@ -11,7 +11,7 @@ const Page = () => {
   return (
     <section className="w-screen min-h-screen">
       <div className="mx-[5%]">
-        <div className="text-primary-1000 text-6xl pt-[10rem] pb-8 font-semibold">
+        <div className="text-6xl pt-[10rem] pb-8 font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-primary-900 to-primary-800 ">
           Latest Posts
         </div>
         <BlogList posts={postResponse.data} />

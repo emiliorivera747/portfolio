@@ -51,7 +51,7 @@ function Project() {
             </div>
 
             <div
-              className="group relative overflow-hidden w-full rounded-[12px] h-full "
+              className="group relative overflow-hidden w-full rounded-[12px] h-full"
               style={{ position: "relative" }}
             >
               <Link
