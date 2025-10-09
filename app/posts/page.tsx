@@ -7,7 +7,7 @@ import BlogList from "@/features/blogs/components/BlogList";
 import LoadingPage from "@/components/loading/LoadingPage";
 
 const Page = () => {
-  const { postResponse, isLoadingPosts, isErrorPosts } = useFetchBlogs();
+  const { postsResponse, isLoadingPosts, isErrorPosts } = useFetchBlogs();
   if (isLoadingPosts) return <LoadingPage theme={"white"} />;
   return (
     <section className="w-screen min-h-screen">
@@ -15,7 +15,7 @@ const Page = () => {
         <div className="text-6xl pt-[10rem] pb-8 font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-primary-900 to-primary-800 ">
           Latest Posts
         </div>
-        <BlogList posts={postResponse?.data} />
+        <BlogList posts={postsResponse?.data} />
       </div>
     </section>
   );

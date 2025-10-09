@@ -15,6 +15,18 @@ const fetchPosts = async () => {
   return res.json();
 };
 
+const fetchPostById = async (id: string) => {
+  const res = await fetch(`${API_URL}/posts/${id}`, {
+    method: "GET",
+    cache: "no-store",
+  });
+
+  if (!res.ok) throw new Error(`Failed to fetch post with id ${id}`);
+
+  return res.json();
+};
+
 export const blogsServices = {
   fetchPosts,
+  fetchPostById
 };

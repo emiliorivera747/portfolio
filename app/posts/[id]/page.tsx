@@ -1,7 +1,17 @@
-import React from "react";
+"use client";
 
-const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
-  const { id } = await params;
+import React, { useEffect, useState } from "react";
+import useFetchPostById from "@/features/blogs/hooks/useFetchPostById";
+import { useParams } from "next/navigation";
+
+const Page = () => {
+  const { id } = useParams();
+  const { postResponse, isLoadingPost, isErrorPost } = useFetchPostById({
+    id: id ? (Array.isArray(id) ? id[0] : id) : "",
+  });
+
+  console.log(postResponse)
+
   return (
     <section className="h-screen w-screen flex flex-col items-center justify-center text-xl font-bold">
       <h1>Page is in the works!</h1>
