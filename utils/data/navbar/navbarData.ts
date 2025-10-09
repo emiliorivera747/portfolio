@@ -50,6 +50,18 @@ export const navBarData = [
       },
     ],
   },
+  {
+    id: 6,
+    label: "blogs",
+    url: "/posts",
+    content: [
+      {
+        id: 1,
+        label: "Blogs",
+        url: "/posts",
+      },
+    ],
+  },
   // {
   //   id: 4,
   //   label: "Sign In",

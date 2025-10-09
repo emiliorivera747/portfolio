@@ -3,6 +3,7 @@ import { Post, PostListProps } from "@/features/blogs/types/post";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 
+
 /**
  *
  * Displays a blog list
@@ -13,7 +14,7 @@ import Link from "next/link";
 const BlogList = ({ posts }: PostListProps) => {
   return (
     <div>
-      {posts.map(({ image_url, title, description, id }: Post) => {
+      {posts?.map(({ image_url, title, description, id }: Post) => {
         return (
           <div
             key={title}
