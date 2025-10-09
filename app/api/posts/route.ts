@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
   const { user_id, title, content_blocks } = parsed.data;
 
   try {
-    const post = await prisma.$transaction(async (prisma: PrismaClient) => {
+    const post = await prisma.$transaction(async (prisma: any) => {
       /**
        * Create a new post
        */
@@ -135,7 +135,7 @@ export async function GET() {
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "unknown error";
-    console.log(errorMessage)
+    console.log(errorMessage);
     return NextResponse.json(
       {
         message: errorMessage,
