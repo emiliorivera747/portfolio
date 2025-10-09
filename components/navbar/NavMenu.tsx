@@ -41,7 +41,7 @@ const NavMenu = ({ menuItems, menuTextColor }: NavMenuItems) => {
                             <Link
                               key={subItem.id}
                               href={subItem.url}
-                              className={`block text-[1rem] text-primary-800 font-extralight rounded-lg p-[0.2rem] hover:underline hover:underline-offset-4 hover:decoration-2`}
+                              className={`block text-[1rem] text-primary-800 font-medium rounded-lg p-[0.2rem] hover:underline hover:underline-offset-4 hover:decoration-2`}
                               aria-label={subItem.label}
                             >
                               {subItem.label}
