@@ -40,7 +40,7 @@ export const navBarData = [
   },
   {
     id: 6,
-    label: "blogs",
+    label: "blog",
     url: "/posts",
   },
   {
