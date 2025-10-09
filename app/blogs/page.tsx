@@ -3,6 +3,8 @@ import React from "react";
 import useFetchBlogs from "@/features/blogs/hooks/useFetchBlogs";
 import { CldImage } from "next-cloudinary";
 
+
+
 const Page = () => {
   const { postResponse, isLoadingPosts, isErrorPosts } = useFetchBlogs();
   console.log(postResponse);
@@ -13,7 +15,7 @@ const Page = () => {
       </div>
       {postResponse?.data.map(
         ({ title, image_url }: { title: string; image_url: string }) => (
-          <div className="mx-14 border-y py-8 flex gap-10">
+          <div key={title} className="mx-14 border-y py-8 flex gap-10">
             <CldImage
               src={
                 image_url
