@@ -74,8 +74,6 @@ export async function POST(req: NextRequest) {
         }
       );
 
-      console.log(contentBlocksPostId);
-
       /**
        * Creat the content blocks
        */
@@ -133,7 +131,7 @@ export async function GET() {
       },
     });
    
-   
+
     return NextResponse.json(
       { data: posts, status: "success" },
       { status: 200 }

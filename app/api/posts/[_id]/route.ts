@@ -17,8 +17,26 @@ export const GET = async (
       );
     }
 
-    const post = 
+    const post = await prisma.post.findUnique({
+      where: { id: parseInt(_id) },
+      include: {
+        content_block: {
+          orderBy: { content_order: "asc" },
+        },
+      },
+    });
 
+    if (!post) {
+      return NextResponse.json(
+        { message: "Post not found", status: "error" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { data: post, status: "success" },
+      { status: 200 }
+    );
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "unknown error";
