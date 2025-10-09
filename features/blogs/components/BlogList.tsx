@@ -23,7 +23,7 @@ const BlogList = ({ posts }: PostListProps) => {
               className="group relative overflow-hidden rounded-[12px]"
               style={{ position: "relative" }}
             >
-              <Link href={`blogs/${id}`}>
+              <Link href={`posts/${id}`}>
                 <CldImage
                   src={
                     image_url
@@ -40,7 +40,7 @@ const BlogList = ({ posts }: PostListProps) => {
 
             <div className="w-[20rem] flex flex-col gap-4">
               <Link
-                href={`blogs/${id}`}
+                href={`posts/${id}`}
                 className="font-semibold text-primary-1000 text-2xl hover:underline"
               >
                 {title}
