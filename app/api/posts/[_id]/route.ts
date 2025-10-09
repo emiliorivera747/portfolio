@@ -20,6 +20,7 @@ export const GET = async (
     const post = await prisma.post.findUnique({
       where: { id: parseInt(_id) },
       include: {
+        User: true,
         content_block: {
           orderBy: { content_order: "asc" },
         },
