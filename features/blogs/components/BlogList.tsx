@@ -28,7 +28,7 @@ const BlogList = ({ posts }: PostListProps) => {
             />
             <div className="w-[20rem] flex flex-col gap-4">
               <h1 className="font-semibold text-primary-1000 text-2xl">{title}</h1>
-              <span>{description ? description: "No description provided for the blog"}</span>
+              <span className="text-primary-700 font-light">{description ? description: "No description provided for the blog"}</span>
             </div>
           </div>
         );
