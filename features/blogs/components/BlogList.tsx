@@ -21,7 +21,7 @@ const BlogList = ({ posts }: PostListProps) => {
         posts?.map(({ image_url, title, description, id }: Post) => {
           return (
             <div
-              key={title}
+              key={id}
               className="border-y py-8 flex gap-10 border-primary-200"
             >
               <BlogListImageSection
