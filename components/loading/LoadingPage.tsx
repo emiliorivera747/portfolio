@@ -33,7 +33,7 @@ const LoadingPage = ({ theme = "black" }: LoadingPageProps) => {
           </div>
           <DotLoader
             bgColor={`${
-              theme === "white" ? "text-primary-1000" : "text-white"
+              theme === "white" ? "bg-primary-1000" : "bg-white"
             }`}
             dotWidth="w-3"
             dotHeight="h-3"
