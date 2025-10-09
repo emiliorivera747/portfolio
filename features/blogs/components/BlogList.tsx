@@ -5,6 +5,7 @@ import Link from "next/link";
 
 // Components
 import BlogListImageSection from "@/features/blogs/components/BlogListImageSection";
+import BlogItemContent from "@/features/blogs/components/BlogItemContent";
 
 /**
  *
@@ -28,20 +29,11 @@ const BlogList = ({ posts }: PostListProps) => {
                 title={title}
                 id={id}
               />
-
-              <div className="w-[20rem] flex flex-col gap-4">
-                <Link
-                  href={`posts/${id}`}
-                  className="font-semibold text-primary-1000 text-2xl hover:underline"
-                >
-                  {title}
-                </Link>
-                <span className="text-primary-700 font-extralight text-md">
-                  {description
-                    ? description
-                    : "No description provided for the post"}
-                </span>
-              </div>
+              <BlogItemContent
+                title={title}
+                id={id}
+                description={description}
+              />
             </div>
           );
         })}
