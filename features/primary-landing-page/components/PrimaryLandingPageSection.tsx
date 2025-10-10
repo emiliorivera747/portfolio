@@ -1,15 +1,16 @@
-'use client'
+"use client";
 import React, { useEffect, useRef } from "react";
 
 // External Libraries
 import { motion } from "framer-motion";
+import { CldVideoPlayer } from 'next-cloudinary';
+
 
 // Component
 import MissionStatement from "@/features/primary-landing-page/components/MissionStatement";
 import CalendlyPopupButton from "@/features/calendly/CalendlyPopupButton";
 import BackgroundOverlay from "@/components/overlays/BackgroundOverlay";
 import PrimaryHeader from "@/features/primary-landing-page/components/PrimaryHeader";
-
 
 const variants = {
   initial: {
@@ -63,7 +64,7 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
   }, []);
 
   return (
-    <section className="relative h-screen w-screen bg-black">
+    <section className="relative h-screen w-screen bg-white">
       <motion.div
         style={{ zIndex: 50 }}
         {...{
@@ -74,17 +75,14 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
             "absolute h-full w-full flex flex-col justify-center landing-page-primary-section",
         }}
       >
-        <div className="sm:w-[70%] pl-[4%] w-full pt-[18rem] sm:pt-0">
+        <div className="sm:w-[60%] pl-[4%] w-full pt-[18rem] sm:pt-0">
           <PrimaryHeader />
           <MissionStatement />
           <CalendlyPopupButton />
         </div>
       </motion.div>
 
-      {/* OVERLAY */}
       <BackgroundOverlay />
-
-      {/* VIDEO */}
       <video
         ref={videoRef}
         className={`object-cover w-full h-full`}
@@ -93,7 +91,7 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
           "https://res.cloudinary.com/dcss55nem/video/upload/v1724550161/Untitled_design_20_pg1n4r.mp4"
         }
         loop
-        preload="none"
+        // preload="none"
         muted
         playsInline
       />

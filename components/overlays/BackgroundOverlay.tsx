@@ -10,12 +10,10 @@ import { OverlayProps } from "@/types/overlays";
  */
 const BackgroundOverlay = ({ opacity = 0.4 }: OverlayProps) => {
   return (
-    <div className="">
-      <div
-        style={{ opacity }}
-        className="absolute top-0 left-0 w-full h-full bg-black"
-      ></div>
-    </div>
+    <div
+      style={{ opacity }}
+      className="absolute top-0 left-0 w-full h-full bg-black"
+    ></div>
   );
 };
 
