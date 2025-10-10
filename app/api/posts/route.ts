@@ -32,7 +32,7 @@ const postSchema = z.object({
  */
 export async function POST(req: NextRequest) {
   const result = await authenticateUser();
-  if (result instanceof NextResponse) return result;
+  // if (result instanceof NextResponse) return result;
 
   const body = await req.json();
   const parsed = postSchema.safeParse(body);

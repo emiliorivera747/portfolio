@@ -443,8 +443,10 @@ input:-webkit-autofill:active {
 .blog-content p {
   margin-bottom: 1rem;
   line-height: 1.6;
-  font-size: 1rem;
-  color: var(--foreground);
+  font-size: 1.2rem;
+  color: #868e96;
+  font-weight: 200;
+
 }
 
 .blog-content h1{
