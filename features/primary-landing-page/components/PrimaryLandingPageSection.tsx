@@ -34,8 +34,26 @@ const variants = {
 const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
   videoUrl,
 }) => {
+  const [isLoading, setIsLoading] = useState(true);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const handleLoadedData = () => {
+      setIsLoading(false);
+    };
+
+    const videoElement = videoRef.current;
+    if (videoElement) {
+      // Add the event listener to detect when the video is ready
+      videoElement.addEventListener("loadeddata", handleLoadedData);
+
+      // Clean up the event listener when the component unmounts
+      return () => {
+        videoElement.removeEventListener("loadeddata", handleLoadedData);
+      };
+    }
+  }, [videoUrl]);
 
   useEffect(() => {
     const options = {
@@ -66,7 +84,6 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
     return () => observer.disconnect();
   }, []);
 
-
   return (
     <section className="relative h-screen w-screen bg-white">
       <motion.div
@@ -86,7 +103,7 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
         </div>
       </motion.div>
 
-      <BackgroundOverlay />
+      {!isLoading && <BackgroundOverlay />}
       <video
         ref={videoRef}
         className={`object-cover w-full h-full`}
