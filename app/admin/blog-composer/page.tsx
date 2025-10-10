@@ -14,6 +14,7 @@ import RichTextEditor from "@/components/tiptap/RichTextEditor";
 import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
 import CreatPost from "@/features/blog-composer/components/headings/CreatPost";
 import MenuBar from "@/components/tiptap/MenuBar";
+import PrimaryHeader from "@/components/headers/PrimaryHeader";
 
 const extensions: any[] = [
   StarterKit.configure({
@@ -67,8 +68,8 @@ const Page = () => {
   return (
     <section className="w-full max-h-screen overflow-y-scroll">
       <div className="h-auto flex items-center justify-center mb-10">
-        <div className="flex flex-col items-center  w-[40rem] pt-[4rem]">
-          <CreatPost />
+        <form className="flex flex-col items-center  w-[40rem] pt-[4rem]">
+          <PrimaryHeader title={"Create Post"} />
 
           <div className="flex flex-col items-start w-full mb-10">
             <label
@@ -86,7 +87,7 @@ const Page = () => {
           </div>
 
           <div className="w-full">
-            <h1 className="mb-4 font-semibold ">Content</h1>
+            <h1 className="mb-4 font-semibold">Content</h1>
             <MenuBar editor={editor} />
             <RichTextEditor editor={editor} />
           </div>
@@ -96,7 +97,7 @@ const Page = () => {
             ref={buttonRef}
             text="Publish"
           />
-        </div>
+        </form>
       </div>
 
       <div className="h-screen flex  w-full flex-col">

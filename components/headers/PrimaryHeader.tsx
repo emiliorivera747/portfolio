@@ -12,11 +12,12 @@ import { PrimaryHeaderProps } from "@/types/headers";
  * @param label - hearder label
  */
 const PrimaryHeader = ({ title, className, ref }: PrimaryHeaderProps) => {
-  const defaultClass = "mb-2  text-primary-900 font-semibold";
+  const defaultClass =
+    "font-semibold text-4xl text-transparent bg-clip-text bg-gradient-to-r to-primary-800 from-primary-900 mb-4";
   return (
-    <h1 className={cn(defaultClass, className)} ref={ref}>
+    <h2 className={cn(defaultClass, className)} ref={ref}>
       {title}
-    </h1>
+    </h2>
   );
 };
 
