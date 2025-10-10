@@ -44,7 +44,7 @@ model Post {
   updated_at  DateTime @updatedAt @db.Timestamptz(3)
   description String? // Optional description for metadata
   title       String?
-  image_url         String?
+  image_url   String?
 
   // Relationships
   User          User?          @relation(fields: [user_id], references: [id])
