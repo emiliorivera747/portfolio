@@ -8,10 +8,16 @@ const createPost = async (data: any) => {
     method: "POST",
     cache: "no-store",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   });
+
+  if(!res.ok) throw Error('Failed to create post')
+
+  return res.json();
 };
 
-export const postService = {
+const postService = {
   createPost,
 };
+
+export default postService;

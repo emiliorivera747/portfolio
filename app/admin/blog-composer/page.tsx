@@ -25,6 +25,9 @@ import {
   titleSchema,
 } from "@/features/blog-composer/schemas/composerSchemas";
 
+// Hooks
+import useCreatePost from "@/features/blog-composer/hooks/useCreatePost";
+
 const extensions: any[] = [
   StarterKit.configure({
     paragraph: {
