@@ -8,6 +8,8 @@ import { useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 import DOMPurify from "dompurify";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 // Components
 import RichTextEditor from "@/components/tiptap/RichTextEditor";
@@ -15,6 +17,13 @@ import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
 import CreatPost from "@/features/blog-composer/components/headings/CreatPost";
 import MenuBar from "@/components/tiptap/MenuBar";
 import PrimaryHeader from "@/components/headers/PrimaryHeader";
+import TextInput from "@/components/form-components/TextInput";
+
+// Zod Scheam
+import {
+  TitleSchema,
+  titleSchema,
+} from "@/features/blog-composer/schemas/composerSchemas";
 
 const extensions: any[] = [
   StarterKit.configure({
@@ -38,6 +47,15 @@ const extensions: any[] = [
  */
 const Page = () => {
   const buttonRef = useRef(null);
+
+  const {
+    register,
+    formState: { errors },
+    setError,
+  } = useForm<TitleSchema>({
+    resolver: zodResolver(titleSchema),
+  });
+
   const [blogContent, setBlogContent] = useState<string | null>(null);
 
   const editor = useEditor({
@@ -71,27 +89,27 @@ const Page = () => {
         <form className="flex flex-col items-center  w-[40rem] pt-[4rem]">
           <PrimaryHeader title={"Create Post"} />
 
-          <div className="flex flex-col items-start w-full mb-10">
-            <label
-              htmlFor="title"
-              className="mb-2  text-primary-900 font-semibold"
-            >
-              Title
-            </label>
-            <input
+          {/* Title */}
+          <div className="w-full
+          mb-8">
+            <TextInput
               type="text"
-              placeholder="Title"
               id="title"
-              className="py-4 px-4 w-full bg-zinc-50 rounded-[12px] border border-primary-600"
+              placeholder="Title"
+              errors={errors}
+              register={register}
+              fieldName="title"
             />
           </div>
 
+          {/* Text Editor */}
           <div className="w-full">
-            <h1 className="mb-4 font-semibold">Content</h1>
+            <h1 className="mb-2 text-primary-700 font-light">Editor</h1>
             <MenuBar editor={editor} />
             <RichTextEditor editor={editor} />
           </div>
 
+          {/* Primary Submit Button */}
           <PrimarySubmitButton
             className="mt-4"
             ref={buttonRef}
