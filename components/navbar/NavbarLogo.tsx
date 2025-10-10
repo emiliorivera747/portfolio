@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { CldImage } from "next-cloudinary";
+import Image from "next/image";
 import Link from "next/link";
 
 import { NavbarLogoProp } from "@/types/navbar";
