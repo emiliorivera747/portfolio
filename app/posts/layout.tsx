@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Portfolio | Emilio Rivera's Portfolio",
+  title: "Posts | Emilio Rivera's Portfolio",
   description:
-    "Emilio created an internal employee web application using MongoDB, Express.js, Node.js, and React to help manage programs for Casa Chirilagua, a non-profit organization based in the City of Alexandria, Virginia",
+    "Browse a collection of posts showcasing Emilio Rivera's projects, experiences, and insights. Discover detailed write-ups and updates on topics including public speaking, software engineering, and more",
 };
 
 import { navBarData } from "@/utils/data/navbar/navbarData";
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <div>
       <main>
-        <Navbar menuItems={navBarData} mode="dark"/>
+        <Navbar menuItems={navBarData} mode="dark" />
         {children}
       </main>
     </div>
