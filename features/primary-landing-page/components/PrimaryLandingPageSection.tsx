@@ -1,16 +1,15 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 // External Libraries
 import { motion } from "framer-motion";
-import { CldVideoPlayer } from 'next-cloudinary';
-
 
 // Component
 import MissionStatement from "@/features/primary-landing-page/components/MissionStatement";
 import CalendlyPopupButton from "@/features/calendly/CalendlyPopupButton";
 import BackgroundOverlay from "@/components/overlays/BackgroundOverlay";
 import PrimaryHeader from "@/features/primary-landing-page/components/PrimaryHeader";
+import LoadingPage from "@/components/loading/LoadingPage";
 
 const variants = {
   initial: {
@@ -32,8 +31,12 @@ const variants = {
  *
  * @returns
  */
-function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
+const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
+  videoUrl,
+}) => {
+
   const videoRef = useRef<HTMLVideoElement | null>(null);
+
   useEffect(() => {
     const options = {
       root: null,
@@ -63,6 +66,7 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
     return () => observer.disconnect();
   }, []);
 
+
   return (
     <section className="relative h-screen w-screen bg-white">
       <motion.div
@@ -91,12 +95,11 @@ function PrimaryLandingPageSection({ videoUrl }: { videoUrl?: string }) {
           "https://res.cloudinary.com/dcss55nem/video/upload/v1724550161/Untitled_design_20_pg1n4r.mp4"
         }
         loop
-        // preload="none"
         muted
         playsInline
       />
     </section>
   );
-}
+};
 
 export default PrimaryLandingPageSection;
