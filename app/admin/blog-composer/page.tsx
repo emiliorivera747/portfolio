@@ -51,6 +51,7 @@ const Page = () => {
   const {
     register,
     formState: { errors },
+    handleSubmit,
     setError,
   } = useForm<TitleSchema>({
     resolver: zodResolver(titleSchema),
@@ -71,7 +72,6 @@ const Page = () => {
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
       const html = renderTipTapJSON(json);
-      console.log(json);
       setBlogContent(
         DOMPurify.sanitize(html, {
           ADD_TAGS: ["h1", "h2", "h3", "h4", "h5", "h6"],
@@ -83,16 +83,21 @@ const Page = () => {
 
   if (!editor) return null;
 
+  const onSubmit = (data: any): void => {
+    console.log(data)
+  };
+
   return (
     <section className="w-full max-h-screen overflow-y-scroll">
-      <div className="h-auto flex items-center justify-center mb-10">
-        <form className="flex flex-col items-center  w-[40rem] pt-[4rem]">
+      <div className="h-auto flex items-center justify-center mb-10 mx-[6%]">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex flex-col items-center  w-[40rem] pt-[4rem] "
+        >
           <PrimaryHeader title={"Create Post"} />
 
           {/* Title */}
-          <div
-            className="w-full mb-4"
-          >
+          <div className="w-full mb-4">
             <TextInput
               type="text"
               id="title"
@@ -105,7 +110,6 @@ const Page = () => {
 
           {/* Text Editor */}
           <div className="w-full mb-8">
-            {/* <h1 className="mb-2 text-primary-700 font-light text-sm">Editor</h1> */}
             <MenuBar editor={editor} />
             <RichTextEditor editor={editor} />
           </div>
@@ -118,14 +122,15 @@ const Page = () => {
           />
         </form>
       </div>
-
-      <div className="h-screen flex  w-full flex-col">
-        <h1 className="text-2xl mb-10">Displays the blog</h1>
-        <div
-          className="blog-content"
-          dangerouslySetInnerHTML={{ __html: blogContent || "" }}
-        />
-      </div>
+      {blogContent && (
+        <div className="h-screen flex  w-full flex-col mx-20">
+          <PrimaryHeader title="Blog Preview" className="text-2xl" />
+          <div
+            className="blog-content"
+            dangerouslySetInnerHTML={{ __html: blogContent || "" }}
+          />
+        </div>
+      )}
     </section>
   );
 };
