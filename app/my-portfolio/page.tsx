@@ -9,13 +9,13 @@ import Link from "next/link";
 const page = () => {
   return (
     <section className="bg-white text-black flex flex-col items-center justify-center h-screen w-screen font-bold text-5xl">
-      <span className="mb-8">Coming soon...</span>
-      <span className="text-primary-600 text-sm mb-8">
+      <span className="mb-6">Coming soon...</span>
+      <span className="text-primary-700 text-[1.1rem] mb-8 font-light">
         For the meantime you can check out the source code.
       </span>
 
       <Link
-        className="font-light  box-border w-[20rem] source-code-button flex item-center justify-center text-center gap-4 text-primary-800 hover:font-semibold transition-all duration-1000 ease-in-out bg-white border rounded-[12px] border-primary-500 px-8 py-6 text-2xl"
+        className="font-light  box-border w-[18rem] source-code-button flex item-center justify-center text-center gap-4 text-primary-800 hover:font-semibold transition-all duration-1000 ease-in-out bg-white border rounded-[12px] border-primary-500 px-8 py-4 text-2xl"
         href="https://github.com/emiliorivera747/portfolio"
       >
         <svg
