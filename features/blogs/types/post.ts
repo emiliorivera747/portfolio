@@ -8,14 +8,14 @@ export interface Post {
   image_url?: string;
 }
 export interface ContentBlock {
-  id: number;
+  id?: number;
   content_order: number;
   content_type: string; 
   content_data: Record<string, any>;
-  post_id: number;
+  post_id?: number;
   media_id?: number;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 export interface PostWithRelations extends Post {
@@ -23,7 +23,7 @@ export interface PostWithRelations extends Post {
     id: number;
     name?: string;
   };
-  content_block: ContentBlock[];
+  content_blocks: ContentBlock[];
   comments?: {
     id: number;
     text: string;

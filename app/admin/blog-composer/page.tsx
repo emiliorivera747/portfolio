@@ -27,6 +27,7 @@ import {
 
 // Hooks
 import useCreatePost from "@/features/blog-composer/hooks/useCreatePost";
+import { PostWithRelations } from "@/features/blogs/types/post";
 
 const extensions: any[] = [
   StarterKit.configure({
@@ -50,6 +51,8 @@ const extensions: any[] = [
  */
 const Page = () => {
   const buttonRef = useRef(null);
+
+  const { mutatePost, isPendingPost } = useCreatePost();
 
   const {
     register,
@@ -86,8 +89,20 @@ const Page = () => {
 
   if (!editor) return null;
 
-  const onSubmit = (data: any): void => {
-    console.log(data)
+  const onSubmit = (data: TitleSchema): void => {
+    const jsonData = editor.getJSON();
+
+    const content_blocks = [
+      { content_order: 0, content_type: "paragraph", content_data: jsonData },
+    ];
+
+    const post: PostWithRelations = {
+      title: data.title,
+      content_blocks: content_blocks,
+      description: "",
+    };
+
+    mutatePost(post);
   };
 
   return (

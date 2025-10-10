@@ -14,12 +14,12 @@ import { PostWithRelations } from "@/features/blogs/types/post";
  *
  * @returns
  */
-const useCreatePost = ({ posts }: { posts: PostWithRelations }) => {
+const useCreatePost = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
   const { mutate: mutatePost, isPending: isPendingPost } = useMutation({
-    mutationFn: () => postComposerService.createPost(posts),
+    mutationFn: postComposerService.createPost,
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["projectedAssetsAndNetworth"],
