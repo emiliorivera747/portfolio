@@ -65,7 +65,7 @@ const Page = () => {
     editorProps: {
       attributes: {
         class:
-          "prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl border  w-full border-primary-600 rounded-[12px] p-8 bg-zinc-50",
+          "prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl border  w-full border-primary-400 rounded-[12px] p-8 bg-zinc-50",
       },
     },
     onUpdate: ({ editor }) => {
@@ -90,8 +90,9 @@ const Page = () => {
           <PrimaryHeader title={"Create Post"} />
 
           {/* Title */}
-          <div className="w-full
-          mb-8">
+          <div
+            className="w-full mb-4"
+          >
             <TextInput
               type="text"
               id="title"
@@ -103,8 +104,8 @@ const Page = () => {
           </div>
 
           {/* Text Editor */}
-          <div className="w-full">
-            <h1 className="mb-2 text-primary-700 font-light">Editor</h1>
+          <div className="w-full mb-8">
+            {/* <h1 className="mb-2 text-primary-700 font-light text-sm">Editor</h1> */}
             <MenuBar editor={editor} />
             <RichTextEditor editor={editor} />
           </div>
