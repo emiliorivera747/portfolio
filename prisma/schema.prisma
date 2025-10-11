@@ -23,7 +23,6 @@ enum ContentType {
 }
 
 model User {
-  id             Int      @id @default(autoincrement())
   email          String   @unique
   name           String?
   created_at     DateTime @default(now()) @db.Timestamptz(3)
@@ -38,16 +37,17 @@ model User {
 }
 
 model Post {
-  id          Int      @id @default(autoincrement())
-  user_id     Int?
+  id Int @id @default(autoincrement())
+
   created_at  DateTime @default(now()) @db.Timestamptz(3)
   updated_at  DateTime @updatedAt @db.Timestamptz(3)
   description String? // Optional description for metadata
   title       String?
-  image_url         String?
+  image_url   String?
 
   // Relationships
-  User          User?          @relation(fields: [user_id], references: [id])
+  User          User?          @relation(fields: [user_id], references: [user_id])
+  user_id       String?
   content_block ContentBlock[] // One-to-many ContentBlock
   comments      Comment[] // One-to-many comments
   PostTag       PostTag[]
