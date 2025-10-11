@@ -5,7 +5,7 @@ import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
 
 // Validation schema for the request body
 const postSchema = z.object({
-  user_id: z.number().int().optional(), // user_id is Int in schema
+  user_id: z.string().optional(), // user_id is Int in schema
   title: z.string().optional(), // title is not in schema, but assuming you meant description
   content_blocks: z
     .array(
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
       const newPost = await prisma.post.create({
         data: {
           title,
-          user_id,
+          user_id: user_id? user_id: result.id,
         },
       });
 

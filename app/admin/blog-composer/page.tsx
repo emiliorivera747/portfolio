@@ -91,6 +91,7 @@ const Page = () => {
 
   const onSubmit = (data: TitleSchema): void => {
     const jsonData = editor.getJSON();
+    console.log("HEY", jsonData);
 
     const content_blocks = [
       { content_order: 0, content_type: "paragraph", content_data: jsonData },

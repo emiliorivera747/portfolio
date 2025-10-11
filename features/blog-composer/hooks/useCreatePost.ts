@@ -18,6 +18,8 @@ const useCreatePost = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
+  console.log("HERE")
+
   const { mutate: mutatePost, isPending: isPendingPost } = useMutation({
     mutationFn: postComposerService.createPost,
     onSuccess: () => {

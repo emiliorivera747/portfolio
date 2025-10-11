@@ -85,7 +85,7 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
   }, []);
 
   return (
-    <section className="relative h-screen w-screen bg-white">
+    <section className="relative h-screen w-screen bg-black">
       <motion.div
         style={{ zIndex: 50 }}
         {...{
