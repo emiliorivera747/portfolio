@@ -38,7 +38,7 @@ const BlogList = ({ posts }: PostListProps) => {
           );
         })}
 
-      {!posts && <div>No posts found</div>}
+      {(!posts || posts?.length === 0) && <div className="text-2xl text-primary-700 font-extralight">No posts found at this time.</div>}
     </div>
   );
 };
