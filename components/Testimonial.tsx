@@ -33,12 +33,12 @@ const Testimonial = () => {
               <p className="text-zinc-700 font-bold text-sm">
                 Adriana Schellhaas
               </p>
-              <p className="text-zinc-800 text-xs ">
+              <p className="text-xs text-zinc-800 text-xs ">
                 <i>Former Executive Director</i>
               </p>
               <Link
                 href="https://casachirilagua.org/"
-                className="text-blue-400 text-xs"
+                className="text-blue-700 text-xs font-light hover:underline"
                 aria-label="Casa Chirilagua Website"
               >
                 Casa Chirilagua
