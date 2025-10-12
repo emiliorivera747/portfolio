@@ -8,7 +8,7 @@ import { OverlayProps } from "@/types/overlays";
  * @param opacity - The opacity of the overlay, default is 0.3
  * @returns
  */
-const BackgroundOverlay = ({ opacity = 0.5 }: OverlayProps) => {
+const BackgroundOverlay = ({ opacity = 0.4 }: OverlayProps) => {
   return (
     <div
       style={{ opacity }}
