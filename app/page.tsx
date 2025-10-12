@@ -35,7 +35,7 @@ export default function App() {
           <Page>
             <PrimaryLandingPageSection
               videoUrl={
-                "https://res.cloudinary.com/dcss55nem/video/upload/v1739681557/Portfolio_Video_t0y4tc.mp4"
+                "https://res.cloudinary.com/davx3yyob/video/upload/v1760238501/Portfolio_Video_t0y4tc_ykkaej.mp4"
               }
             />
             <ProjectSection

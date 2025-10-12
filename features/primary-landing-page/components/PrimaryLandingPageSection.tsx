@@ -109,7 +109,7 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
         className={`object-cover w-full h-full`}
         src={
           videoUrl ||
-          "https://res.cloudinary.com/dcss55nem/video/upload/v1724550161/Untitled_design_20_pg1n4r.mp4"
+          "https://res.cloudinary.com/davx3yyob/video/upload/v1760238501/Portfolio_Video_t0y4tc_ykkaej.mp4"
         }
         loop
         muted
