@@ -40,7 +40,7 @@ export default function App() {
             />
             <ProjectSection
               url={"/casa-chirilagua"}
-              titleSize={"text-4xl"}
+              titleSize={"text-3xl sm:text-4xl"}
               title={"Casa Chirilagua"}
               videoUrl={
                 "https://res.cloudinary.com/davx3yyob/video/upload/v1760237004/Untitled_design_23_gbdkes_inbtze_fni0i9.mp4"
@@ -69,8 +69,8 @@ export default function App() {
             <Testimonial />
             <ProjectSection
               url={"/my-portfolio"}
-              titleSize={"text-4xl"}
-              title={"Portfolio Website"}
+              titleSize={"text-3xl sm:text-4xl"}
+              title={"Portfolio"}
               videoUrl={
                 "https://res.cloudinary.com/davx3yyob/video/upload/v1760242424/Portfolio_Video_1_hnsfub.mp4"
               }
@@ -87,7 +87,7 @@ export default function App() {
             <ProjectSection
               url={"/my-portfolio"}
               title={"Responsive Design"}
-              titleSize={"text-3xl"}
+              titleSize={"text-2xl sm:text-3xl"}
               titleColor={"text-primary-1000"}
               titleFont={"font-bold"}
               videoUrl={

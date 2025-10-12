@@ -7,7 +7,7 @@ import { SecondaryHeaderProps } from '@/types/headers';
  */
 const SecondaryHeader = forwardRef<HTMLDivElement, SecondaryHeaderProps>(
   ({ title, className }, ref) => {
-    const defaultClasses = "font-semibold text-3xl text-primary-1000";
+    const defaultClasses = "font-semibold text-2xl sm:text-3xl text-primary-1000";
     return (
       <div ref={ref} className={cn(defaultClasses, className)}>{title}</div>
     );

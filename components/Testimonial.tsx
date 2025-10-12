@@ -5,7 +5,7 @@ const Testimonial = () => {
   return (
     <section className="relative min-h-[80vh] w-screen border-b-2 border-[#dee2e6] overflow-y-scroll flex flex-col items-center justify-center gap-10">
       <div className="flex items-center justify-center text-center">
-        <h1 className="text-primary-1000 text-3xl pt-10 font-semibold">
+        <h1 className="text-primary-1000 text-2xl sm:text-3xl pt-10 font-semibold">
           Client Testimonials
         </h1>
       </div>
