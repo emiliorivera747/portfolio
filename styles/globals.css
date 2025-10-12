@@ -237,15 +237,17 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 700;
-  font-size: 1.6rem;
-  padding-bottom: 0.4rem;
+  /* font-size: 1.6rem; */
+  padding-bottom: 0.6rem;
 }
 
 .mission-statement {
-  color: #ced4da;
+
   width: 100%;
+  /* font-size: 0.9rem; */
   @media (min-width: 640px) {
     width: 40rem;
+    
   }
 }
 
