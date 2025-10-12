@@ -1,7 +1,5 @@
 import React from "react";
 import { Post, PostListProps } from "@/features/blogs/types/post";
-import { CldImage } from "next-cloudinary";
-import Link from "next/link";
 
 // Components
 import BlogListImageSection from "@/features/blogs/components/BlogListImageSection";
@@ -37,7 +35,6 @@ const BlogList = ({ posts }: PostListProps) => {
             </div>
           );
         })}
-
       {(!posts || posts?.length === 0) && <div className="text-2xl text-primary-700 font-extralight">No posts found at this time.</div>}
     </div>
   );
