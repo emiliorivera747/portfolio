@@ -43,7 +43,7 @@ export default function App() {
               titleSize={"text-4xl"}
               title={"Casa Chirilagua"}
               videoUrl={
-                "https://res.cloudinary.com/dcss55nem/video/upload/v1747627984/Untitled_design_23_gbdkes_inbtze.mp4"
+                "https://res.cloudinary.com/davx3yyob/video/upload/v1760237004/Untitled_design_23_gbdkes_inbtze_fni0i9.mp4"
               }
               buttonLabel={"Learn More"}
               titleColor={"text-primary-1000"}
@@ -70,9 +70,9 @@ export default function App() {
             <ProjectSection
               url={"/my-portfolio"}
               titleSize={"text-4xl"}
-              title={"My Portfolio Website"}
+              title={"Portfolio Website"}
               videoUrl={
-                "https://res.cloudinary.com/dcss55nem/video/upload/v1724616795/Untitled_design_22_q63p4f.mp4"
+                "https://res.cloudinary.com/davx3yyob/video/upload/v1760242424/Portfolio_Video_1_hnsfub.mp4"
               }
               buttonLabel={"Learn More"}
               titleColor={"text-primary-1000"}
@@ -91,7 +91,7 @@ export default function App() {
               titleColor={"text-primary-1000"}
               titleFont={"font-bold"}
               videoUrl={
-                "https://res.cloudinary.com/dcss55nem/video/upload/v1724550161/Untitled_design_20_pg1n4r.mp4"
+                "https://res.cloudinary.com/davx3yyob/video/upload/v1760242715/Untitled_design_20_pg1n4r_kv58m5.mp4"
               }
               buttonLabel={"Learn More"}
               buttonTextColor={"text-zinc-800 "}
