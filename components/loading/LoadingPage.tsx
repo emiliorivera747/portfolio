@@ -7,19 +7,19 @@ interface LoadingPageProps {
 const LoadingPage = ({ theme = "black" }: LoadingPageProps) => {
   return (
     <div
-      className={`flex items-center justify-center ${
+      className={` flex items-center justify-center ${
         theme === "white" ? "bg-white" : "bg-black"
       } h-screen w-screen text-white`}
     >
-      <div className="w-screen h-screen flex flex-col gap-2 items-center justify-center">
-        <div className="translate-y-[-50%] flex flex-col items-center justify-center">
+      <div className=" w-screen h-screen flex flex-col gap-2 items-center justify-center">
+        <div className=" flex flex-col items-center justify-center">
           <div
-            className={`${
+            className={`p-2 ${
               theme === "white" ? "text-primary-1000" : "text-white"
-            } text-md mb-4 h-[90%]`}
+            } text-sm sm:text-md mb-4 h-[90%]`}
           >
             <span
-              className={`font-semibold text-xl ${
+              className={`flex text-center items-center justify-center font-semibold text-md sm:text-xl ${
                 theme === "white" ? "text-primary-1000" : "text-white"
               }`}
             >

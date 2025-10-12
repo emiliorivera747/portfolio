@@ -53,7 +53,7 @@ export default function App() {
               buttonBgColor={"hover:bg-primary-1000"}
               buttonHoverTextColor={"hover:text-white"}
               bgColor={"bg-white"}
-              videoCover={"sm:object-cover"}
+              videoCover={"sm:object-cover "}
             />
             <ToolsSection
               frontEndData={toolsData["casa-chirilagua"].frontEnd}

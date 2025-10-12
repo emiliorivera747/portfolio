@@ -2,6 +2,7 @@
 import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { CldVideoPlayer } from 'next-cloudinary';
 
 interface ProjectSectionProps {
   title: string;
@@ -99,7 +100,7 @@ function ProjectSection({
         </motion.div>
         <video
           ref={videoRef}
-          className={`h-full w-full ${videoCover}`}
+          className={`h-full w-full ${videoCover} `}
           src={videoUrl}
           preload="none"
           loop
