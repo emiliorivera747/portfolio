@@ -1,12 +1,14 @@
+'use client'
 // React Query
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // Components
-import { useToast } from "@/hooks/toast/use-toast";
+// import { useToast } from "@/hooks/toast/use-toast";
+import { toast } from "sonner"
+
 
 // Services
 import postComposerService from "@/features/blog-composer/services/postComposerService";
-import { PostWithRelations } from "@/features/blogs/types/post";
 
 /**
  *
@@ -15,10 +17,7 @@ import { PostWithRelations } from "@/features/blogs/types/post";
  * @returns
  */
 const useCreatePost = () => {
-  const { toast } = useToast();
   const queryClient = useQueryClient();
-
-  console.log("HERE")
 
   const { mutate: mutatePost, isPending: isPendingPost } = useMutation({
     mutationFn: postComposerService.createPost,
@@ -26,17 +25,10 @@ const useCreatePost = () => {
       queryClient.invalidateQueries({
         queryKey: ["projectedAssetsAndNetworth"],
       });
-      toast({
-        title: "Post",
-        description: "Successfully updated Post",
-        variant: "default",
-      });
+      toast.success("Post created successfully!");
     },
     onError: () => {
-      toast({
-        variant: "destructive",
-        title: "Something went wrong when updating Post",
-      });
+      toast.error("Failed to create post. Please try again.");
     },
   });
 

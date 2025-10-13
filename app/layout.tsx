@@ -1,6 +1,8 @@
 import "../styles/globals.css";
 import Script from "next/script";
 
+import { Toaster } from "@/components/ui/sonner";
+
 export const metadata = {
   icons: {
     icon: "/favicon.png",
@@ -41,7 +43,10 @@ export default function RootLayout({
   gtag('config', 'G-R0GTFSV0LN');`}
           </Script>
         </head>
-        <body>{children}</body>
+        <body>
+          {children}
+          <Toaster />
+        </body>
       </html>
     </ReactQueryClientProvider>
   );
