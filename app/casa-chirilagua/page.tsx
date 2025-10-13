@@ -264,9 +264,9 @@ function Project1() {
           );
         })}
       </div>
-      <div className="h-screen w-screen bg-black flex items-center justify-center">
+      {/* <div className="h-screen w-screen bg-black flex items-center justify-center">
         <h1 className="text-6xl text-white">Demo Coming Soon...</h1>
-      </div>
+      </div> */}
     </section>
   );
 }
