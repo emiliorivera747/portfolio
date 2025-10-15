@@ -20,7 +20,7 @@ const BlogList = ({ posts }: PostListProps) => {
           return (
             <div
               key={id}
-              className="border-y py-8 flex gap-10 border-primary-200"
+              className="border-y py-8 flex gap-10 border-primary-200 flex-col sm:flex-row"
             >
               <BlogListImageSection
                 image_url={image_url}
