@@ -16,7 +16,7 @@ const BlogList = ({ posts }: PostListProps) => {
   return (
     <div>
       {Array.isArray(posts) &&
-        posts?.map(({ image_url, title, description, id }: Post) => {
+        posts?.map(({ image_url, title, description, id, created_at}: Post) => {
           return (
             <div
               key={id}
@@ -31,6 +31,7 @@ const BlogList = ({ posts }: PostListProps) => {
                 title={title}
                 id={id}
                 description={description}
+                createdAt={created_at }
               />
             </div>
           );
