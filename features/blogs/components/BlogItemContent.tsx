@@ -1,19 +1,14 @@
 import React from "react";
 import Link from "next/link";
 
-interface BlogItemContent {
-  title?: string;
-  description?: string;
-  id?: string | number;
-  createdAt?: Date;
-}
+import { BlogItemContentProps } from "@/features/blogs/types/post";
 
 const BlogItemContent = ({
   title = "No title provided",
   description = "No description provided for the post",
   id = "#",
   createdAt = new Date(),
-}: BlogItemContent) => {
+}: BlogItemContentProps) => {
   return (
     <div className="w-[20rem] flex flex-col gap-1">
       <Link

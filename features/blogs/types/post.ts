@@ -39,3 +39,11 @@ export interface PostWithRelations extends Post {
 export interface PostListProps {
   posts: Post[];
 }
+
+
+export interface BlogItemContentProps {
+  title?: string;
+  description?: string;
+  id?: string | number;
+  createdAt?: Date;
+}
