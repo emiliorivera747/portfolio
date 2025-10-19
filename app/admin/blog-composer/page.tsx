@@ -112,7 +112,7 @@ const Page = () => {
           >
             <PrimaryHeader title={"Create Post"} />
 
-            <div className="w-full flex flex-col gap-2 mb-4">
+            <div className="w-full flex flex-col mb-4">
               <FormField
                 control={form.control}
                 name="title"

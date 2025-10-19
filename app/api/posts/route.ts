@@ -5,8 +5,9 @@ import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
 
 // Validation schema for the request body
 const postSchema = z.object({
-  user_id: z.string().optional(), // user_id is Int in schema
-  title: z.string().optional(), // title is not in schema, but assuming you meant description
+  user_id: z.string().optional(), 
+  description: z.string().optional(),
+  title: z.string().optional(), 
   content_blocks: z
     .array(
       z.object({
@@ -44,7 +45,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { user_id, title, content_blocks } = parsed.data;
+  const { user_id, title, content_blocks, description } = parsed.data;
 
   try {
     const post = await prisma.$transaction(async (prisma: any) => {
@@ -55,7 +56,8 @@ export async function POST(req: NextRequest) {
       const newPost = await prisma.post.create({
         data: {
           title,
-          user_id: user_id? user_id: result.id,
+          user_id: user_id ? user_id : result.id,
+          description: description,
         },
       });
 

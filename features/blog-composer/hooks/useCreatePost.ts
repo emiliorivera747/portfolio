@@ -1,11 +1,10 @@
-'use client'
+"use client";
+
 // React Query
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // Components
-// import { useToast } from "@/hooks/toast/use-toast";
-import { toast } from "sonner"
-
+import { toast } from "sonner";
 
 // Services
 import postComposerService from "@/features/blog-composer/services/postComposerService";
@@ -23,12 +22,26 @@ const useCreatePost = () => {
     mutationFn: postComposerService.createPost,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ["projectedAssetsAndNetworth"],
+        queryKey: ["post"],
       });
-      toast.success("Post created successfully!");
+      toast.success("Post created successfully!", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#37b24d",
+          color: "white",
+          borderRadius: "12px",
+        },
+      });
     },
     onError: () => {
-      toast.error("Failed to create post. Please try again.");
+      toast.error("Failed to create post. Please try again.", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#c92a2a",
+          color: "white",
+          borderRadius: "12px",
+        },
+      });
     },
   });
 
