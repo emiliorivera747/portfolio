@@ -54,6 +54,7 @@ const extensions: any[] = [
 const Page = () => {
   const buttonRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const [contentBlock, setContentBlock] = useState([]);
 
   const { mutatePost, isPendingPost } = useCreatePost();
   const { handleFileChange, file } = useFile();
@@ -109,10 +110,10 @@ const Page = () => {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col items-center  w-[40rem] pt-[4rem] "
+            className="flex flex-col items-center  w-[40rem] pt-[4rem]"
           >
             <PrimaryHeader title={"Create Post"} />
-            <div className="w-full flex flex-col mb-4">
+            <div className="w-full flex flex-col mb-10">
               <h1 className="text-lg font-medium text-primary-900 mb-2 ">
                 Post Details
               </h1>
@@ -144,7 +145,6 @@ const Page = () => {
                   />
                 )}
               />
-
               <UploadButton
                 data-testid="upload-button"
                 handleFileChange={handleFileChange}
@@ -153,10 +153,32 @@ const Page = () => {
               />
             </div>
 
-            <div className="w-full mb-8">
+            <div className="w-full h-full">
+              <h1 className="text-lg font-medium text-primary-900 mb-2 mt-4">
+                Post Content
+              </h1>
+              <button className="rounded-[12px] py-4 border w-full h-full flex items-center justify-center hover:bg-primary-100">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* <div className="w-full mb-8">
               <MenuBar editor={editor} />
               <RichTextEditor editor={editor} />
-            </div>
+            </div> */}
 
             <PrimarySubmitButton
               className="mt-4"

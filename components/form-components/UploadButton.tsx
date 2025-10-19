@@ -23,7 +23,7 @@ const UploadButton = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger>
-        <div className="h-[3.4rem] rounded-[12px] px-[1rem] py-[0.8rem] bg-[#212529] text-white flex items-row gap-2">
+        <div className="h-[3.4rem] rounded-[12px] px-[1rem] py-[0.8rem] bg-[#212529] text-white flex items-row gap-2 item-center justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
