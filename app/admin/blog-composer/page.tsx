@@ -14,18 +14,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // Components
 import RichTextEditor from "@/components/tiptap/RichTextEditor";
 import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
-import CreatPost from "@/features/blog-composer/components/headings/CreatPost";
 import MenuBar from "@/components/tiptap/MenuBar";
 import PrimaryHeader from "@/components/headers/PrimaryHeader";
 import TextInput from "@/components/form-components/TextInputV2";
 import {
   Form,
-  FormControl,
-  FormDescription,
   FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 
 // Zod Schemas
