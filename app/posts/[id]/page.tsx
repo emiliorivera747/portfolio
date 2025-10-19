@@ -21,7 +21,7 @@ const Page = () => {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
-      <article className="h-screen  sm:mx-[10%] md:mx-[20%]">
+      <article className="h-screen  sm:mx-[10%] md:mx-[20%] font-normal">
         <div className="pt-[10rem] mx-[8%] text-4xl">
           <h1 className="text-primary-1000 font-semibold mb-4 times-header">
             {postResponse?.data?.title}
@@ -46,11 +46,14 @@ const Page = () => {
               <span>1 min read</span>
             </div>
 
-            {new Date(postResponse?.data?.created_at).toLocaleDateString("en-US", {
-              month: "short",
-              day: "2-digit",
-              year: "numeric",
-            })}
+            {new Date(postResponse?.data?.created_at).toLocaleDateString(
+              "en-US",
+              {
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+              }
+            )}
           </span>
           {postResponse?.data?.content_block?.map(
             ({
@@ -63,7 +66,7 @@ const Page = () => {
               return (
                 <div
                   key={content_order}
-                  className="blog-content "
+                  className="blog-content font-extralight"
                   dangerouslySetInnerHTML={{
                     __html: renderTipTapJSON(content_data) || "",
                   }}

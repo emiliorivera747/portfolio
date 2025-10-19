@@ -242,12 +242,10 @@
 }
 
 .mission-statement {
-
   width: 100%;
   /* font-size: 0.9rem; */
   @media (min-width: 640px) {
     width: 40rem;
-    
   }
 }
 
@@ -444,12 +442,13 @@ input:-webkit-autofill:active {
 
 .blog-content p {
   margin-bottom: 1rem;
-  line-height: 1.8;
-  font-size: 1.2rem;
-  font-weight: 200;
-  color: #212529;
+  line-height: 1.75;
+  font-size: 1.125rem;
+
+  color: #37474f;
+  /* font-family: Graphik, sans-serif; */
 }
 
-.blog-content h1{
+.blog-content h1 {
   font-size: 2rem;
 }
