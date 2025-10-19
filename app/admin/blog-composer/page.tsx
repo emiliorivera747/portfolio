@@ -17,10 +17,7 @@ import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
 import MenuBar from "@/components/tiptap/MenuBar";
 import PrimaryHeader from "@/components/headers/PrimaryHeader";
 import TextInput from "@/components/form-components/TextInputV2";
-import {
-  Form,
-  FormField,
-} from "@/components/ui/form";
+import { Form, FormField } from "@/components/ui/form";
 
 // Zod Schemas
 import {
@@ -96,7 +93,7 @@ const Page = () => {
     const post: PostWithRelations = {
       title: data.title,
       content_blocks: content_blocks,
-      description: "",
+      description: data.description,
     };
 
     mutatePost(post);
