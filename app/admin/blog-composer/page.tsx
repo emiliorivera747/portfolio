@@ -18,6 +18,7 @@ import MenuBar from "@/components/tiptap/MenuBar";
 import PrimaryHeader from "@/components/headers/PrimaryHeader";
 import TextInput from "@/components/form-components/TextInputV2";
 import { Form, FormField } from "@/components/ui/form";
+import UploadButton from "@/components/form-components/UploadButton";
 
 // Zod Schemas
 import {
@@ -28,6 +29,7 @@ import {
 // Hooks
 import useCreatePost from "@/features/blog-composer/hooks/useCreatePost";
 import { PostWithRelations } from "@/features/blogs/types/post";
+import useFile from "@/hooks/useFile";
 
 const extensions: any[] = [
   StarterKit.configure({
@@ -51,8 +53,10 @@ const extensions: any[] = [
  */
 const Page = () => {
   const buttonRef = useRef(null);
+  const [open, setOpen] = useState(false);
 
   const { mutatePost, isPendingPost } = useCreatePost();
+  const { handleFileChange, file } = useFile();
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -108,8 +112,10 @@ const Page = () => {
             className="flex flex-col items-center  w-[40rem] pt-[4rem] "
           >
             <PrimaryHeader title={"Create Post"} />
-
             <div className="w-full flex flex-col mb-4">
+              <h1 className="text-lg font-medium text-primary-900 mb-2 ">
+                Post Details
+              </h1>
               <FormField
                 control={form.control}
                 name="title"
@@ -137,6 +143,13 @@ const Page = () => {
                     defaultValue={field.value}
                   />
                 )}
+              />
+
+              <UploadButton
+                data-testid="upload-button"
+                handleFileChange={handleFileChange}
+                open={open}
+                setOpen={setOpen}
               />
             </div>
 
