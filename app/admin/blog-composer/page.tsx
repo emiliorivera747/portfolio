@@ -17,7 +17,7 @@ import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
 import CreatPost from "@/features/blog-composer/components/headings/CreatPost";
 import MenuBar from "@/components/tiptap/MenuBar";
 import PrimaryHeader from "@/components/headers/PrimaryHeader";
-import TextInput from "@/components/form-components/TextInput";
+import TextInput from "@/components/form-components/TextInputV2";
 import {
   Form,
   FormControl,
@@ -63,12 +63,7 @@ const Page = () => {
 
   const { mutatePost, isPendingPost } = useCreatePost();
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    setError,
-  } = useForm<FormSchema>({
+  const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
 
@@ -116,35 +111,42 @@ const Page = () => {
   return (
     <section className="w-full max-h-screen overflow-y-scroll">
       <div className="h-auto flex items-center justify-center mb-10 mx-[6%]">
-        {/* <Form {...form}> </Form> */}
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col items-center  w-[40rem] pt-[4rem] "
-        >
-          <PrimaryHeader title={"Create Post"} />
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col items-center  w-[40rem] pt-[4rem] "
+          >
+            <PrimaryHeader title={"Create Post"} />
 
-          <div className="w-full mb-4">
-            <TextInput
-              type="text"
-              id="title"
-              placeholder="Title"
-              errors={errors}
-              register={register}
-              fieldName="title"
+            <div className="w-full mb-4">
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <TextInput
+                    control={form.control}
+                    name="title"
+                    id="title"
+                    placeholder="Title"
+                    type="text"
+                    defaultValue={field.value}
+                  />
+                )}
+              ></FormField>
+            </div>
+
+            <div className="w-full mb-8">
+              <MenuBar editor={editor} />
+              <RichTextEditor editor={editor} />
+            </div>
+
+            <PrimarySubmitButton
+              className="mt-4"
+              ref={buttonRef}
+              text="Publish"
             />
-          </div>
-
-          <div className="w-full mb-8">
-            <MenuBar editor={editor} />
-            <RichTextEditor editor={editor} />
-          </div>
-
-          <PrimarySubmitButton
-            className="mt-4"
-            ref={buttonRef}
-            text="Publish"
-          />
-        </form>
+          </form>
+        </Form>
       </div>
       {blogContent && (
         <div className="h-screen flex  w-full flex-col mx-20">

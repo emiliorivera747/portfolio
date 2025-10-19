@@ -3,6 +3,7 @@ import {
   Path,
   FieldValues,
   FieldErrors,
+  Control,
 } from "react-hook-form";
 
 export interface PasswordInputProps<TFieldValues extends FieldValues> {
@@ -31,8 +32,8 @@ export interface NumberInputProps<TFieldValues extends FieldValues> {
   rounded?: string;
   errTextSize?: string;
   withPlaceholder?: boolean;
-  min?:number;
-  max?:number;
+  min?: number;
+  max?: number;
 }
 
 export interface NumberInputV2Props {
@@ -55,6 +56,18 @@ export interface TextInputProps<TFieldValues extends FieldValues> {
   w?: string;
 }
 
+export interface TextInputV2Props<TFieldValues extends FieldValues> {
+  control: Control<TFieldValues>;
+  name: Path<TFieldValues>;
+  type?: string;
+  id: string;
+  placeholder?: string;
+  defaultValue?: string;
+  pt?: string;
+  px?: string;
+  h?: string;
+  w?: string;
+}
 export interface PrimaryInputLabelProps<TFieldValues extends FieldValues> {
   id: string;
   fieldName: string;
