@@ -21,7 +21,7 @@ const Page = () => {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
-      <article className="h-screen w-screen">
+      <article className="h-screen  sm:mx-[10%] md:mx-[20%]">
         <div className="pt-[10rem] mx-[8%] text-4xl">
           <h1 className="text-primary-1000 font-semibold mb-4 times-header">
             {postResponse?.data?.title}
@@ -63,7 +63,7 @@ const Page = () => {
               return (
                 <div
                   key={content_order}
-                  className="blog-content"
+                  className="blog-content "
                   dangerouslySetInnerHTML={{
                     __html: renderTipTapJSON(content_data) || "",
                   }}
