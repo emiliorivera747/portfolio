@@ -1,7 +1,8 @@
 import { z } from "zod";
 
-export const titleSchema = z.object({
+export const formSchema = z.object({
   title: z.string().max(60, "Email cannot be longer than 60 characters"),
+  description: z.string().max(60, "Email cannot be longer than 60 characters"),
 });
 
-export type TitleSchema = z.infer<typeof titleSchema>;
+export type FormSchema = z.infer<typeof formSchema>;

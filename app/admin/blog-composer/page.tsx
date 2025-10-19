@@ -18,11 +18,20 @@ import CreatPost from "@/features/blog-composer/components/headings/CreatPost";
 import MenuBar from "@/components/tiptap/MenuBar";
 import PrimaryHeader from "@/components/headers/PrimaryHeader";
 import TextInput from "@/components/form-components/TextInput";
-
-// Zod Scheam
 import {
-  TitleSchema,
-  titleSchema,
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+// Zod Schemas
+import {
+  formSchema,
+  FormSchema,
 } from "@/features/blog-composer/schemas/composerSchemas";
 
 // Hooks
@@ -59,8 +68,8 @@ const Page = () => {
     formState: { errors },
     handleSubmit,
     setError,
-  } = useForm<TitleSchema>({
-    resolver: zodResolver(titleSchema),
+  } = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
   });
 
   const [blogContent, setBlogContent] = useState<string | null>(null);
@@ -89,7 +98,7 @@ const Page = () => {
 
   if (!editor) return null;
 
-  const onSubmit = (data: TitleSchema): void => {
+  const onSubmit = (data: FormSchema): void => {
     const jsonData = editor.getJSON();
     const content_blocks = [
       { content_order: 0, content_type: "paragraph", content_data: jsonData },
@@ -107,13 +116,13 @@ const Page = () => {
   return (
     <section className="w-full max-h-screen overflow-y-scroll">
       <div className="h-auto flex items-center justify-center mb-10 mx-[6%]">
+        {/* <Form {...form}> </Form> */}
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col items-center  w-[40rem] pt-[4rem] "
         >
           <PrimaryHeader title={"Create Post"} />
 
-          {/* Title */}
           <div className="w-full mb-4">
             <TextInput
               type="text"
@@ -125,13 +134,11 @@ const Page = () => {
             />
           </div>
 
-          {/* Text Editor */}
           <div className="w-full mb-8">
             <MenuBar editor={editor} />
             <RichTextEditor editor={editor} />
           </div>
 
-          {/* Primary Submit Button */}
           <PrimarySubmitButton
             className="mt-4"
             ref={buttonRef}
