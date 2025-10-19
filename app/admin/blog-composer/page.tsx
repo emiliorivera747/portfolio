@@ -118,7 +118,7 @@ const Page = () => {
           >
             <PrimaryHeader title={"Create Post"} />
 
-            <div className="w-full mb-4">
+            <div className="w-full flex flex-col gap-2 mb-4">
               <FormField
                 control={form.control}
                 name="title"
@@ -132,7 +132,21 @@ const Page = () => {
                     defaultValue={field.value}
                   />
                 )}
-              ></FormField>
+              />
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <TextInput
+                    control={form.control}
+                    name="description"
+                    id="description"
+                    placeholder="Description"
+                    type="text"
+                    defaultValue={field.value}
+                  />
+                )}
+              />
             </div>
 
             <div className="w-full mb-8">
