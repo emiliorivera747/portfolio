@@ -23,7 +23,7 @@ const Page = () => {
       </Head>
       <article className="h-screen w-screen">
         <div className="pt-[10rem] mx-[8%] text-4xl">
-          <h1 className="text-primary-1000 font-semibold mb-4">
+          <h1 className="text-primary-1000 font-semibold mb-4 times-header">
             {postResponse?.data?.title}
           </h1>
 
