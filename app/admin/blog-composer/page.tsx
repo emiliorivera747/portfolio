@@ -19,6 +19,7 @@ import PrimaryHeader from "@/components/headers/PrimaryHeader";
 import TextInput from "@/components/form-components/TextInputV2";
 import { Form, FormField } from "@/components/ui/form";
 import UploadButton from "@/components/form-components/UploadButton";
+import PostContentSelect from "@/features/blog-composer/components/post-content/PostContentSelect";
 
 // Zod Schemas
 import {
@@ -153,27 +154,7 @@ const Page = () => {
               />
             </div>
 
-            <div className="w-full h-full">
-              <h1 className="text-lg font-medium text-primary-900 mb-2 mt-4">
-                Post Content
-              </h1>
-              <button className="rounded-[12px] py-4 border w-full h-full flex items-center justify-center hover:bg-primary-100">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="size-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 4.5v15m7.5-7.5h-15"
-                  />
-                </svg>
-              </button>
-            </div>
+            <PostContentSelect />
 
             {/* <div className="w-full mb-8">
               <MenuBar editor={editor} />
