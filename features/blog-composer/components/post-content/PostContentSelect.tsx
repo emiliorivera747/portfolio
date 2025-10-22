@@ -10,11 +10,11 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-interface PostContentSelectProps {
-  open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
-}
-
+/**
+ *
+ *
+ * @returns
+ */
 const PostContentSelect = () => {
   const [open, setOpen] = useState(false);
 
@@ -43,12 +43,11 @@ const PostContentSelect = () => {
           </div>
         </DialogTrigger>
         <DialogContent className="py-10">
-          <DialogHeader>
-            <DialogTitle className="">Select Content</DialogTitle>
-          </DialogHeader>
-
+          <DialogTitle className="text-center text-lg font-medium mb-4">
+            Select Content Type
+          </DialogTitle>
           <DialogTrigger>
-            <div className="w-full py-4 border rounded-[12px] flex items-center justify-center hover:bg-primary-100">
+            <div className="w-full py-4 border rounded-[12px] flex items-center justify-center hover:bg-primary-100 hover:text-primary-1000 text-primary-800 hover:text-bold">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -66,7 +65,7 @@ const PostContentSelect = () => {
             </div>
           </DialogTrigger>
           <DialogTrigger>
-            <div className="w-full py-4 border rounded-[12px] flex items-center justify-center hover:bg-primary-100">
+            <div className="w-full py-4 border rounded-[12px] flex items-center justify-center hover:bg-primary-100 hover:text-primary-1000 text-primary-800 hover:text-bold">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
