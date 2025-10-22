@@ -116,7 +116,7 @@ const Page = () => {
             <PrimaryHeader title={"Create Post"} />
             <div className="w-full flex flex-col mb-10">
               <h1 className="text-lg font-medium text-primary-900 mb-2 ">
-                Post Details
+                Details
               </h1>
               <FormField
                 control={form.control}
