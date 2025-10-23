@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import type { Dispatch, SetStateAction } from "react";
 
 import {
@@ -19,6 +19,7 @@ import SelectContentButton from "@/features/blog-composer/components/buttons/Sel
  */
 const PostContentSelect = () => {
   const [open, setOpen] = useState(false);
+  const buttonRef = useRef(null);
 
   return (
     <div className="w-full h-full">
@@ -27,24 +28,13 @@ const PostContentSelect = () => {
       </h1>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className="w-full">
-          <div className="rounded-[12px] py-4 border w-full h-full flex items-center justify-center hover:bg-primary-100">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 4.5v15m7.5-7.5h-15"
-              />
-            </svg>
-          </div>
+          <SelectContentButton
+            path="M12 4.5v15m7.5-7.5h-15"
+            ref={buttonRef}
+            className={"bg-white"}
+          />
         </DialogTrigger>
-        <DialogContent className="py-10">
+        <DialogContent className="py-10 px-10">
           <DialogTitle className="text-center text-lg font-medium mb-4">
             Select Content Type
           </DialogTitle>
