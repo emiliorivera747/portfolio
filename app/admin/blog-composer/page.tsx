@@ -33,6 +33,9 @@ import useCreatePost from "@/features/blog-composer/hooks/useCreatePost";
 import { PostWithRelations } from "@/features/blogs/types/post";
 import useFile from "@/hooks/useFile";
 
+// Data 
+import {fields} from '@/features/blog-composer/data/formFields';
+
 const extensions: any[] = [
   StarterKit.configure({
     paragraph: {
@@ -47,20 +50,6 @@ const extensions: any[] = [
   Highlight,
 ];
 
-const fields = [
-  {
-    id: "title",
-    name: "title",
-    placeholder: "Title",
-    type: "text",
-  },
-  {
-    id: "description",
-    name: "description",
-    placeholder: "Description",
-    type: "text",
-  },
-];
 
 /**
  *

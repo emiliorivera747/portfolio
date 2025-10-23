@@ -94,14 +94,14 @@ export interface UploadButtonProps {
   open: boolean;
 }
 
-export interface FormFieldType<TFieldValues extends FieldValues> {
-  control: Control<TFieldValues>;
+export type FormField<TFieldValues extends FieldValues> = {
+  control?: Control<TFieldValues>;
   name: string;
   id: string;
   placeholder: string;
   type: string;
-}
+};
 
 export interface FormFieldGeneratorProps {
-  fields: FormFieldType[];
+  fields: FormField<FieldValues>[];
 }
