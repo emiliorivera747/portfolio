@@ -2,7 +2,7 @@ import React from "react";
 
 interface SelectContentButtonProps {
   path: string;
-  strokeWidth: number;
+  strokeWidth?: number;
 }
 
 const SelectContentButton = ({
