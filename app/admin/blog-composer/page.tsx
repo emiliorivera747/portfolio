@@ -133,36 +133,13 @@ const Page = () => {
                 Details
               </h1>
 
-              {}
+              <FormFieldGenerator
+                fields={fields.map((field) => ({
+                  ...field,
+                  control: form.control,
+                }))}
+              />
 
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <TextInput
-                    control={form.control}
-                    name="title"
-                    id="title"
-                    placeholder="Title"
-                    type="text"
-                    defaultValue={field.value}
-                  />
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <TextInput
-                    control={form.control}
-                    name="description"
-                    id="description"
-                    placeholder="Description"
-                    type="text"
-                    defaultValue={field.value}
-                  />
-                )}
-              />
               <UploadButton
                 data-testid="upload-button"
                 handleFileChange={handleFileChange}
