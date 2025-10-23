@@ -6,7 +6,7 @@ import {
   Control,
 } from "react-hook-form";
 
-import type { Dispatch, SetStateAction } from 'react';
+import type { Dispatch, SetStateAction } from "react";
 
 export interface PasswordInputProps<TFieldValues extends FieldValues> {
   id?: string;
@@ -88,11 +88,20 @@ export interface Input {
   password1: string;
 }
 
-
-
-
 export interface UploadButtonProps {
   handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   setOpen: Dispatch<SetStateAction<boolean>>;
   open: boolean;
+}
+
+export interface FormFieldType<TFieldValues extends FieldValues = FieldValues> {
+  control: Control<TFieldValues>;
+  name: string;
+  id: string;
+  placeholder: string;
+  type: string;
+}
+
+export interface FormFieldGeneratorProps {
+  fields: FormFieldType[];
 }
