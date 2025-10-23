@@ -6,7 +6,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 <img width="1512" height="904" alt="Screenshot 2025-09-25 at 4 37 09 PM" src="https://github.com/user-attachments/assets/9071a58c-88df-4253-9700-219cc4a83b62" />
 
-<img width="1512" height="901" alt="Screenshot 2025-10-11 at 2 46 24 PM" src="https://github.com/user-attachments/assets/bcb5cf84-b51c-4c83-8246-ef4d971bb54c" />
+<img width="1510" height="853" alt="Screenshot 2025-10-22 at 9 03 17 PM" src="https://github.com/user-attachments/assets/e4f5ee75-060c-48f8-8f34-d61611bb386a" />
+
 
 ## Getting Started
 
