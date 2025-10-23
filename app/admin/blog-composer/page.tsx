@@ -95,13 +95,11 @@ const Page = () => {
     const content_blocks = [
       { content_order: 0, content_type: "paragraph", content_data: jsonData },
     ];
-
     const post: PostWithRelations = {
       title: data.title,
       content_blocks: content_blocks,
       description: data.description,
     };
-
     mutatePost(post);
   };
 
