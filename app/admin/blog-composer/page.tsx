@@ -20,6 +20,7 @@ import TextInput from "@/components/form-components/TextInputV2";
 import { Form, FormField } from "@/components/ui/form";
 import UploadButton from "@/components/form-components/UploadButton";
 import PostContentSelect from "@/features/blog-composer/components/post-content/PostContentSelect";
+import FormFieldGenerator from "@/components/form-builder/FormFieldGenerator";
 
 // Zod Schemas
 import {
@@ -44,6 +45,21 @@ const extensions: any[] = [
     types: ["heading", "paragraph"],
   }),
   Highlight,
+];
+
+const fields = [
+  {
+    id: "title",
+    name: "title",
+    placeholder: "Title",
+    type: "text",
+  },
+  {
+    id: "description",
+    name: "description",
+    placeholder: "Description",
+    type: "text",
+  },
 ];
 
 /**
@@ -116,6 +132,9 @@ const Page = () => {
               <h1 className="text-lg font-medium text-primary-900 mb-2 ">
                 Details
               </h1>
+
+              {}
+
               <FormField
                 control={form.control}
                 name="title"
