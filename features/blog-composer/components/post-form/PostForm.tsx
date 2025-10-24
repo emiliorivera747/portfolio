@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useRef } from "react";
 
 // External Lib
@@ -13,6 +14,8 @@ import PostContentSelect from "@/features/blog-composer/components/post-content/
 import FormFieldGenerator from "@/components/form-builder/FormFieldGenerator";
 import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
 import PostContent from "@/features/blog-composer/components/post-content/PostContent";
+import MenuBar from "@/components/tiptap/MenuBar";
+import RichTextEditor from "@/components/tiptap/RichTextEditor";
 
 // Zod Schemas
 import {
@@ -70,10 +73,10 @@ const PostForm = ({
 
         <PostContentSelect />
 
-        {/* <div className="w-full mb-8">
-        <MenuBar editor={editor} />
-        <RichTextEditor editor={editor} />
-      </div> */}
+        <div className="w-full mb-8">
+          <MenuBar editor={editor} />
+          <RichTextEditor editor={editor} />
+        </div>
 
         <PrimarySubmitButton className="mt-4" ref={buttonRef} text="Publish" />
       </form>

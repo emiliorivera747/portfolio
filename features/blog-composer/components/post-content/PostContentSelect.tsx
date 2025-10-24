@@ -21,7 +21,7 @@ const PostContentSelect = () => {
   const buttonRef = useRef(null);
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full mb-8">
       <SecondaryHeader label={"Content"} />
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className="w-full">
