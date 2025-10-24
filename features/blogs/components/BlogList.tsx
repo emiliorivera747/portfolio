@@ -13,29 +13,32 @@ import BlogItemContent from "@/features/blogs/components/BlogItemContent";
  * @returns
  */
 const BlogList = ({ posts }: PostListProps) => {
+  const sortedPosts = Array.isArray(posts)
+    ? [...posts].sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime())
+    : [];
+
   return (
     <div>
-      {Array.isArray(posts) &&
-        posts?.map(({ image_url, title, description, id, created_at}: Post) => {
-          return (
-            <div
-              key={id}
-              className="border-y py-8 flex gap-10 border-primary-200 flex-col sm:flex-row"
-            >
-              <BlogListImageSection
-                image_url={image_url}
-                title={title}
-                id={id}
-              />
-              <BlogItemContent
-                title={title}
-                id={id}
-                description={description}
-                createdAt={created_at }
-              />
-            </div>
-          );
-        })}
+      {sortedPosts.map(({ image_url, title, description, id, created_at }: Post) => {
+        return (
+          <div
+            key={id}
+            className="border-y py-8 flex gap-10 border-primary-200 flex-col sm:flex-row"
+          >
+            <BlogListImageSection
+              image_url={image_url}
+              title={title}
+              id={id}
+            />
+            <BlogItemContent
+              title={title}
+              id={id}
+              description={description}
+              createdAt={created_at}
+            />
+          </div>
+        );
+      })}
       {(!posts || posts?.length === 0) && <div className="text-2xl text-primary-700 font-extralight">No posts found at this time.</div>}
     </div>
   );

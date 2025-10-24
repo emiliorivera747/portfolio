@@ -31,9 +31,9 @@ import {
 // Hooks
 import useCreatePost from "@/features/blog-composer/hooks/useCreatePost";
 import useFile from "@/hooks/useFile";
+import useSubmitPost from "@/features/blog-composer/hooks/useSubmitPost";
 
 // Types
-import { PostWithRelations } from "@/features/blogs/types/post";
 
 // Data
 import { fields } from "@/features/blog-composer/data/formFields";
@@ -63,7 +63,6 @@ const Page = () => {
   const [open, setOpen] = useState(false);
   const [contentBlock, setContentBlock] = useState([]);
 
-  const { mutatePost, isPendingPost } = useCreatePost();
   const { handleFileChange, file } = useFile();
 
   const form = useForm<FormSchema>({
@@ -93,21 +92,9 @@ const Page = () => {
       );
     },
   });
+  const { onSubmit } = useSubmitPost({ editor: editor });
 
   if (!editor) return null;
-
-  const onSubmit = (data: FormSchema): void => {
-    const jsonData = editor.getJSON();
-    const content_blocks = [
-      { content_order: 0, content_type: "paragraph", content_data: jsonData },
-    ];
-    const post: PostWithRelations = {
-      title: data.title,
-      content_blocks: content_blocks,
-      description: data.description,
-    };
-    mutatePost(post);
-  };
 
   return (
     <section className="w-full max-h-screen overflow-y-scroll">
