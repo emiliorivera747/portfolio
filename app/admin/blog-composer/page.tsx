@@ -33,8 +33,8 @@ import useCreatePost from "@/features/blog-composer/hooks/useCreatePost";
 import { PostWithRelations } from "@/features/blogs/types/post";
 import useFile from "@/hooks/useFile";
 
-// Data 
-import {fields} from '@/features/blog-composer/data/formFields';
+// Data
+import { fields } from "@/features/blog-composer/data/formFields";
 
 const extensions: any[] = [
   StarterKit.configure({
@@ -49,7 +49,6 @@ const extensions: any[] = [
   }),
   Highlight,
 ];
-
 
 /**
  *
@@ -125,7 +124,7 @@ const Page = () => {
               <FormFieldGenerator
                 fields={fields.map((field) => ({
                   ...field,
-                  control: form.control,
+                  control: form.control as any,
                 }))}
               />
 
