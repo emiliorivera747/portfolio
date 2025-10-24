@@ -50,14 +50,18 @@ const PostForm = ({ onSubmit }: { onSubmit: (data: FormSchema) => void }) => {
         className="flex flex-col items-center  w-[40rem] pt-[4rem]"
       >
         <PrimaryHeader title={"Create Post"} />
+
         <div className="w-full flex flex-col mb-10">
+          
           <SecondaryHeader label="Details" />
+          
           <FormFieldGenerator
             fields={fields.map((field) => ({
               ...field,
               control: form.control as any,
             }))}
           />
+          
           <UploadButton
             data-testid="upload-button"
             handleFileChange={handleFileChange}

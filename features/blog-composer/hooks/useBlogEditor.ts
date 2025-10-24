@@ -35,8 +35,7 @@ const useBlogEditor = ({
     content: initialContent,
     autofocus: true,
     onUpdate: ({ editor }) => {
-      const json = editor.getJSON();
-      const html = renderTipTapJSON(json);
+      const html = renderTipTapJSON(editor.getJSON());
       onUpdate(id, html);
     },
   }, [id]);
