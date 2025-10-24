@@ -15,6 +15,7 @@ import useBlogEditor from "@/features/blog-composer/hooks/useBlogEditor";
  *
  */
 const Page = () => {
+  const [contentBlocks, setContentBlocks] = useState([]);
   const { editor, blogContent } = useBlogEditor();
   const { onSubmit } = useSubmitPost({ editor: editor });
 

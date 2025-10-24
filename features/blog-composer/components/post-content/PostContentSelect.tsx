@@ -1,16 +1,17 @@
 "use client";
+
 import { useState, useRef } from "react";
-import type { Dispatch, SetStateAction } from "react";
 
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 
 import SelectContentButton from "@/features/blog-composer/components/buttons/SelectContentButton";
+
+import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
 
 /**
  * Allows you to select post content whether images, text, videos, and more.
@@ -21,9 +22,7 @@ const PostContentSelect = () => {
 
   return (
     <div className="w-full h-full">
-      <h1 className="text-lg font-medium text-primary-900 mb-2 mt-4">
-        Content
-      </h1>
+      <SecondaryHeader label={"Content"} />
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className="w-full">
           <SelectContentButton
