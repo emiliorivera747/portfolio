@@ -2,21 +2,12 @@
 import React, { useRef, useState } from "react";
 
 //External Lib
-import Highlight from "@tiptap/extension-highlight";
-import TextAlign from "@tiptap/extension-text-align";
-import { useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
-import DOMPurify from "dompurify";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 // Components
-import RichTextEditor from "@/components/tiptap/RichTextEditor";
 import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
-import MenuBar from "@/components/tiptap/MenuBar";
 import PrimaryHeader from "@/components/headers/PrimaryHeader";
-import TextInput from "@/components/form-components/TextInputV2";
 import { Form, FormField } from "@/components/ui/form";
 import UploadButton from "@/components/form-components/UploadButton";
 import PostContentSelect from "@/features/blog-composer/components/post-content/PostContentSelect";
@@ -31,18 +22,12 @@ import {
 } from "@/features/blog-composer/schemas/composerSchemas";
 
 // Hooks
-import useCreatePost from "@/features/blog-composer/hooks/useCreatePost";
 import useFile from "@/hooks/useFile";
 import useSubmitPost from "@/features/blog-composer/hooks/useSubmitPost";
+import useBlogEditor from "@/features/blog-composer/hooks/useBlogEditor";
 
 // Data
 import { fields } from "@/features/blog-composer/data/formFields";
-
-// Config
-import {
-  editorConfig,
-  extensions,
-} from "@/features/blog-composer/config/editorConfig";
 
 /**
  *
@@ -53,30 +38,14 @@ import {
 const Page = () => {
   const buttonRef = useRef(null);
   const [open, setOpen] = useState(false);
+  const { editor, blogContent } = useBlogEditor();
   const [contentBlock, setContentBlock] = useState([]);
-
   const { handleFileChange, file } = useFile();
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
 
-  const [blogContent, setBlogContent] = useState<string | null>(null);
-
-  const editor = useEditor({
-    ...editorConfig,
-    extensions: extensions,
-    onUpdate: ({ editor }) => {
-      const json = editor.getJSON();
-      const html = renderTipTapJSON(json);
-      setBlogContent(
-        DOMPurify.sanitize(html, {
-          ADD_TAGS: ["h1", "h2", "h3", "h4", "h5", "h6"],
-          ADD_ATTR: ["class", "style"],
-        })
-      );
-    },
-  });
   const { onSubmit } = useSubmitPost({ editor: editor });
 
   if (!editor) return null;
@@ -105,7 +74,7 @@ const Page = () => {
                 setOpen={setOpen}
               />
             </div>
-            
+
             <PostContentSelect />
 
             {/* <div className="w-full mb-8">

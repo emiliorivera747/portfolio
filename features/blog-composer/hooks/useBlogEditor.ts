@@ -11,6 +11,12 @@ import {
   extensions,
 } from "@/features/blog-composer/config/editorConfig";
 
+/**
+ *
+ * Creates blog editor
+ *
+ * @returns
+ */
 const useBlogEditor = () => {
   const [blogContent, setBlogContent] = useState<string | null>(null);
 
