@@ -13,9 +13,7 @@ import {
 import SelectContentButton from "@/features/blog-composer/components/buttons/SelectContentButton";
 
 /**
- *
- *
- * @returns
+ * Allows you to select post content whether images, text, videos, and more.
  */
 const PostContentSelect = () => {
   const [open, setOpen] = useState(false);
