@@ -16,6 +16,7 @@ import SecondaryHeader from "@/features/blog-composer/components/headings/Second
 import PostContent from "@/features/blog-composer/components/post-content/PostContent";
 import MenuBar from "@/components/tiptap/MenuBar";
 import RichTextEditor from "@/components/tiptap/RichTextEditor";
+import EditorWithMenu from "@/components/tiptap/EditorWithMenu";
 
 // Zod Schemas
 import {
@@ -73,10 +74,7 @@ const PostForm = ({
 
         <PostContentSelect />
 
-        <div className="w-full mb-8">
-          <MenuBar editor={editor} />
-          <RichTextEditor editor={editor} />
-        </div>
+        <EditorWithMenu />
 
         <PrimarySubmitButton className="mt-4" ref={buttonRef} text="Publish" />
       </form>

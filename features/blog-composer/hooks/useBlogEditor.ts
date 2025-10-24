@@ -11,29 +11,37 @@ import {
   extensions,
 } from "@/features/blog-composer/config/editorConfig";
 
+interface UseBlogEditorProps {
+  id: string;
+  initialContent: string;
+  onUpdate: (id: string, newContent: string) => void;
+}
+
 /**
  *
  * Creates blog editor
  *
  * @returns
  */
-const useBlogEditor = () => {
+const useBlogEditor = ({
+  id,
+  initialContent,
+  onUpdate,
+}: UseBlogEditorProps) => {
   const [blogContent, setBlogContent] = useState<string | null>(null);
 
   const editor = useEditor({
     ...editorConfig,
     extensions: extensions,
+    content: initialContent,
+    autofocus: true,
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
       const html = renderTipTapJSON(json);
-      setBlogContent(
-        DOMPurify.sanitize(html, {
-          ADD_TAGS: ["h1", "h2", "h3", "h4", "h5", "h6"],
-          ADD_ATTR: ["class", "style"],
-        })
-      );
+      onUpdate(id, html);
     },
   });
+
   return { editor, blogContent };
 };
 
