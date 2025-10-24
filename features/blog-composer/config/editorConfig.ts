@@ -1,3 +1,6 @@
+import StarterKit from "@tiptap/starter-kit";
+import TextAlign from "@tiptap/extension-text-align";
+
 export const editorConfig = {
   immediatelyRender: false,
   content: "",
@@ -8,3 +11,17 @@ export const editorConfig = {
     },
   },
 };
+
+export const extensions: any[] = [
+  StarterKit.configure({
+    paragraph: {
+      HTMLAttributes: {
+        class: "mb-6",
+      },
+    },
+  }),
+  TextAlign.configure({
+    types: ["heading", "paragraph"],
+  }),
+  Highlight,
+];

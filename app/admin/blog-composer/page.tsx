@@ -39,21 +39,10 @@ import useSubmitPost from "@/features/blog-composer/hooks/useSubmitPost";
 import { fields } from "@/features/blog-composer/data/formFields";
 
 // Config
-import { editorConfig } from "@/features/blog-composer/config/editorConfig";
-
-const extensions: any[] = [
-  StarterKit.configure({
-    paragraph: {
-      HTMLAttributes: {
-        class: "mb-6",
-      },
-    },
-  }),
-  TextAlign.configure({
-    types: ["heading", "paragraph"],
-  }),
-  Highlight,
-];
+import {
+  editorConfig,
+  extensions,
+} from "@/features/blog-composer/config/editorConfig";
 
 /**
  *
@@ -116,6 +105,7 @@ const Page = () => {
                 setOpen={setOpen}
               />
             </div>
+            
             <PostContentSelect />
 
             {/* <div className="w-full mb-8">
