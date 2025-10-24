@@ -1,34 +1,12 @@
 "use client";
-import React, { useRef, useState } from "react";
-
-//External Lib
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import React, { useState } from "react";
 
 // Components
-import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
-import PrimaryHeader from "@/components/headers/PrimaryHeader";
-import { Form, FormField } from "@/components/ui/form";
-import UploadButton from "@/components/form-components/UploadButton";
-import PostContentSelect from "@/features/blog-composer/components/post-content/PostContentSelect";
-import FormFieldGenerator from "@/components/form-builder/FormFieldGenerator";
-import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
-import PostContent from "@/features/blog-composer/components/post-content/PostContent";
 import PostForm from "@/features/blog-composer/components/post-form/PostForm";
 
-// Zod Schemas
-import {
-  formSchema,
-  FormSchema,
-} from "@/features/blog-composer/schemas/composerSchemas";
-
 // Hooks
-import useFile from "@/hooks/useFile";
 import useSubmitPost from "@/features/blog-composer/hooks/useSubmitPost";
 import useBlogEditor from "@/features/blog-composer/hooks/useBlogEditor";
-
-// Data
-import { fields } from "@/features/blog-composer/data/formFields";
 
 /**
  *
@@ -50,7 +28,7 @@ const Page = () => {
       </div>
 
       {/* Preview of the Post Content */}
-      {blogContent && <PostContent blogContent={blogContent} />}
+      {/* {blogContent && <PostContent blogContent={blogContent} />} */}
     </section>
   );
 };

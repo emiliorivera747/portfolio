@@ -21,8 +21,6 @@ import {
 } from "@/features/blog-composer/schemas/composerSchemas";
 
 // Hooks
-import useSubmitPost from "@/features/blog-composer/hooks/useSubmitPost";
-import useBlogEditor from "@/features/blog-composer/hooks/useBlogEditor";
 import useFile from "@/hooks/useFile";
 
 // Data
