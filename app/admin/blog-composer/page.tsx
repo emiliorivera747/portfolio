@@ -30,8 +30,10 @@ import {
 
 // Hooks
 import useCreatePost from "@/features/blog-composer/hooks/useCreatePost";
-import { PostWithRelations } from "@/features/blogs/types/post";
 import useFile from "@/hooks/useFile";
+
+// Types
+import { PostWithRelations } from "@/features/blogs/types/post";
 
 // Data
 import { fields } from "@/features/blog-composer/data/formFields";
