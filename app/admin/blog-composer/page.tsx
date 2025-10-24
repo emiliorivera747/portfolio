@@ -22,6 +22,7 @@ import UploadButton from "@/components/form-components/UploadButton";
 import PostContentSelect from "@/features/blog-composer/components/post-content/PostContentSelect";
 import FormFieldGenerator from "@/components/form-builder/FormFieldGenerator";
 import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
+import PostContent from "@/features/blog-composer/components/post-content/PostContent";
 
 // Zod Schemas
 import {
@@ -34,10 +35,11 @@ import useCreatePost from "@/features/blog-composer/hooks/useCreatePost";
 import useFile from "@/hooks/useFile";
 import useSubmitPost from "@/features/blog-composer/hooks/useSubmitPost";
 
-// Types
-
 // Data
 import { fields } from "@/features/blog-composer/data/formFields";
+
+// Config
+import { editorConfig } from "@/features/blog-composer/config/editorConfig";
 
 const extensions: any[] = [
   StarterKit.configure({
@@ -52,17 +54,6 @@ const extensions: any[] = [
   }),
   Highlight,
 ];
-
-const editorConfig = {
-  immediatelyRender: false,
-  content: "",
-  editorProps: {
-    attributes: {
-      class:
-        "prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl border w-full border-primary-400 rounded-[12px] p-8 bg-zinc-50",
-    },
-  },
-};
 
 /**
  *
@@ -140,15 +131,9 @@ const Page = () => {
           </form>
         </Form>
       </div>
-      {blogContent && (
-        <div className="h-screen flex  w-full flex-col mx-20">
-          <PrimaryHeader title="Blog Preview" className="text-2xl" />
-          <div
-            className="blog-content"
-            dangerouslySetInnerHTML={{ __html: blogContent || "" }}
-          />
-        </div>
-      )}
+
+      {/* Preview of the Post Content */}
+      {blogContent && <PostContent blogContent={blogContent} />}
     </section>
   );
 };
