@@ -21,6 +21,7 @@ import { Form, FormField } from "@/components/ui/form";
 import UploadButton from "@/components/form-components/UploadButton";
 import PostContentSelect from "@/features/blog-composer/components/post-content/PostContentSelect";
 import FormFieldGenerator from "@/components/form-builder/FormFieldGenerator";
+import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
 
 // Zod Schemas
 import {
@@ -52,6 +53,17 @@ const extensions: any[] = [
   Highlight,
 ];
 
+const editorConfig = {
+  immediatelyRender: false,
+  content: "",
+  editorProps: {
+    attributes: {
+      class:
+        "prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl border w-full border-primary-400 rounded-[12px] p-8 bg-zinc-50",
+    },
+  },
+};
+
 /**
  *
  * The dashboard page will display a post composer which will allow the user
@@ -72,15 +84,8 @@ const Page = () => {
   const [blogContent, setBlogContent] = useState<string | null>(null);
 
   const editor = useEditor({
+    ...editorConfig,
     extensions: extensions,
-    immediatelyRender: false,
-    content: "",
-    editorProps: {
-      attributes: {
-        class:
-          "prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl border  w-full border-primary-400 rounded-[12px] p-8 bg-zinc-50",
-      },
-    },
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
       const html = renderTipTapJSON(json);
@@ -106,17 +111,13 @@ const Page = () => {
           >
             <PrimaryHeader title={"Create Post"} />
             <div className="w-full flex flex-col mb-10">
-              <h1 className="text-lg font-medium text-primary-900 mb-2 ">
-                Details
-              </h1>
-
+              <SecondaryHeader label="Details" />
               <FormFieldGenerator
                 fields={fields.map((field) => ({
                   ...field,
                   control: form.control as any,
                 }))}
               />
-
               <UploadButton
                 data-testid="upload-button"
                 handleFileChange={handleFileChange}
@@ -124,7 +125,6 @@ const Page = () => {
                 setOpen={setOpen}
               />
             </div>
-
             <PostContentSelect />
 
             {/* <div className="w-full mb-8">
