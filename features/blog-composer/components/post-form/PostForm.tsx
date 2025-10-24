@@ -33,13 +33,7 @@ import { fields } from "@/features/blog-composer/data/formFields";
 // Types
 import { Editor } from "@tiptap/react";
 
-const PostForm = ({
-  editor,
-  onSubmit,
-}: {
-  editor: Editor | null;
-  onSubmit: (data: FormSchema) => void;
-}) => {
+const PostForm = ({ onSubmit }: { onSubmit: (data: FormSchema) => void }) => {
   const buttonRef = useRef(null);
 
   const form = useForm<FormSchema>({
@@ -74,7 +68,7 @@ const PostForm = ({
 
         <PostContentSelect />
 
-        <EditorWithMenu />
+        {/* <EditorWithMenu /> */}
 
         <PrimarySubmitButton className="mt-4" ref={buttonRef} text="Publish" />
       </form>

@@ -21,7 +21,6 @@ interface UseBlogEditorProps {
  *
  * Creates blog editor
  *
- * @returns
  */
 const useBlogEditor = ({
   id,
@@ -40,7 +39,7 @@ const useBlogEditor = ({
       const html = renderTipTapJSON(json);
       onUpdate(id, html);
     },
-  });
+  }, [id]);
 
   return { editor, blogContent };
 };

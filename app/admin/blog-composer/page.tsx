@@ -16,16 +16,13 @@ import useBlogEditor from "@/features/blog-composer/hooks/useBlogEditor";
  */
 const Page = () => {
   const [contentBlocks, setContentBlocks] = useState([]);
-  const { editor, blogContent } = useBlogEditor();
-  const { onSubmit } = useSubmitPost({ editor: editor });
-
-  if (!editor) return null;
+  const { onSubmit } = useSubmitPost({ contentBlocks: [] });
 
   return (
     <section className="w-full max-h-screen overflow-y-scroll">
       {/* Form to show editor */}
       <div className="h-auto flex items-center justify-center mb-10 mx-[6%]">
-        <PostForm editor={editor} onSubmit={onSubmit} />
+        <PostForm onSubmit={onSubmit} />
       </div>
 
       {/* Preview of the Post Content */}
