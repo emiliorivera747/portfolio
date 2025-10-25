@@ -6,7 +6,8 @@
 
 <img width="1509" height="855" alt="Screenshot 2025-10-24 at 8 55 44 AM" src="https://github.com/user-attachments/assets/76a65a63-282e-472d-afde-602b82aa55f4" />
 
-<img width="1509" height="855" alt="Screenshot 2025-10-24 at 8 55 44 AM" src="https://github.com/user-attachments/assets/547be5d6-fd7a-4854-acb5-47dccf65d376" />
+
+<img width="1512" height="856" alt="Screenshot 2025-10-24 at 8 44 20 PM" src="https://github.com/user-attachments/assets/c258b7bf-8045-43a8-adad-3126e022f086" />
 
 
 
