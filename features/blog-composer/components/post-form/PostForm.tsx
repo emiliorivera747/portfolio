@@ -17,6 +17,7 @@ import PostContent from "@/features/blog-composer/components/post-content/PostCo
 import MenuBar from "@/components/tiptap/MenuBar";
 import RichTextEditor from "@/components/tiptap/RichTextEditor";
 import EditorWithMenu from "@/components/tiptap/EditorWithMenu";
+import TextEditorBlock from "@/components/tiptap/TextEditorBlock";
 
 // Zod Schemas
 import {
@@ -32,8 +33,21 @@ import { fields } from "@/features/blog-composer/data/formFields";
 
 // Types
 import { Editor } from "@tiptap/react";
+import { ContentBlock } from "@/features/blogs/types/post";
 
-const PostForm = ({ onSubmit }: { onSubmit: (data: FormSchema) => void }) => {
+interface PostFormProps {
+  onSubmit: (data: FormSchema) => void;
+  contentBlocks: ContentBlock[];
+  currentBlockId?: string;
+  handleEnterEditMode: (blockId: string | number) => void;
+}
+
+const PostForm = ({
+  onSubmit,
+  contentBlocks,
+  currentBlockId,
+  handleEnterEditMode,
+}: PostFormProps) => {
   const buttonRef = useRef(null);
 
   const form = useForm<FormSchema>({
@@ -42,6 +56,20 @@ const PostForm = ({ onSubmit }: { onSubmit: (data: FormSchema) => void }) => {
 
   const { handleFileChange, file } = useFile();
   const [open, setOpen] = useState(false);
+
+  const renderBlockComponent = (block: ContentBlock) => {
+    switch (block.content_type) {
+      case "doc":
+        return (
+          <TextEditorBlock
+            block={block}
+            isEditing={block.id === currentBlockId}
+            onEnterEditMode={handleEnterEditMode}
+            onUpdate={() => {}}
+          />
+        );
+    }
+  };
 
   return (
     <Form {...form}>
@@ -70,6 +98,12 @@ const PostForm = ({ onSubmit }: { onSubmit: (data: FormSchema) => void }) => {
         </div>
 
         <PostContentSelect />
+
+        <div>
+          {contentBlocks.map((block) => {
+            return <div key={block.id}>{renderBlockComponent(block)}</div>;
+          })}
+        </div>
 
         <PrimarySubmitButton className="mt-4" ref={buttonRef} text="Publish" />
       </form>
