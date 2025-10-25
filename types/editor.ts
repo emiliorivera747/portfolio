@@ -1,7 +1,7 @@
 import { ContentBlock } from "@/features/blogs/types/post";
 
 
-export interface TextEditorBlock {
+export interface TextEditorBlockProps {
   block: ContentBlock;
   isEditing: boolean;
   onEnterEditMode: (id: string) => void;

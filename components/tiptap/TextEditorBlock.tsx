@@ -2,26 +2,20 @@ import React from "react";
 
 import EditorWithMenu from "@/components/tiptap/EditorWithMenu";
 
-import { ContentBlock } from "@/features/blogs/types/post";
-
-interface TextEditorBlock {
-  block: ContentBlock;
-  isEditing: boolean;
-  onEnterEditMode: (id: string) => void;
-  onUpdate: (id: string, newContent: string) => void;
-}
+// Types
+import { TextEditorBlockProps } from "@/types/editor";
 
 /**
  *
  * Will either display editor or text
  *
  */
-const TextEditorBlock: React.FC<TextEditorBlock> = ({
+const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   block,
   isEditing,
   onEnterEditMode,
   onUpdate,
-}: TextEditorBlock) => {
+}: TextEditorBlockProps) => {
   const ReadMode = () => (
     <div className="" onClick={() => onEnterEditMode(String(block.id || ""))}>
       <div
