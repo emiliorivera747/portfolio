@@ -78,7 +78,6 @@ const PostForm = ({
         className="flex flex-col items-center  w-[40rem] pt-[4rem]"
       >
         <PrimaryHeader title={"Create Post"} />
-
         <div className="w-full flex flex-col mb-10">
           <SecondaryHeader label="Details" />
 
@@ -88,7 +87,6 @@ const PostForm = ({
               control: form.control as any,
             }))}
           />
-
           <UploadButton
             data-testid="upload-button"
             handleFileChange={handleFileChange}
@@ -96,10 +94,8 @@ const PostForm = ({
             setOpen={setOpen}
           />
         </div>
-
         <PostContentSelect />
-
-        <div>
+        <div className="w-full flex gap-4 flex-col">
           {contentBlocks.map((block) => {
             return <div key={block.id}>{renderBlockComponent(block)}</div>;
           })}

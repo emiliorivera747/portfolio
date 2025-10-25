@@ -17,6 +17,8 @@ import { ContentBlock } from "@/features/blogs/types/post";
  *
  */
 const Page = () => {
+  const [currentBlockId, setCurrentBlockId] = useState<number | string>(0);
+
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([
     {
       id: 0,
@@ -55,8 +57,6 @@ const Page = () => {
       },
     },
   ]);
-
-  const [currentBlockId, setCurrentBlockId] = useState<number | string>(0);
 
   const { onSubmit } = useSubmitPost({ contentBlocks: [] });
 
