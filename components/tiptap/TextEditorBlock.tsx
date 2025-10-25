@@ -19,7 +19,10 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   onUpdate,
 }: TextEditorBlockProps) => {
   const ReadMode = () => (
-    <div className="border w-full py-6 blog-content rounded-[12px] px-4 border-primary-200" onClick={() => onEnterEditMode(String(block.id || ""))}>
+    <div
+      className="w-full blog-content font-extralight hover:border hover:border-primary-1000 border-white border"
+      onClick={() => onEnterEditMode(String(block.id || ""))}
+    >
       <div
         className="w-full"
         dangerouslySetInnerHTML={{
@@ -31,11 +34,11 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
     </div>
   );
   return (
-    <div className="w-full ">
+    <div className={`w-full rounded-[12px]  py-4`}>
       {isEditing ? (
         <EditorWithMenu
           id={block.id + ""}
-          initialContent={block.content_data.html}
+          initialContent={renderTipTapJSON(block.content_data)}
           onUpdate={onUpdate}
         />
       ) : (
