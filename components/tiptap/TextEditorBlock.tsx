@@ -2,8 +2,10 @@ import React from "react";
 
 import EditorWithMenu from "@/components/tiptap/EditorWithMenu";
 
+import { ContentBlock } from "@/features/blogs/types/post";
+
 interface TextEditorBlock {
-  contentBlock: { id: string; content: string };
+  block: ContentBlock;
   isEditing: boolean;
   onEnterEditMode: (id: string) => void;
   onUpdate: (id: string, newContent: string) => void;
@@ -13,20 +15,19 @@ interface TextEditorBlock {
  *
  * Will either display editor or text
  *
- *
  */
 const TextEditorBlock: React.FC<TextEditorBlock> = ({
-  contentBlock,
+  block,
   isEditing,
   onEnterEditMode,
   onUpdate,
 }: TextEditorBlock) => {
   const ReadMode = () => (
-    <div className="" onClick={() => onEnterEditMode(contentBlock.id)}>
+    <div className="" onClick={() => onEnterEditMode(String(block.id || ""))}>
       <div
         className="blog-content"
         dangerouslySetInnerHTML={{
-          __html: contentBlock.content || "<p>Click to add text...</p>",
+          __html: block.content_data.html || "<p>Click to add text...</p>",
         }}
       />
     </div>
@@ -35,8 +36,8 @@ const TextEditorBlock: React.FC<TextEditorBlock> = ({
     <div>
       {isEditing ? (
         <EditorWithMenu
-          id={contentBlock.id}
-          initialContent={contentBlock.content}
+          id={block.id + ""}
+          initialContent={block.content_data.html}
           onUpdate={onUpdate}
         />
       ) : (

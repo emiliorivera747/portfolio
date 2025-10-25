@@ -3,7 +3,6 @@ import { useState } from "react";
 // External Libraries
 import { useEditor } from "@tiptap/react";
 import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
-import DOMPurify from "dompurify";
 
 //Config
 import {

@@ -17,6 +17,7 @@ const useSubmitPost = ({
 }: {
   contentBlocks: ContentBlock[] | [];
 }) => {
+  
   const { mutatePost, isPendingPost } = useCreatePost();
 
   const onSubmit = (data: FormSchema): void => {
@@ -25,6 +26,7 @@ const useSubmitPost = ({
       content_blocks: contentBlocks,
       description: data.description,
     };
+
     mutatePost(post);
   };
 

@@ -47,3 +47,5 @@ export interface BlogItemContentProps {
   id?: string | number;
   createdAt?: Date;
 }
+
+
