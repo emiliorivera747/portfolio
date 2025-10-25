@@ -21,7 +21,7 @@ const Page = () => {
 
   const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([
     {
-      id: 0,
+      id: "0",
       content_order: 1,
       content_type: "doc",
       content_data: {
@@ -41,7 +41,7 @@ const Page = () => {
       },
     },
     {
-      id: 1,
+      id: "1",
       content_order: 2,
       content_type: "doc",
       content_data: {
@@ -60,7 +60,7 @@ const Page = () => {
 
   const { onSubmit } = useSubmitPost({ contentBlocks: [] });
 
-  const handleEnterEditMode = (id: number | string) => {
+  const handleEnterEditMode = (id: string) => {
     setCurrentBlockId(id);
   };
 

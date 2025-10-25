@@ -19,7 +19,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   onUpdate,
 }: TextEditorBlockProps) => {
   const ReadMode = () => (
-    <div className="border w-full py-6 blog-content rounded-[12px] px-4" onClick={() => onEnterEditMode(String(block.id || ""))}>
+    <div className="border w-full py-6 blog-content rounded-[12px] px-4 border-primary-200" onClick={() => onEnterEditMode(String(block.id || ""))}>
       <div
         className="w-full"
         dangerouslySetInnerHTML={{

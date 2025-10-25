@@ -1,5 +1,6 @@
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
+import Highlight from "@tiptap/extension-highlight";
 
 export const editorConfig = {
   immediatelyRender: false,

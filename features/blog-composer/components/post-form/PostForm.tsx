@@ -39,7 +39,7 @@ interface PostFormProps {
   onSubmit: (data: FormSchema) => void;
   contentBlocks: ContentBlock[];
   currentBlockId?: string;
-  handleEnterEditMode: (blockId: string | number) => void;
+  handleEnterEditMode: (blockId: string ) => void;
 }
 
 const PostForm = ({
