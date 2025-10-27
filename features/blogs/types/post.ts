@@ -8,7 +8,7 @@ export interface Post {
   image_url?: string;
 }
 export interface ContentBlock {
-  id?: number | string;
+  id: string;
   content_order: number;
   content_type: string; 
   content_data: Record<string, any>;

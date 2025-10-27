@@ -40,7 +40,7 @@ interface PostFormProps {
   contentBlocks: ContentBlock[];
   currentBlockId?: string;
   handleEnterEditMode: (blockId: string) => void;
-  addBlock: (block: ContentBlock) => void;
+  addBlock: (block: ContentBlock) => void; // Ensure this updates the contentBlocks state
   setBlockId: (id: string) => void;
 }
 
@@ -82,7 +82,7 @@ const PostForm = ({
         className="flex flex-col items-center  w-[40rem] pt-[4rem]"
       >
         <PrimaryHeader title={"Create Post"} />
-        
+
         <div className="w-full flex flex-col mb-10">
           <SecondaryHeader label="Details" />
 
@@ -101,14 +101,18 @@ const PostForm = ({
         </div>
 
         {/* Allows you to select the content type */}
-        <PostContentSelect addBlock={addBlock} setBlockId={setBlockId} />
-
+        <PostContentSelect
+          addBlock={addBlock}
+          setBlockId={setBlockId}
+          blocks={contentBlocks.length}
+        />
 
         {/* Renders the blocks */}
         <div className="w-full flex gap-4 flex-col">
-          {contentBlocks.map((block) => {
-            return <div key={block.id}>{renderBlockComponent(block)}</div>;
-          })}
+          {contentBlocks.length > 0 &&
+            contentBlocks.map((block) => (
+              <div key={block.id}>{renderBlockComponent(block)}</div>
+            ))}
         </div>
 
         <PrimarySubmitButton className="mt-4" ref={buttonRef} text="Publish" />

@@ -30,10 +30,11 @@ const Page = () => {
     setBlocks((prevBlocks) => [...prevBlocks, block]);
   };
 
-  const setBlockId = (id: string) => {
-    setBlockId(id);
+  const handleBlockId = (id: string) => {
+    setCurrentBlockId(id);
   };
 
+  console.log(blocks);
   return (
     <section className="w-full max-h-screen overflow-y-scroll">
       {/* Form to show editor */}
@@ -44,7 +45,7 @@ const Page = () => {
           currentBlockId={currentBlockId?.toString()}
           handleEnterEditMode={handleEnterEditMode}
           addBlock={addBlock}
-          setBlockId={setBlockId}
+          setBlockId={handleBlockId}
         />
       </div>
 
