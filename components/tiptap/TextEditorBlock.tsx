@@ -20,7 +20,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
 }: TextEditorBlockProps) => {
   const ReadMode = () => (
     <div
-      className="w-full blog-content font-extralight hover:border hover:border-primary-1000 border-white border"
+      className="w-full blog-content font-extralight hover:border hover:border-primary-1000 border-white border rounded-[12px] p-2"
       onClick={() => onEnterEditMode(String(block.id || ""))}
     >
       <div

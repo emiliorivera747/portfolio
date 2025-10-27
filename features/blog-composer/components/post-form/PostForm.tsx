@@ -47,6 +47,7 @@ const PostForm = ({
   contentBlocks,
   currentBlockId,
   handleEnterEditMode,
+  
 }: PostFormProps) => {
   const buttonRef = useRef(null);
 
