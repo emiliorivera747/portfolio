@@ -18,7 +18,6 @@ import { ContentBlock } from "@/features/blogs/types/post";
  */
 const Page = () => {
   const [currentBlockId, setCurrentBlockId] = useState<number | string>(0);
-
   const [blocks, setBlocks] = useState<ContentBlock[]>([]);
 
   const { onSubmit } = useSubmitPost({ contentBlocks: [] });
@@ -31,6 +30,10 @@ const Page = () => {
     setBlocks((prevBlocks) => [...prevBlocks, block]);
   };
 
+  const setBlockId = (id: string) => {
+    setBlockId(id);
+  };
+
   return (
     <section className="w-full max-h-screen overflow-y-scroll">
       {/* Form to show editor */}
@@ -41,6 +44,7 @@ const Page = () => {
           currentBlockId={currentBlockId?.toString()}
           handleEnterEditMode={handleEnterEditMode}
           addBlock={addBlock}
+          setBlockId={setBlockId}
         />
       </div>
 

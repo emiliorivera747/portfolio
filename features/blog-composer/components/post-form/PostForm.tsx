@@ -41,6 +41,7 @@ interface PostFormProps {
   currentBlockId?: string;
   handleEnterEditMode: (blockId: string) => void;
   addBlock: (block: ContentBlock) => void;
+  setBlockId: (id: string) => void;
 }
 
 const PostForm = ({
@@ -49,6 +50,7 @@ const PostForm = ({
   currentBlockId,
   handleEnterEditMode,
   addBlock,
+  setBlockId,
 }: PostFormProps) => {
   const buttonRef = useRef(null);
 
@@ -80,6 +82,7 @@ const PostForm = ({
         className="flex flex-col items-center  w-[40rem] pt-[4rem]"
       >
         <PrimaryHeader title={"Create Post"} />
+        
         <div className="w-full flex flex-col mb-10">
           <SecondaryHeader label="Details" />
 
@@ -96,7 +99,12 @@ const PostForm = ({
             setOpen={setOpen}
           />
         </div>
-        <PostContentSelect addBlock={addBlock} />
+
+        {/* Allows you to select the content type */}
+        <PostContentSelect addBlock={addBlock} setBlockId={setBlockId} />
+
+
+        {/* Renders the blocks */}
         <div className="w-full flex gap-4 flex-col">
           {contentBlocks.map((block) => {
             return <div key={block.id}>{renderBlockComponent(block)}</div>;

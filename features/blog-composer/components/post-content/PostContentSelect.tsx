@@ -20,8 +20,10 @@ import { ContentBlock } from "@/features/blogs/types/post";
  */
 const PostContentSelect = ({
   addBlock,
+  setBlockId,
 }: {
   addBlock: (block: ContentBlock) => void;
+  setBlockId: (id: string) => void;
 }) => {
   const [open, setOpen] = useState(false);
   const buttonRef = useRef(null);
