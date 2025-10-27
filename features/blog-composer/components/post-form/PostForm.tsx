@@ -39,7 +39,8 @@ interface PostFormProps {
   onSubmit: (data: FormSchema) => void;
   contentBlocks: ContentBlock[];
   currentBlockId?: string;
-  handleEnterEditMode: (blockId: string ) => void;
+  handleEnterEditMode: (blockId: string) => void;
+  addBlock: (block: ContentBlock) => void;
 }
 
 const PostForm = ({
@@ -47,7 +48,7 @@ const PostForm = ({
   contentBlocks,
   currentBlockId,
   handleEnterEditMode,
-  
+  addBlock,
 }: PostFormProps) => {
   const buttonRef = useRef(null);
 
@@ -95,7 +96,7 @@ const PostForm = ({
             setOpen={setOpen}
           />
         </div>
-        <PostContentSelect />
+        <PostContentSelect addBlock={addBlock} />
         <div className="w-full flex gap-4 flex-col">
           {contentBlocks.map((block) => {
             return <div key={block.id}>{renderBlockComponent(block)}</div>;

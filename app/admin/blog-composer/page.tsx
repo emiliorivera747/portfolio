@@ -28,7 +28,7 @@ const Page = () => {
   };
 
   const addBlock = (block: ContentBlock) => {
-      setBlocks((prevBlocks) => [...prevBlocks, block]);
+    setBlocks((prevBlocks) => [...prevBlocks, block]);
   };
 
   return (
@@ -40,6 +40,7 @@ const Page = () => {
           contentBlocks={blocks}
           currentBlockId={currentBlockId?.toString()}
           handleEnterEditMode={handleEnterEditMode}
+          addBlock={addBlock}
         />
       </div>
 

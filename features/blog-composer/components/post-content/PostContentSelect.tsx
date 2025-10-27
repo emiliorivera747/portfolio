@@ -13,10 +13,16 @@ import SelectContentButton from "@/features/blog-composer/components/buttons/Sel
 
 import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
 
+import { ContentBlock } from "@/features/blogs/types/post";
+
 /**
  * Allows you to select post content whether images, text, videos, and more.
  */
-const PostContentSelect = () => {
+const PostContentSelect = ({
+  addBlock,
+}: {
+  addBlock: (block: ContentBlock) => void;
+}) => {
   const [open, setOpen] = useState(false);
   const buttonRef = useRef(null);
 
