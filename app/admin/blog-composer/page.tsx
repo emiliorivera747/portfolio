@@ -34,7 +34,6 @@ const Page = () => {
     setCurrentBlockId(id);
   };
 
-  console.log(blocks);
   return (
     <section className="w-full max-h-screen overflow-y-scroll">
       {/* Form to show editor */}
