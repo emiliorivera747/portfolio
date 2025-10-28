@@ -39,19 +39,14 @@ const PostContentSelect = ({
           {
             type: "paragraph",
             attrs: { textAlign: null },
-            content: [
-              {
-                type: "text",
-                text: "Hello, World! This is my first post, but more content is in the works!",
-              },
-            ],
+            content: [],
           },
         ],
       },
     };
     addBlock(newBlock);
     setBlockId(newBlock.id);
-    setOpen(false); 
+    setOpen(false);
   };
 
   return (

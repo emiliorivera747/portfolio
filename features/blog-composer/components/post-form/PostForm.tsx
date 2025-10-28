@@ -44,6 +44,11 @@ interface PostFormProps {
   setBlockId: (id: string) => void;
 }
 
+/**
+ * 
+ * Form for Post Composer
+ *
+ */
 const PostForm = ({
   onSubmit,
   contentBlocks,
