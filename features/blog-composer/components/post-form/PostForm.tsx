@@ -32,20 +32,11 @@ import useFile from "@/hooks/useFile";
 import { fields } from "@/features/blog-composer/data/formFields";
 
 // Types
-import { Editor } from "@tiptap/react";
 import { ContentBlock } from "@/features/blogs/types/post";
-
-interface PostFormProps {
-  onSubmit: (data: FormSchema) => void;
-  contentBlocks: ContentBlock[];
-  currentBlockId?: string;
-  handleEnterEditMode: (blockId: string) => void;
-  addBlock: (block: ContentBlock) => void; // Ensure this updates the contentBlocks state
-  setBlockId: (id: string) => void;
-}
+import { PostFormProps } from "@/features/blog-composer/types/postForm";
 
 /**
- * 
+ *
  * Form for Post Composer
  *
  */
