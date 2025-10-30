@@ -14,8 +14,6 @@ interface UseBlogEditorProps {
 /**
  * Displays the editor with both menu bar and rich text editor
  *
- * @param param0
- * @returns
  */
 const EditorWithMenu = ({
   id,
