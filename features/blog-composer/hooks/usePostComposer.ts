@@ -10,6 +10,7 @@ import { ContentBlock } from "@/features/blogs/types/post";
  * The hook will handle the the composer state
  */
 const usePostComposer = () => {
+  
   /**
    * The current block being highlighted
    */
@@ -18,13 +19,11 @@ const usePostComposer = () => {
   /**
    * The current block content data
    */
-  const [currentBlockData, setCurrentBlockData] = useState([
-    {
-      type: "paragraph",
-      attrs: { textAlign: null },
-      content: [],
-    },
-  ]);
+  const [currentBlockData, setCurrentBlockData] = useState({
+    type: "paragraph",
+    attrs: { textAlign: null },
+    content: [],
+  });
 
   /**
    * The content blocks

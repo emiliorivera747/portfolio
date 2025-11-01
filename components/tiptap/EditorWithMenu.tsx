@@ -17,11 +17,13 @@ const EditorWithMenu = ({
   initialContent,
   onUpdate,
 }: UseBlogEditorProps) => {
+  
   const { editor, blogContent } = useBlogEditor({
     id,
     initialContent,
     onUpdate,
   });
+  
   if (!editor) return null;
 
   return (

@@ -2,7 +2,6 @@ import { useState } from "react";
 
 // External Libraries
 import { useEditor } from "@tiptap/react";
-import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 
 // Config
 import {
@@ -13,6 +12,7 @@ import {
 // Types
 import { UseBlogEditorProps } from "@/types/editor";
 
+// Context
 import { useComposerContext } from "@/features/blog-composer/context/ComposerContext";
 
 /**
