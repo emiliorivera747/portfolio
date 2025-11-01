@@ -2,8 +2,11 @@ import { createContext, ReactNode, useContext } from "react";
 
 // Hook
 import usePostComposer from "@/features/blog-composer/hooks/usePostComposer";
+import { UsePostComposerReturn } from "../types/postForm";
 
-const ComposerContext = createContext<any>(null);
+const ComposerContext = createContext<UsePostComposerReturn>(
+  {} as UsePostComposerReturn
+);
 
 /**
  *  Stores all of the state for the Composer Context Provider

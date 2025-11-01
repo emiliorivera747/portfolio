@@ -12,18 +12,12 @@ import { UseBlogEditorProps } from "@/types/editor";
  * Displays the editor with both menu bar and rich text editor
  *
  */
-const EditorWithMenu = ({
-  id,
-  initialContent,
-  onUpdate,
-}: UseBlogEditorProps) => {
-  
-  const { editor, blogContent } = useBlogEditor({
+const EditorWithMenu = ({ id, initialContent }: UseBlogEditorProps) => {
+  const { editor } = useBlogEditor({
     id,
     initialContent,
-    onUpdate,
   });
-  
+
   if (!editor) return null;
 
   return (

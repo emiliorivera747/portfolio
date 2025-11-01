@@ -7,6 +7,9 @@ import { TextEditorBlockProps } from "@/types/editor";
 
 import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 
+// Context
+import { useComposerContext } from "@/features/blog-composer/context/ComposerContext";
+
 /**
  *
  * Will either display editor or text
@@ -14,15 +17,11 @@ import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
  */
 const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   block,
-  isEditing,
-  onEnterEditMode,
-  onUpdate,
 }: TextEditorBlockProps) => {
+  const { getId } = useComposerContext();
+
   const ReadMode = () => (
-    <div
-      className="w-full blog-content font-extralight hover:border hover:border-primary-500 border-white border rounded-[12px] p- py-4"
-      onClick={() => onEnterEditMode(String(block.id || ""))}
-    >
+    <div className="w-full blog-content font-extralight hover:border hover:border-primary-500 border-white border rounded-[12px] p- py-4">
       <div
         className="w-full"
         dangerouslySetInnerHTML={{
@@ -33,14 +32,14 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
       />
     </div>
   );
+
   return (
     <div className={`w-full rounded-[12px]  py-4`}>
-      {isEditing ? (
+      {getId() === block.id ? (
         <div className="border border-primary-300 pt-10 pb-6 rounded-[12px] px-10">
           <EditorWithMenu
             id={block.id + ""}
             initialContent={renderTipTapJSON(block.content_data)}
-            onUpdate={onUpdate}
           />
         </div>
       ) : (

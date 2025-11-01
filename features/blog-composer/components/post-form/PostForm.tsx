@@ -41,8 +41,7 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
 const PostForm = () => {
   const buttonRef = useRef(null);
 
-  const { currentBlock, handleEnterEditMode, onSubmit, blocks, getBlo } =
-    useComposerContext();
+  const { onSubmit, blocks, getId } = useComposerContext();
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -58,9 +57,6 @@ const PostForm = () => {
         return (
           <TextEditorBlock
             block={block}
-            isEditing={block.id === currentBlockId}
-            onEnterEditMode={handleEnterEditMode}
-            onUpdate={() => {}}
           />
         );
     }
