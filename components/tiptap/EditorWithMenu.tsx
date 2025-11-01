@@ -18,9 +18,9 @@ const EditorWithMenu = ({
   onUpdate,
 }: UseBlogEditorProps) => {
   const { editor, blogContent } = useBlogEditor({
-    id: id,
-    initialContent: initialContent,
-    onUpdate: onUpdate,
+    id,
+    initialContent,
+    onUpdate,
   });
   if (!editor) return null;
 

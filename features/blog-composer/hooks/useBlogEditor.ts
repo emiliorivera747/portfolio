@@ -4,17 +4,14 @@ import { useState } from "react";
 import { useEditor } from "@tiptap/react";
 import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 
-//Config
+// Config
 import {
   editorConfig,
   extensions,
 } from "@/features/blog-composer/config/editorConfig";
 
-interface UseBlogEditorProps {
-  id: string;
-  initialContent: string;
-  onUpdate: (id: string, newContent: string) => void;
-}
+// Types
+import { UseBlogEditorProps } from "@/types/editor";
 
 /**
  *
@@ -28,16 +25,19 @@ const useBlogEditor = ({
 }: UseBlogEditorProps) => {
   const [blogContent, setBlogContent] = useState<string | null>(null);
 
-  const editor = useEditor({
-    ...editorConfig,
-    extensions: extensions,
-    content: initialContent,
-    autofocus: true,
-    onUpdate: ({ editor }) => {
-      const html = renderTipTapJSON(editor.getJSON());
-      onUpdate(id, html);
+  const editor = useEditor(
+    {
+      ...editorConfig,
+      extensions: extensions,
+      content: initialContent,
+      autofocus: true,
+      onUpdate: ({ editor }) => {
+        const html = renderTipTapJSON(editor.getJSON());
+        onUpdate(id, html);
+      },
     },
-  }, [id]);
+    [id]
+  );
 
   return { editor, blogContent };
 };

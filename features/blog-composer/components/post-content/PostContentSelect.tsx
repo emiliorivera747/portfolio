@@ -49,8 +49,6 @@ const PostContentSelect = () => {
     setOpen(false);
   };
 
-  console.log("Block", blocks);
-
   return (
     <div className="w-full h-full mb-8">
       <SecondaryHeader label={"Content"} />

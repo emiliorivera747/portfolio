@@ -6,6 +6,12 @@ export interface PostFormProps {
   contentBlocks: ContentBlock[];
   currentBlockId?: string;
   handleEnterEditMode: (blockId: string) => void;
-  addBlock: (block: ContentBlock) => void; // Ensure this updates the contentBlocks state
+  addBlock: (block: ContentBlock) => void;
   setBlockId: (id: string) => void;
+}
+
+export interface UseBlogEditorProps {
+  id: string;
+  initialContent: string;
+  onUpdate: (id: string, newContent: string) => void;
 }
