@@ -36,7 +36,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   return (
     <div className={`w-full rounded-[12px]  py-4`}>
       {isEditing ? (
-        <div className="border border-primary-400 pt-10 pb-6 rounded-[12px] px-10">
+        <div className="border border-primary-300 pt-10 pb-6 rounded-[12px] px-10">
           <EditorWithMenu
             id={block.id + ""}
             initialContent={renderTipTapJSON(block.content_data)}
