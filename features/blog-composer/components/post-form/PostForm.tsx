@@ -40,15 +40,8 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
  */
 const PostForm = () => {
   const buttonRef = useRef(null);
-  const {
-    currentBlockId,
-    setCurrentBlockId,
-    handleEnterEditMode,
-    onSubmit,
-    addBlock,
-    setBlockId,
-    contentBlocks,
-  } = useComposerContext();
+  const { currentBlockId, handleEnterEditMode, onSubmit, blocks } =
+    useComposerContext();
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -102,8 +95,8 @@ const PostForm = () => {
 
         {/* Renders the blocks */}
         <div className="w-full flex gap-4 flex-col">
-          {contentBlocks?.length > 0 &&
-            contentBlocks.map((block: ContentBlock) => (
+          {blocks?.length > 0 &&
+            blocks.map((block: ContentBlock) => (
               <div key={block.id}>{renderBlockComponent(block)}</div>
             ))}
         </div>
