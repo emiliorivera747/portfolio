@@ -40,16 +40,16 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
  */
 const PostForm = () => {
   const buttonRef = useRef(null);
+
   const { currentBlockId, handleEnterEditMode, onSubmit, blocks } =
     useComposerContext();
-
-  console.log("Blocks", blocks);
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
 
   const { handleFileChange, file } = useFile();
+
   const [open, setOpen] = useState(false);
 
   const renderBlockComponent = (block: ContentBlock) => {
@@ -65,6 +65,8 @@ const PostForm = () => {
         );
     }
   };
+
+  console.log("BLOCKS", blocks);
 
   return (
     <Form {...form}>

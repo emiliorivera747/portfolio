@@ -28,7 +28,6 @@ const PostContentSelect = () => {
   const [open, setOpen] = useState(false);
   const buttonRef = useRef(null);
 
-  console.log("Current Block Data", currentBlockData);
 
   // Handle button clicks for adding content blocks
   const handleAddContent = (content_type: ContentBlock["content_type"]) => {
@@ -38,6 +37,7 @@ const PostContentSelect = () => {
       content_type: content_type,
       content_data: currentBlockData,
     };
+    
     addBlock(newBlock);
     setCurrentBlockId(newBlock.id);
     setOpen(false);

@@ -10,20 +10,10 @@ import { ContentBlock } from "@/features/blogs/types/post";
  * The hook will handle the the composer state
  */
 const usePostComposer = () => {
-  
   /**
-   * The current block being highlighted
+   * The current block
    */
-  const [currentBlockId, setCurrentBlockId] = useState<number | string>(0);
-
-  /**
-   * The current block content data
-   */
-  const [currentBlockData, setCurrentBlockData] = useState({
-    type: "paragraph",
-    attrs: { textAlign: null },
-    content: [],
-  });
+  const [currentBlock, setCurrentBlock] = useState<ContentBlock | null>(null);
 
   /**
    * The content blocks
@@ -35,16 +25,11 @@ const usePostComposer = () => {
    */
   const { onSubmit } = useSubmitPost({ contentBlocks: [] });
 
-  const handleEnterEditMode = (id: string) => {
-    setCurrentBlockId(id);
-  };
-
+  /**
+   * Add a block
+   */
   const addBlock = (block: ContentBlock) => {
     setBlocks((prevBlocks) => [...prevBlocks, block]);
-  };
-
-  const handleBlockId = (id: string) => {
-    setCurrentBlockId(id);
   };
 
   /**
@@ -61,18 +46,19 @@ const usePostComposer = () => {
     );
   };
 
+  const getId = () => {
+    return currentBlock ? currentBlock.id : undefined;
+  };
+
   return {
-    currentBlockId,
-    currentBlockData,
-    setCurrentBlockData,
-    setCurrentBlockId,
+    currentBlock,
     blocks,
     setBlocks,
     onSubmit,
-    handleEnterEditMode,
     addBlock,
-    handleBlockId,
+    setCurrentBlock,
     updateBlockContent,
+    getId,
   };
 };
 

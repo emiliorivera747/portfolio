@@ -31,7 +31,9 @@ const useBlogEditor = ({ id, initialContent }: UseBlogEditorProps) => {
       content: initialContent,
       autofocus: true,
       onUpdate: ({ editor }) => {
-        setCurrentBlockData(editor.getJSON());
+        let content = editor.getJSON();
+        setCurrentBlockData(content);
+        updateBlockContent(id, content);
       },
     },
     [id]
