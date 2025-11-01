@@ -1,15 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 // Components
 import PostForm from "@/features/blog-composer/components/post-form/PostForm";
-import TextEditorBlock from "@/components/tiptap/TextEditorBlock";
 import { ComposerProvider } from "@/features/blog-composer/context/ComposerContext";
-
-// Hooks
-import useSubmitPost from "@/features/blog-composer/hooks/useSubmitPost";
-import useBlogEditor from "@/features/blog-composer/hooks/useBlogEditor";
-import { ContentBlock } from "@/features/blogs/types/post";
 
 /**
  *
@@ -18,23 +12,6 @@ import { ContentBlock } from "@/features/blogs/types/post";
  *
  */
 const Page = () => {
-  const [currentBlockId, setCurrentBlockId] = useState<number | string>(0);
-  const [blocks, setBlocks] = useState<ContentBlock[]>([]);
-
-  const { onSubmit } = useSubmitPost({ contentBlocks: [] });
-
-  const handleEnterEditMode = (id: string) => {
-    setCurrentBlockId(id);
-  };
-
-  const addBlock = (block: ContentBlock) => {
-    setBlocks((prevBlocks) => [...prevBlocks, block]);
-  };
-
-  const handleBlockId = (id: string) => {
-    setCurrentBlockId(id);
-  };
-
   return (
     <section className="w-full max-h-screen overflow-y-scroll">
       <ComposerProvider>

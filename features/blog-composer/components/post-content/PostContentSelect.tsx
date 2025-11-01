@@ -12,18 +12,14 @@ import SecondaryHeader from "@/features/blog-composer/components/headings/Second
 import { ContentBlock } from "@/features/blogs/types/post";
 import { nanoid } from "nanoid"; // For generating unique IDs
 
+// Hooks
+import { useComposerContext } from "@/features/blog-composer/context/ComposerContext";
+
 /**
  * Allows you to select post content whether images, text, videos, and more.
  */
-const PostContentSelect = ({
-  addBlock,
-  setBlockId,
-  blocks,
-}: {
-  addBlock: (block: ContentBlock) => void;
-  setBlockId: (id: string) => void;
-  blocks: number;
-}) => {
+const PostContentSelect = () => {
+  const { blocks, addBlock, setBlockId } = useComposerContext();
   const [open, setOpen] = useState(false);
   const buttonRef = useRef(null);
 

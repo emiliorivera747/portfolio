@@ -98,11 +98,7 @@ const PostForm = () => {
         </div>
 
         {/* Allows you to select the content type */}
-        <PostContentSelect
-          addBlock={addBlock}
-          setBlockId={setBlockId}
-          blocks={contentBlocks ? contentBlocks.length : 0}
-        />
+        <PostContentSelect />
 
         {/* Renders the blocks */}
         <div className="w-full flex gap-4 flex-col">
