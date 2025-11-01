@@ -6,3 +6,9 @@ export interface TextEditorBlockProps {
   onEnterEditMode: (id: string) => void;
   onUpdate: (id: string, newContent: string) => void;
 }
+
+export interface UseBlogEditorProps {
+  id: string;
+  initialContent: string;
+  onUpdate: (id: string, newContent: string) => void;
+}

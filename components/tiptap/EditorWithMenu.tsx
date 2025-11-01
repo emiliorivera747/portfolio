@@ -5,11 +5,8 @@ import RichTextEditor from "@/components/tiptap/RichTextEditor";
 // Hooks
 import useBlogEditor from "@/features/blog-composer/hooks/useBlogEditor";
 
-interface UseBlogEditorProps {
-  id: string;
-  initialContent: string;
-  onUpdate: (id: string, newContent: string) => void;
-}
+// Types
+import { UseBlogEditorProps } from "@/types/editor";
 
 /**
  * Displays the editor with both menu bar and rich text editor
