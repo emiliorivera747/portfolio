@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
+
+// Components
 import {
   Dialog,
   DialogContent,
@@ -10,6 +12,8 @@ import {
 import SelectContentButton from "@/features/blog-composer/components/buttons/SelectContentButton";
 import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
 import { ContentBlock } from "@/features/blogs/types/post";
+
+// External Lib
 import { nanoid } from "nanoid"; // For generating unique IDs
 
 // Hooks
