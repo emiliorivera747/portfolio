@@ -33,6 +33,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
     </div>
   );
 
+  console.log(getId(), block?.id);
   return (
     <div className={`w-full rounded-[12px]  py-4`}>
       {getId() === block.id ? (

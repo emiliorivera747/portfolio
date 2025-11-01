@@ -23,7 +23,8 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
  * Allows you to select post content whether images, text, videos, and more.
  */
 const PostContentSelect = () => {
-  const { blocks, addBlock, currentBlock } = useComposerContext();
+  const { blocks, addBlock, currentBlock, setCurrentBlock } =
+    useComposerContext();
   const [open, setOpen] = useState(false);
   const buttonRef = useRef(null);
 
@@ -46,6 +47,7 @@ const PostContentSelect = () => {
     };
 
     addBlock(newBlock);
+    setCurrentBlock(newBlock);
     setOpen(false);
   };
 

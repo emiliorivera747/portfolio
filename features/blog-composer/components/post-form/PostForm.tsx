@@ -94,7 +94,6 @@ const PostForm = () => {
               <div key={block.id}>{renderBlockComponent(block)}</div>
             ))}
         </div>
-
         <PrimarySubmitButton className="mt-4" ref={buttonRef} text="Publish" />
       </form>
     </Form>
