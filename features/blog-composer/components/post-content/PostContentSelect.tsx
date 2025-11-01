@@ -23,7 +23,8 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
  * Allows you to select post content whether images, text, videos, and more.
  */
 const PostContentSelect = () => {
-  const { blocks, addBlock, setCurrentBlockId } = useComposerContext();
+  const { blocks, addBlock, setCurrentBlockId, currentBlockData } =
+    useComposerContext();
   const [open, setOpen] = useState(false);
   const buttonRef = useRef(null);
 
@@ -33,16 +34,7 @@ const PostContentSelect = () => {
       id: nanoid(), // Generate a unique ID
       content_order: blocks - 1,
       content_type: content_type,
-      content_data: {
-        type: "doc",
-        content: [
-          {
-            type: "paragraph",
-            attrs: { textAlign: null },
-            content: [],
-          },
-        ],
-      },
+      content_data: currentBlockData,
     };
     addBlock(newBlock);
     setCurrentBlockId(newBlock.id);

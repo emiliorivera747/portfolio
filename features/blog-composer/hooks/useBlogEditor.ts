@@ -13,17 +13,16 @@ import {
 // Types
 import { UseBlogEditorProps } from "@/types/editor";
 
+import { useComposerContext } from "@/features/blog-composer/context/ComposerContext";
+
 /**
  *
  * Creates blog editor
  *
  */
-const useBlogEditor = ({
-  id,
-  initialContent,
-  onUpdate,
-}: UseBlogEditorProps) => {
+const useBlogEditor = ({ id, initialContent }: UseBlogEditorProps) => {
   const [blogContent, setBlogContent] = useState<string | null>(null);
+  const { updateBlockContent, setCurrentBlockData } = useComposerContext();
 
   const editor = useEditor(
     {
@@ -32,8 +31,7 @@ const useBlogEditor = ({
       content: initialContent,
       autofocus: true,
       onUpdate: ({ editor }) => {
-        const html = renderTipTapJSON(editor.getJSON());
-        onUpdate(id, html);
+        setCurrentBlockData(editor.getJSON());
       },
     },
     [id]

@@ -43,6 +43,8 @@ const PostForm = () => {
   const { currentBlockId, handleEnterEditMode, onSubmit, blocks } =
     useComposerContext();
 
+  console.log("Blocks", blocks);
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
