@@ -80,6 +80,7 @@ const PostForm = ({
         <PrimaryHeader title={"Create Post"} />
 
         <div className="w-full flex flex-col mb-10">
+          
           <SecondaryHeader label="Details" />
 
           <FormFieldGenerator
@@ -88,12 +89,14 @@ const PostForm = ({
               control: form.control as any,
             }))}
           />
+
           <UploadButton
             data-testid="upload-button"
             handleFileChange={handleFileChange}
             open={open}
             setOpen={setOpen}
           />
+          
         </div>
 
         {/* Allows you to select the content type */}
