@@ -15,3 +15,17 @@ export interface UseBlogEditorProps {
   initialContent: string;
   onUpdate: (id: string, newContent: string) => void;
 }
+
+export interface UsePostComposerReturn {
+  currentBlock: ContentBlock | null;
+  blocks: ContentBlock[];
+  setBlocks: React.Dispatch<React.SetStateAction<ContentBlock[]>>;
+  onSubmit: (data: FormSchema) => void;
+  addBlock: (block: ContentBlock) => void;
+  setCurrentBlock: React.Dispatch<React.SetStateAction<ContentBlock | null>>;
+  updateBlockContent: (
+    id: string | number,
+    newContent: Record<string, any>
+  ) => void;
+  getId: () => string | number | undefined;
+}

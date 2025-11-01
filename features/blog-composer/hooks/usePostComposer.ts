@@ -5,26 +5,13 @@ import useSubmitPost from "@/features/blog-composer/hooks/useSubmitPost";
 
 // Types
 import { ContentBlock } from "@/features/blogs/types/post";
-import { FormSchema } from "@/features/blog-composer/schemas/composerSchemas";
-
-interface UsePostComposerReturn {
-  currentBlock: ContentBlock | null;
-  blocks: ContentBlock[];
-  setBlocks: React.Dispatch<React.SetStateAction<ContentBlock[]>>;
-  onSubmit: (data: FormSchema) => void;
-  addBlock: (block: ContentBlock) => void;
-  setCurrentBlock: React.Dispatch<React.SetStateAction<ContentBlock | null>>;
-  updateBlockContent: (
-    id: string | number,
-    newContent: Record<string, any>
-  ) => void;
-  getId: () => string | number | undefined;
-}
+import { UsePostComposerReturn } from "@/features/blog-composer/types/postForm";
 
 /**
  * The hook will handle the composer state
  */
 const usePostComposer = (): UsePostComposerReturn => {
+  
   /**
    * The current block
    */
@@ -39,6 +26,7 @@ const usePostComposer = (): UsePostComposerReturn => {
    * Submits the post
    */
   const { onSubmit } = useSubmitPost({ contentBlocks: [] });
+  
   /**
    * Add a block
    */
@@ -47,15 +35,14 @@ const usePostComposer = (): UsePostComposerReturn => {
   };
 
   /**
-   * Update the content of a specific block
+   * Update only `content_data` of a block by ID
    */
-  const updateBlockContent = (
-    id: string | number,
-    newContent: Record<string, any>
-  ) => {
+  const updateBlockContent = (id: string | number, contentData: Record<string, any>) => {
     setBlocks((prevBlocks) =>
       prevBlocks.map((block) =>
-        block.id === id ? { ...block, content: newContent } : block
+        block.id === id
+          ? { ...block, content_data: contentData, updated_at: new Date() }
+          : block
       )
     );
   };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // External Libraries
 import { useEditor } from "@tiptap/react";
@@ -22,7 +22,7 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
  */
 const useBlogEditor = ({ id, initialContent }: UseBlogEditorProps) => {
   const [blogContent, setBlogContent] = useState<string | null>(null);
-  const { updateBlockContent, setCurrentBlockData } = useComposerContext();
+  const { updateBlockContent } = useComposerContext();
 
   const editor = useEditor(
     {
@@ -31,13 +31,17 @@ const useBlogEditor = ({ id, initialContent }: UseBlogEditorProps) => {
       content: initialContent,
       autofocus: true,
       onUpdate: ({ editor }) => {
-        let content = editor.getJSON();
-        setCurrentBlockData(content);
-        updateBlockContent(id, content);
+        updateBlockContent(id, editor.getJSON());
       },
     },
     [id]
   );
+
+  useEffect(() => {
+    if (initialContent && editor) {
+      editor.commands.setContent(initialContent);
+    }
+  }, [initialContent, editor]);
 
   return { editor, blogContent };
 };
