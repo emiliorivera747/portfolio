@@ -5,11 +5,26 @@ import useSubmitPost from "@/features/blog-composer/hooks/useSubmitPost";
 
 // Types
 import { ContentBlock } from "@/features/blogs/types/post";
+import { FormSchema } from "@/features/blog-composer/schemas/composerSchemas";
+
+interface UsePostComposerReturn {
+  currentBlock: ContentBlock | null;
+  blocks: ContentBlock[];
+  setBlocks: React.Dispatch<React.SetStateAction<ContentBlock[]>>;
+  onSubmit: (data: FormSchema) => void;
+  addBlock: (block: ContentBlock) => void;
+  setCurrentBlock: React.Dispatch<React.SetStateAction<ContentBlock | null>>;
+  updateBlockContent: (
+    id: string | number,
+    newContent: Record<string, any>
+  ) => void;
+  getId: () => string | number | undefined;
+}
 
 /**
- * The hook will handle the the composer state
+ * The hook will handle the composer state
  */
-const usePostComposer = () => {
+const usePostComposer = (): UsePostComposerReturn => {
   /**
    * The current block
    */
@@ -24,7 +39,6 @@ const usePostComposer = () => {
    * Submits the post
    */
   const { onSubmit } = useSubmitPost({ contentBlocks: [] });
-
   /**
    * Add a block
    */
@@ -46,8 +60,8 @@ const usePostComposer = () => {
     );
   };
 
-  const getId = () => {
-    return currentBlock ? currentBlock.id : undefined;
+  const getId = (): string | number | undefined => {
+    return currentBlock?.id;
   };
 
   return {

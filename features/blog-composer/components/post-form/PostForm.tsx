@@ -41,7 +41,7 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
 const PostForm = () => {
   const buttonRef = useRef(null);
 
-  const { currentBlockId, handleEnterEditMode, onSubmit, blocks } =
+  const { currentBlock, handleEnterEditMode, onSubmit, blocks, getBlo } =
     useComposerContext();
 
   const form = useForm<FormSchema>({
