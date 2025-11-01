@@ -20,7 +20,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
 }: TextEditorBlockProps) => {
   const ReadMode = () => (
     <div
-      className="w-full blog-content font-extralight hover:border hover:border-primary-1000 border-white border rounded-[12px] p-2"
+      className="w-full blog-content font-extralight hover:border hover:border-primary-500 border-white border rounded-[12px] p- py-4"
       onClick={() => onEnterEditMode(String(block.id || ""))}
     >
       <div
@@ -36,11 +36,13 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   return (
     <div className={`w-full rounded-[12px]  py-4`}>
       {isEditing ? (
-        <EditorWithMenu
-          id={block.id + ""}
-          initialContent={renderTipTapJSON(block.content_data)}
-          onUpdate={onUpdate}
-        />
+        <div className="border border-primary-400 pt-10 pb-6 rounded-[12px] px-10">
+          <EditorWithMenu
+            id={block.id + ""}
+            initialContent={renderTipTapJSON(block.content_data)}
+            onUpdate={onUpdate}
+          />
+        </div>
       ) : (
         <ReadMode />
       )}
