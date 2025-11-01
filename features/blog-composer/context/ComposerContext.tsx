@@ -8,7 +8,7 @@ const ComposerContext = createContext<any>(null);
 /**
  *  Stores all of the state for the Composer Context Provider
  */
-export const ComposeProvider = ({ children }: { children: ReactNode }) => {
+export const ComposerProvider = ({ children }: { children: ReactNode }) => {
   const composerState = usePostComposer();
   return (
     <ComposerContext.Provider value={composerState}>

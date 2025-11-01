@@ -8,15 +8,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // Components
 import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
 import PrimaryHeader from "@/components/headers/PrimaryHeader";
-import { Form, FormField } from "@/components/ui/form";
+import { Form } from "@/components/ui/form";
 import UploadButton from "@/components/form-components/UploadButton";
 import PostContentSelect from "@/features/blog-composer/components/post-content/PostContentSelect";
 import FormFieldGenerator from "@/components/form-builder/FormFieldGenerator";
 import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
-import PostContent from "@/features/blog-composer/components/post-content/PostContent";
-import MenuBar from "@/components/tiptap/MenuBar";
-import RichTextEditor from "@/components/tiptap/RichTextEditor";
-import EditorWithMenu from "@/components/tiptap/EditorWithMenu";
 import TextEditorBlock from "@/components/tiptap/TextEditorBlock";
 
 // Zod Schemas
@@ -33,22 +29,26 @@ import { fields } from "@/features/blog-composer/data/formFields";
 
 // Types
 import { ContentBlock } from "@/features/blogs/types/post";
-import { PostFormProps } from "@/features/blog-composer/types/postForm";
+
+// Context
+import { useComposerContext } from "@/features/blog-composer/context/ComposerContext";
 
 /**
  *
  * Form for Post Composer
  *
  */
-const PostForm = ({
-  onSubmit,
-  contentBlocks,
-  currentBlockId,
-  handleEnterEditMode,
-  addBlock,
-  setBlockId,
-}: PostFormProps) => {
+const PostForm = () => {
   const buttonRef = useRef(null);
+  const {
+    currentBlockId,
+    setCurrentBlockId,
+    handleEnterEditMode,
+    onSubmit,
+    addBlock,
+    setBlockId,
+    contentBlocks,
+  } = useComposerContext();
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -80,7 +80,6 @@ const PostForm = ({
         <PrimaryHeader title={"Create Post"} />
 
         <div className="w-full flex flex-col mb-10">
-          
           <SecondaryHeader label="Details" />
 
           <FormFieldGenerator
@@ -96,20 +95,19 @@ const PostForm = ({
             open={open}
             setOpen={setOpen}
           />
-          
         </div>
 
         {/* Allows you to select the content type */}
         <PostContentSelect
           addBlock={addBlock}
           setBlockId={setBlockId}
-          blocks={contentBlocks.length}
+          blocks={contentBlocks ? contentBlocks.length : 0}
         />
 
         {/* Renders the blocks */}
         <div className="w-full flex gap-4 flex-col">
-          {contentBlocks.length > 0 &&
-            contentBlocks.map((block) => (
+          {contentBlocks?.length > 0 &&
+            contentBlocks.map((block: ContentBlock) => (
               <div key={block.id}>{renderBlockComponent(block)}</div>
             ))}
         </div>
