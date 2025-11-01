@@ -23,23 +23,29 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
  * Allows you to select post content whether images, text, videos, and more.
  */
 const PostContentSelect = () => {
-  const { blocks, addBlock, setCurrentBlockId, currentBlockData } =
-    useComposerContext();
+  const { blocks, addBlock, currentBlock } = useComposerContext();
   const [open, setOpen] = useState(false);
   const buttonRef = useRef(null);
-
 
   // Handle button clicks for adding content blocks
   const handleAddContent = (content_type: ContentBlock["content_type"]) => {
     const newBlock: ContentBlock = {
-      id: nanoid(), // Generate a unique ID
-      content_order: blocks - 1,
+      id: nanoid(),
+      content_order: blocks.length - 1,
       content_type: content_type,
-      content_data: currentBlockData,
+      content_data: currentBlock?.content_data || {
+        type: "doc",
+        content: [
+          {
+            type: "paragraph",
+            attrs: { textAlign: null },
+            content: [],
+          },
+        ],
+      },
     };
-    
+
     addBlock(newBlock);
-    setCurrentBlockId(newBlock.id);
     setOpen(false);
   };
 
@@ -58,6 +64,7 @@ const PostContentSelect = () => {
           <DialogTitle className="text-center text-lg font-medium mb-4">
             Select Content Type
           </DialogTitle>
+
           {/* Image Button */}
           <button onClick={() => handleAddContent("image")} className="w-full">
             <SelectContentButton
@@ -66,6 +73,7 @@ const PostContentSelect = () => {
               }
             />
           </button>
+
           {/* Text Button */}
           <button onClick={() => handleAddContent("doc")} className="w-full">
             <SelectContentButton path="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />

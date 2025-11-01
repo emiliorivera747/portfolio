@@ -17,6 +17,7 @@ const usePostComposer = (): UsePostComposerReturn => {
    */
   const [currentBlock, setCurrentBlock] = useState<ContentBlock | null>(null);
 
+
   /**
    * The content blocks
    */
@@ -41,7 +42,7 @@ const usePostComposer = (): UsePostComposerReturn => {
     setBlocks((prevBlocks) =>
       prevBlocks.map((block) =>
         block.id === id
-          ? { ...block, content_data: contentData, updated_at: new Date() }
+          ? { ...block, content_data: contentData}
           : block
       )
     );

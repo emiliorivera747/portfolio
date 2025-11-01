@@ -41,7 +41,7 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
 const PostForm = () => {
   const buttonRef = useRef(null);
 
-  const { onSubmit, blocks, getId } = useComposerContext();
+  const { onSubmit, blocks } = useComposerContext();
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -54,15 +54,9 @@ const PostForm = () => {
   const renderBlockComponent = (block: ContentBlock) => {
     switch (block.content_type) {
       case "doc":
-        return (
-          <TextEditorBlock
-            block={block}
-          />
-        );
+        return <TextEditorBlock block={block} />;
     }
   };
-
-  console.log("BLOCKS", blocks);
 
   return (
     <Form {...form}>

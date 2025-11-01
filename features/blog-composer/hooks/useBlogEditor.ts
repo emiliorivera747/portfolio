@@ -21,7 +21,6 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
  *
  */
 const useBlogEditor = ({ id, initialContent }: UseBlogEditorProps) => {
-  const [blogContent, setBlogContent] = useState<string | null>(null);
   const { updateBlockContent } = useComposerContext();
 
   const editor = useEditor(
@@ -31,6 +30,7 @@ const useBlogEditor = ({ id, initialContent }: UseBlogEditorProps) => {
       content: initialContent,
       autofocus: true,
       onUpdate: ({ editor }) => {
+        console.log(editor.getJSON());
         updateBlockContent(id, editor.getJSON());
       },
     },
@@ -43,7 +43,7 @@ const useBlogEditor = ({ id, initialContent }: UseBlogEditorProps) => {
     }
   }, [initialContent, editor]);
 
-  return { editor, blogContent };
+  return { editor};
 };
 
 export default useBlogEditor;
