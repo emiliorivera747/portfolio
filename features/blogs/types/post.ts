@@ -10,12 +10,13 @@ export interface Post {
 export interface ContentBlock {
   id: string;
   content_order: number;
-  content_type: string; 
+  content_type: string;
   content_data: Record<string, any>;
   post_id?: number;
   media_id?: number;
   created_at?: Date;
   updated_at?: Date;
+  media?: Media;
 }
 
 export interface PostWithRelations extends Post {
@@ -40,7 +41,6 @@ export interface PostListProps {
   posts: Post[];
 }
 
-
 export interface BlogItemContentProps {
   title?: string;
   description?: string;
@@ -48,4 +48,10 @@ export interface BlogItemContentProps {
   createdAt?: Date;
 }
 
-
+export interface Media {
+  id?: string;
+  url: string;
+  alt?: string;
+  media_type: "image" | "video";
+  description?: string;
+}

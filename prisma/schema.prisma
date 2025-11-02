@@ -75,6 +75,7 @@ model Media {
   url         String
   media_type  String
   description String
+  alt         String
 
   // Relationships
   contentBlock ContentBlock?
