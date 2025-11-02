@@ -56,7 +56,7 @@ const PostForm = () => {
       case "doc":
         return <TextEditorBlock block={block} />;
       case "image":
-        return <div>This is an Image</div>;
+        return <img src="https://res.cloudinary.com/dcss55nem/image/upload/v1700277398/cld-sample-2.jpg" alt="This is an Image" />;
     }
   };
 

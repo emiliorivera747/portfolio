@@ -18,10 +18,18 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
 const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   block,
 }: TextEditorBlockProps) => {
-  const { getId } = useComposerContext();
+  const { getId, blocks, setCurrentBlock } = useComposerContext();
+
+  const updateCurrentBlock = () => {
+    const currentBlock = blocks.find((blk) => blk.id === block.id);
+    setCurrentBlock(currentBlock || null);
+  };
 
   const ReadMode = () => (
-    <div className="w-full blog-content font-extralight hover:border hover:border-primary-500 border-white border rounded-[12px] p- py-4">
+    <div
+      onClick={() => updateCurrentBlock()}
+      className="w-full blog-content font-extralight hover:border hover:border-primary-500 border-white border rounded-[12px] p- py-4"
+    >
       <div
         className="w-full"
         dangerouslySetInnerHTML={{
@@ -33,7 +41,6 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
     </div>
   );
 
-  console.log(getId(), block?.id);
   return (
     <div className={`w-full rounded-[12px]  py-4`}>
       {getId() === block.id ? (
