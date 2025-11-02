@@ -19,9 +19,6 @@ const Page = () => {
         <div className="h-auto flex items-center justify-center mb-10 mx-[6%] flex-col">
           <PostForm />
         </div>
-
-        {/* Preview of the Post Content */}
-        {/* {blogContent && <PostContent blogContent={blogContent} />} */}
       </ComposerProvider>
     </section>
   );

@@ -55,6 +55,8 @@ const PostForm = () => {
     switch (block.content_type) {
       case "doc":
         return <TextEditorBlock block={block} />;
+      case "image":
+        return <div>This is an Image</div>;
     }
   };
 
