@@ -5,6 +5,7 @@ import EditorWithMenu from "@/components/tiptap/EditorWithMenu";
 // Types
 import { TextEditorBlockProps } from "@/types/editor";
 
+// Functions
 import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 
 // Context

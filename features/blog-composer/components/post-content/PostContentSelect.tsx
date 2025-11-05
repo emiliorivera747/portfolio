@@ -34,15 +34,23 @@ const PostContentSelect = () => {
   const buttonRef = useRef(null);
 
   // Handle button clicks for adding content blocks
-  const handleAddContent = (content_type: ContentBlock["content_type"]) => {
-    const newBlock: ContentBlock = {
-      id: nanoid(),
-      content_order: blocks.length,
-      content_type: content_type,
-      content_data: currentBlock?.content_data || DEFAULT_BLOCK,
+  const handleAddContent = (content_type: "doc" | "image") => {
+    const h: Record<"doc" | "image", ContentBlock> = {
+      doc: {
+        id: nanoid(),
+        content_order: blocks.length,
+        content_type: content_type,
+        content_data: currentBlock?.content_data || DEFAULT_BLOCK,
+      },
+      image: {
+        id: nanoid(),
+        content_order: blocks.length,
+        content_type: content_type,
+        content_data: [],
+      },
     };
-    addBlock(newBlock);
-    setCurrentBlock(newBlock);
+    addBlock(h[content_type]);
+    setCurrentBlock(h[content_type]);
     setOpen(false);
   };
 
