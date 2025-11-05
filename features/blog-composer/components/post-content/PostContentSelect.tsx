@@ -19,6 +19,17 @@ import { nanoid } from "nanoid"; // For generating unique IDs
 // Hooks
 import { useComposerContext } from "@/features/blog-composer/context/ComposerContext";
 
+const DEFAULT_BLOCK = {
+  type: "doc",
+  content: [
+    {
+      type: "paragraph",
+      attrs: { textAlign: null },
+      content: [],
+    },
+  ],
+};
+
 /**
  * Allows you to select post content whether images, text, videos, and more.
  */
@@ -32,20 +43,10 @@ const PostContentSelect = () => {
   const handleAddContent = (content_type: ContentBlock["content_type"]) => {
     const newBlock: ContentBlock = {
       id: nanoid(),
-      content_order: blocks.length - 1,
+      content_order: blocks.length - 1 + 1,
       content_type: content_type,
-      content_data: currentBlock?.content_data || {
-        type: "doc",
-        content: [
-          {
-            type: "paragraph",
-            attrs: { textAlign: null },
-            content: [],
-          },
-        ],
-      },
+      content_data: currentBlock?.content_data || DEFAULT_BLOCK,
     };
-
     addBlock(newBlock);
     setCurrentBlock(newBlock);
     setOpen(false);
