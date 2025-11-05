@@ -54,6 +54,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const post = await prisma.$transaction(async (prisma: any) => {
+     
       /**
        * Create a new post
        */
@@ -82,7 +83,32 @@ export async function POST(req: NextRequest) {
       );
 
       for (const block of content_blocks) {
-        const { media, ...newBlock } = block;
+        const { media, ...blockData } = block;
+
+        /**
+         * Create content block
+         */
+        const cb = await prisma.ContentBlock.create({
+          data: {
+            ...blockData,
+            post_id: newPost.id,
+          },
+        });
+
+        /**
+         * Create media
+         */
+        if (media) {
+          await prisma.Media.create({
+            data: {
+              url: media.url,
+              media_type: media.media_type,
+              description: media.description,
+              alt: media.alt,
+              contentBlock: { connect: { id: cb.id } },
+            },
+          });
+        }
       }
 
       /**
