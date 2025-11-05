@@ -37,11 +37,13 @@ const postSchema = z.object({
  *
  */
 export async function POST(req: NextRequest) {
-  const result = await authenticateUser();
-  if (result instanceof NextResponse) return result;
+  // const result = await authenticateUser();
+  // if (result instanceof NextResponse) return result;
 
   const body = await req.json();
   const parsed = postSchema.safeParse(body);
+
+  console.log(parsed);
 
   if (!parsed.success) {
     return NextResponse.json(
@@ -54,14 +56,14 @@ export async function POST(req: NextRequest) {
 
   try {
     const post = await prisma.$transaction(async (prisma: any) => {
-     
       /**
        * Create a new post
        */
       const newPost = await prisma.post.create({
         data: {
           title,
-          user_id: user_id ? user_id : result.id,
+          // user_id: user_id ? user_id : result.id,
+          user_id: user_id,
           description: description,
         },
       });

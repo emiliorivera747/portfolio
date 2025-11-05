@@ -14,10 +14,7 @@ datasource db {
 }
 
 enum ContentType {
-  title
-  subtitle
-  paragraph
-  list
+  doc
   image
   video
 }
