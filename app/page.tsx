@@ -2,24 +2,26 @@
 import "@/styles/globals.css";
 import { motion, AnimatePresence } from "framer-motion";
 
-//Components
+// Components
 import Testimonial from "@/components/Testimonial";
 import PrimaryLandingPageSection from "@/features/primary-landing-page/components/PrimaryLandingPageSection";
 import Page from "@/components/Page";
+import Footer from "@/components/footers/Footer";
 
-//Sections
+
+// Sections
 import Contact from "@/components/Contact";
 import ProjectSection from "@/components/ProjectSection";
 import ToolsSection from "@/components/ToolsSection";
 
-//Data
+// Data
 import { toolsData } from "@/utils/data/tools/allToolsData";
 
 // Data
 import { navBarData } from "@/utils/data/navbar/navbarData";
 import Navbar from "@/components/navbar/Navbar";
 
-import Footer from "@/components/footers/Footer";
+
 /**
  *  Main App component that wraps around all pages.
  *
