@@ -27,7 +27,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
 
   const ReadMode = () => (
     <div
-      onClick={() => updateCurrentBlock()}
+      onClick={updateCurrentBlock}
       className="w-full blog-content font-extralight hover:border hover:border-primary-500 border-white border rounded-[12px] p- py-4"
     >
       <div

@@ -30,7 +30,6 @@ const useBlogEditor = ({ id, initialContent }: UseBlogEditorProps) => {
       content: initialContent,
       autofocus: true,
       onUpdate: ({ editor }) => {
-        console.log(editor.getJSON());
         updateBlockContent(id, editor.getJSON());
       },
     },

@@ -4,7 +4,12 @@ export const DEFAULT_BLOCK = {
     {
       type: "paragraph",
       attrs: { textAlign: null },
-      content: [],
+      content: [
+        {
+          type: "paragraph",
+          content: [{ type: "text", text: "Click to add text..." }],
+        },
+      ],
     },
   ],
 };

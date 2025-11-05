@@ -37,7 +37,7 @@ const PostContentSelect = () => {
   const handleAddContent = (content_type: ContentBlock["content_type"]) => {
     const newBlock: ContentBlock = {
       id: nanoid(),
-      content_order: blocks.length - 1 + 1,
+      content_order: blocks.length,
       content_type: content_type,
       content_data: currentBlock?.content_data || DEFAULT_BLOCK,
     };
