@@ -37,13 +37,11 @@ const postSchema = z.object({
  *
  */
 export async function POST(req: NextRequest) {
-  // const result = await authenticateUser();
-  // if (result instanceof NextResponse) return result;
+  const result = await authenticateUser();
+  if (result instanceof NextResponse) return result;
 
   const body = await req.json();
   const parsed = postSchema.safeParse(body);
-
-  console.log(parsed);
 
   if (!parsed.success) {
     return NextResponse.json(
@@ -62,27 +60,12 @@ export async function POST(req: NextRequest) {
       const newPost = await prisma.post.create({
         data: {
           title,
-          // user_id: user_id ? user_id : result.id,
-          user_id: user_id,
+          user_id: user_id ? user_id : result.id,
           description: description,
         },
       });
 
       const post_id = newPost.id;
-
-      /**
-       * Add id's to the content blocks
-       */
-      const contentBlocksPostId = content_blocks.map(
-        ({ content_order, content_type, content_data }) => {
-          return {
-            post_id: newPost.id,
-            content_order,
-            content_type,
-            content_data: content_data || {},
-          };
-        }
-      );
 
       for (const block of content_blocks) {
         const { media, ...blockData } = block;
@@ -112,13 +95,6 @@ export async function POST(req: NextRequest) {
           });
         }
       }
-
-      /**
-       * Creat the content blocks
-       */
-      await prisma.ContentBlock.createMany({
-        data: contentBlocksPostId,
-      });
 
       /**
        * Retrieve the post
