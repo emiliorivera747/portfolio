@@ -12,6 +12,11 @@ import {
 import SelectContentButton from "@/features/blog-composer/components/buttons/SelectContentButton";
 import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
 import { ContentBlock } from "@/features/blogs/types/post";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 // External Lib
 import { nanoid } from "nanoid"; // For generating unique IDs
@@ -19,8 +24,8 @@ import { nanoid } from "nanoid"; // For generating unique IDs
 // Hooks
 import { useComposerContext } from "@/features/blog-composer/context/ComposerContext";
 
+// Data
 import { DEFAULT_BLOCK } from "@/features/blog-composer/data/blocks";
-
 import { contentTypes } from "@/features/blog-composer/data/contentTypes";
 
 /**
@@ -63,13 +68,19 @@ const PostContentSelect = () => {
 
           {contentTypes.map(({ path, label, type }) => {
             return (
-              <button
-                key={label}
-                onClick={() => handleAddContent(type)}
-                className="w-full"
-              >
-                <SelectContentButton path={path} />
-              </button>
+              <Tooltip key={label}>
+                <TooltipTrigger>
+                  {" "}
+                  <button
+                    key={label}
+                    onClick={() => handleAddContent(type)}
+                    className="w-full"
+                  >
+                    <SelectContentButton path={path} />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent className="bg-primary-800" side="bottom">{label}</TooltipContent>
+              </Tooltip>
             );
           })}
         </DialogContent>

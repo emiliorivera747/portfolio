@@ -12,8 +12,10 @@ export const metadata = {
     "Welcome to Emilio Rivera's Portfolio, a Software Engineer based in San Jose, CA. specializing in React.js, Next.js, and Node.js.",
 };
 
-//Components
+// Components
 import { ReactQueryClientProvider } from "@/features/react-query/components/ReactQueryClientProvider";
+
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 /**
  *
@@ -29,25 +31,27 @@ export default function RootLayout({
 }) {
   return (
     <ReactQueryClientProvider>
-      <html lang="en">
-        <head>
-          <Script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-R0GTFSV0LN"
-          ></Script>
-          <Script id="google-analytics">
-            {`window.dataLayer = window.dataLayer || [];
+      <TooltipProvider>
+        <html lang="en">
+          <head>
+            <Script
+              async
+              src="https://www.googletagmanager.com/gtag/js?id=G-R0GTFSV0LN"
+            ></Script>
+            <Script id="google-analytics">
+              {`window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', 'G-R0GTFSV0LN');`}
-          </Script>
-        </head>
-        <body>
-          {children}
-          <Toaster />
-        </body>
-      </html>
+            </Script>
+          </head>
+          <body>
+            {children}
+            <Toaster />
+          </body>
+        </html>
+      </TooltipProvider>
     </ReactQueryClientProvider>
   );
 }
