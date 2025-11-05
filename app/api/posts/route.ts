@@ -5,23 +5,28 @@ import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
 
 // Validation schema for the request body
 const postSchema = z.object({
-  user_id: z.string().optional(), 
+  user_id: z.string().optional(),
   description: z.string().optional(),
-  title: z.string().optional(), 
+  title: z.string().optional(),
   content_blocks: z
     .array(
-      z.object({
-        content_order: z.number().int(),
-        content_type: z.enum([
-          "title",
-          "subtitle",
-          "paragraph",
-          "list",
-          "image",
-          "video",
-        ]),
-        content_data: z.record(z.string(), z.any()), // JSON object for TipTap
-      })
+      z
+        .object({
+          content_order: z.number().int(),
+          content_type: z.enum(["doc", "image", "video"]),
+          content_data: z.record(z.string(), z.any()),
+        })
+        .extend({
+          media: z
+            .object({
+              id: z.string().optional(),
+              url: z.string().url(),
+              alt: z.string().optional(),
+              media_type: z.enum(["image", "video"]),
+              description: z.string().optional(),
+            })
+            .optional(),
+        })
     )
     .min(1, "At least one content block is required"),
 });
@@ -49,7 +54,6 @@ export async function POST(req: NextRequest) {
 
   try {
     const post = await prisma.$transaction(async (prisma: any) => {
-      
       /**
        * Create a new post
        */
@@ -72,10 +76,14 @@ export async function POST(req: NextRequest) {
             post_id: newPost.id,
             content_order,
             content_type,
-            content_data,
+            content_data: content_data || {},
           };
         }
       );
+
+      for (const block of content_blocks) {
+        const { media, ...newBlock } = block;
+      }
 
       /**
        * Creat the content blocks
