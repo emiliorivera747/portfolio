@@ -49,6 +49,7 @@ const PostContentSelect = () => {
         content_data: [],
       },
     };
+
     addBlock(h[content_type]);
     setCurrentBlock(h[content_type]);
     setOpen(false);
