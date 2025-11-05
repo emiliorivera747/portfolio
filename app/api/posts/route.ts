@@ -53,7 +53,13 @@ export async function POST(req: NextRequest) {
   const { user_id, title, content_blocks, description } = parsed.data;
 
   try {
+
+    /**
+     *  To make sure all database operations get executed at the same
+     *  we use the $transaction.
+     */
     const post = await prisma.$transaction(async (prisma: any) => {
+      
       /**
        * Create a new post
        */
