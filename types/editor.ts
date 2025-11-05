@@ -6,5 +6,5 @@ export interface TextEditorBlockProps {
 
 export interface UseBlogEditorProps {
   id: string;
-  initialContent: string;
+  initialContent: Record<string, any>;
 }

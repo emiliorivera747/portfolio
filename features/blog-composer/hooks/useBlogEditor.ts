@@ -36,12 +36,6 @@ const useBlogEditor = ({ id, initialContent }: UseBlogEditorProps) => {
     [id]
   );
 
-  useEffect(() => {
-    if (initialContent && editor) {
-      editor.commands.setContent(initialContent);
-    }
-  }, [initialContent, editor]);
-
   return { editor};
 };
 

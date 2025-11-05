@@ -12,6 +12,6 @@ const extensions: any[] = [
 ];
 
 export function renderTipTapJSON(json: JSONContent | null): string {
-  if (!json) return "";
+  if (!json || !json.content) return "";
   return generateHTML(json, extensions);
 }

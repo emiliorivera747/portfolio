@@ -25,33 +25,29 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
     setCurrentBlock(currentBlock || null);
   };
 
-  const ReadMode = () => (
-    <div
-      onClick={updateCurrentBlock}
-      className="w-full blog-content font-extralight hover:border hover:border-primary-500 border-white border rounded-[12px] p- py-4"
-    >
-      <div
-        className="w-full"
-        dangerouslySetInnerHTML={{
-          __html:
-            renderTipTapJSON(block.content_data) ||
-            "<p>Click to add text...</p>",
-        }}
-      />
-    </div>
-  );
+  const isEditing = getId() === block.id;
+
+  const initialContent = block.content_data ?? {
+    type: "doc",
+    content: [{ type: "paragraph" }],
+  };
 
   return (
     <div className={`w-full rounded-[12px]  py-4`}>
-      {getId() === block.id ? (
+      {isEditing ? (
         <div className="border border-primary-300 pt-10 pb-6 rounded-[12px] px-10">
-          <EditorWithMenu
-            id={block.id + ""}
-            initialContent={renderTipTapJSON(block.content_data)}
-          />
+          <EditorWithMenu id={block.id + ""} initialContent={initialContent} />
         </div>
       ) : (
-        <ReadMode />
+        <div
+          onClick={updateCurrentBlock}
+          className="w-full blog-content font-extralight hover:border hover:border-primary-500 border-white border rounded-[12px] py-4 px-2 cursor-text min-h-[3rem] prose prose-sm max-w-none"
+          dangerouslySetInnerHTML={{
+            __html: block.content_data
+              ? renderTipTapJSON(block.content_data)
+              : '<p class="text-gray-400">Click to add text...</p>',
+          }}
+        />
       )}
     </div>
   );
