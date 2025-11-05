@@ -19,16 +19,7 @@ import { nanoid } from "nanoid"; // For generating unique IDs
 // Hooks
 import { useComposerContext } from "@/features/blog-composer/context/ComposerContext";
 
-const DEFAULT_BLOCK = {
-  type: "doc",
-  content: [
-    {
-      type: "paragraph",
-      attrs: { textAlign: null },
-      content: [],
-    },
-  ],
-};
+import { DEFAULT_BLOCK } from "@/features/blog-composer/data/blocks";
 
 /**
  * Allows you to select post content whether images, text, videos, and more.
