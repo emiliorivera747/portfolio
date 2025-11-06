@@ -11,18 +11,15 @@ import {
 } from "@/components/ui/dialog";
 import SelectContentButton from "@/features/blog-composer/components/buttons/SelectContentButton";
 import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
-import { ContentBlock } from "@/features/blogs/types/post";
 import SelectContentWithToolTipButton from "@/features/blog-composer/components/buttons/SelectContentWithToolTipButton";
-
-// External Lib
-import { nanoid } from "nanoid"; // For generating unique IDs
 
 // Hooks
 import { useComposerContext } from "@/features/blog-composer/context/ComposerContext";
 
 // Data
-import { DEFAULT_BLOCK } from "@/features/blog-composer/data/blocks";
 import { contentTypes } from "@/features/blog-composer/data/contentTypes";
+
+import { CONTENT_BLOCK_GENERATOR } from "@/features/blog-composer/config/blockGenerator";
 
 /**
  * Allows you to select post content whether images, text, videos, and more.
@@ -32,32 +29,34 @@ const PostContentSelect = () => {
     useComposerContext();
   const [open, setOpen] = useState(false);
   const buttonRef = useRef(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Handle button clicks for adding content blocks
   const handleAddContent = (content_type: "doc" | "image") => {
-    const h: Record<"doc" | "image", ContentBlock> = {
-      doc: {
-        id: nanoid(),
-        content_order: blocks.length,
-        content_type: content_type,
-        content_data: currentBlock?.content_data || DEFAULT_BLOCK,
-      },
-      image: {
-        id: nanoid(),
-        content_order: blocks.length,
-        content_type: content_type,
-        content_data: [],
-      },
-    };
-
-    addBlock(h[content_type]);
-    setCurrentBlock(h[content_type]);
+    const newBlock = CONTENT_BLOCK_GENERATOR[content_type](
+      blocks.length,
+      currentBlock?.content_data
+    );
+    addBlock(newBlock);
+    setCurrentBlock(newBlock);
     setOpen(false);
+
+    if (content_type === "image" && fileInputRef.current)
+      fileInputRef.current.click();
   };
+
+  const handleFileChange = () => {};
 
   return (
     <div className="w-full h-full mb-8">
       <SecondaryHeader label={"Content"} />
+      <input
+        ref={fileInputRef}
+        accept="image/*"
+        type="file"
+        onChange={handleFileChange}
+        className="hidden"
+      />
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className="w-full">
           <SelectContentButton

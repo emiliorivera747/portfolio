@@ -1,6 +1,8 @@
 "use client";
 import React, { useState, useRef } from "react";
 
+import Image from "next/image";
+
 // External Lib
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -56,7 +58,16 @@ const PostForm = () => {
       case "doc":
         return <TextEditorBlock block={block} />;
       case "image":
-        return <img src={block.media?.url} alt={block.media?.alt} />;
+        return (
+          block.media?.url && (
+            <Image
+              src={block.media.url}
+              alt={block.media?.alt || "Image"}
+              height={500}
+              width={500}
+            />
+          )
+        );
     }
   };
 
