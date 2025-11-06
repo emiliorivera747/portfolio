@@ -27,25 +27,18 @@ type MediaSaveResponse = {
   url: string;
 };
 
-
 /**
  * Allows you to select post content whether images, text, videos, and more.
  */
 const PostContentSelect = () => {
-  const { blocks, addBlock, currentBlock, setCurrentBlock, updateBlock } =
-    useComposerContext();
-  const [open, setOpen] = useState(false);
-  const [currentImageBlockId, setCurrentImageBlockId] = useState<string | null>(
-    null
-  );
-  const [loading, setLoading] = useState(false);
-  const buttonRef = useRef(null);
+  const { blocks, addBlock, currentBlock, setCurrentBlock, updateBlock } = useComposerContext();
 
-  // Handle button clicks for adding content blocks
-  const handleAddContent = (
-    content_type: "doc" | "image",
-    openWidget?: () => void
-  ) => {
+  const [openModal, setOpenModal] = useState(false);
+  const [currentImageBlockId, setCurrentImageBlockId] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const widgetRef = useRef<any>(null); // This will hold the real widget
+  
+  const handleAddContent = (content_type: "doc" | "image") => {
     const newBlock = CONTENT_BLOCK_GENERATOR[content_type](
       blocks.length,
       currentBlock?.content_data
@@ -53,25 +46,22 @@ const PostContentSelect = () => {
 
     addBlock(newBlock);
     setCurrentBlock(newBlock);
-    setOpen(false);
+    setOpenModal(false);
 
-    if (content_type === "image" && openWidget) {
-      // Store ID and open the widget
+    if (content_type === "image") {
       setCurrentImageBlockId(newBlock.id);
-      openWidget();
+      // Open widget using the REAL widget ref (guaranteed ready)
+      setTimeout(() => widgetRef.current?.open(), 0);
     }
   };
 
-  // === 2. Widget Success Handler: Save to DB ===
-  const handleUploadSuccess = async (result: any, widget: any) => {
+  const handleUploadSuccess = async (result: any) => {
     if (result.event !== "success" || !currentImageBlockId) return;
 
     const cloudinaryData = result.info;
-    const blockId = currentImageBlockId;
     setLoading(true);
 
     try {
-      // 3. Post the Cloudinary URL and details to your own API to save to Prisma
       const dbResponse = await fetch("/api/save-media", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -82,16 +72,12 @@ const PostContentSelect = () => {
         }),
       });
 
-      if (!dbResponse.ok) {
-        throw new Error("Failed to save media to database.");
-      }
+      if (!dbResponse.ok) throw new Error("Failed to save media.");
 
       const mediaResult: MediaSaveResponse = await dbResponse.json();
 
-      // 4. Update the ContentBlock in your state with the Media ID and URL
-      updateBlock(blockId, {
+      updateBlock(currentImageBlockId, {
         media_id: mediaResult.id,
-        // Update the 'media' prop for immediate client-side rendering
         media: {
           id: mediaResult.id.toString(),
           url: mediaResult.url,
@@ -104,41 +90,41 @@ const PostContentSelect = () => {
     } finally {
       setLoading(false);
       setCurrentImageBlockId(null);
-      widget.close();
     }
   };
 
   return (
     <CldUploadWidget
-      signatureEndpoint={`/api/sign-cloudinary-params`}
+      uploadPreset="next_cloudinary_app"  // REQUIRED FOR SIGNED UPLOADS
+      signatureEndpoint="/api/sign-cloudinary-params"
       onSuccess={handleUploadSuccess}
+      onOpen={(widget) => {
+        widgetRef.current = widget; // Save the real widget instance
+      }}
     >
-      {({ cloudinary, widget, open: widgetOpen, results, error }) => (
+      {({ open }) => ( // `open` here is safe but we won't use it directly
         <div className="w-full h-full mb-8">
           <SecondaryHeader label={"Content"} />
-          <Dialog open={open} onOpenChange={setOpen}>
+          <Dialog open={openModal} onOpenChange={setOpenModal}>
             <DialogTrigger className="w-full">
               <SelectContentButton
                 path="M12 4.5v15m7.5-7.5h-15"
-                ref={buttonRef}
-                className={"bg-white"}
+                className="bg-white"
               />
             </DialogTrigger>
             <DialogContent className="py-10 px-10">
               <DialogTitle className="text-center text-lg font-medium mb-4">
-                Select Content Type
+                Select Content Type {loading && "(Uploading/Saving...)"}
               </DialogTitle>
-              {contentTypes.map(({ path, label, type }) => {
-                return (
-                  <SelectContentWithToolTipButton
-                    key={label}
-                    label={label}
-                    path={path}
-                    type={type}
-                    addContent={handleAddContent}
-                  />
-                );
-              })}
+              {contentTypes.map(({ path, label, type }) => (
+                <SelectContentWithToolTipButton
+                  key={label}
+                  label={label}
+                  path={path}
+                  type={type}
+                  addContent={() => handleAddContent(type as "doc" | "image")}
+                />
+              ))}
             </DialogContent>
           </Dialog>
         </div>
@@ -146,5 +132,4 @@ const PostContentSelect = () => {
     </CldUploadWidget>
   );
 };
-
 export default PostContentSelect;
