@@ -33,3 +33,8 @@ export interface UsePostComposerReturn {
     updatedFields: Partial<ContentBlock>
   ) => void;
 }
+
+export type MediaSaveResponse = {
+  id: number;
+  url: string;
+};

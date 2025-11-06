@@ -17,15 +17,14 @@ import SelectContentWithToolTipButton from "@/features/blog-composer/components/
 // Hooks
 import { useComposerContext } from "@/features/blog-composer/context/ComposerContext";
 
-// Data
+// --- Data ---
 import { contentTypes } from "@/features/blog-composer/data/contentTypes";
 
+// --- Config ---
 import { CONTENT_BLOCK_GENERATOR } from "@/features/blog-composer/config/blockGenerator";
 
-type MediaSaveResponse = {
-  id: number; // The new media_id from Prisma
-  url: string;
-};
+// --- Type ---
+import { MediaSaveResponse } from "@/features/blog-composer/types/postForm";
 
 /**
  * Allows you to select post content whether images, text, videos, and more.
@@ -39,7 +38,6 @@ const PostContentSelect = () => {
     null
   );
   const [loading, setLoading] = useState(false);
-  const widgetRef = useRef<any>(null); // This will hold the real widget
 
   const handleAddContent = (
     content_type: "doc" | "image",
