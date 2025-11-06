@@ -33,10 +33,12 @@ const PostContentSelect = () => {
 
   // Handle button clicks for adding content blocks
   const handleAddContent = (content_type: "doc" | "image") => {
+    
     const newBlock = CONTENT_BLOCK_GENERATOR[content_type](
       blocks.length,
       currentBlock?.content_data
     );
+
     addBlock(newBlock);
     setCurrentBlock(newBlock);
     setOpen(false);
