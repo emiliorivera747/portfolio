@@ -58,7 +58,6 @@ export async function POST(req: NextRequest) {
      *  we use the $transaction.
      */
     const post = await prisma.$transaction(async (prisma: any) => {
-      
       /**
        * Create a new post
        */

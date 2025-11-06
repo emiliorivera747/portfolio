@@ -11,6 +11,8 @@ import { MediaUploadResult } from "@/types/mediaStorage";
 
 const prisma = new PrismaClient();
 
+import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
+
 // The data structure coming from the client must now include the file content
 type MediaBody = {
   dataUri: string; // File content as data URI
@@ -18,6 +20,8 @@ type MediaBody = {
 };
 
 export async function POST(request: Request) {
+  const result = await authenticateUser();
+  if (result instanceof NextResponse) return result;
   try {
     const { dataUri, alt } = (await request.json()) as MediaBody;
 
