@@ -28,4 +28,8 @@ export interface UsePostComposerReturn {
     newContent: Record<string, any>
   ) => void;
   getId: () => string | number | undefined;
+  updateBlock: (
+    id: string | number,
+    updatedFields: Partial<ContentBlock>
+  ) => void;
 }

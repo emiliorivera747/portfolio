@@ -11,12 +11,10 @@ import { UsePostComposerReturn } from "@/features/blog-composer/types/postForm";
  * The hook will handle the composer state
  */
 const usePostComposer = (): UsePostComposerReturn => {
-  
   /**
    * The current block
    */
   const [currentBlock, setCurrentBlock] = useState<ContentBlock | null>(null);
-
 
   /**
    * The content blocks
@@ -27,7 +25,7 @@ const usePostComposer = (): UsePostComposerReturn => {
    * Submits the post
    */
   const { onSubmit } = useSubmitPost({ contentBlocks: [] });
-  
+
   /**
    * Add a block
    */
@@ -36,14 +34,30 @@ const usePostComposer = (): UsePostComposerReturn => {
   };
 
   /**
+   *
+   */
+  const updateBlock = (
+    id: string | number,
+    updatedFields: Partial<ContentBlock>
+  ) => {
+    setBlocks((prevBlocks) =>
+      prevBlocks.map((blk) => {
+        if (blk.id !== id) return blk;
+        return { ...blk, ...updatedFields } as ContentBlock;
+      })
+    );
+  };
+
+  /**
    * Update only `content_data` of a block by ID
    */
-  const updateBlockContent = (id: string | number, contentData: Record<string, any>) => {
+  const updateBlockContent = (
+    id: string | number,
+    contentData: Record<string, any>
+  ) => {
     setBlocks((prevBlocks) =>
       prevBlocks.map((block) =>
-        block.id === id
-          ? { ...block, content_data: contentData}
-          : block
+        block.id === id ? { ...block, content_data: contentData } : block
       )
     );
   };
@@ -61,6 +75,7 @@ const usePostComposer = (): UsePostComposerReturn => {
     setCurrentBlock,
     updateBlockContent,
     getId,
+    updateBlock,
   };
 };
 
