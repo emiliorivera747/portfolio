@@ -28,7 +28,7 @@ export async function uploadToCloudinary(
     return {
       url: uploadResult.secure_url,
       alt: altText,
-      type: uploadResult.resource_type === "image" ? "image" : "video",
+      media_type: uploadResult.resource_type === "image" ? "image" : "video",
       providerAssetId: uploadResult.public_id,
       storageProvider: "CLOUDINARY",
     };
