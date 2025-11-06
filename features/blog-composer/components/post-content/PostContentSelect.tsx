@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { CldUploadWidget } from "next-cloudinary";
 
-// Components
+// --- Components ---
 import {
   Dialog,
   DialogContent,
@@ -14,17 +14,20 @@ import SelectContentButton from "@/features/blog-composer/components/buttons/Sel
 import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
 import SelectContentWithToolTipButton from "@/features/blog-composer/components/buttons/SelectContentWithToolTipButton";
 
-// Hooks
+// --- Hooks ---
 import { useComposerContext } from "@/features/blog-composer/context/ComposerContext";
 
 // --- Data ---
 import { contentTypes } from "@/features/blog-composer/data/contentTypes";
 
-// --- Config ---
+// --- Config --
 import { CONTENT_BLOCK_GENERATOR } from "@/features/blog-composer/config/blockGenerator";
 
 // --- Type ---
 import { MediaSaveResponse } from "@/features/blog-composer/types/postForm";
+
+// --- Services ---
+import mediaSerivce from "@/services/media-requests";
 
 /**
  * Allows you to select post content whether images, text, videos, and more.
@@ -65,25 +68,17 @@ const PostContentSelect = () => {
     setLoading(true);
 
     try {
-      const dbResponse = await fetch("/api/save-media", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          url: cloudinaryData.secure_url,
-          alt: cloudinaryData.original_filename || "Image",
-          media_type: cloudinaryData.resource_type,
-        }),
+      const result: MediaSaveResponse = await mediaSerivce.saveMedia({
+        url: cloudinaryData.secure_url,
+        alt: cloudinaryData.original_filename || "Image",
+        media_type: cloudinaryData.resource_type,
       });
 
-      if (!dbResponse.ok) throw new Error("Failed to save media.");
-
-      const mediaResult: MediaSaveResponse = await dbResponse.json();
-
       updateBlock(currentImageBlockId, {
-        media_id: mediaResult.id,
+        media_id: result.id,
         media: {
-          id: mediaResult.id.toString(),
-          url: mediaResult.url,
+          id: result.id.toString(),
+          url: result.url,
           alt: cloudinaryData.original_filename || "Image",
           media_type: cloudinaryData.resource_type,
         },
