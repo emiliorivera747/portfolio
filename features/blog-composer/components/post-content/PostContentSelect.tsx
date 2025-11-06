@@ -1,6 +1,9 @@
 "use client";
 
-import { useState, useRef } from "react";
+// --- React ---
+import { useState } from "react";
+
+// --- External lib ---
 import { CldUploadWidget } from "next-cloudinary";
 
 // --- Components ---
@@ -20,33 +23,36 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
 // --- Data ---
 import { contentTypes } from "@/features/blog-composer/data/contentTypes";
 
-// --- Config --
+// --- Config ---
 import { CONTENT_BLOCK_GENERATOR } from "@/features/blog-composer/config/blockGenerator";
 
-// --- Type ---
+// --- Types ---
 import { MediaSaveResponse } from "@/features/blog-composer/types/postForm";
 
 // --- Services ---
-import mediaSerivce from "@/services/media-requests";
+import mediaService from "@/services/media-requests";
 
-/**
- * Allows you to select post content whether images, text, videos, and more.
- */
 const PostContentSelect = () => {
-  const { blocks, addBlock, currentBlock, setCurrentBlock, updateBlock } =
-    useComposerContext();
+  const {
+    blocks,
+    addBlock,
+    currentBlock,
+    setCurrentBlock,
+    updateBlock,
+    getId,
+  } = useComposerContext();
 
   const [openModal, setOpenModal] = useState(false);
-  const [currentImageBlockId, setCurrentImageBlockId] = useState<string | null>(
-    null
-  );
   const [loading, setLoading] = useState(false);
 
   const handleAddContent = (
-    content_type: "doc" | "image",
+    contentType: "doc" | "image",
     openWidget?: () => void
   ) => {
-    const newBlock = CONTENT_BLOCK_GENERATOR[content_type](
+    /**
+     * Get a new block based on content type
+     */
+    const newBlock = CONTENT_BLOCK_GENERATOR[contentType](
       blocks.length,
       currentBlock?.content_data
     );
@@ -55,51 +61,55 @@ const PostContentSelect = () => {
     setCurrentBlock(newBlock);
     setOpenModal(false);
 
-    if (content_type === "image" && openWidget) {
-      setCurrentImageBlockId(newBlock.id);
-      openWidget();
-    }
+    if (contentType === "image" && openWidget) openWidget();
   };
 
   const handleUploadSuccess = async (result: any) => {
-    if (result.event !== "success" || !currentImageBlockId) return;
+    if (result.event !== "success" && !getId()) return;
 
-    const cloudinaryData = result.info;
+    console.log("Successfully Uploaded!", result);
+
+    const { secure_url, original_filename, resource_type } = result.info;
     setLoading(true);
 
     try {
-      const result: MediaSaveResponse = await mediaSerivce.saveMedia({
-        url: cloudinaryData.secure_url,
-        alt: cloudinaryData.original_filename || "Image",
-        media_type: cloudinaryData.resource_type,
+      const mediaResponse: MediaSaveResponse = await mediaService.saveMedia({
+        url: secure_url,
+        alt: original_filename || "Image",
+        media_type: resource_type,
       });
 
-      updateBlock(currentImageBlockId, {
-        media_id: result.id,
-        media: {
-          id: result.id.toString(),
-          url: result.url,
-          alt: cloudinaryData.original_filename || "Image",
-          media_type: cloudinaryData.resource_type,
-        },
-      });
+      console.log("Media Response", mediaResponse);
+
+      const blockId = getId();
+      if (blockId !== undefined) {
+        updateBlock(blockId, {
+          media_id: mediaResponse.id,
+          media: {
+            id: mediaResponse.id.toString(),
+            url: mediaResponse.url,
+            alt: original_filename || "Image",
+            media_type: resource_type,
+          },
+        });
+      } else {
+        console.error("Block ID is undefined. Cannot update block.");
+      }
     } catch (error) {
       console.error("Database save error:", error);
     } finally {
       setLoading(false);
-      setCurrentImageBlockId(null);
     }
   };
 
   return (
     <CldUploadWidget
-      uploadPreset="next_cloudinary_app"
       signatureEndpoint="/api/sign-cloudinary-params"
       onSuccess={handleUploadSuccess}
     >
       {({ open }) => (
         <div className="w-full h-full mb-8">
-          <SecondaryHeader label={"Content"} />
+          <SecondaryHeader label="Content" />
           <Dialog open={openModal} onOpenChange={setOpenModal}>
             <DialogTrigger className="w-full">
               <SelectContentButton
@@ -111,21 +121,19 @@ const PostContentSelect = () => {
               <DialogTitle className="text-center text-lg font-medium mb-4">
                 Select Content Type {loading && "(Uploading/Saving...)"}
               </DialogTitle>
-              {contentTypes.map(({ path, label, type }) => {
-                const isImage = type === "image";
-                const action = isImage
-                  ? () => handleAddContent(type, open)
-                  : () => handleAddContent(type);
-                return (
-                  <SelectContentWithToolTipButton
-                    key={label}
-                    label={label}
-                    path={path}
-                    type={type}
-                    addContent={action}
-                  />
-                );
-              })}
+              {contentTypes.map(({ path, label, type }) => (
+                <SelectContentWithToolTipButton
+                  key={label}
+                  label={label}
+                  path={path}
+                  type={type}
+                  addContent={
+                    type === "image"
+                      ? () => handleAddContent(type, open)
+                      : () => handleAddContent(type)
+                  }
+                />
+              ))}
             </DialogContent>
           </Dialog>
         </div>
@@ -133,4 +141,5 @@ const PostContentSelect = () => {
     </CldUploadWidget>
   );
 };
+
 export default PostContentSelect;

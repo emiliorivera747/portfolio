@@ -2,43 +2,47 @@
 
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
 
-// --- Import the Media Service ---
-import { uploadToCloudinary } from "@/services/media-storage";
+// --- Import the NEW Abstraction Layer ---
+import { uploadMedia } from "@/services/media-storage";
 
 // --- Types ---
 import { MediaUploadResult } from "@/types/mediaStorage";
 
 const prisma = new PrismaClient();
 
-import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
-
-// The data structure coming from the client must now include the file content
-type MediaBody = {
-  dataUri: string; // File content as data URI
-  alt: string; // Alt text
-};
-
 export async function POST(request: Request) {
   const result = await authenticateUser();
   if (result instanceof NextResponse) return result;
-  try {
-    const { dataUri, alt } = (await request.json()) as MediaBody;
 
-    if (!dataUri) {
+  try {
+    // 1. --- Get FormData, not JSON ---
+    const formData = await request.formData();
+    const file = formData.get("file") as File;
+    const alt = formData.get("alt") as string;
+
+    if (!file) {
       return NextResponse.json(
-        { error: "No file data provided." },
+        { error: "No file provided." },
         { status: 400 }
       );
     }
 
-    // 1. --- Call the Abstraction Layer ---
-    const uploadResult: MediaUploadResult = await uploadToCloudinary(
-      dataUri,
-      alt
-    );
+    // 2. --- Convert file to a Buffer ---
+    // A Buffer is a universal format that both S3 and Cloudinary can handle.
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
 
-    // 2. Save the new Media record with provider details
+    // 3. --- Call the ONE abstraction ---
+    // This function doesn't know about Cloudinary or S3.
+    // It just does its job.
+    const uploadResult: MediaUploadResult = await uploadMedia({
+      fileBuffer,
+      fileType: file.type, // Pass the MIME type
+      alt,
+    });
+
+    // 4. Save the new Media record (this stays the same)
     const newMedia = await prisma.media.create({
       data: {
         url: uploadResult.url,
