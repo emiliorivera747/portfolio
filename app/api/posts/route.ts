@@ -53,7 +53,6 @@ export async function POST(req: NextRequest) {
   const { user_id, title, content_blocks, description } = parsed.data;
 
   try {
-
     /**
      *  To make sure all database operations get executed at the same
      *  we use the $transaction.
@@ -92,6 +91,7 @@ export async function POST(req: NextRequest) {
         if (media) {
           await prisma.Media.create({
             data: {
+              id: media.id,
               url: media.url,
               media_type: media.media_type,
               description: media.description,

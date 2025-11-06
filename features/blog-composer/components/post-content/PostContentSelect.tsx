@@ -68,6 +68,7 @@ const PostContentSelect = () => {
           />
         </DialogTrigger>
         <DialogContent className="py-10 px-10">
+          
           <DialogTitle className="text-center text-lg font-medium mb-4">
             Select Content Type
           </DialogTitle>

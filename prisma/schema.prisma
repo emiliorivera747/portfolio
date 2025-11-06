@@ -73,6 +73,9 @@ model Media {
   media_type  String
   description String
   alt         String
+  provider_asset_id String?
+  storage_provider String @default("CLOUDINARY")
+
 
   // Relationships
   contentBlock ContentBlock?
@@ -80,6 +83,8 @@ model Media {
   // Timestamps
   created_at DateTime @default(now()) @db.Timestamptz(3)
   updated_at DateTime @updatedAt @db.Timestamptz(3)
+
+  @@index([provider_asset_id])
 }
 
 model Comment {
