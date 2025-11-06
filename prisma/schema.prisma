@@ -102,7 +102,6 @@ model Comment {
 model Tag {
   id   Int    @id @default(autoincrement())
   name String @unique
-
   postTag PostTag[] // Many-to-many with Post via PostTag
 }
 
