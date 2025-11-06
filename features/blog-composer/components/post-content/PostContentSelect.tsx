@@ -31,14 +31,20 @@ type MediaSaveResponse = {
  * Allows you to select post content whether images, text, videos, and more.
  */
 const PostContentSelect = () => {
-  const { blocks, addBlock, currentBlock, setCurrentBlock, updateBlock } = useComposerContext();
+  const { blocks, addBlock, currentBlock, setCurrentBlock, updateBlock } =
+    useComposerContext();
 
   const [openModal, setOpenModal] = useState(false);
-  const [currentImageBlockId, setCurrentImageBlockId] = useState<string | null>(null);
+  const [currentImageBlockId, setCurrentImageBlockId] = useState<string | null>(
+    null
+  );
   const [loading, setLoading] = useState(false);
   const widgetRef = useRef<any>(null); // This will hold the real widget
-  
-  const handleAddContent = (content_type: "doc" | "image") => {
+
+  const handleAddContent = (
+    content_type: "doc" | "image",
+    openWidget?: () => void
+  ) => {
     const newBlock = CONTENT_BLOCK_GENERATOR[content_type](
       blocks.length,
       currentBlock?.content_data
@@ -48,10 +54,9 @@ const PostContentSelect = () => {
     setCurrentBlock(newBlock);
     setOpenModal(false);
 
-    if (content_type === "image") {
+    if (content_type === "image" && openWidget) {
       setCurrentImageBlockId(newBlock.id);
-      // Open widget using the REAL widget ref (guaranteed ready)
-      setTimeout(() => widgetRef.current?.open(), 0);
+      openWidget();
     }
   };
 
@@ -95,14 +100,11 @@ const PostContentSelect = () => {
 
   return (
     <CldUploadWidget
-      uploadPreset="next_cloudinary_app"  // REQUIRED FOR SIGNED UPLOADS
+      uploadPreset="next_cloudinary_app"
       signatureEndpoint="/api/sign-cloudinary-params"
       onSuccess={handleUploadSuccess}
-      onOpen={(widget) => {
-        widgetRef.current = widget; // Save the real widget instance
-      }}
     >
-      {({ open }) => ( // `open` here is safe but we won't use it directly
+      {({ open }) => (
         <div className="w-full h-full mb-8">
           <SecondaryHeader label={"Content"} />
           <Dialog open={openModal} onOpenChange={setOpenModal}>
@@ -116,15 +118,21 @@ const PostContentSelect = () => {
               <DialogTitle className="text-center text-lg font-medium mb-4">
                 Select Content Type {loading && "(Uploading/Saving...)"}
               </DialogTitle>
-              {contentTypes.map(({ path, label, type }) => (
-                <SelectContentWithToolTipButton
-                  key={label}
-                  label={label}
-                  path={path}
-                  type={type}
-                  addContent={() => handleAddContent(type as "doc" | "image")}
-                />
-              ))}
+              {contentTypes.map(({ path, label, type }) => {
+                const isImage = type === "image";
+                const action = isImage
+                  ? () => handleAddContent(type, open)
+                  : () => handleAddContent(type);
+                return (
+                  <SelectContentWithToolTipButton
+                    key={label}
+                    label={label}
+                    path={path}
+                    type={type}
+                    addContent={action}
+                  />
+                );
+              })}
             </DialogContent>
           </Dialog>
         </div>
