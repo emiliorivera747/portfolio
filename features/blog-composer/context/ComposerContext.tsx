@@ -28,6 +28,7 @@ const ComposerContext = createContext<UsePostComposerReturn>(
  *  Stores all of the state for the Composer Context Provider
  */
 export const ComposerProvider = ({ children }: { children: ReactNode }) => {
+  
   const {
     blocks,
     addBlock,

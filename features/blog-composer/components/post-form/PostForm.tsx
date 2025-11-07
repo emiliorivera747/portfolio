@@ -1,8 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
 
-import Image from "next/image";
-
 // External Lib
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
