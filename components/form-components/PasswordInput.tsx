@@ -46,7 +46,7 @@ const PasswordInput = <TFieldValues extends FieldValues>({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [handleClickOutside]);
+  }, []);
 
   return (
     <div className="relative my-1">
