@@ -13,6 +13,8 @@ cloudinary.config({
 });
 
 export async function POST(request: Request) {
+  const result = await authenticateUser();
+  if (result instanceof NextResponse) return result;
 
   try {
     const body = await request.json();
