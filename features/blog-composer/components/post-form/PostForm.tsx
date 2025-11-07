@@ -16,13 +16,13 @@ import PostContentSelect from "@/features/blog-composer/components/post-content/
 import FormFieldGenerator from "@/components/form-builder/FormFieldGenerator";
 import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
 import TextEditorBlock from "@/components/tiptap/TextEditorBlock";
+import ImageBlock from "@/features/blog-composer/components/blocks/ImageBlock";
 
 // Zod Schemas
 import {
   formSchema,
   FormSchema,
 } from "@/features/blog-composer/schemas/composerSchemas";
-
 
 // Data
 import { fields } from "@/features/blog-composer/data/formFields";
@@ -47,8 +47,6 @@ const PostForm = () => {
     resolver: zodResolver(formSchema),
   });
 
-
-
   const [open, setOpen] = useState(false);
 
   const renderBlockComponent = (block: ContentBlock) => {
@@ -56,17 +54,7 @@ const PostForm = () => {
       case "doc":
         return <TextEditorBlock block={block} />;
       case "image":
-        return (
-          block.media?.url && (
-            <Image
-              src={block.media.url}
-              alt={block.media?.alt || "Image"}
-              height={500}
-              width={500}
-              className="w-full rounded-[12px]"
-            />
-          )
-        );
+        return <ImageBlock block={block} />;
     }
   };
 

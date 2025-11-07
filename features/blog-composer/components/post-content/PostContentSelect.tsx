@@ -102,7 +102,7 @@ const PostContentSelect = () => {
         alert("Failed to save media to database. See console for details.");
       } finally {
         setLoading(false);
-        uploadingBlockIdRef.current = undefined; 
+        uploadingBlockIdRef.current = undefined;
       }
     },
     [updateBlock] // only `updateBlock` is stable from the context
@@ -115,8 +115,8 @@ const PostContentSelect = () => {
     >
       {({ open }) => (
         <div className="w-full h-full mb-8">
-          {/* …your Dialog UI unchanged… */}
           <Dialog open={openModal} onOpenChange={setOpenModal}>
+            <SecondaryHeader label="Content" />
             <DialogTrigger className="w-full">
               <SelectContentButton
                 path="M12 4.5v15m7.5-7.5h-15"
