@@ -20,6 +20,16 @@ const useCreatePost = () => {
 
   const { mutate: mutatePost, isPending: isPendingPost } = useMutation({
     mutationFn: postComposerService.createPost,
+    onMutate: () => {
+      toast("Creating post...", {
+        position: "top-right",
+        style: {
+          backgroundColor: "#228be6",
+          color: "white",
+          borderRadius: "12px",
+        },
+      });
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["post"],

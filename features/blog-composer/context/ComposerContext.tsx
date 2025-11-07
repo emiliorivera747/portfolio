@@ -3,18 +3,59 @@ import { createContext, ReactNode, useContext } from "react";
 // Hook
 import usePostComposer from "@/features/blog-composer/hooks/usePostComposer";
 import { UsePostComposerReturn } from "../types/postForm";
+import useSubmitPost from "@/features/blog-composer/hooks/useSubmitPost";
+
+const initialContextValue: UsePostComposerReturn & { onSubmit: any } = {
+  blocks: [],
+  currentBlock: null,
+  setBlocks: () => {},
+  addBlock: () => {},
+  setCurrentBlock: () => {},
+  updateBlockContent: () => {},
+  getId: () => undefined,
+  updateBlock: () => {},
+  handleFileChange: () => {},
+  onSubmit: () => {
+    console.warn("onSubmit called outside of a Provider!");
+  },
+};
 
 const ComposerContext = createContext<UsePostComposerReturn>(
-  {} as UsePostComposerReturn
+  initialContextValue as UsePostComposerReturn
 );
 
 /**
  *  Stores all of the state for the Composer Context Provider
  */
 export const ComposerProvider = ({ children }: { children: ReactNode }) => {
-  const composerState = usePostComposer();
+  const {
+    blocks,
+    addBlock,
+    updateBlock,
+    updateBlockContent,
+    currentBlock,
+    setCurrentBlock,
+    handleFileChange,
+    setBlocks,
+    getId,
+    onSubmit,
+  } = usePostComposer();
+
   return (
-    <ComposerContext.Provider value={composerState}>
+    <ComposerContext.Provider
+      value={{
+        blocks,
+        addBlock,
+        updateBlock,
+        updateBlockContent,
+        currentBlock,
+        setCurrentBlock,
+        setBlocks,
+        getId,
+        onSubmit,
+        handleFileChange,
+      }}
+    >
       {children}
     </ComposerContext.Provider>
   );

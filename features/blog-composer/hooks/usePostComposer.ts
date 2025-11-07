@@ -22,10 +22,10 @@ const usePostComposer = (): UsePostComposerReturn => {
    */
   const [blocks, setBlocks] = useState<ContentBlock[]>([]);
 
-  /**
-   * Submits the post
-   */
-  const { onSubmit } = useSubmitPost({ contentBlocks: [] });
+  // /**
+  //  * Submits the post
+  //  */
+  const { onSubmit } = useSubmitPost({ blocks });
 
   /**
    * Add a block
@@ -73,13 +73,13 @@ const usePostComposer = (): UsePostComposerReturn => {
     currentBlock,
     blocks,
     setBlocks,
-    onSubmit,
     addBlock,
     setCurrentBlock,
     updateBlockContent,
     getId,
     updateBlock,
     handleFileChange,
+    onSubmit,
   };
 };
 

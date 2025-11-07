@@ -43,6 +43,8 @@ const PostForm = () => {
 
   const { onSubmit, blocks, handleFileChange } = useComposerContext();
 
+  console.log(blocks);
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
@@ -61,7 +63,7 @@ const PostForm = () => {
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(onSubmit || (() => {}))}
         className="flex flex-col items-center  w-[40rem] pt-[4rem]"
       >
         <PrimaryHeader title={"Create Post"} />

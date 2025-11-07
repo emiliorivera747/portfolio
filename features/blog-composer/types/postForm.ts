@@ -20,7 +20,7 @@ export interface UsePostComposerReturn {
   currentBlock: ContentBlock | null;
   blocks: ContentBlock[];
   setBlocks: React.Dispatch<React.SetStateAction<ContentBlock[]>>;
-  onSubmit: (data: FormSchema) => void;
+  // onSubmit: (data: FormSchema) => void;
   addBlock: (block: ContentBlock) => void;
   setCurrentBlock: React.Dispatch<React.SetStateAction<ContentBlock | null>>;
   updateBlockContent: (
@@ -33,6 +33,7 @@ export interface UsePostComposerReturn {
     updatedFields: Partial<ContentBlock>
   ) => void;
   handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onSubmit?: (data: FormSchema) => void;
 }
 
 export type MediaSaveResponse = {
