@@ -56,16 +56,15 @@ model ContentBlock {
   content_type  ContentType
   content_data  Json        @default("{}")
 
-  // Relatitonships
+  // Relationships
   post     Post   @relation(fields: [post_id], references: [id])
   post_id  Int
-  media    Media? @relation("ContentBlockMedia")
+  media    Media? @relation("BlockMedia", fields: [media_id], references: [id])
   media_id Int?   @unique
 
   // Timestamps
   created_at DateTime @default(now()) @db.Timestamptz(3)
   updated_at DateTime @updatedAt @db.Timestamptz(3)
-  Media      Media[]
 }
 
 model Media {
@@ -78,13 +77,11 @@ model Media {
   storage_provider  String  @default("CLOUDINARY")
 
   // Relationships
-  contentBlock ContentBlock? @relation("ContentBlockMedia", fields: [id], references: [media_id])
-
+  contentBlock ContentBlock? @relation("BlockMedia")
+  
   // Timestamps
-  created_at     DateTime      @default(now()) @db.Timestamptz(3)
-  updated_at     DateTime      @updatedAt @db.Timestamptz(3)
-  ContentBlock   ContentBlock? @relation(fields: [contentBlockId], references: [id])
-  contentBlockId Int?
+  created_at   DateTime      @default(now()) @db.Timestamptz(3)
+  updated_at   DateTime      @updatedAt @db.Timestamptz(3)
 
   @@index([provider_asset_id])
 }

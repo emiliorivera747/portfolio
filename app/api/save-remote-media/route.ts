@@ -35,8 +35,8 @@ export async function POST(request: Request) {
 
     // 1. --- Fetch the file content from the remote URL ---
     const response = await fetch(remoteUrl);
-    if (!response.ok) throw new Error(`Failed to fetch file from URL: ${response.statusText}`);
-    
+    if (!response.ok)
+      throw new Error(`Failed to fetch file from URL: ${response.statusText}`);
 
     // 2. --- Convert the fetched file to a Buffer ---
     const fileBuffer = Buffer.from(await response.arrayBuffer());
@@ -68,9 +68,11 @@ export async function POST(request: Request) {
 
     return NextResponse.json(newMedia, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { error: "A server error or download/upload error occurred." },
-      { status: 500 }
-    );
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : "A server error or download/upload error occurred.";
+    console.log(errorMessage);
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

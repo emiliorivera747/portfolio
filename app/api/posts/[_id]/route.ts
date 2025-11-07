@@ -23,6 +23,9 @@ export const GET = async (
         User: true,
         content_block: {
           orderBy: { content_order: "asc" },
+          include: {
+            media: true,
+          },
         },
       },
     });

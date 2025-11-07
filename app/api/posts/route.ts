@@ -91,7 +91,7 @@ export async function POST(req: NextRequest) {
         if (media) {
           await prisma.Media.create({
             data: {
-              provivder_asset_id: media.provider_asset_id,
+              provider_asset_id: media.provider_asset_id,
               url: media.url,
               media_type: media.media_type,
               description: media.description,
@@ -145,9 +145,6 @@ export async function GET() {
         content_block: {
           orderBy: {
             content_order: "asc",
-          },
-          include: {
-            media: true,
           },
         },
       },
