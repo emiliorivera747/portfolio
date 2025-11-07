@@ -23,8 +23,6 @@ import {
   FormSchema,
 } from "@/features/blog-composer/schemas/composerSchemas";
 
-// Hooks
-import useFile from "@/hooks/useFile";
 
 // Data
 import { fields } from "@/features/blog-composer/data/formFields";
@@ -43,13 +41,13 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
 const PostForm = () => {
   const buttonRef = useRef(null);
 
-  const { onSubmit, blocks } = useComposerContext();
+  const { onSubmit, blocks, handleFileChange } = useComposerContext();
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });
 
-  const { handleFileChange, file } = useFile();
+
 
   const [open, setOpen] = useState(false);
 
@@ -72,7 +70,6 @@ const PostForm = () => {
     }
   };
 
-  console.log("BLOCKS",blocks);
   return (
     <Form {...form}>
       <form

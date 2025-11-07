@@ -27,7 +27,6 @@ import { contentTypes } from "@/features/blog-composer/data/contentTypes";
 import { CONTENT_BLOCK_GENERATOR } from "@/features/blog-composer/config/blockGenerator";
 
 // --- Types ---
-import { MediaSaveResponse } from "@/features/blog-composer/types/postForm";
 import { ContentBlock } from "@/features/blogs/types/post";
 
 // --- Services ---
@@ -84,10 +83,7 @@ const PostContentSelect = () => {
         // 1. Use the **ref** we stored when the block was created
         // ------------------------------------------------------------------
         const blockId = uploadingBlockIdRef.current;
-        if (blockId === undefined) {
-          console.warn("No block ID – upload succeeded but block was removed");
-          return;
-        }
+        if (blockId === undefined) return;
 
         // ------------------------------------------------------------------
         // 2. Update the block (still using the context hook – it’s fresh)
@@ -101,15 +97,12 @@ const PostContentSelect = () => {
             media_type: resource_type,
           },
         });
-
-        // Debug – now you’ll see the *real* length
-        console.log("Blocks after update (ref):", blocksRef.current.length);
       } catch (err) {
         console.error("Database save error:", err);
         alert("Failed to save media to database. See console for details.");
       } finally {
         setLoading(false);
-        uploadingBlockIdRef.current = undefined; // clean up
+        uploadingBlockIdRef.current = undefined; 
       }
     },
     [updateBlock] // only `updateBlock` is stable from the context

@@ -28,12 +28,13 @@ const useSubmitPost = ({
     const postData: PostWithRelations = {
       title: data.title,
       description: data.description,
+      image_url: "",
       content_blocks: blocks.map(
         ({ content_order, content_data, content_type, media }, index) => ({
-          id: `block-${index}`, // Generate a unique id for each block
+          id: `block-${index}`,
           content_order,
-          content_type, 
-          content_data, 
+          content_type,
+          content_data,
           media: media ?? undefined,
         })
       ),

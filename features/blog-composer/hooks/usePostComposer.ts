@@ -2,6 +2,7 @@ import { useState } from "react";
 
 // Hooks
 import useSubmitPost from "@/features/blog-composer/hooks/useSubmitPost";
+import useFile from "@/hooks/useFile";
 
 // Types
 import { ContentBlock } from "@/features/blogs/types/post";
@@ -32,6 +33,8 @@ const usePostComposer = (): UsePostComposerReturn => {
   const addBlock = (block: ContentBlock) => {
     setBlocks((prevBlocks) => [...prevBlocks, block]);
   };
+
+  const { handleFileChange, file } = useFile();
 
   /**
    *
@@ -76,6 +79,7 @@ const usePostComposer = (): UsePostComposerReturn => {
     updateBlockContent,
     getId,
     updateBlock,
+    handleFileChange,
   };
 };
 

@@ -32,6 +32,7 @@ export interface UsePostComposerReturn {
     id: string | number,
     updatedFields: Partial<ContentBlock>
   ) => void;
+  handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export type MediaSaveResponse = {
