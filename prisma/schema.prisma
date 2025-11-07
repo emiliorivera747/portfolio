@@ -71,8 +71,8 @@ model Media {
   id          Int    @id @default(autoincrement())
   url         String
   media_type  String
-  description String
-  alt         String
+  description String?
+  alt         String?
   provider_asset_id String?
   storage_provider String @default("CLOUDINARY")
 

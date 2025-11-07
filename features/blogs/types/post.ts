@@ -55,4 +55,5 @@ export interface Media {
   alt?: string;
   media_type: ContentType;
   description?: string;
+  provider_asset_id: string;
 }

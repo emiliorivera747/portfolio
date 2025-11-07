@@ -91,6 +91,7 @@ const PostContentSelect = () => {
         updateBlock(blockId, {
           media_id: mediaResponse.id,
           media: {
+            provider_asset_id: mediaResponse.provider_asset_id,
             id: mediaResponse.id.toString(),
             url: mediaResponse.url,
             alt: original_filename || "Image",
@@ -105,7 +106,7 @@ const PostContentSelect = () => {
         uploadingBlockIdRef.current = undefined;
       }
     },
-    [updateBlock] // only `updateBlock` is stable from the context
+    [updateBlock]
   );
 
   return (

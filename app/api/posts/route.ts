@@ -19,6 +19,7 @@ const postSchema = z.object({
         .extend({
           media: z
             .object({
+              provider_asset_id: z.string().optional(),
               id: z.string().optional(),
               url: z.string().url(),
               alt: z.string().optional(),
@@ -90,7 +91,7 @@ export async function POST(req: NextRequest) {
         if (media) {
           await prisma.Media.create({
             data: {
-              id: media.id,
+              provivder_asset_id: media.provider_asset_id,
               url: media.url,
               media_type: media.media_type,
               description: media.description,

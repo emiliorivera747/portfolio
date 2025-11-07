@@ -27,6 +27,8 @@ const useSubmitPost = ({ blocks }: { blocks: ContentBlock[] }) => {
         return;
       }
 
+      console.log("data", data);
+
       const postData: PostWithRelations = {
         title: data.title,
         description: data.description,
@@ -42,7 +44,6 @@ const useSubmitPost = ({ blocks }: { blocks: ContentBlock[] }) => {
         ),
       };
 
-      console.log("Submitting with blocks:", blocks);
       mutatePost(postData);
     },
     [blocks, mutatePost]
