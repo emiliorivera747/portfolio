@@ -65,13 +65,14 @@ const PostForm = () => {
               alt={block.media?.alt || "Image"}
               height={500}
               width={500}
+              className="w-full rounded-[12px]"
             />
           )
         );
     }
   };
 
-  console.log(blocks);
+  console.log("BLOCKS",blocks);
   return (
     <Form {...form}>
       <form

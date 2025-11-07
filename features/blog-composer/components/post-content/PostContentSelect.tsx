@@ -1,7 +1,7 @@
 "use client";
 
 // --- React ---
-import { useState } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 
 // --- External lib ---
 import { CldUploadWidget } from "next-cloudinary";
@@ -28,58 +28,70 @@ import { CONTENT_BLOCK_GENERATOR } from "@/features/blog-composer/config/blockGe
 
 // --- Types ---
 import { MediaSaveResponse } from "@/features/blog-composer/types/postForm";
+import { ContentBlock } from "@/features/blogs/types/post";
 
 // --- Services ---
 import mediaService from "@/services/media-requests";
 
 const PostContentSelect = () => {
-  const {
-    blocks,
-    addBlock,
-    currentBlock,
-    setCurrentBlock,
-    updateBlock,
-    getId,
-  } = useComposerContext();
+  const { blocks, addBlock, setCurrentBlock, updateBlock } =
+    useComposerContext();
 
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  // Keep the **latest** block ID that we are uploading for
+  const uploadingBlockIdRef = useRef<string | number | undefined>(undefined);
+
+  // Optional: keep a fresh copy of blocks for debugging / fallback
+  const blocksRef = useRef<ContentBlock[]>([]);
+  useEffect(() => {
+    blocksRef.current = blocks;
+  }, [blocks]);
 
   const handleAddContent = (
     contentType: "doc" | "image",
     openWidget?: () => void
   ) => {
-    
-    /**
-     * Get a new block based on content type
-     */
     const newBlock = CONTENT_BLOCK_GENERATOR[contentType](
       blocks.length,
-      currentBlock?.content_data
+      undefined
     );
 
-    addBlock(newBlock);
-    setCurrentBlock(newBlock);
-    setOpenModal(false);
+    addBlock(newBlock); // <- push into context
+    setCurrentBlock(newBlock); // <- make it the active block
+    uploadingBlockIdRef.current = newBlock.id; // <-- remember it
 
+    setOpenModal(false);
     if (contentType === "image" && openWidget) openWidget();
   };
 
-  const handleUploadSuccess = async (result: any) => {
-    if (result.event !== "success" && !getId()) return;
+  const handleUploadSuccess = useCallback(
+    async (result: any) => {
+      if (result.event !== "success") return;
 
-    const { secure_url, original_filename, resource_type } = result.info;
-    setLoading(true);
+      const { secure_url, original_filename, resource_type } = result.info;
+      setLoading(true);
 
-    try {
-      const mediaResponse: MediaSaveResponse = await mediaService.saveMedia({
-        url: secure_url,
-        alt: original_filename || "Image",
-        media_type: resource_type,
-      });
+      try {
+        const mediaResponse = await mediaService.saveMedia({
+          remoteUrl: secure_url,
+          alt: original_filename || "Image",
+          media_type: resource_type,
+        });
 
-      const blockId = getId();
-      if (blockId !== undefined) {
+        // ------------------------------------------------------------------
+        // 1. Use the **ref** we stored when the block was created
+        // ------------------------------------------------------------------
+        const blockId = uploadingBlockIdRef.current;
+        if (blockId === undefined) {
+          console.warn("No block ID – upload succeeded but block was removed");
+          return;
+        }
+
+        // ------------------------------------------------------------------
+        // 2. Update the block (still using the context hook – it’s fresh)
+        // ------------------------------------------------------------------
         updateBlock(blockId, {
           media_id: mediaResponse.id,
           media: {
@@ -89,15 +101,19 @@ const PostContentSelect = () => {
             media_type: resource_type,
           },
         });
-      } else {
-        console.error("Block ID is undefined. Cannot update block.");
+
+        // Debug – now you’ll see the *real* length
+        console.log("Blocks after update (ref):", blocksRef.current.length);
+      } catch (err) {
+        console.error("Database save error:", err);
+        alert("Failed to save media to database. See console for details.");
+      } finally {
+        setLoading(false);
+        uploadingBlockIdRef.current = undefined; // clean up
       }
-    } catch (error) {
-      console.error("Database save error:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+    },
+    [updateBlock] // only `updateBlock` is stable from the context
+  );
 
   return (
     <CldUploadWidget
@@ -106,7 +122,7 @@ const PostContentSelect = () => {
     >
       {({ open }) => (
         <div className="w-full h-full mb-8">
-          <SecondaryHeader label="Content" />
+          {/* …your Dialog UI unchanged… */}
           <Dialog open={openModal} onOpenChange={setOpenModal}>
             <DialogTrigger className="w-full">
               <SelectContentButton
@@ -114,10 +130,12 @@ const PostContentSelect = () => {
                 className="bg-white"
               />
             </DialogTrigger>
+
             <DialogContent className="py-10 px-10">
               <DialogTitle className="text-center text-lg font-medium mb-4">
                 Select Content Type {loading && "(Uploading/Saving...)"}
               </DialogTitle>
+
               {contentTypes.map(({ path, label, type }) => (
                 <SelectContentWithToolTipButton
                   key={label}
