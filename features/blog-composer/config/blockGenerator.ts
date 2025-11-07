@@ -27,7 +27,7 @@ export const CONTENT_BLOCK_GENERATOR = {
       content_order: order,
       content_type: "image",
       content_data: {},
-      media: { url: "", alt: "", media_type: "image" },
+      media: { provider_asset_id: "", url: "", alt: "", media_type: "image" },
     };
   },
 } as const;
