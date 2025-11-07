@@ -23,7 +23,7 @@ const Page = () => {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
-      <article className="h-screen  sm:mx-[10%] md:mx-[22%] font-normal">
+      <article className="h-screen  sm:mx-[10%] md:mx-[24%] font-normal">
         <div className="pt-[7rem] mx-[8%] text-4xl">
           <h1 className="text-primary-900 font-semibold  times-header upper">
             {postResponse?.data?.title}
@@ -79,7 +79,7 @@ const Page = () => {
                     alt={media?.alt || "Image"}
                     height={400}
                     width={400}
-                    className="w-full rounded-[12px] object-cover h-[30rem]"
+                    className="w-full rounded-[12px] object-cover h-[26rem]"
                   />
                 );
               return (
