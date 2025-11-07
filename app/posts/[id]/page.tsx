@@ -23,13 +23,13 @@ const Page = () => {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
-      <article className="h-screen  sm:mx-[8%] md:mx-[16%] font-normal">
-        <div className="pt-[10rem] mx-[8%] text-4xl">
-          <h1 className="text-primary-1000 font-semibold mb-4 times-header">
+      <article className="h-screen  sm:mx-[10%] md:mx-[22%] font-normal">
+        <div className="pt-[7rem] mx-[8%] text-4xl">
+          <h1 className="text-primary-900 font-semibold  times-header upper">
             {postResponse?.data?.title}
           </h1>
 
-          <span className="flex flex-row gap-4 items-center text-sm mb-4 text-primary-700 font-light pb-8">
+          <span className="flex flex-row gap-4 items-center text-[0.9rem] mb-4 text-primary-700 font-light">
             <div className="flex items-center gap-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@ const Page = () => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-5 "
+                className="size-4"
               >
                 <path
                   strokeLinecap="round"
@@ -79,7 +79,7 @@ const Page = () => {
                     alt={media?.alt || "Image"}
                     height={400}
                     width={400}
-                    className="w-full rounded-[12px] "
+                    className="w-full rounded-[12px] object-cover h-[30rem]"
                   />
                 );
               return (

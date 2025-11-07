@@ -15,7 +15,7 @@ import { PasswordInputProps } from "@/types/forms";
  *
  * Displays password input
  *
- * @param id 
+ * @param id
  * @param placeholder
  * @returns
  */
@@ -46,7 +46,7 @@ const PasswordInput = <TFieldValues extends FieldValues>({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [handleClickOutside]);
 
   return (
     <div className="relative my-1">

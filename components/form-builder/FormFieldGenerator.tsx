@@ -16,7 +16,7 @@ const FormFieldGenerator = ({ fields }: FormFieldGeneratorProps) => {
   return (
     <>
       {fields.map(({ control, name, id, placeholder, type }) => {
-        return (
+        return control ? (
           <FormField
             key={id}
             control={control}
@@ -32,7 +32,7 @@ const FormFieldGenerator = ({ fields }: FormFieldGeneratorProps) => {
               />
             )}
           />
-        );
+        ) : null;
       })}
     </>
   );
