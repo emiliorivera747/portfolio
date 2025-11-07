@@ -142,14 +142,14 @@ export async function GET() {
   try {
     const posts = await prisma.post.findMany({
       include: {
-      content_block: {
-        orderBy: {
-        content_order: "asc",
+        content_block: {
+          orderBy: {
+            content_order: "asc",
+          },
+          include: {
+            media: true,
+          },
         },
-        include: {
-        media: true,
-        },
-      },
       },
     });
 

@@ -5,6 +5,7 @@ import useFetchPostById from "@/features/blogs/hooks/useFetchPostById";
 import { useParams } from "next/navigation";
 import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 import Head from "next/head";
+import Image from "next/image";
 
 const Page = () => {
   const { id } = useParams();
@@ -14,6 +15,8 @@ const Page = () => {
 
   const title = postResponse?.data?.title || "Default Title";
   const description = postResponse?.data?.description || "Default Description";
+
+  console.log(postResponse?.data);
 
   return (
     <>
@@ -55,14 +58,31 @@ const Page = () => {
               }
             )}
           </span>
+
+          {/* --- Go through the content blocks */}
           {postResponse?.data?.content_block?.map(
             ({
               content_data,
               content_order,
+              content_type,
+              media,
             }: {
               content_data: any;
-              content_order: any;
+              content_order: number;
+              content_type: string;
+              media: any;
             }) => {
+              if (content_type === "image")
+                return (
+                  <Image
+                    key={content_order}
+                    src={media.url}
+                    alt={media?.alt || "Image"}
+                    height={500}
+                    width={500}
+                    className="w-full rounded-[12px]"
+                  />
+                );
               return (
                 <div
                   key={content_order}

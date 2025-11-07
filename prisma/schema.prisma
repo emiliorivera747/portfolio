@@ -59,30 +59,32 @@ model ContentBlock {
   // Relatitonships
   post     Post   @relation(fields: [post_id], references: [id])
   post_id  Int
-  media    Media? @relation(fields: [media_id], references: [id])
+  media    Media? @relation("ContentBlockMedia")
   media_id Int?   @unique
 
   // Timestamps
   created_at DateTime @default(now()) @db.Timestamptz(3)
   updated_at DateTime @updatedAt @db.Timestamptz(3)
+  Media      Media[]
 }
 
 model Media {
-  id          Int    @id @default(autoincrement())
-  url         String
-  media_type  String
-  description String?
-  alt         String?
+  id                Int     @id @default(autoincrement())
+  url               String
+  media_type        String
+  description       String?
+  alt               String?
   provider_asset_id String?
-  storage_provider String @default("CLOUDINARY")
-
+  storage_provider  String  @default("CLOUDINARY")
 
   // Relationships
-  contentBlock ContentBlock?
+  contentBlock ContentBlock? @relation("ContentBlockMedia", fields: [id], references: [media_id])
 
   // Timestamps
-  created_at DateTime @default(now()) @db.Timestamptz(3)
-  updated_at DateTime @updatedAt @db.Timestamptz(3)
+  created_at     DateTime      @default(now()) @db.Timestamptz(3)
+  updated_at     DateTime      @updatedAt @db.Timestamptz(3)
+  ContentBlock   ContentBlock? @relation(fields: [contentBlockId], references: [id])
+  contentBlockId Int?
 
   @@index([provider_asset_id])
 }
@@ -100,8 +102,8 @@ model Comment {
 }
 
 model Tag {
-  id   Int    @id @default(autoincrement())
-  name String @unique
+  id      Int       @id @default(autoincrement())
+  name    String    @unique
   postTag PostTag[] // Many-to-many with Post via PostTag
 }
 
