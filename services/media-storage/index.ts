@@ -22,10 +22,7 @@ export async function uploadMedia(
   //   return await uploadToS3(params);
   // }
 
-  if (provider === "CLOUDINARY") {
-    // Call the Cloudinary-specific function
-    return await uploadToCloudinary(params);
-  }
+  if (provider === "CLOUDINARY") return await uploadToCloudinary(params);
 
   // Default to Cloudinary if no provider is set
   if (process.env.NODE_ENV === "development") {

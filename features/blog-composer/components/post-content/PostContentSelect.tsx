@@ -49,6 +49,7 @@ const PostContentSelect = () => {
     contentType: "doc" | "image",
     openWidget?: () => void
   ) => {
+    
     /**
      * Get a new block based on content type
      */
@@ -67,8 +68,6 @@ const PostContentSelect = () => {
   const handleUploadSuccess = async (result: any) => {
     if (result.event !== "success" && !getId()) return;
 
-    console.log("Successfully Uploaded!", result);
-
     const { secure_url, original_filename, resource_type } = result.info;
     setLoading(true);
 
@@ -78,8 +77,6 @@ const PostContentSelect = () => {
         alt: original_filename || "Image",
         media_type: resource_type,
       });
-
-      console.log("Media Response", mediaResponse);
 
       const blockId = getId();
       if (blockId !== undefined) {
