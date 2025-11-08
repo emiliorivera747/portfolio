@@ -25,11 +25,11 @@ const Page = () => {
       </Head>
       <article className="h-screen  sm:mx-[10%] md:mx-[24%] font-normal">
         <div className="pt-[7rem] mx-[8%] text-4xl">
-          <h1 className="text-primary-900 font-semibold  times-header upper">
+          <h1 className="text-primary-900 font-semibold  times-header upper mb-4">
             {postResponse?.data?.title}
           </h1>
 
-          <span className="flex flex-row gap-4 items-center text-[0.9rem] mb-4 text-primary-700 font-light">
+          {/* <span className="flex flex-row gap-4 items-center text-[0.9rem] mb-4 text-primary-700 font-light">
             <div className="flex items-center gap-1">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +56,7 @@ const Page = () => {
                 year: "numeric",
               }
             )}
-          </span>
+          </span> */}
 
           {/* --- Go through the content blocks */}
           {postResponse?.data?.content_block?.map(
@@ -79,7 +79,7 @@ const Page = () => {
                     alt={media?.alt || "Image"}
                     height={400}
                     width={400}
-                    className="w-full rounded-[12px] object-cover h-[26rem]"
+                    className="w-full rounded-[12px] object-cover h-[24rem] mb-10"
                   />
                 );
               return (
