@@ -18,7 +18,7 @@ export const GET = async (
     }
 
     const post = await prisma.post.findUnique({
-      where: { id: parseInt(_id) },
+      where: { id: _id },
       include: {
         User: true,
         content_block: {

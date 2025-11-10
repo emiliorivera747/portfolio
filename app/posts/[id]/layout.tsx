@@ -1,8 +1,9 @@
 import React from "react";
 
-export const generateMetadata = ({ params }: { params: { id: string } }) => {
+export const generateMetadata = async ({ params }: { params: { id: string } }) => {
+  const { id } = await params;
   return {
-    title: `Post: ${params.id}`,
+    title: `${id}`,
     description:
       "Browse a collection of posts showcasing Emilio Rivera's projects, experiences, and insights. Discover detailed write-ups and updates on topics including public speaking, software engineering, and more",
   };

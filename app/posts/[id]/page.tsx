@@ -10,7 +10,7 @@ import Image from "next/image";
 const Page = () => {
   const { id } = useParams();
   const { postResponse } = useFetchPostById({
-    id: id ? (Array.isArray(id) ? id[0] : id) : "",
+    id: typeof id === "string" ? id : "",
   });
 
   const title = postResponse?.data?.title || "Default Title";
