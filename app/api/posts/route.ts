@@ -64,11 +64,14 @@ export async function POST(req: NextRequest) {
        */
       const newPost = await prisma.post.create({
         data: {
-          id: title
+          id: `${title
         ?.toLowerCase()
         .replace(/[^a-z0-9\s]/g, "") // Remove special characters
         .split(" ")
-        .join("-"),
+        .join("-")}-${new Date().toLocaleDateString("en-US", {
+          month: "long", // Use full month name
+          day: "2-digit",
+        }).toLowerCase().replace(/ /g, "-")}`, // Add the formatted date (month-dd-yyyy) to the end
           title,
           user_id: user_id ? user_id : result.id,
           description: description,
