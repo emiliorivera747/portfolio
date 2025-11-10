@@ -1,8 +1,8 @@
 import React from "react";
 
-export const generateMetadata = ({ params }: { params: { slug: string } }) => {
+export const generateMetadata = ({ params }: { params: { id: string } }) => {
   return {
-    title: `${params.slug}`,
+    title: `Post: ${params.id}`,
     description:
       "Browse a collection of posts showcasing Emilio Rivera's projects, experiences, and insights. Discover detailed write-ups and updates on topics including public speaking, software engineering, and more",
   };
