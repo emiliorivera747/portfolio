@@ -64,6 +64,7 @@ export async function POST(req: NextRequest) {
        */
       const newPost = await prisma.post.create({
         data: {
+          id: title?.toLowerCase().split(' ').join("-"),
           title,
           user_id: user_id ? user_id : result.id,
           description: description,

@@ -34,7 +34,7 @@ model User {
 }
 
 model Post {
-  id Int @id @default(autoincrement())
+  id String @id
 
   created_at  DateTime @default(now()) @db.Timestamptz(3)
   updated_at  DateTime @updatedAt @db.Timestamptz(3)
@@ -58,7 +58,7 @@ model ContentBlock {
 
   // Relationships
   post     Post   @relation(fields: [post_id], references: [id])
-  post_id  Int
+  post_id  String
   media    Media? @relation("BlockMedia", fields: [media_id], references: [id])
   media_id Int?   @unique
 
@@ -78,10 +78,10 @@ model Media {
 
   // Relationships
   contentBlock ContentBlock? @relation("BlockMedia")
-  
+
   // Timestamps
-  created_at   DateTime      @default(now()) @db.Timestamptz(3)
-  updated_at   DateTime      @updatedAt @db.Timestamptz(3)
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+  updated_at DateTime @updatedAt @db.Timestamptz(3)
 
   @@index([provider_asset_id])
 }
@@ -95,7 +95,7 @@ model Comment {
 
   // Relationships
   post    Post @relation(fields: [post_id], references: [id])
-  post_id Int
+  post_id String
 }
 
 model Tag {
@@ -105,7 +105,7 @@ model Tag {
 }
 
 model PostTag {
-  post_id Int
+  post_id String
   tag_id  Int
   post    Post @relation(fields: [post_id], references: [id])
   tag     Tag  @relation(fields: [tag_id], references: [id])

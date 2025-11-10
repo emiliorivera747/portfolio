@@ -27,8 +27,6 @@ const useSubmitPost = ({ blocks }: { blocks: ContentBlock[] }) => {
         return;
       }
 
-      console.log("data", data);
-
       const postData: PostWithRelations = {
         title: data.title,
         description: data.description,
