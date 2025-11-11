@@ -1,14 +1,14 @@
-import useFetchPostById from "@/features/blogs/hooks/useFetchPostById";
 import type { Metadata } from "next";
 import PostClient from "@/app/posts/[id]/PostClient";
 import { blogsServices } from "@/features/blogs/services/blogsServices";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await blogsServices.fetchPostById(params.id);
+  const { id } = await params;
+  const post = await blogsServices.fetchPostById(id);
 
   return {
     title: post.data.title || "Post Not Found",
@@ -16,8 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       post.data.description || "Read this post on Emilio Rivera's portfolio.",
   };
 }
-
-export default async function PostPage({ params }: Props) {
+export default async function Page({ params }: Props) {
   const { id } = await params;
   return <PostClient id={id} />;
 }
