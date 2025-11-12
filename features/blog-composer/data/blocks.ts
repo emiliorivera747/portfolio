@@ -7,7 +7,7 @@ export const DEFAULT_BLOCK = {
       content: [
         {
           type: "paragraph",
-          content: [{ type: "text", text: "Click to add text..." }],
+          content: [{ type: "text", text: "" }],
         },
       ],
     },

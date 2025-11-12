@@ -1,10 +1,11 @@
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
 import Highlight from "@tiptap/extension-highlight";
+import CodeBlock from '@tiptap/extension-code-block'
 
 export const editorConfig = {
   immediatelyRender: false,
-  content: "",
+  content: [],
   editorProps: {
     attributes: {
       class:
@@ -21,8 +22,10 @@ export const extensions: any[] = [
       },
     },
   }),
+
   TextAlign.configure({
     types: ["heading", "paragraph"],
   }),
   Highlight,
+  CodeBlock,
 ];
