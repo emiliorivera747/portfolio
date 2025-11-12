@@ -13,7 +13,7 @@ const PostClient = ({ id }: { id: string }) => {
 
   return (
     <>
-      <article className="h-screen sm:mx-[1%] md:mx-[24%] font-normal">
+      <article className="h-screen sm:mx-[1%] md:mx-[24%] lg-[40%] font-normal">
         <div className="pt-[7rem] mx-[8%] text-4xl">
           <h1 className="text-primary-900 font-semibold times-header upper mb-1">
             {postResponse?.data?.title}
