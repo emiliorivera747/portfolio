@@ -18,7 +18,6 @@ const PostClient = ({ id }: { id: string }) => {
           <h1 className="text-primary-900 font-semibold times-header upper mb-1">
             {postResponse?.data?.title}
           </h1>
-
           <span className="flex flex-row gap-4 items-center text-[0.9rem] mb-4 text-primary-700 font-light">
             <div className="flex items-center gap-1">
               <svg
