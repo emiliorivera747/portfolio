@@ -40,7 +40,7 @@ const PostForm = () => {
   const buttonRef = useRef(null);
 
   const { onSubmit, blocks, handleFileChange } = useComposerContext();
-  
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   });

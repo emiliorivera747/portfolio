@@ -12,6 +12,7 @@ import {
   AlignCenter,
   AlignJustify,
 } from "lucide-react";
+
 import { Editor } from "@tiptap/react";
 
 export const getOptions = (editor: Editor | null) => [
@@ -63,6 +64,7 @@ export const getOptions = (editor: Editor | null) => [
     clickFn: () => editor?.chain().focus().toggleHighlight().run(),
     pressed: editor?.isActive("highlight"),
   },
+
   {
     icon: <AlignLeft />,
     name: "alignLeft",
@@ -76,7 +78,7 @@ export const getOptions = (editor: Editor | null) => [
     pressed: editor?.isActive({ textAlign: "center" }),
   },
   {
-    icon: <AlignRight className="bu"/>,
+    icon: <AlignRight className="bu" />,
     name: "alignRight",
     clickFn: () => editor?.chain().focus().setTextAlign("right").run(),
     pressed: editor?.isActive({ textAlign: "right" }),
