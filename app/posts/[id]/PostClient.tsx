@@ -64,7 +64,7 @@ const PostClient = ({ id }: { id: string }) => {
                 return (
                   <Image
                     key={content_order}
-                    src={media.url}
+                    src={media?.url ? media.url : ""}
                     alt={media?.alt || "Image"}
                     height={400}
                     width={400}

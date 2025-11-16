@@ -20,7 +20,7 @@ const postSchema = z.object({
           media: z
             .object({
               provider_asset_id: z.string().optional(),
-              id: z.string().optional(),
+              id: z.number().optional(),
               url: z.string().url(),
               alt: z.string().optional(),
               media_type: z.enum(["image", "video"]),
@@ -44,7 +44,13 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const parsed = postSchema.safeParse(body);
 
+  const { content_blocks: cb } = body;
+  for (let block of cb) {
+    if (block.media) console.log(block.media);
+  }
+
   if (!parsed.success) {
+    console.log(parsed.error)
     return NextResponse.json(
       { message: parsed.error.issues[0].message, data: null },
       { status: 400 }
@@ -85,7 +91,6 @@ export async function POST(req: NextRequest) {
 
       for (const block of content_blocks) {
         const { media, ...blockData } = block;
-
         await prisma.ContentBlock.create({
           data: {
             ...blockData,

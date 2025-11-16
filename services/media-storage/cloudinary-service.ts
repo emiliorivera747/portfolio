@@ -42,6 +42,7 @@ export async function uploadToCloudinary(
     });
 
     return {
+      id: uploadResult.id,
       url: uploadResult.secure_url,
       alt: alt,
       media_type: uploadResult.resource_type === "image" ? "image" : "video",

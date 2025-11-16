@@ -91,7 +91,7 @@ const PostContentSelect = () => {
           media_id: mediaResponse.id,
           media: {
             provider_asset_id: mediaResponse.provider_asset_id,
-            id: mediaResponse.id.toString(),
+            id: mediaResponse.id,
             url: mediaResponse.url,
             alt: original_filename || "Image",
             media_type: resource_type,
