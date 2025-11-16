@@ -75,6 +75,7 @@ model Media {
   alt               String?
   provider_asset_id String?
   storage_provider  String  @default("CLOUDINARY")
+  file_hash         String  @unique @db.VarChar(64) // For SHA-256
 
   // Relationships
   contentBlock ContentBlock? @relation("BlockMedia")
@@ -94,7 +95,7 @@ model Comment {
   updated_at DateTime @updatedAt @db.Timestamptz(3)
 
   // Relationships
-  post    Post @relation(fields: [post_id], references: [id])
+  post    Post   @relation(fields: [post_id], references: [id])
   post_id String
 }
 
@@ -107,8 +108,8 @@ model Tag {
 model PostTag {
   post_id String
   tag_id  Int
-  post    Post @relation(fields: [post_id], references: [id])
-  tag     Tag  @relation(fields: [tag_id], references: [id])
+  post    Post   @relation(fields: [post_id], references: [id])
+  tag     Tag    @relation(fields: [tag_id], references: [id])
 
   // Relationships
   @@id([post_id, tag_id])
