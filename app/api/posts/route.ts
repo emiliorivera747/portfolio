@@ -95,7 +95,7 @@ export async function POST(req: NextRequest) {
           data: {
             ...blockData,
             post_id: newPost.id,
-            media_id: media?.id ? parseInt(media.id) : null,
+            media_id: media?.id ? String(media.id) : null,
           },
         });
       }
