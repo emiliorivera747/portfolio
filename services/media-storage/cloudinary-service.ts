@@ -14,6 +14,7 @@ type UploadParams = {
   fileBuffer: Buffer;
   fileType: string;
   alt: string;
+  fileHash: string;
 };
 
 /**
