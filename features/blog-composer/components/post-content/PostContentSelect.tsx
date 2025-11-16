@@ -60,7 +60,6 @@ const PostContentSelect = () => {
     addBlock(newBlock); // <- push into context
     setCurrentBlock(newBlock); // <- make it the active block
     uploadingBlockIdRef.current = newBlock.id; // <-- remember it
-
     setOpenModal(false);
     if (contentType === "image" && openWidget) openWidget();
   };

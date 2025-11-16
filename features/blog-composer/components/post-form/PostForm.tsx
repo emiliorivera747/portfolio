@@ -37,6 +37,7 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
  *
  */
 const PostForm = () => {
+  
   const buttonRef = useRef(null);
 
   const { onSubmit, blocks, handleFileChange } = useComposerContext();
@@ -63,17 +64,15 @@ const PostForm = () => {
         className="flex flex-col items-center  w-[40rem] pt-[4rem]"
       >
         <PrimaryHeader title={"Create Post"} />
-
+       
         <div className="w-full flex flex-col mb-10">
           <SecondaryHeader label="Details" />
-
           <FormFieldGenerator
             fields={fields.map((field) => ({
               ...field,
               control: form.control as any,
             }))}
           />
-
           <UploadButton
             data-testid="upload-button"
             handleFileChange={handleFileChange}
@@ -92,7 +91,6 @@ const PostForm = () => {
               <div key={block.id}>{renderBlockComponent(block)}</div>
             ))}
         </div>
-
         <PrimarySubmitButton className="mt-4" ref={buttonRef} text="Publish" />
       </form>
     </Form>

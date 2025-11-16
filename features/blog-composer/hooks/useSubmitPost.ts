@@ -16,9 +16,6 @@ import useCreatePost from "@/features/blog-composer/hooks/useCreatePost";
 const useSubmitPost = ({ blocks }: { blocks: ContentBlock[] }) => {
   const { mutatePost, isPendingPost } = useCreatePost();
 
-  // Log blocks on every render (for debugging)
-  console.log("useSubmitPost render – blocks:", blocks);
-
   // useCallback ensures onSubmit is stable but updates when blocks change
   const onSubmit = useCallback(
     (data: FormSchema) => {
