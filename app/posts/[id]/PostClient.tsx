@@ -85,7 +85,7 @@ const PostClient = ({ id }: { id: string }) => {
               return (
                 <div
                   key={content_order}
-                  className="blog-content font-extralight "
+                  className="blog-content font-extralight pb-4"
                   dangerouslySetInnerHTML={{
                     __html: renderTipTapJSON(content_data) || "",
                   }}
