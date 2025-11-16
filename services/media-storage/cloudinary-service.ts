@@ -25,7 +25,7 @@ type UploadParams = {
 export async function uploadToCloudinary(
   params: UploadParams
 ): Promise<MediaUploadResult> {
-  const { fileBuffer, fileType, alt } = params;
+  const { fileBuffer, fileType, alt, fileHash } = params;
 
   try {
     // 1. Convert the buffer to a Data URI.
@@ -36,6 +36,9 @@ export async function uploadToCloudinary(
     const uploadResult = await cloudinary.uploader.upload(dataUri, {
       folder: "blog-uploads",
       resource_type: "auto",
+      public_id: fileHash,
+      overwrite: false,
+      unique_filename: false,
     });
 
     return {

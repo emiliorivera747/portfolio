@@ -2,12 +2,10 @@ import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
 // --- Import the NEW Abstraction Layer (The Bouncer) ---
-import { uploadMedia } from "@/services/media-storage";
+import { uploadMedia } from "@/services/media-storage/upload-media";
 
 // --- Types ---
 import { MediaUploadResult } from "@/types/mediaStorage";
-
-const prisma = new PrismaClient();
 
 // Define the payload structure coming from the client
 type RemoteMediaBody = {
@@ -42,31 +40,21 @@ export async function POST(request: Request) {
     const fileBuffer = Buffer.from(await response.arrayBuffer());
     const fileType =
       response.headers.get("content-type") || "application/octet-stream";
-
-    // 3. --- Call the Bouncer (media-storage) with the Buffer ---
-    const uploadResult: MediaUploadResult = await uploadMedia({
+    
+    /**
+     * Call the Bouncer:
+     *    - Handles Hashing 
+     *    - Deduplication
+     *    - Final Upload
+     *    - Database Saving
+     */
+    const mediaRecord = await uploadMedia({
       fileBuffer,
       fileType,
       alt,
     });
 
-    // 4. Save the new Media record with provider details
-    const newMedia = await prisma.media.create({
-      data: {
-        url: uploadResult.url,
-        media_type: uploadResult.media_type,
-        description: uploadResult.alt,
-        alt: uploadResult.alt,
-        provider_asset_id: uploadResult.providerAssetId,
-        storage_provider: uploadResult.storageProvider,
-      },
-      select: { id: true, url: true },
-    });
-
-    // 5. Cloudinary file is now redundant, you may optionally delete it here
-    // using the Cloudinary Delete API, but that's a step for later optimization.
-
-    return NextResponse.json(newMedia, { status: 200 });
+    return NextResponse.json(mediaRecord, { status: 200 });
   } catch (error) {
     const errorMessage =
       error instanceof Error
