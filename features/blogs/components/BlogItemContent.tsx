@@ -40,7 +40,7 @@ const BlogItemContent = ({
                 d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-            <span>1 min read</span>
+            <span>5 min read</span>
           </div>
 
           {new Date(createdAt).toLocaleDateString("en-US", {
