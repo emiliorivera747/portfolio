@@ -5,6 +5,12 @@ import useFetchPostById from "@/features/blogs/hooks/useFetchPostById";
 import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 import Image from "next/image";
 
+/**
+ * Displays the post with id
+ * 
+ * @param param0
+ * @returns
+ */
 const PostClient = ({ id }: { id: string }) => {
   const { postResponse } =
     useFetchPostById({
@@ -60,12 +66,16 @@ const PostClient = ({ id }: { id: string }) => {
               content_type: string;
               media: any;
             }) => {
-              console.log(media)
+              console.log(media);
               if (content_type === "image")
                 return (
                   <Image
                     key={content_order}
-                    src={media?.url ? media?.url: "https://res.cloudinary.com/dcss55nem/image/upload/v1700595590/Untitled_design_1_nwce2n.png"}
+                    src={
+                      media?.url
+                        ? media?.url
+                        : "https://res.cloudinary.com/dcss55nem/image/upload/v1700595590/Untitled_design_1_nwce2n.png"
+                    }
                     alt={media?.alt || "Image"}
                     height={500}
                     width={500}
