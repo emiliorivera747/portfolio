@@ -65,13 +65,16 @@ export async function POST(req: NextRequest) {
       const newPost = await prisma.post.create({
         data: {
           id: `${title
-        ?.toLowerCase()
-        .replace(/[^a-z0-9\s]/g, "") // Remove special characters
-        .split(" ")
-        .join("-")}-${new Date().toLocaleDateString("en-US", {
-          month: "long", // Use full month name
-          day: "2-digit",
-        }).toLowerCase().replace(/ /g, "-")}`, // Add the formatted date (month-dd-yyyy) to the end
+            ?.toLowerCase()
+            .replace(/[^a-z0-9\s]/g, "") // Remove special characters
+            .split(" ")
+            .join("-")}-${new Date()
+            .toLocaleDateString("en-US", {
+              month: "long", // Use full month name
+              day: "2-digit",
+            })
+            .toLowerCase()
+            .replace(/ /g, "-")}`, // Add the formatted date (month-dd-yyyy) to the end
           title,
           user_id: user_id ? user_id : result.id,
           description: description,
@@ -83,33 +86,13 @@ export async function POST(req: NextRequest) {
       for (const block of content_blocks) {
         const { media, ...blockData } = block;
 
-        /**
-         * Create content block
-         */
-        const cb = await prisma.ContentBlock.create({
+        await prisma.ContentBlock.create({
           data: {
             ...blockData,
             post_id: newPost.id,
+            media_id: media?.id ? parseInt(media.id) : null,
           },
         });
-
-        
-
-        /**
-         * Create media
-         */
-        if (media) {
-          await prisma.Media.create({
-            data: {
-              provider_asset_id: media.provider_asset_id,
-              url: media.url,
-              media_type: media.media_type,
-              description: media.description,
-              alt: media.alt,
-              contentBlock: { connect: { id: cb.id } },
-            },
-          });
-        }
       }
 
       /**
