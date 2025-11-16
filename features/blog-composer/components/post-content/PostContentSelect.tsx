@@ -114,15 +114,8 @@ const PostContentSelect = () => {
       onSuccess={handleUploadSuccess}
     >
       {({ open }) => (
-        <div className="w-full h-full mb-8">
+        <div className="w-full h-full mb-8 mt-8">
           <Dialog open={openModal} onOpenChange={setOpenModal}>
-            <SecondaryHeader label="Content" />
-            <DialogTrigger className="w-full">
-              <SelectContentButton
-                path="M12 4.5v15m7.5-7.5h-15"
-                className="bg-white"
-              />
-            </DialogTrigger>
 
             <DialogContent className="py-10 px-10">
               <DialogTitle className="text-center text-lg font-medium mb-4">
@@ -143,6 +136,12 @@ const PostContentSelect = () => {
                 />
               ))}
             </DialogContent>
+            <DialogTrigger className="w-full">
+              <SelectContentButton
+                path="M12 4.5v15m7.5-7.5h-15"
+                className="bg-white"
+              />
+            </DialogTrigger>
           </Dialog>
         </div>
       )}

@@ -13,7 +13,7 @@ const PostClient = ({ id }: { id: string }) => {
 
   return (
     <>
-      <article className="h-screen sm:mx-[1%] md:mx-[4%] lg:mx-[24%] font-normal">
+      <article className="min-h-screen sm:mx-[1%] md:mx-[4%] lg:mx-[24%] font-normal pb-10 h-auto">
         <div className="pt-[7rem] mx-[8%] text-4xl">
           <h1 className="text-primary-900 font-semibold times-header upper mb-1">
             {postResponse?.data?.title}
@@ -34,7 +34,7 @@ const PostClient = ({ id }: { id: string }) => {
                   d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                 />
               </svg>
-              <span>1 min read</span>
+              <span>5 min read</span>
             </div>
 
             {new Date(postResponse?.data?.created_at).toLocaleDateString(
@@ -60,21 +60,22 @@ const PostClient = ({ id }: { id: string }) => {
               content_type: string;
               media: any;
             }) => {
+              console.log(media)
               if (content_type === "image")
                 return (
                   <Image
                     key={content_order}
-                    src={media?.url ? media.url : ""}
+                    src={media?.url ? media?.url: "https://res.cloudinary.com/dcss55nem/image/upload/v1700595590/Untitled_design_1_nwce2n.png"}
                     alt={media?.alt || "Image"}
-                    height={400}
-                    width={400}
-                    className="w-full rounded-[12px] object-cover h-[16rem] sm:h-[24rem] mb-4 sm:mb-10"
+                    height={500}
+                    width={500}
+                    className="w-full rounded-[12px]  h-[16rem] sm:h-[28rem] mb-4 sm:mb-10"
                   />
                 );
               return (
                 <div
                   key={content_order}
-                  className="blog-content font-extralight mb-20"
+                  className="blog-content font-extralight "
                   dangerouslySetInnerHTML={{
                     __html: renderTipTapJSON(content_data) || "",
                   }}

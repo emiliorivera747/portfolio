@@ -452,3 +452,8 @@ input:-webkit-autofill:active {
 .blog-content h1 {
   font-size: 2rem;
 }
+
+.blog-content h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.2rem;
+}
