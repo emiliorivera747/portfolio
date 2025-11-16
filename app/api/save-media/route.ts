@@ -23,10 +23,7 @@ export async function POST(request: Request) {
     const alt = formData.get("alt") as string;
 
     if (!file) {
-      return NextResponse.json(
-        { error: "No file provided." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "No file provided." }, { status: 400 });
     }
 
     // 2. --- Convert file to a Buffer ---
@@ -38,7 +35,7 @@ export async function POST(request: Request) {
     // It just does its job.
     const uploadResult: MediaUploadResult = await uploadMedia({
       fileBuffer,
-      fileType: file.type, // Pass the MIME type
+      fileType: file.type,
       alt,
     });
 

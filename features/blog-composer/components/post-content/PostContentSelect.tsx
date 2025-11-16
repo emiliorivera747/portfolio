@@ -39,7 +39,7 @@ const PostContentSelect = () => {
   const [openModal, setOpenModal] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Keep the **latest** block ID that we are uploading for
+  // Keep the lates block ID that we are uploading for
   const uploadingBlockIdRef = useRef<string | number | undefined>(undefined);
 
   // Optional: keep a fresh copy of blocks for debugging / fallback
