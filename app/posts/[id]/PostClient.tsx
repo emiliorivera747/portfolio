@@ -8,8 +8,6 @@ import Image from "next/image";
 /**
  * Displays the post with id
  * 
- * @param param0
- * @returns
  */
 const PostClient = ({ id }: { id: string }) => {
   const { postResponse } =
