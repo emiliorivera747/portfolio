@@ -7,7 +7,6 @@ import Image from "next/image";
 
 /**
  * Displays the post with id
- * 
  */
 const PostClient = ({ id }: { id: string }) => {
   const { postResponse } =
