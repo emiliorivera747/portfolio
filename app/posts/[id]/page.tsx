@@ -6,6 +6,10 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
+/**
+ * Generates metadata
+ *
+ */
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const post = await blogsServices.fetchPostById(id);
