@@ -47,6 +47,7 @@ function ProjectSlider({ data }: ProjectSliderProps) {
                   className="object-scale-down sm:object-cover"
                   loading='lazy'
                   sizes="100vw"
+                  priority={index === 0}
                 />
               </div>
 
