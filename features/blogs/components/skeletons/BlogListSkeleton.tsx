@@ -11,7 +11,7 @@ const BlogListSkeleton = () => {
       <div className="mx-[5%]">
         {/* Header skeleton */}
         <div className="pt-[10rem] pb-8 animate-pulse">
-          <div className="h-14 w-64 sm:w-96 bg-gradient-to-r from-gray-300 to-gray-200 rounded"></div>
+          <div className="h-14 w-64 sm:w-96 bg-gray-300 rounded"></div>
         </div>
 
         {/* Blog items skeleton - show 3 items */}
