@@ -1,23 +1,27 @@
 'use client'
 import "@/styles/globals.css";
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Components
-import Testimonial from "@/components/Testimonial";
+// Components - dynamically imported for better performance
+const Testimonial = dynamic(() => import("@/components/Testimonial"), {
+  loading: () => null,
+});
+const Contact = dynamic(() => import("@/components/Contact"), {
+  loading: () => null,
+});
+const Footer = dynamic(() => import("@/components/footers/Footer"), {
+  loading: () => null,
+});
+
+// Components - static imports (critical for initial render)
 import PrimaryLandingPageSection from "@/features/primary-landing-page/components/PrimaryLandingPageSection";
 import Page from "@/components/Page";
-import Footer from "@/components/footers/Footer";
-
-
-// Sections
-import Contact from "@/components/Contact";
 import ProjectSection from "@/components/ProjectSection";
 import ToolsSection from "@/components/ToolsSection";
 
 // Data
 import { toolsData } from "@/utils/data/tools/allToolsData";
-
-// Data
 import { navBarData } from "@/utils/data/navbar/navbarData";
 import Navbar from "@/components/navbar/Navbar";
 

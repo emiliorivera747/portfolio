@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState, FormEvent } from "react";
+import React, { useRef, useState, FormEvent, useCallback } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import Link from "next/link";
@@ -36,7 +36,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
 
-  const sendEmail = (e: FormEvent<HTMLFormElement>) => {
+  const sendEmail = useCallback((e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     emailjs
@@ -56,7 +56,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
           setSuccess(false);
         }
       );
-  };
+  }, []);
 
   return (
     <section className="min-h-screen w-screen bg-white h-auto">
@@ -226,4 +226,4 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
   );
 };
 
-export default Contact;
+export default React.memo(Contact);
