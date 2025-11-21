@@ -4,11 +4,11 @@ import useFetchBlogs from "@/features/blogs/hooks/useFetchBlogs";
 
 //Components
 import BlogList from "@/features/blogs/components/BlogList";
-import LoadingPage from "@/components/loading/LoadingPage";
+import BlogListSkeleton from "@/features/blogs/components/skeletons/BlogListSkeleton";
 
 const Page = () => {
   const { postsResponse, isLoadingPosts, isErrorPosts } = useFetchBlogs();
-  if (isLoadingPosts) return <LoadingPage theme={"white"} />;
+  if (isLoadingPosts) return <BlogListSkeleton />;
   return (
     <section className="w-screen min-h-screen">
       <div className="mx-[5%]">
