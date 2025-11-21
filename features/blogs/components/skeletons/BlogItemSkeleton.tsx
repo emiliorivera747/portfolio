@@ -13,7 +13,7 @@ const BlogItemSkeleton = () => {
       </div>
 
       {/* Content section skeleton */}
-      <div className="w-full sm:w-[20rem] flex flex-col gap-1">
+      <div className="w-[20rem] flex flex-col gap-1">
         {/* Title skeleton */}
         <div className="h-9 w-3/4 bg-gray-300 rounded mb-2"></div>
         
