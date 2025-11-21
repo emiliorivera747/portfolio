@@ -14,16 +14,13 @@ const BlogPostSkeleton = () => {
           <div className="h-10 w-1/2 bg-gray-300 rounded mb-4"></div>
         </div>
 
-        {/* Date and time skeleton */}
-        <div className="flex flex-row gap-4 items-center mb-8">
+        {/* Date and reading time skeleton */}
+        <div className="flex flex-row gap-4 items-center mb-4 sm:mb-8">
           <div className="h-4 w-24 bg-gray-300 rounded"></div>
           <div className="h-4 w-32 bg-gray-300 rounded"></div>
         </div>
 
-        {/* Featured image skeleton */}
-        <div className="w-full h-[16rem] sm:h-[28rem] bg-gray-300 rounded-[12px] mb-4 sm:mb-10"></div>
-
-        {/* Content blocks skeleton */}
+        {/* Content blocks skeleton - paragraphs without assuming a featured image */}
         <div className="space-y-4">
           {/* Paragraph skeleton */}
           <div className="space-y-2">
