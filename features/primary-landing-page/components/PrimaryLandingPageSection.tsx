@@ -39,7 +39,7 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null!);
   
   // Use the custom hook for video intersection observer
   useVideoIntersectionObserver(videoRef);
