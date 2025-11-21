@@ -4,15 +4,18 @@ import React from "react";
 import useFetchPostById from "@/features/blogs/hooks/useFetchPostById";
 import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 import Image from "next/image";
+import BlogPostSkeleton from "@/features/blogs/components/skeletons/BlogPostSkeleton";
 
 /**
  * Displays the post with id
  */
 const PostClient = ({ id }: { id: string }) => {
-  const { postResponse } =
+  const { postResponse, isLoadingPost } =
     useFetchPostById({
       id: typeof id === "string" ? id : "",
     }) || {};
+
+  if (isLoadingPost) return <BlogPostSkeleton />;
 
   return (
     <>
