@@ -14,7 +14,7 @@ const Tools = ({ toolsData }: ToolsProps) => {
     <div className="h-full  w-screen flex overflow-auto px-[0.4rem] sm:px-60 pb-10 items-center justify-center gap-3 sm:gap-10 flex-wrap pt-2">
       {toolsData.map((item: ToolItem, i: number) => (
         <div
-          key={i}
+          key={`${item.name}-${i}`}
           className="grid grid-rows-[3fr_3rem] backdrop-blur-md h-[10rem] w-[10rem] sm:h-[12rem] sm:w-[12rem] bg-white rounded-[12px] transition-shadow duration-300 ease-in-out border border-primary-300 shadow-sm hover:shadow-lg hover:scale-105 items-center justify-center"
         >
           <CldImage
@@ -33,4 +33,4 @@ const Tools = ({ toolsData }: ToolsProps) => {
   );
 };
 
-export default Tools;
+export default React.memo(Tools);

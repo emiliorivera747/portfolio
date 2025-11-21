@@ -98,8 +98,11 @@ const PostContentSelect = () => {
           },
         });
       } catch (err) {
-        console.error("Database save error:", err);
-        alert("Failed to save media to database. See console for details.");
+        // Log error in development only
+        if (process.env.NODE_ENV === 'development') {
+          console.error("Database save error:", err);
+        }
+        alert("Failed to save media to database.");
       } finally {
         setLoading(false);
         uploadingBlockIdRef.current = undefined;

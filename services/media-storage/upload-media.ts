@@ -27,10 +27,7 @@ export async function uploadMedia(
   });
 
   if (existingMedia) {
-    console.log(
-      `Duplicate file detected for hash: ${fileHash}. Returning existing record.`
-    );
-
+    // Duplicate file detected for hash: ${fileHash}. Returning existing record.
     return {
       id: existingMedia.id,
       url: existingMedia.url,

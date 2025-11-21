@@ -4,6 +4,9 @@ import React, { useEffect, useRef, useState } from "react";
 // External Libraries
 import { motion } from "framer-motion";
 
+// Hooks
+import { useVideoIntersectionObserver } from "@/hooks/useVideoIntersectionObserver";
+
 // Component
 import MissionStatement from "@/features/primary-landing-page/components/MissionStatement";
 import CalendlyPopupButton from "@/features/calendly/CalendlyPopupButton";
@@ -37,6 +40,9 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
   const [isLoading, setIsLoading] = useState(true);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  
+  // Use the custom hook for video intersection observer
+  useVideoIntersectionObserver(videoRef);
 
   useEffect(() => {
     const handleLoadedData = () => {
@@ -54,35 +60,6 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
       };
     }
   }, [videoUrl]);
-
-  useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5,
-    };
-
-    const callback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry: IntersectionObserverEntry) => {
-        if (entry.isIntersecting) {
-          if (videoRef.current?.paused) {
-            videoRef.current.play();
-          }
-        } else {
-          if (videoRef.current && !videoRef.current.paused) {
-            videoRef.current.pause();
-          }
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(callback, options);
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section className="relative h-screen w-screen">

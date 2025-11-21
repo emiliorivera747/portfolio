@@ -63,7 +63,6 @@ const PostClient = ({ id }: { id: string }) => {
               content_type: string;
               media: any;
             }) => {
-              console.log(media);
               if (content_type === "image")
                 return (
                   <Image

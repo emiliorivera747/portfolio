@@ -60,7 +60,10 @@ export async function POST(request: Request) {
       error instanceof Error
         ? error.message
         : "A server error or download/upload error occurred.";
-    console.log(errorMessage);
+    // Log error in development only
+    if (process.env.NODE_ENV === 'development') {
+      console.log(errorMessage);
+    }
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
