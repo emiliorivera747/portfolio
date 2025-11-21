@@ -51,8 +51,13 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
 
     const videoElement = videoRef.current;
     if (videoElement) {
-      // Add the event listener to detect when the video is ready
-      videoElement.addEventListener("loadeddata", handleLoadedData);
+      // Check if video is already loaded
+      if (videoElement.readyState >= 2) {
+        setIsLoading(false);
+      } else {
+        // Add the event listener to detect when the video is ready
+        videoElement.addEventListener("loadeddata", handleLoadedData);
+      }
 
       // Clean up the event listener when the component unmounts
       return () => {
@@ -97,4 +102,4 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
   );
 };
 
-export default PrimaryLandingPageSection;
+export default React.memo(PrimaryLandingPageSection);
