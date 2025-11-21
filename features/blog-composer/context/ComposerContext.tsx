@@ -16,7 +16,10 @@ const initialContextValue: UsePostComposerReturn & { onSubmit: any } = {
   updateBlock: () => {},
   handleFileChange: () => {},
   onSubmit: () => {
-    console.warn("onSubmit called outside of a Provider!");
+    // onSubmit called outside of a Provider - this should not happen in production
+    if (process.env.NODE_ENV === 'development') {
+      console.warn("onSubmit called outside of a Provider!");
+    }
   },
 };
 

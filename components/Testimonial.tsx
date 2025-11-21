@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CldImage } from 'next-cloudinary';
+import React from 'react';
 
 const Testimonial = () => {
   return (
@@ -20,7 +21,6 @@ const Testimonial = () => {
           <div className="rounded-full w-16 h-16">
             <CldImage
               src="https://res.cloudinary.com/dcss55nem/image/upload/v1716989872/roykag2ycegmrtfh20sg.jpg"
-              // fill
               alt="Picture of Adriana Schellhaas"
               width={100}
               height={100}
@@ -51,4 +51,4 @@ const Testimonial = () => {
   );
 };
 
-export default Testimonial;
+export default React.memo(Testimonial);

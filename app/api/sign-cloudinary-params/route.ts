@@ -36,7 +36,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ signature }, { status: 200 });
   } catch (error) {
-    console.error("Signature generation failed:", error);
+    // Log error in development only
+    if (process.env.NODE_ENV === 'development') {
+      console.error("Signature generation failed:", error);
+    }
     return NextResponse.json(
       { error: "Failed to generate Cloudinary signature." },
       { status: 500 }

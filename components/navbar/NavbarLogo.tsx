@@ -7,7 +7,7 @@ import Link from "next/link";
 import { NavbarLogoProp } from "@/types/navbar";
 
 /**
- * Stores the logo for the navbae
+ * Stores the logo for the navbar
  *
  * @param logoTextColor - text color
  * @param menuTextColor - the menu text color
@@ -37,4 +37,4 @@ const NavbarLogo = ({ logoTextColor, menuTextColor }: NavbarLogoProp) => {
   );
 };
 
-export default NavbarLogo;
+export default React.memo(NavbarLogo);

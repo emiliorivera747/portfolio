@@ -1,8 +1,7 @@
-
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { CldVideoPlayer } from 'next-cloudinary';
+import { useVideoIntersectionObserver } from "@/hooks/useVideoIntersectionObserver";
 
 interface ProjectSectionProps {
   title: string;
@@ -58,32 +57,7 @@ function ProjectSection({
   url,
 }: ProjectSectionProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5,
-    };
-
-    const callback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry: IntersectionObserverEntry) => {
-        if (entry.isIntersecting) {
-          // Video is in the viewport, play it
-          videoRef.current?.play();
-        } else {
-          // Video is outside the viewport, pause it
-          videoRef.current?.pause();
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(callback, options);
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  useVideoIntersectionObserver(videoRef);
 
   return (
     <section className={`relative h-screen w-screen ${bgColor}`}>
@@ -122,4 +96,4 @@ function ProjectSection({
   );
 }
 
-export default ProjectSection;
+export default React.memo(ProjectSection);

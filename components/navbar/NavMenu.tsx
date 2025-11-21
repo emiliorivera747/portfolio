@@ -76,4 +76,4 @@ const NavMenu = ({ menuItems, menuTextColor }: NavMenuItems) => {
   );
 };
 
-export default NavMenu;
+export default React.memo(NavMenu);

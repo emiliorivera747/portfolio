@@ -38,7 +38,10 @@ async function upsertUser(user: {
       },
     });
   } catch (dbError) {
-    console.error("Failed to upsert user in database:", dbError);
+    // Log error in development only
+    if (process.env.NODE_ENV === 'development') {
+      console.error("Failed to upsert user in database:", dbError);
+    }
   }
 }
 
@@ -81,8 +84,6 @@ export async function GET(request: Request) {
     // If user data is available, update the database
     if (user && !exists) {
       await upsertUser(user);
-    } else {
-      console.warn("No user data returned from session");
     }
 
     // Determine redirect URL

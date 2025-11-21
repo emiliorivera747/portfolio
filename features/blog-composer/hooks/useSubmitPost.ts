@@ -20,11 +20,11 @@ const useSubmitPost = ({ blocks }: { blocks: ContentBlock[] }) => {
   const onSubmit = useCallback(
     (data: FormSchema) => {
       if (blocks.length === 0) {
-        console.warn("No blocks to submit");
+        if (process.env.NODE_ENV === 'development') {
+          console.warn("No blocks to submit");
+        }
         return;
       }
-
-      console.log("BLOCKS", blocks);
 
       const postData: PostWithRelations = {
         title: data.title,

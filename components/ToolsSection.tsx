@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import SecondaryHeader from "./titles/SecondaryHeader";
 import PrimaryButton from "@/components/buttons/PrimaryButton";
 
@@ -24,9 +24,9 @@ function ToolsSection({
 }: ToolsSectionProps) {
   const [activeButton, setActiveButton] = useState<string>("Front End");
 
-  const handleClick = (buttonName: string) => {
+  const handleClick = useCallback((buttonName: string) => {
     setActiveButton(buttonName);
-  };
+  }, []);
 
   const buttonDefaultStyle =
     "hover:text-white bg-gradient-to-r from-secondary-600 to-secondary-800 text-zinc-900 bg-white border border-primary-200";
@@ -96,4 +96,4 @@ function ToolsSection({
   );
 }
 
-export default ToolsSection;
+export default React.memo(ToolsSection);
