@@ -1,14 +1,14 @@
 import React from "react";
-import LoadingPage from "@/components/loading/LoadingPage";
+import BlogListSkeleton from "@/features/blogs/components/skeletons/BlogListSkeleton";
 
 /**
  *
- * Loading page show Leonardo da Vinci qoute
+ * Loading skeleton for the blog list page
  *
- * @returns loading page
+ * @returns blog list skeleton
  */
 const loading = () => {
-  return <LoadingPage theme="white"/>;
+  return <BlogListSkeleton />;
 };
 
 export default loading;
