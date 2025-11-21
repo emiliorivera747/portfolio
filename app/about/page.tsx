@@ -164,10 +164,10 @@ function About() {
             >
               Public Speaking
             </motion.h1>
-            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
+            {/* <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
               I love <strong>public speaking</strong> and hope to start my own
               public speaking organization someday.
-            </p>
+            </p> */}
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
               Fall 2024, I got the privilege to represent{" "}
