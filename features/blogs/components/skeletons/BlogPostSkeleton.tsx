@@ -7,7 +7,7 @@ import React from "react";
 const BlogPostSkeleton = () => {
   return (
     <article className="min-h-screen sm:mx-[1%] md:mx-[4%] lg:mx-[24%] font-normal pb-10 h-auto animate-pulse">
-      <div className="pt-[7rem] mx-[8%]">
+      <div className="pt-[7rem] mx-[8%] text-4xl">
         {/* Title skeleton */}
         <div className="mb-4">
           <div className="h-10 w-3/4 bg-gray-300 rounded mb-2"></div>
