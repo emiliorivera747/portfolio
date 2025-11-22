@@ -56,7 +56,7 @@ function ProjectSection({
   titleSize,
   url,
 }: ProjectSectionProps) {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null!);
   useVideoIntersectionObserver(videoRef);
 
   return (
