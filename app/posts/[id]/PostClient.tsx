@@ -13,12 +13,12 @@ const PostClient = ({ id }: { id: string }) => {
   const { postResponse, isLoadingPost } = useFetchPostById({
     id: typeof id === "string" ? id : "",
   }) ?? { postResponse: null, isLoadingPost: true };
-  
+
   if (isLoadingPost) return <BlogPostSkeleton />;
 
   return (
-    <>
-      <article className="min-h-screen sm:mx-[1%] md:mx-[4%] lg:mx-[24%] font-normal pb-10 h-auto">
+    <div className='flex items-center justify-center'>
+      <article className="min-h-screen sm:mx-[1%] md:mx-[4%] lg:mx-[24%] font-normal pb-10 h-auto lg:w-[60rem] ">
         <div className="pt-[7rem] mx-[8%] text-4xl">
           <h1 className="text-primary-900 font-semibold times-header upper mb-1">
             {postResponse?.data?.title}
@@ -93,7 +93,7 @@ const PostClient = ({ id }: { id: string }) => {
           )}
         </div>
       </article>
-    </>
+    </div>
   );
 };
 
