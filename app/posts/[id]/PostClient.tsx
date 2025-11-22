@@ -10,11 +10,10 @@ import BlogPostSkeleton from "@/features/blogs/components/skeletons/BlogPostSkel
  * Displays the post with id
  */
 const PostClient = ({ id }: { id: string }) => {
-  const { postResponse, isLoadingPost } =
-    useFetchPostById({
-      id: typeof id === "string" ? id : "",
-    }) || {};
-
+  const { postResponse, isLoadingPost } = useFetchPostById({
+    id: typeof id === "string" ? id : "",
+  }) ?? { postResponse: null, isLoadingPost: true };
+  
   if (isLoadingPost) return <BlogPostSkeleton />;
 
   return (

@@ -13,10 +13,10 @@ const useFetchPostById = ({ id }: { id: string }) => {
     isLoading: isLoadingPost,
     isError: isErrorPost,
   } = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["posts", id],
     queryFn: () => blogsServices.fetchPostById(id),
-    enabled: true,
     refetchOnWindowFocus: false,
+    enabled: !!id,                    // ← Also safer than `true`
     retry: 1,
   });
   return { postResponse, isLoadingPost, isErrorPost };
