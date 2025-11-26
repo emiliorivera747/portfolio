@@ -66,9 +66,8 @@ function About() {
 
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              I am a magician of the 21st century, using engineering to create
-              magic. Much like a magician equips themselves with the right
-              tools, I&apos;ve explored technologies such as React.js, Node.js,
+              I am a 21st-century inventor, using engineering to create
+              magic. I&apos;ve explored technologies such as React.js, Node.js, FastAPI,
               and Next.js to add to my toolbox, continually learning and
               embracing the latest technology.
             </p>
