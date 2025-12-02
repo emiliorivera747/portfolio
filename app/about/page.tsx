@@ -66,10 +66,10 @@ function About() {
 
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              I am a 21st-century inventor, using engineering to create
-              magic. I&apos;ve explored technologies such as React.js, Node.js, FastAPI,
-              and Next.js to add to my toolbox, continually learning and
-              embracing the latest technology.
+              I am an inventor, using engineering to create magic. I&apos;ve
+              explored technologies such as React.js, Node.js, FastAPI, and
+              Next.js to add to my toolbox, continually learning and embracing
+              the latest technology.
             </p>
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
@@ -85,7 +85,7 @@ function About() {
               className="rounded-[12px] shadow-lg hover:scale-105 transition-transform duration-300"
             />
             <h2 className="md:text-2sm pt-4 text-center text-primary-800">
-              Virginia Tech Graduation Cermony December 2022
+              Virginia Tech Graduation Ceremony December 2022
             </h2>
           </div>
         </section>

@@ -21,8 +21,7 @@ const fetchPostById = async (id: string) => {
     cache: "no-store",
   });
 
-  if (!res.ok) throw new Error(`Failed to fetch post with id ${id}`);
-
+  if (!res.ok) throw new Error(`Failed to fetch post with id ${id}. Status: ${res.status}`);
   return res.json();
 };
 

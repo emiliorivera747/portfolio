@@ -10,14 +10,27 @@ import BlogPostSkeleton from "@/features/blogs/components/skeletons/BlogPostSkel
  * Displays the post with id
  */
 const PostClient = ({ id }: { id: string }) => {
-  const { postResponse, isLoadingPost } = useFetchPostById({
-    id: typeof id === "string" ? id : "",
-  }) ?? { postResponse: null, isLoadingPost: true };
+  const isValidId = id && id.trim() !== "";
+  const { postResponse, isLoadingPost, isErrorPost, postError } =
+    useFetchPostById({
+      id,
+    });
+
+  if (!isValidId) {
+    return (
+      <div className="text-center py-20 text-red-600">
+        <h2>Invalid Post ID</h2>
+        <p>Please check the URL and try again.</p>
+      </div>
+    );
+  }
 
   if (isLoadingPost) return <BlogPostSkeleton />;
+  if (isErrorPost) return <div>Opps</div>;
+
 
   return (
-    <div className='flex items-center justify-center'>
+    <div className="flex items-center justify-center">
       <article className="min-h-screen sm:mx-[1%] md:mx-[4%] lg:mx-[24%] font-normal pb-10 h-auto lg:w-[60rem] ">
         <div className="pt-[7rem] mx-[8%] text-4xl">
           <h1 className="text-primary-900 font-semibold times-header upper mb-1">
