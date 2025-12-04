@@ -66,10 +66,10 @@ function About() {
 
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              I am an inventor, using engineering to create magic. I&apos;ve
-              explored technologies such as React.js, Node.js, FastAPI, and
-              Next.js to add to my toolbox, continually learning and embracing
-              the latest technology.
+              {`As an inventor of the 21st century, I use engineering to create magic. 
+                I've continually learned and embraced the latest technology, exploring 
+                frameworks and libraries such as React.js, Node.js, FastAPI, and Next.js 
+                to expand my technical toolbox.`}
             </p>
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
