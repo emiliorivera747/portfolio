@@ -1,7 +1,16 @@
 export const metadata = {
   title: "About | Emilio Rivera's Portfolio",
   description:
-    "Welcome to the about page where you can learn more about Emilio Rivera's Software Engineering journey. As well as his other hobbies and interest",
+    "Discover Emilio Rivera's journey as a Software Engineer, his skills, and his passion for technology, public speaking, and continuous learning.",
+  keywords: [
+    "Emilio Rivera",
+    "Software Engineer",
+    "About Me",
+    "Technology",
+    "Public Speaking",
+    "Continuous Learning",
+    "Portfolio",
+  ],
 };
 
 // Data

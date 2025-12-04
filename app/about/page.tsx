@@ -67,13 +67,32 @@ function About() {
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
               {`As an inventor of the 21st century, I use engineering to create magic. 
-                I've continually learned and embraced the latest technology, exploring 
-                frameworks and libraries such as React.js, Node.js, FastAPI, and Next.js 
-                to expand my technical toolbox.`}
+              I've continually learned and embraced the latest technology, exploring 
+              frameworks and libraries such as `}
+              <strong>
+              <i>React.js</i>
+              </strong>
+              {`, `}
+              <strong>
+              <i>Node.js</i>
+              </strong>
+              {`, `}
+              <strong>
+              <i>FastAPI</i>
+              </strong>
+              {`, `}
+              <strong>
+              <i>Next.js</i>
+              </strong>
+              {`, and cloud platforms like `}
+              <strong>
+              <i>AWS</i>
+              </strong>
+              {` to expand my technical toolbox.`}
             </p>
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              {`I earned my bachelor's degree in Computer Science from Virginia Tech, graduating in December 2022. Since then, I've freelanced to refine my skills in both front-end and back-end systems.`}
+              {`I earned my bachelor's degree in Computer Science from Virginia Tech, graduating in December 2022. Since then, I've freelanced to refine my skills in both front-end and back-end systems`}
             </p>
           </div>
           <div className="text-secondary-900">
