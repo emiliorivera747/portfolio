@@ -18,10 +18,24 @@ export async function generateMetadata(
 
   try {
     const post = await blogsServices.fetchPostById(id);
+    
+    // Find the first image in content blocks for Open Graph
+    const firstImage = post.data.content_block?.find(
+      (block: any) => block.content_type === "image" && block.media?.url
+    )?.media?.url;
+
+    // Get the default Open Graph image from parent if no image found
+    const parentMetadata = await parent;
+    const defaultImage = parentMetadata.openGraph?.images?.[0];
 
     return {
       title: post.data.title || "Post Not Found",
       description: post.data.description || "Read this post on Emilio Rivera's portfolio.",
+      openGraph: {
+        title: post.data.title || "Post Not Found",
+        description: post.data.description || "Read this post on Emilio Rivera's portfolio.",
+        images: firstImage ? [firstImage] : defaultImage ? [defaultImage] : [],
+      },
     };
   } catch (error: any) {
     if (error.message.includes("404")) {
@@ -46,7 +60,6 @@ export default async function Page({ params }: Props) {
     throw error; // other errors (500, network, etc.)
   }
 
-  // If we get here, post exists — pass data down if needed
-  // Or just let the client fetch it (your current approach is fine)
-  return <PostClient id={id} />;
+  // Pass the fetched post to avoid duplicate fetching on the client
+  return <PostClient id={id} initialPost={post} />;
 }

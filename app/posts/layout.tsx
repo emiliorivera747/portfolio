@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Posts | Emilio Rivera's Portfolio",
   description:
-    "Browse a collection of posts showcasing Emilio Rivera's projects, experiences, and insights. Discover detailed write-ups and updates on topics including public speaking, software engineering, and more",
+    "Browse a collection of posts showcasing Emilio Rivera's projects, experiences, and insights. Discover detailed write-ups and updates on topics including public speaking, software engineering, and more.",
 };
 
 import { navBarData } from "@/utils/data/navbar/navbarData";
