@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { blogsServices } from "@/features/blogs/services/blogsServices";
+import { PostResponse } from "@/features/blogs/types/post";
 
 /**
  * Fetches the blogs
  *
  * @returns
  */
-const useFetchPostById = ({ id, initialData }: { id: string; initialData?: any }) => {
+const useFetchPostById = ({ id, initialData }: { id: string; initialData?: PostResponse }) => {
   const {
     data: postResponse,
     isLoading: isLoadingPost,

@@ -52,6 +52,8 @@ export default async function Page({ params }: Props) {
 
   let post;
   try {
+    // Note: This fetch is automatically deduplicated with the one in generateMetadata
+    // by Next.js during the same render cycle (Request Memoization)
     post = await blogsServices.fetchPostById(id);
   } catch (error: any) {
     if (error.message.includes("Status: 404")) {

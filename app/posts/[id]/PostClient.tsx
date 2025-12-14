@@ -5,10 +5,11 @@ import useFetchPostById from "@/features/blogs/hooks/useFetchPostById";
 import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 import Image from "next/image";
 import BlogPostSkeleton from "@/features/blogs/components/skeletons/BlogPostSkeleton";
+import { PostResponse } from "@/features/blogs/types/post";
 
 interface PostClientProps {
   id: string;
-  initialPost?: any;
+  initialPost?: PostResponse;
 }
 
 /**
