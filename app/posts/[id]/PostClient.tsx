@@ -5,15 +5,22 @@ import useFetchPostById from "@/features/blogs/hooks/useFetchPostById";
 import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 import Image from "next/image";
 import BlogPostSkeleton from "@/features/blogs/components/skeletons/BlogPostSkeleton";
+import { PostResponse } from "@/features/blogs/types/post";
+
+interface PostClientProps {
+  id: string;
+  initialPost?: PostResponse;
+}
 
 /**
  * Displays the post with id
  */
-const PostClient = ({ id }: { id: string }) => {
+const PostClient = ({ id, initialPost }: PostClientProps) => {
   const isValidId = id && id.trim() !== "";
   const { postResponse, isLoadingPost, isErrorPost, postError } =
     useFetchPostById({
       id,
+      initialData: initialPost,
     });
 
   if (!isValidId) {
@@ -88,9 +95,10 @@ const PostClient = ({ id }: { id: string }) => {
                         : "https://res.cloudinary.com/dcss55nem/image/upload/v1700595590/Untitled_design_1_nwce2n.png"
                     }
                     alt={media?.alt || "Image"}
-                    height={500}
-                    width={500}
-                    className="w-full rounded-[12px]  h-[16rem] sm:h-[28rem] mb-4 sm:mb-10"
+                    height={675}
+                    width={1200}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 60rem"
+                    className="w-full rounded-[12px] h-[16rem] sm:h-[28rem] mb-4 sm:mb-10 object-cover"
                   />
                 );
               return (

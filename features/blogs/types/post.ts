@@ -57,3 +57,21 @@ export interface Media {
   description?: string;
   provider_asset_id: string;
 }
+
+export interface PostResponse {
+  data: {
+    id?: string;
+    user_id?: number;
+    created_at?: Date;
+    updated_at?: Date;
+    description?: string;
+    title?: string;
+    image_url?: string;
+    content_block?: ContentBlock[];
+    User?: {
+      id: number;
+      name?: string;
+    };
+  };
+  status: "success" | "error";
+}

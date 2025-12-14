@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { blogsServices } from "@/features/blogs/services/blogsServices";
+import { PostResponse } from "@/features/blogs/types/post";
 
 /**
  * Fetches the blogs
  *
  * @returns
  */
-const useFetchPostById = ({ id }: { id: string }) => {
+const useFetchPostById = ({ id, initialData }: { id: string; initialData?: PostResponse }) => {
   const {
     data: postResponse,
     isLoading: isLoadingPost,
@@ -16,8 +17,9 @@ const useFetchPostById = ({ id }: { id: string }) => {
     queryKey: ["posts", id],
     queryFn: () => blogsServices.fetchPostById(id),
     refetchOnWindowFocus: false,
-    enabled: !!id && id.trim() !== "",
+    enabled: !!id && id.trim() !== "" && !initialData,
     retry: 1,
+    initialData,
   });
   return { postResponse, isLoadingPost, isErrorPost, postError };
 };
