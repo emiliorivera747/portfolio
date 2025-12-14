@@ -19,7 +19,7 @@ const useFetchPostById = ({ id, initialData }: { id: string; initialData?: PostR
     refetchOnWindowFocus: false,
     enabled: !!id && id.trim() !== "" && !initialData,
     retry: 1,
-    initialData: initialData,
+    initialData,
   });
   return { postResponse, isLoadingPost, isErrorPost, postError };
 };

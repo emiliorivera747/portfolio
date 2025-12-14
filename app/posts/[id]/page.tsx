@@ -21,7 +21,7 @@ export async function generateMetadata(
     
     // Find the first image in content blocks for Open Graph
     const firstImage = post.data.content_block?.find(
-      (block: any) => block.content_type === "image" && block.media?.url
+      (block) => block.content_type === "image" && block.media?.url
     )?.media?.url;
 
     // Get the default Open Graph image from parent if no image found
