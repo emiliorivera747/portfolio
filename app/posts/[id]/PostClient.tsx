@@ -97,8 +97,8 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
                     alt={media?.alt || "Image"}
                     height={675}
                     width={1200}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 60rem"
-                    className="w-full rounded-[12px] h-[16rem] sm:h-[28rem] mb-4 sm:mb-10 object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 80rem"
+                    className="w-full rounded-[12px] mb-4 sm:mb-10  h-[16rem] sm:h-full"
                   />
                 );
               return (
