@@ -35,12 +35,18 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
   if (isLoadingPost) return <BlogPostSkeleton />;
   if (isErrorPost) return <div>Opps</div>;
 
-
   return (
     <div className="flex items-center justify-center">
-      <article className="min-h-screen sm:mx-[1%] md:mx-[4%] lg:mx-[24%] font-normal pb-10 h-auto lg:w-[60rem] ">
+      <article
+        style={{
+          fontFamily: `Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif`,
+        }}
+        className="min-h-screen sm:mx-[1%] md:mx-[4%] lg:mx-[24%] font-normal pb-10 h-auto lg:w-[60rem] "
+      >
         <div className="pt-[7rem] mx-[8%] text-4xl">
-          <h1 className="text-primary-900 font-semibold times-header upper mb-1">
+          <h1
+            className="text-primary-900 font-semibold times-header upper mb-1"
+          >
             {postResponse?.data?.title}
           </h1>
           <span className="flex flex-row gap-4 items-center text-[0.9rem] mb-4 text-primary-700 font-light">

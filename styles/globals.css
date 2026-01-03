@@ -444,16 +444,20 @@ input:-webkit-autofill:active {
   margin-bottom: 1rem;
   line-height: 1.75;
   font-size: 1.125rem;
-
-  color: #37474f;
+  color: #212529;
   /* font-family: Graphik, sans-serif; */
 }
 
 .blog-content h1 {
   font-size: 2rem;
+
 }
 
 .blog-content h2 {
   font-size: 1.4rem;
   margin-bottom: 0.4rem;
+}
+
+.blog-content {
+  font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif
 }
