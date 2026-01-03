@@ -1,4 +1,4 @@
-"use clien
+"use client"
 import useFetchPostById from "@/features/blogs/hooks/useFetchPostById";
 import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 import Image from "next/image";
