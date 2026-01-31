@@ -66,29 +66,43 @@ function About() {
 
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              {`As an inventor of the 21st century, I use engineering to create magic. 
-              I've continually learned and embraced the latest technology, exploring 
-              frameworks and libraries such as `}
+              {`Growing up, I dreamed of either becoming a `}
+              <strong>professional soccer player</strong>
+              {` or `}
+              <strong>inventing</strong>
+              {` something entirely new. As my soccer aspirations faded over the years, I faced a pivotal decision during my senior year of high school: choosing a major. After debating between `}
+              <strong>Mechanical Engineering</strong>
+              {`, `}
+              <strong>Aerospace Engineering</strong>
+              {`, and `}
+              <strong>Computer Science</strong>
+              {`, I chose the latter for its versatility and its profound impact on nearly every aspect of modern life.`}
+            </p>
+            <br></br>
+            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
+              {`Writing my first lines of code felt like `}
+              <strong>pure magic</strong>
+              {`—I could imagine something and bring it to life. Since then, I've continually learned and embraced the latest technologies, exploring frameworks and libraries such as `}
               <strong>
-              <i>React.js</i>
+                <i>React.js</i>
               </strong>
               {`, `}
               <strong>
-              <i>Node.js</i>
+                <i>Node.js</i>
               </strong>
               {`, `}
               <strong>
-              <i>FastAPI</i>
+                <i>FastAPI</i>
               </strong>
-              {`, `}
+              {`, and `}
               <strong>
-              <i>Next.js</i>
+                <i>Next.js</i>
               </strong>
-              {`, and cloud platforms like `}
+              {`, as well as cloud platforms like `}
               <strong>
-              <i>AWS</i>
+                <i>AWS</i>
               </strong>
-              {` to expand my technical toolbox.`}
+              {`, to expand my technical toolbox.`}
             </p>
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
