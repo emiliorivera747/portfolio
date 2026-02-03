@@ -1,4 +1,3 @@
-import React from "react";
 import { Post, PostListProps } from "@/features/blogs/types/post";
 
 // Components

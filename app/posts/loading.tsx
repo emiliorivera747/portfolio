@@ -1,4 +1,4 @@
-import React from "react";
+
 import BlogListSkeleton from "@/features/blogs/components/skeletons/BlogListSkeleton";
 
 /**
