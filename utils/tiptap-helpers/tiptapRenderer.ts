@@ -1,4 +1,4 @@
-import { generateHTML } from "@tiptap/core";
+import { generateHTML } from "@tiptap/html";
 import StarterKit from "@tiptap/starter-kit";
 import TextAlign from "@tiptap/extension-text-align";
 import { JSONContent } from "@tiptap/core";
