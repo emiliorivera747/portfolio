@@ -25,7 +25,31 @@ const fetchPostById = async (id: string) => {
   return res.json();
 };
 
+const updatePost = async (id: string, data: Record<string, any>) => {
+  const res = await fetch(`${API_URL}/posts/${id}`, {
+    method: "PUT",
+    cache: "no-store",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) throw new Error(`Failed to update post with id ${id}`);
+  return res.json();
+};
+
+const deletePost = async (id: string) => {
+  const res = await fetch(`${API_URL}/posts/${id}`, {
+    method: "DELETE",
+    cache: "no-store",
+  });
+
+  if (!res.ok) throw new Error(`Failed to delete post with id ${id}`);
+  return res.json();
+};
+
 export const blogsServices = {
   fetchPosts,
-  fetchPostById
+  fetchPostById,
+  updatePost,
+  deletePost,
 };
