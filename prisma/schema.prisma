@@ -88,19 +88,27 @@ model Media {
 }
 
 model Comment {
-  id                      Int       @id @default(autoincrement())
-  content                 String
-  email                   String
-  name                    String?
-  verified                Boolean   @default(false)
-  verification_code       String?
-  verification_expires_at DateTime? @db.Timestamptz(3)
-  created_at              DateTime  @default(now()) @db.Timestamptz(3)
-  updated_at              DateTime  @updatedAt @db.Timestamptz(3)
+  id         Int      @id @default(autoincrement())
+  content    String
+  email      String
+  name       String?
+  created_at DateTime @default(now()) @db.Timestamptz(3)
+  updated_at DateTime @updatedAt @db.Timestamptz(3)
 
   // Relationships
   post    Post   @relation(fields: [post_id], references: [id])
   post_id String
+}
+
+model PendingComment {
+  id                      Int      @id @default(autoincrement())
+  content                 String
+  email                   String
+  name                    String?
+  post_id                 String
+  verification_code       String
+  verification_expires_at DateTime @db.Timestamptz(3)
+  created_at              DateTime @default(now()) @db.Timestamptz(3)
 }
 
 model Tag {

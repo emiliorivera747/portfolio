@@ -3,7 +3,7 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 
 const verifySchema = z.object({
-  comment_id: z.number().int(),
+  pending_id: z.number().int(),
   code: z.string().length(6, "Code must be 6 digits"),
 });
 
@@ -31,65 +31,62 @@ export const POST = async (
       );
     }
 
-    const { comment_id, code } = parsed.data;
+    const { pending_id, code } = parsed.data;
 
-    const comment = await prisma.comment.findFirst({
-      where: { id: comment_id, post_id: _id },
+    const pending = await prisma.pendingComment.findFirst({
+      where: { id: pending_id, post_id: _id },
     });
 
-    if (!comment) {
+    if (!pending) {
       return NextResponse.json(
-        { message: "Comment not found", status: "error" },
+        { message: "Pending comment not found", status: "error" },
         { status: 404 }
       );
     }
 
-    if (comment.verified) {
-      return NextResponse.json(
-        { message: "Comment already verified", status: "success" },
-        { status: 200 }
-      );
-    }
-
-    if (comment.verification_code !== code) {
+    if (pending.verification_code !== code) {
       return NextResponse.json(
         { message: "Invalid verification code", status: "error" },
         { status: 400 }
       );
     }
 
-    if (
-      comment.verification_expires_at &&
-      new Date() > comment.verification_expires_at
-    ) {
+    if (new Date() > pending.verification_expires_at) {
       return NextResponse.json(
         { message: "Verification code has expired", status: "error" },
         { status: 400 }
       );
     }
 
-    const verified = await prisma.comment.update({
-      where: { id: comment_id },
-      data: {
-        verified: true,
-        verification_code: null,
-        verification_expires_at: null,
-      },
-      select: {
-        id: true,
-        name: true,
-        content: true,
-        created_at: true,
-      },
+    // Email verified — now create the actual comment and delete the pending record
+    const comment = await prisma.$transaction(async (tx) => {
+      const created = await tx.comment.create({
+        data: {
+          email: pending.email,
+          content: pending.content,
+          name: pending.name,
+          post_id: pending.post_id,
+        },
+        select: {
+          id: true,
+          name: true,
+          content: true,
+          created_at: true,
+        },
+      });
+
+      await tx.pendingComment.delete({ where: { id: pending_id } });
+
+      return created;
     });
 
     return NextResponse.json(
       {
-        data: verified,
+        data: comment,
         message: "Comment verified and published",
         status: "success",
       },
-      { status: 200 }
+      { status: 201 }
     );
   } catch (error) {
     const errorMessage =

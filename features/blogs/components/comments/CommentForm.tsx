@@ -28,7 +28,7 @@ interface CommentFormProps {
 
 const CommentForm = ({ postId }: CommentFormProps) => {
   const [step, setStep] = useState<"compose" | "verify">("compose");
-  const [commentId, setCommentId] = useState<number | null>(null);
+  const [pendingId, setPendingId] = useState<number | null>(null);
 
   const createComment = useCreateComment(postId);
   const verifyComment = useVerifyComment(postId);
@@ -46,7 +46,7 @@ const CommentForm = ({ postId }: CommentFormProps) => {
   const onSubmitComment = async (data: CommentFormData) => {
     try {
       const result = await createComment.mutateAsync(data);
-      setCommentId(result.data.comment_id);
+      setPendingId(result.data.pending_id);
       setStep("verify");
       toast.success("Verification code sent to your email!");
     } catch (error) {
@@ -55,15 +55,15 @@ const CommentForm = ({ postId }: CommentFormProps) => {
   };
 
   const onSubmitCode = async (data: VerifyFormData) => {
-    if (!commentId) return;
+    if (!pendingId) return;
     try {
       await verifyComment.mutateAsync({
-        comment_id: commentId,
+        pending_id: pendingId,
         code: data.code,
       });
       toast.success("Comment published!");
       setStep("compose");
-      setCommentId(null);
+      setPendingId(null);
       composeForm.reset();
       verifyForm.reset();
     } catch (error) {
@@ -73,7 +73,7 @@ const CommentForm = ({ postId }: CommentFormProps) => {
 
   const handleCancel = () => {
     setStep("compose");
-    setCommentId(null);
+    setPendingId(null);
     verifyForm.reset();
   };
 

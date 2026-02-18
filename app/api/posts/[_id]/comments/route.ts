@@ -29,7 +29,7 @@ export const GET = async (
     }
 
     const comments = await prisma.comment.findMany({
-      where: { post_id: _id, verified: true },
+      where: { post_id: _id },
       orderBy: { created_at: "desc" },
       select: {
         id: true,
@@ -99,13 +99,13 @@ export const POST = async (
     const code = generateCode();
     const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
 
-    const comment = await prisma.comment.create({
+    // Store as pending — comment is NOT created until email is verified
+    const pending = await prisma.pendingComment.create({
       data: {
         email,
         content,
         name: name || null,
         post_id: _id,
-        verified: false,
         verification_code: code,
         verification_expires_at: expiresAt,
       },
@@ -115,7 +115,7 @@ export const POST = async (
 
     return NextResponse.json(
       {
-        data: { comment_id: comment.id },
+        data: { pending_id: pending.id },
         message: "Verification code sent to your email",
         status: "success",
       },

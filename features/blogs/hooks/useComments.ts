@@ -29,7 +29,7 @@ export const useVerifyComment = (postId: string) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: (data: { comment_id: number; code: string }) =>
+    mutationFn: (data: { pending_id: number; code: string }) =>
       blogsServices.verifyComment(postId, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["comments", postId] });
