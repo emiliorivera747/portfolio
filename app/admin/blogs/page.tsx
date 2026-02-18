@@ -8,9 +8,7 @@ import PrimaryHeader from "@/components/headers/PrimaryHeader";
 
 const AdminBlogsPage = () => {
   const { postsResponse, isLoadingPosts, isErrorPosts } = useFetchBlogs();
-
   const posts: Post[] = postsResponse?.data ?? [];
-
   const sortedPosts = [...posts].sort(
     (a, b) =>
       new Date(b.created_at || 0).getTime() -

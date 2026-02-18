@@ -47,9 +47,56 @@ const deletePost = async (id: string) => {
   return res.json();
 };
 
+const fetchComments = async (postId: string) => {
+  const res = await fetch(`${API_URL}/posts/${postId}/comments`, {
+    method: "GET",
+    cache: "no-store",
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch comments");
+  return res.json();
+};
+
+const createComment = async (
+  postId: string,
+  data: { email: string; content: string; name?: string }
+) => {
+  const res = await fetch(`${API_URL}/posts/${postId}/comments`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.message || "Failed to create comment");
+  }
+  return res.json();
+};
+
+const verifyComment = async (
+  postId: string,
+  data: { comment_id: number; code: string }
+) => {
+  const res = await fetch(`${API_URL}/posts/${postId}/comments/verify`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (!res.ok) {
+    const err = await res.json();
+    throw new Error(err.message || "Failed to verify comment");
+  }
+  return res.json();
+};
+
 export const blogsServices = {
   fetchPosts,
   fetchPostById,
   updatePost,
   deletePost,
+  fetchComments,
+  createComment,
+  verifyComment,
 };

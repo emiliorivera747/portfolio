@@ -58,6 +58,14 @@ export interface Media {
   provider_asset_id: string;
 }
 
+export interface CommentResponse {
+  id: number;
+  name: string | null;
+  email: string;
+  content: string;
+  created_at: string;
+}
+
 export interface PostResponse {
   data: {
     id?: string;
