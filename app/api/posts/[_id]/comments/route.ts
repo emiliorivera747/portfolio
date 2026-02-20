@@ -41,7 +41,7 @@ export const GET = async (
     });
 
     // Mask emails: show first 2 chars + ***@domain
-    const masked = comments.map((c) => {
+    const masked = comments.map((c: { id: number; name: string | null; email: string; content: string; created_at: Date }) => {
       const [local, domain] = c.email.split("@");
       const maskedEmail =
         local.slice(0, 2) + "***@" + domain;
