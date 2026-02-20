@@ -59,7 +59,7 @@ export const POST = async (
     }
 
     // Email verified — now create the actual comment and delete the pending record
-    const comment = await prisma.$transaction(async (tx) => {
+    const comment = await prisma.$transaction(async (tx: any) => {
       const created = await tx.comment.create({
         data: {
           email: pending.email,
