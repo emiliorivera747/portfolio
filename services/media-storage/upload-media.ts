@@ -1,9 +1,7 @@
 import { MediaUploadResult } from "@/types/mediaStorage";
 import { uploadToCloudinary } from "@/services/media-storage/cloudinary-service";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import * as crypto from "crypto";
-
-const prisma = new PrismaClient();
 
 type UploadParams = {
   fileBuffer: Buffer;

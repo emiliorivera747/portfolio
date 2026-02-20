@@ -1,9 +1,7 @@
 // pages/api/auth/callback.ts
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 /**
  * Determines the base redirect URL based on environment and headers.
@@ -98,7 +96,5 @@ export async function GET(request: Request) {
     return NextResponse.redirect(`${redirectBase}${next}`);
   } catch (error) {
     return NextResponse.redirect(`${origin}/auth/auth-code-error`);
-  } finally {
-    await prisma.$disconnect(); // Ensure Prisma connection is closed
   }
 }

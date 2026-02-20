@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
 
 // --- Import the NEW Abstraction Layer (The Bouncer) ---
 import { uploadMedia } from "@/services/media-storage/upload-media";
