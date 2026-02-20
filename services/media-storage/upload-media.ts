@@ -50,7 +50,6 @@ export async function uploadMedia(
 
   const newMedia = await prisma.media.create({
     data: {
-      id: typeof uploadResult.id === "string" ? parseInt(uploadResult.id, 10) : uploadResult.id,
       url: uploadResult.url,
       media_type: uploadResult.media_type,
       description: uploadResult.alt,
@@ -63,6 +62,7 @@ export async function uploadMedia(
 
   return {
     ...uploadResult,
+    id: newMedia.id,
     url: newMedia.url,
     alt: newMedia.alt || alt,
   };

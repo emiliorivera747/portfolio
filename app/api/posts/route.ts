@@ -59,6 +59,19 @@ export async function POST(req: NextRequest) {
      *  we use the $transaction.
      */
     const post = await prisma.$transaction(async (prisma: any) => {
+      // Ensure the authenticated user exists in the User table
+      const userId = user_id ? user_id : result.id;
+      await prisma.user.upsert({
+        where: { user_id: userId },
+        update: {},
+        create: {
+          user_id: userId,
+          email: result.email ?? `${userId}@unknown`,
+          name: result.user_metadata?.full_name ?? null,
+          email_verified: !!result.email_confirmed_at,
+        },
+      });
+
       /**
        * Create a new post
        */
@@ -76,7 +89,7 @@ export async function POST(req: NextRequest) {
             .toLowerCase()
             .replace(/ /g, "-")}`, // Add the formatted date (month-dd-yyyy) to the end
           title,
-          user_id: user_id ? user_id : result.id,
+          user_id: userId,
           description: description,
         },
       });
@@ -89,7 +102,7 @@ export async function POST(req: NextRequest) {
           data: {
             ...blockData,
             post_id: newPost.id,
-            media_id: media?.id ? String(media.id) : null,
+            media_id: media?.id ? Number(media.id) : null,
           },
         });
       }

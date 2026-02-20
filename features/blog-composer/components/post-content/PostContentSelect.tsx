@@ -90,7 +90,7 @@ const PostContentSelect = () => {
         updateBlock(blockId, {
           media_id: mediaResponse.id,
           media: {
-            provider_asset_id: mediaResponse.provider_asset_id,
+            provider_asset_id: mediaResponse.providerAssetId,
             id: mediaResponse.id,
             url: mediaResponse.url,
             alt: original_filename || "Image",

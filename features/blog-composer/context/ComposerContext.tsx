@@ -14,6 +14,8 @@ const initialContextValue: UsePostComposerReturn & { onSubmit: any } = {
   updateBlockContent: () => {},
   getId: () => undefined,
   updateBlock: () => {},
+  moveBlock: () => {},
+  removeBlock: () => {},
   handleFileChange: () => {},
   onSubmit: () => {
     // onSubmit called outside of a Provider - this should not happen in production
@@ -36,6 +38,8 @@ export const ComposerProvider = ({ children }: { children: ReactNode }) => {
     blocks,
     addBlock,
     updateBlock,
+    moveBlock,
+    removeBlock,
     updateBlockContent,
     currentBlock,
     setCurrentBlock,
@@ -51,6 +55,8 @@ export const ComposerProvider = ({ children }: { children: ReactNode }) => {
         blocks,
         addBlock,
         updateBlock,
+        moveBlock,
+        removeBlock,
         updateBlockContent,
         currentBlock,
         setCurrentBlock,

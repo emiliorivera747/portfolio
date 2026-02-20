@@ -12,7 +12,7 @@ const SecondaryHeading = ({
   className?: string;
   label: string;
 }) => {
-  const defaultClass = "text-lg font-medium text-primary-900 mb-2";
+  const defaultClass = "text-lg font-medium text-primary-900 mb-2 w-full";
   return <h1 className={cn(defaultClass, className)}>{label}</h1>;
 };
 

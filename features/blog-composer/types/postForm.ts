@@ -32,6 +32,8 @@ export interface UsePostComposerReturn {
     id: string | number,
     updatedFields: Partial<ContentBlock>
   ) => void;
+  moveBlock: (oldIndex: number, newIndex: number) => void;
+  removeBlock: (id: string | number) => void;
   handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit?: (data: FormSchema) => void;
 }

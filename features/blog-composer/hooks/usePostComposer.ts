@@ -65,6 +65,22 @@ const usePostComposer = (): UsePostComposerReturn => {
     );
   };
 
+  const moveBlock = (oldIndex: number, newIndex: number) => {
+    setBlocks((prevBlocks) => {
+      const updated = [...prevBlocks];
+      const [moved] = updated.splice(oldIndex, 1);
+      updated.splice(newIndex, 0, moved);
+      return updated.map((block, i) => ({ ...block, content_order: i }));
+    });
+  };
+
+  const removeBlock = (id: string | number) => {
+    setBlocks((prevBlocks) => {
+      const filtered = prevBlocks.filter((block) => block.id !== id);
+      return filtered.map((block, i) => ({ ...block, content_order: i }));
+    });
+  };
+
   const getId = (): string | number | undefined => {
     return currentBlock?.id;
   };
@@ -78,6 +94,8 @@ const usePostComposer = (): UsePostComposerReturn => {
     updateBlockContent,
     getId,
     updateBlock,
+    moveBlock,
+    removeBlock,
     handleFileChange,
     onSubmit,
   };
