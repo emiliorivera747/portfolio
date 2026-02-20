@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
-
-const prisma = new PrismaClient();
 
 export const GET = async (
   request: Request,
