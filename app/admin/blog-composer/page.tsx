@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 
 // Components
 import PostForm from "@/features/blog-composer/components/post-form/PostForm";
