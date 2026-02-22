@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db/drizzle";
+import { comments, posts, pendingComments } from "@/lib/db/schema";
+import { eq, desc } from "drizzle-orm";
 import { sendVerificationEmail } from "@/lib/resend";
 import crypto from "crypto";
 
@@ -28,20 +30,20 @@ export const GET = async (
       );
     }
 
-    const comments = await prisma.comment.findMany({
-      where: { post_id: _id },
-      orderBy: { created_at: "desc" },
-      select: {
-        id: true,
-        name: true,
-        email: true,
-        content: true,
-        created_at: true,
-      },
-    });
+    const commentsList = await db
+      .select({
+        id: comments.id,
+        name: comments.name,
+        email: comments.email,
+        content: comments.content,
+        created_at: comments.createdAt,
+      })
+      .from(comments)
+      .where(eq(comments.postId, _id))
+      .orderBy(desc(comments.createdAt));
 
     // Mask emails: show first 2 chars + ***@domain
-    const masked = comments.map((c: { id: number; name: string | null; email: string; content: string; created_at: Date }) => {
+    const masked = commentsList.map((c: { id: number; name: string | null; email: string; content: string; created_at: Date }) => {
       const [local, domain] = c.email.split("@");
       const maskedEmail =
         local.slice(0, 2) + "***@" + domain;
@@ -77,7 +79,9 @@ export const POST = async (
     }
 
     // Check that the post exists
-    const post = await prisma.post.findUnique({ where: { id: _id } });
+    const post = await db.query.posts.findFirst({
+      where: eq(posts.id, _id),
+    });
     if (!post) {
       return NextResponse.json(
         { message: "Post not found", status: "error" },
@@ -100,16 +104,17 @@ export const POST = async (
     const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
 
     // Store as pending — comment is NOT created until email is verified
-    const pending = await prisma.pendingComment.create({
-      data: {
+    const [pending] = await db
+      .insert(pendingComments)
+      .values({
         email,
         content,
         name: name || null,
-        post_id: _id,
-        verification_code: code,
-        verification_expires_at: expiresAt,
-      },
-    });
+        postId: _id,
+        verificationCode: code,
+        verificationExpiresAt: expiresAt,
+      })
+      .returning();
 
     await sendVerificationEmail(email, code);
 

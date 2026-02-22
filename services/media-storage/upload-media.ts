@@ -1,6 +1,8 @@
 import { MediaUploadResult } from "@/types/mediaStorage";
 import { uploadToCloudinary } from "@/services/media-storage/cloudinary-service";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db/drizzle";
+import { media } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 import * as crypto from "crypto";
 
 type UploadParams = {
@@ -18,10 +20,8 @@ export async function uploadMedia(
   const fileHash = crypto.createHash("sha256").update(fileBuffer).digest("hex");
 
   // Check for existing Media by Hash
-  const existingMedia = await prisma.media.findUnique({
-    where: {
-      file_hash: fileHash,
-    },
+  const existingMedia = await db.query.media.findFirst({
+    where: eq(media.fileHash, fileHash),
   });
 
   if (existingMedia) {
@@ -30,9 +30,9 @@ export async function uploadMedia(
       id: existingMedia.id,
       url: existingMedia.url,
       alt: existingMedia.alt || alt,
-      media_type: existingMedia.media_type as "image" | "video",
-      providerAssetId: existingMedia.provider_asset_id || "N/A",
-      storageProvider: existingMedia.storage_provider as "CLOUDINARY" | "S3",
+      media_type: existingMedia.mediaType as "image" | "video",
+      providerAssetId: existingMedia.providerAssetId || "N/A",
+      storageProvider: existingMedia.storageProvider as "CLOUDINARY" | "S3",
     };
   }
 
@@ -46,17 +46,18 @@ export async function uploadMedia(
     uploadResult = await uploadToCloudinary({ ...params, fileHash });
   }
 
-  const newMedia = await prisma.media.create({
-    data: {
+  const [newMedia] = await db
+    .insert(media)
+    .values({
       url: uploadResult.url,
-      media_type: uploadResult.media_type,
+      mediaType: uploadResult.media_type,
       description: uploadResult.alt,
       alt: uploadResult.alt,
-      provider_asset_id: uploadResult.providerAssetId,
-      storage_provider: uploadResult.storageProvider,
-      file_hash: fileHash,
-    },
-  });
+      providerAssetId: uploadResult.providerAssetId,
+      storageProvider: uploadResult.storageProvider,
+      fileHash: fileHash,
+    })
+    .returning();
 
   return {
     ...uploadResult,
