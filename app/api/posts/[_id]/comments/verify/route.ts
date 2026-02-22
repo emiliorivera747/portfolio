@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db/drizzle";
+import { comments, pendingComments } from "@/lib/db/schema";
+import { eq, and } from "drizzle-orm";
 
 const verifySchema = z.object({
   pending_id: z.number().int(),
@@ -33,8 +35,11 @@ export const POST = async (
 
     const { pending_id, code } = parsed.data;
 
-    const pending = await prisma.pendingComment.findFirst({
-      where: { id: pending_id, post_id: _id },
+    const pending = await db.query.pendingComments.findFirst({
+      where: and(
+        eq(pendingComments.id, pending_id),
+        eq(pendingComments.postId, _id)
+      ),
     });
 
     if (!pending) {
@@ -44,14 +49,14 @@ export const POST = async (
       );
     }
 
-    if (pending.verification_code !== code) {
+    if (pending.verificationCode !== code) {
       return NextResponse.json(
         { message: "Invalid verification code", status: "error" },
         { status: 400 }
       );
     }
 
-    if (new Date() > pending.verification_expires_at) {
+    if (new Date() > pending.verificationExpiresAt) {
       return NextResponse.json(
         { message: "Verification code has expired", status: "error" },
         { status: 400 }
@@ -59,23 +64,25 @@ export const POST = async (
     }
 
     // Email verified — now create the actual comment and delete the pending record
-    const comment = await prisma.$transaction(async (tx: any) => {
-      const created = await tx.comment.create({
-        data: {
+    const comment = await db.transaction(async (tx) => {
+      const [created] = await tx
+        .insert(comments)
+        .values({
           email: pending.email,
           content: pending.content,
           name: pending.name,
-          post_id: pending.post_id,
-        },
-        select: {
-          id: true,
-          name: true,
-          content: true,
-          created_at: true,
-        },
-      });
+          postId: pending.postId,
+        })
+        .returning({
+          id: comments.id,
+          name: comments.name,
+          content: comments.content,
+          created_at: comments.createdAt,
+        });
 
-      await tx.pendingComment.delete({ where: { id: pending_id } });
+      await tx
+        .delete(pendingComments)
+        .where(eq(pendingComments.id, pending_id));
 
       return created;
     });

@@ -1,7 +1,9 @@
 // pages/api/auth/callback.ts
 import { NextResponse } from "next/server";
 import { createClient } from "@/utils/supabase/server";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db/drizzle";
+import { users } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 
 /**
  * Determines the base redirect URL based on environment and headers.
@@ -15,7 +17,7 @@ function getRedirectBase(request: Request, origin: string): string {
 }
 
 /**
- * Adds or updates a user in the PostgreSQL database via Prisma.
+ * Adds or updates a user in the PostgreSQL database via Drizzle.
  */
 async function upsertUser(user: {
   id: string;
@@ -23,18 +25,20 @@ async function upsertUser(user: {
   user_metadata: { full_name?: string };
 }) {
   try {
-    await prisma.user.upsert({
-      where: { user_id: user.id },
-      update: {
-        email: user.email,
-        name: user.user_metadata.full_name || "Unknown",
-      },
-      create: {
-        user_id: user.id,
+    await db
+      .insert(users)
+      .values({
+        userId: user.id,
         email: user.email ?? "",
         name: user.user_metadata.full_name || "Unknown",
-      },
-    });
+      })
+      .onConflictDoUpdate({
+        target: users.userId,
+        set: {
+          email: user.email,
+          name: user.user_metadata.full_name || "Unknown",
+        },
+      });
   } catch (dbError) {
     // Log error in development only
     if (process.env.NODE_ENV === 'development') {
@@ -47,8 +51,8 @@ async function upsertUser(user: {
  *  Checks whether the user already exists in the database.
  */
 async function getUser(userId: string) {
-  const user = await prisma.user.findUnique({
-    where: { user_id: userId },
+  const user = await db.query.users.findFirst({
+    where: eq(users.userId, userId),
   });
   return user;
 }

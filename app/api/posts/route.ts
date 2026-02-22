@@ -1,5 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db/drizzle";
+import { users, posts, contentBlocks } from "@/lib/db/schema";
+import { eq, asc } from "drizzle-orm";
 import { z } from "zod";
 import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
 
@@ -56,27 +58,30 @@ export async function POST(req: NextRequest) {
   try {
     /**
      *  To make sure all database operations get executed at the same
-     *  we use the $transaction.
+     *  we use the transaction.
      */
-    const post = await prisma.$transaction(async (prisma: any) => {
+    const post = await db.transaction(async (tx) => {
       // Ensure the authenticated user exists in the User table
       const userId = user_id ? user_id : result.id;
-      await prisma.user.upsert({
-        where: { user_id: userId },
-        update: {},
-        create: {
-          user_id: userId,
+      await tx
+        .insert(users)
+        .values({
+          userId: userId,
           email: result.email ?? `${userId}@unknown`,
           name: result.user_metadata?.full_name ?? null,
-          email_verified: !!result.email_confirmed_at,
-        },
-      });
+          emailVerified: !!result.email_confirmed_at,
+        })
+        .onConflictDoUpdate({
+          target: users.userId,
+          set: {}, // Empty update - no changes on conflict
+        });
 
       /**
        * Create a new post
        */
-      const newPost = await prisma.post.create({
-        data: {
+      const [newPost] = await tx
+        .insert(posts)
+        .values({
           id: `${title
             ?.toLowerCase()
             .replace(/[^a-z0-9\s]/g, "") // Remove special characters
@@ -89,35 +94,30 @@ export async function POST(req: NextRequest) {
             .toLowerCase()
             .replace(/ /g, "-")}`, // Add the formatted date (month-dd-yyyy) to the end
           title,
-          user_id: userId,
+          userId: userId,
           description: description,
-        },
-      });
+        })
+        .returning();
 
       const post_id = newPost.id;
 
       for (const block of content_blocks) {
         const { media, ...blockData } = block;
-        await prisma.ContentBlock.create({
-          data: {
-            ...blockData,
-            post_id: newPost.id,
-            media_id: media?.id ? Number(media.id) : null,
-          },
+        await tx.insert(contentBlocks).values({
+          ...blockData,
+          postId: newPost.id,
+          mediaId: media?.id ? Number(media.id) : null,
         });
       }
 
       /**
        * Retrieve the post
        */
-      const cb = await prisma.ContentBlock.findMany({
-        where: {
-          post_id,
-        },
-        orderBy: {
-          content_order: "asc",
-        },
-      });
+      const cb = await tx
+        .select()
+        .from(contentBlocks)
+        .where(eq(contentBlocks.postId, post_id))
+        .orderBy(asc(contentBlocks.contentOrder));
 
       return {
         ...newPost,
@@ -145,18 +145,16 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
   try {
-    const posts = await prisma.post.findMany({
-      include: {
-        content_block: {
-          orderBy: {
-            content_order: "asc",
-          },
+    const allPosts = await db.query.posts.findMany({
+      with: {
+        contentBlocks: {
+          orderBy: [asc(contentBlocks.contentOrder)],
         },
       },
     });
 
     return NextResponse.json(
-      { data: posts, status: "success" },
+      { data: allPosts, status: "success" },
       { status: 200 }
     );
   } catch (error) {

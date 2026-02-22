@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { db } from "@/lib/db/drizzle";
+import { posts, users, contentBlocks, media, postTags, comments } from "@/lib/db/schema";
+import { eq, asc } from "drizzle-orm";
 import { z } from "zod";
 import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
 
@@ -17,13 +19,13 @@ export const GET = async (
       );
     }
 
-    const post = await prisma.post.findUnique({
-      where: { id: _id },
-      include: {
-        User: true,
-        content_block: {
-          orderBy: { content_order: "asc" },
-          include: {
+    const post = await db.query.posts.findFirst({
+      where: eq(posts.id, _id),
+      with: {
+        user: true,
+        contentBlocks: {
+          orderBy: [asc(contentBlocks.contentOrder)],
+          with: {
             media: true,
           },
         },
@@ -110,40 +112,38 @@ export const PUT = async (
 
     const { title, description, content_blocks } = parsed.data;
 
-    const post = await prisma.$transaction(async (tx: any) => {
+    const post = await db.transaction(async (tx) => {
       // Update the post metadata
-      const updatedPost = await tx.post.update({
-        where: { id: _id },
-        data: {
+      await tx
+        .update(posts)
+        .set({
           title,
           description,
-        },
-      });
+        })
+        .where(eq(posts.id, _id));
 
       // Delete existing content blocks for this post
-      await tx.contentBlock.deleteMany({
-        where: { post_id: _id },
-      });
+      await tx.delete(contentBlocks).where(eq(contentBlocks.postId, _id));
 
       // Create new content blocks
       for (const block of content_blocks) {
         const { media, ...blockData } = block;
-        await tx.contentBlock.create({
-          data: {
-            ...blockData,
-            post_id: _id,
-            media_id: media?.id ? media.id : null,
-          },
+        await tx.insert(contentBlocks).values({
+          contentOrder: blockData.content_order,
+          contentType: blockData.content_type,
+          contentData: blockData.content_data,
+          postId: _id,
+          mediaId: media?.id ? media.id : null,
         });
       }
 
       // Retrieve the updated post with content blocks
-      const fullPost = await tx.post.findUnique({
-        where: { id: _id },
-        include: {
-          content_block: {
-            orderBy: { content_order: "asc" },
-            include: { media: true },
+      const fullPost = await tx.query.posts.findFirst({
+        where: eq(posts.id, _id),
+        with: {
+          contentBlocks: {
+            orderBy: [asc(contentBlocks.contentOrder)],
+            with: { media: true },
           },
         },
       });
@@ -182,15 +182,15 @@ export const DELETE = async (
       );
     }
 
-    await prisma.$transaction(async (tx: any) => {
+    await db.transaction(async (tx) => {
       // Delete content blocks first (due to FK constraint)
-      await tx.contentBlock.deleteMany({ where: { post_id: _id } });
+      await tx.delete(contentBlocks).where(eq(contentBlocks.postId, _id));
       // Delete post tags
-      await tx.postTag.deleteMany({ where: { post_id: _id } });
+      await tx.delete(postTags).where(eq(postTags.postId, _id));
       // Delete comments
-      await tx.comment.deleteMany({ where: { post_id: _id } });
+      await tx.delete(comments).where(eq(comments.postId, _id));
       // Delete the post
-      await tx.post.delete({ where: { id: _id } });
+      await tx.delete(posts).where(eq(posts.id, _id));
     });
 
     return NextResponse.json(
