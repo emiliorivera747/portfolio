@@ -104,7 +104,9 @@ export async function POST(req: NextRequest) {
       for (const block of content_blocks) {
         const { media, ...blockData } = block;
         await tx.insert(contentBlocks).values({
-          ...blockData,
+          contentOrder: blockData.content_order,
+          contentType: blockData.content_type,
+          contentData: blockData.content_data,
           postId: newPost.id,
           mediaId: media?.id ? Number(media.id) : null,
         });
