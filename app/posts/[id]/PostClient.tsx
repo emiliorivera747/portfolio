@@ -80,11 +80,13 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
           {/* --- Go through the content blocks */}
           {postResponse?.data?.content_block?.map(
             ({
+              id,
               content_data,
               content_order,
               content_type,
               media,
             }: {
+              id: number;
               content_data: any;
               content_order: number;
               content_type: string;
@@ -93,7 +95,7 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
               if (content_type === "image")
                 return (
                   <Image
-                    key={content_order}
+                    key={id}
                     src={
                       media?.url
                         ? media?.url
@@ -108,7 +110,7 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
                 );
               return (
                 <div
-                  key={content_order}
+                  key={id}
                   className="blog-content font-extralight pb-4"
                   dangerouslySetInnerHTML={{
                     __html: renderTipTapJSON(content_data) || "",

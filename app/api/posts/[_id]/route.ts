@@ -39,8 +39,39 @@ export const GET = async (
       );
     }
 
+    // Transform to match frontend expectations (snake_case from Prisma)
+    const { user: postUser, contentBlocks: postContentBlocks, createdAt, updatedAt, ...restPost } = post;
+    const transformedPost = {
+      ...restPost,
+      created_at: createdAt,
+      updated_at: updatedAt,
+      User: postUser,
+      content_block: postContentBlocks?.map((block: any) => ({
+        id: block.id,
+        content_order: block.contentOrder,
+        content_type: block.contentType,
+        content_data: block.contentData,
+        post_id: block.postId,
+        media_id: block.mediaId,
+        created_at: block.createdAt,
+        updated_at: block.updatedAt,
+        media: block.media ? {
+          id: block.media.id,
+          url: block.media.url,
+          media_type: block.media.mediaType,
+          description: block.media.description,
+          alt: block.media.alt,
+          provider_asset_id: block.media.providerAssetId,
+          storage_provider: block.media.storageProvider,
+          file_hash: block.media.fileHash,
+          created_at: block.media.createdAt,
+          updated_at: block.media.updatedAt,
+        } : null,
+      })),
+    };
+
     return NextResponse.json(
-      { data: post, status: "success" },
+      { data: transformedPost, status: "success" },
       { status: 200 }
     );
   } catch (error) {
@@ -113,12 +144,15 @@ export const PUT = async (
     const { title, description, content_blocks } = parsed.data;
 
     const post = await db.transaction(async (tx) => {
+      const now = new Date();
+
       // Update the post metadata
       await tx
         .update(posts)
         .set({
           title,
           description,
+          updatedAt: now,
         })
         .where(eq(posts.id, _id));
 
@@ -134,6 +168,8 @@ export const PUT = async (
           contentData: blockData.content_data,
           postId: _id,
           mediaId: media?.id ? media.id : null,
+          createdAt: now,
+          updatedAt: now,
         });
       }
 
@@ -151,8 +187,40 @@ export const PUT = async (
       return fullPost;
     });
 
+    // Transform to match frontend expectations (snake_case from Prisma)
+    const transformedPost = post ? (() => {
+      const { contentBlocks: putContentBlocks, createdAt, updatedAt, ...rest } = post;
+      return {
+        ...rest,
+        created_at: createdAt,
+        updated_at: updatedAt,
+        content_block: putContentBlocks?.map((block: any) => ({
+          id: block.id,
+          content_order: block.contentOrder,
+          content_type: block.contentType,
+          content_data: block.contentData,
+          post_id: block.postId,
+          media_id: block.mediaId,
+          created_at: block.createdAt,
+          updated_at: block.updatedAt,
+          media: block.media ? {
+            id: block.media.id,
+            url: block.media.url,
+            media_type: block.media.mediaType,
+            description: block.media.description,
+            alt: block.media.alt,
+            provider_asset_id: block.media.providerAssetId,
+            storage_provider: block.media.storageProvider,
+            file_hash: block.media.fileHash,
+            created_at: block.media.createdAt,
+            updated_at: block.media.updatedAt,
+          } : null,
+        })),
+      };
+    })() : null;
+
     return NextResponse.json(
-      { data: post, status: "success" },
+      { data: transformedPost, status: "success" },
       { status: 200 }
     );
   } catch (error) {

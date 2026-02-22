@@ -45,6 +45,7 @@ export async function POST(req: NextRequest) {
 
   const body = await req.json();
   const parsed = postSchema.safeParse(body);
+  console.log(body)
 
   if (!parsed.success) {
     return NextResponse.json(
@@ -71,14 +72,12 @@ export async function POST(req: NextRequest) {
           name: result.user_metadata?.full_name ?? null,
           emailVerified: !!result.email_confirmed_at,
         })
-        .onConflictDoUpdate({
-          target: users.userId,
-          set: {}, // Empty update - no changes on conflict
-        });
+        .onConflictDoNothing({ target: users.userId });
 
       /**
        * Create a new post
        */
+      const now = new Date();
       const [newPost] = await tx
         .insert(posts)
         .values({
@@ -96,19 +95,23 @@ export async function POST(req: NextRequest) {
           title,
           userId: userId,
           description: description,
+          createdAt: now,
+          updatedAt: now,
         })
         .returning();
 
       const post_id = newPost.id;
 
       for (const block of content_blocks) {
-        const { media, ...blockData } = block;
+        const { media, ...blockData } = block as any;
         await tx.insert(contentBlocks).values({
           contentOrder: blockData.content_order,
           contentType: blockData.content_type,
           contentData: blockData.content_data,
           postId: newPost.id,
           mediaId: media?.id ? Number(media.id) : null,
+          createdAt: now,
+          updatedAt: now,
         });
       }
 
@@ -127,13 +130,33 @@ export async function POST(req: NextRequest) {
       };
     });
 
+    // Transform to match frontend expectations (snake_case)
+    const { createdAt, updatedAt, content_blocks, ...restPost } = post;
+    const transformedPost = {
+      ...restPost,
+      created_at: createdAt,
+      updated_at: updatedAt,
+      content_block: content_blocks?.map((block: any) => ({
+        id: block.id,
+        content_order: block.contentOrder,
+        content_type: block.contentType,
+        content_data: block.contentData,
+        post_id: block.postId,
+        media_id: block.mediaId,
+        created_at: block.createdAt,
+        updated_at: block.updatedAt,
+      })),
+    };
+
     return NextResponse.json(
-      { data: post, status: "success" },
+      { data: transformedPost, status: "success" },
       { status: 201 }
     );
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "unknown error";
+
+    console.log("errorMessage", errorMessage);
 
     return NextResponse.json(
       {
@@ -155,8 +178,28 @@ export async function GET() {
       },
     });
 
+    // Transform to match frontend expectations (snake_case from Prisma)
+    const transformedPosts = allPosts.map((post) => {
+      const { contentBlocks: postContentBlocks, createdAt, updatedAt, ...rest } = post;
+      return {
+        ...rest,
+        created_at: createdAt,
+        updated_at: updatedAt,
+        content_block: postContentBlocks?.map((block: any) => ({
+          id: block.id,
+          content_order: block.contentOrder,
+          content_type: block.contentType,
+          content_data: block.contentData,
+          post_id: block.postId,
+          media_id: block.mediaId,
+          created_at: block.createdAt,
+          updated_at: block.updatedAt,
+        })),
+      };
+    });
+
     return NextResponse.json(
-      { data: allPosts, status: "success" },
+      { data: transformedPosts, status: "success" },
       { status: 200 }
     );
   } catch (error) {

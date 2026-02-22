@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 // External Lib
 import { useForm } from "react-hook-form";
@@ -99,7 +99,6 @@ const PostForm = () => {
         className="flex flex-col items-center  w-[40rem] pt-[4rem]"
       >
         <PrimaryHeader title={"Create Post"} />
-
         <div className="w-full flex flex-col mb-10">
           <SecondaryHeader label="Details" />
           <FormFieldGenerator
