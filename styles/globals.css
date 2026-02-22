@@ -459,5 +459,9 @@ input:-webkit-autofill:active {
 }
 
 .blog-content {
-  font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif
+  font-family: Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif;
+}
+
+.blog-content strong {
+  font-weight: 700;
 }

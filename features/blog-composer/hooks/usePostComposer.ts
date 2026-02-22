@@ -60,7 +60,7 @@ const usePostComposer = (): UsePostComposerReturn => {
   ) => {
     setBlocks((prevBlocks) =>
       prevBlocks.map((block) =>
-        block.id === id ? { ...block, content_data: contentData } : block
+        block.id === id ? { ...block, contentData } : block
       )
     );
   };
@@ -70,14 +70,14 @@ const usePostComposer = (): UsePostComposerReturn => {
       const updated = [...prevBlocks];
       const [moved] = updated.splice(oldIndex, 1);
       updated.splice(newIndex, 0, moved);
-      return updated.map((block, i) => ({ ...block, content_order: i }));
+      return updated.map((block, i) => ({ ...block, contentOrder: i }));
     });
   };
 
   const removeBlock = (id: string | number) => {
     setBlocks((prevBlocks) => {
       const filtered = prevBlocks.filter((block) => block.id !== id);
-      return filtered.map((block, i) => ({ ...block, content_order: i }));
+      return filtered.map((block, i) => ({ ...block, contentOrder: i }));
     });
   };
 

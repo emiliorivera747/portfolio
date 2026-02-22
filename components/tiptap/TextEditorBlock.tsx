@@ -42,7 +42,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
       ) : (
         <div
           onClick={updateCurrentBlock}
-          className="w-full blog-content font-extralight hover:border hover:border-primary-500 border-white border rounded-[12px] py-4 px-2 cursor-text min-h-[3rem] prose prose-sm max-w-none"
+          className="w-full blog-content font-light hover:border hover:border-primary-500 border-white border rounded-[12px] py-4 px-2 cursor-text min-h-[3rem] prose prose-sm max-w-none"
           dangerouslySetInnerHTML={{
             __html: block.contentData
               ? renderTipTapJSON(block.contentData)
