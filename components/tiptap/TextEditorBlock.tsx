@@ -28,7 +28,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
 
   const isEditing = getId() === block.id;
 
-  const initialContent = block.content_data ?? {
+  const initialContent = block.contentData ?? {
     type: "doc",
     content: [{ type: "paragraph" }],
   };
@@ -44,8 +44,8 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
           onClick={updateCurrentBlock}
           className="w-full blog-content font-extralight hover:border hover:border-primary-500 border-white border rounded-[12px] py-4 px-2 cursor-text min-h-[3rem] prose prose-sm max-w-none"
           dangerouslySetInnerHTML={{
-            __html: block.content_data
-              ? renderTipTapJSON(block.content_data)
+            __html: block.contentData
+              ? renderTipTapJSON(block.contentData)
               : '<p class="text-gray-400">Click to add text...</p>',
           }}
         />

@@ -30,7 +30,7 @@ export async function uploadMedia(
       id: existingMedia.id,
       url: existingMedia.url,
       alt: existingMedia.alt || alt,
-      media_type: existingMedia.mediaType as "image" | "video",
+      mediaType: existingMedia.mediaType as "image" | "video",
       providerAssetId: existingMedia.providerAssetId || "N/A",
       storageProvider: existingMedia.storageProvider as "CLOUDINARY" | "S3",
     };
@@ -50,7 +50,7 @@ export async function uploadMedia(
     .insert(media)
     .values({
       url: uploadResult.url,
-      mediaType: uploadResult.media_type,
+      mediaType: uploadResult.mediaType,
       description: uploadResult.alt,
       alt: uploadResult.alt,
       providerAssetId: uploadResult.providerAssetId,

@@ -5,7 +5,7 @@ import { comments, pendingComments } from "@/lib/db/schema";
 import { eq, and } from "drizzle-orm";
 
 const verifySchema = z.object({
-  pending_id: z.number().int(),
+  pendingId: z.number().int(),
   code: z.string().length(6, "Code must be 6 digits"),
 });
 
@@ -33,11 +33,11 @@ export const POST = async (
       );
     }
 
-    const { pending_id, code } = parsed.data;
+    const { pendingId, code } = parsed.data;
 
     const pending = await db.query.pendingComments.findFirst({
       where: and(
-        eq(pendingComments.id, pending_id),
+        eq(pendingComments.id, pendingId),
         eq(pendingComments.postId, _id)
       ),
     });
@@ -77,12 +77,12 @@ export const POST = async (
           id: comments.id,
           name: comments.name,
           content: comments.content,
-          created_at: comments.createdAt,
+          createdAt: comments.createdAt,
         });
 
       await tx
         .delete(pendingComments)
-        .where(eq(pendingComments.id, pending_id));
+        .where(eq(pendingComments.id, pendingId));
 
       return created;
     });

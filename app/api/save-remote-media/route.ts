@@ -10,7 +10,7 @@ import { MediaUploadResult } from "@/types/mediaStorage";
 type RemoteMediaBody = {
   remoteUrl: string; // The URL from Cloudinary
   alt: string;
-  media_type: string;
+  mediaType: string;
 };
 
 import { authenticateUser } from "@/utils/api-helpers/authenticateUser";

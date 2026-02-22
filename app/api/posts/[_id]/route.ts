@@ -39,39 +39,8 @@ export const GET = async (
       );
     }
 
-    // Transform to match frontend expectations (snake_case from Prisma)
-    const { user: postUser, contentBlocks: postContentBlocks, createdAt, updatedAt, ...restPost } = post;
-    const transformedPost = {
-      ...restPost,
-      created_at: createdAt,
-      updated_at: updatedAt,
-      User: postUser,
-      content_block: postContentBlocks?.map((block: any) => ({
-        id: block.id,
-        content_order: block.contentOrder,
-        content_type: block.contentType,
-        content_data: block.contentData,
-        post_id: block.postId,
-        media_id: block.mediaId,
-        created_at: block.createdAt,
-        updated_at: block.updatedAt,
-        media: block.media ? {
-          id: block.media.id,
-          url: block.media.url,
-          media_type: block.media.mediaType,
-          description: block.media.description,
-          alt: block.media.alt,
-          provider_asset_id: block.media.providerAssetId,
-          storage_provider: block.media.storageProvider,
-          file_hash: block.media.fileHash,
-          created_at: block.media.createdAt,
-          updated_at: block.media.updatedAt,
-        } : null,
-      })),
-    };
-
     return NextResponse.json(
-      { data: transformedPost, status: "success" },
+      { data: post, status: "success" },
       { status: 200 }
     );
   } catch (error) {
@@ -90,22 +59,22 @@ export const GET = async (
 const updatePostSchema = z.object({
   title: z.string().optional(),
   description: z.string().optional(),
-  content_blocks: z
+  contentBlocks: z
     .array(
       z
         .object({
-          content_order: z.number().int(),
-          content_type: z.enum(["doc", "image", "video"]),
-          content_data: z.record(z.string(), z.any()),
+          contentOrder: z.number().int(),
+          contentType: z.enum(["doc", "image", "video"]),
+          contentData: z.record(z.string(), z.any()),
         })
         .extend({
           media: z
             .object({
-              provider_asset_id: z.string().optional(),
+              providerAssetId: z.string().optional(),
               id: z.number().optional(),
               url: z.string().url(),
               alt: z.string().optional(),
-              media_type: z.enum(["image", "video"]),
+              mediaType: z.enum(["image", "video"]),
               description: z.string().optional(),
             })
             .optional(),
@@ -132,16 +101,29 @@ export const PUT = async (
     }
 
     const body = await request.json();
+
+    // Debug logging
+    if (process.env.NODE_ENV === 'development') {
+      console.log('PUT /api/posts/[_id] - Request body:', JSON.stringify(body, null, 2));
+      console.log('Content blocks with media:', body.contentBlocks?.map((b: any) => ({
+        contentType: b.contentType,
+        hasMedia: !!b.media,
+        mediaId: b.media?.id,
+        mediaUrl: b.media?.url
+      })));
+    }
+
     const parsed = updatePostSchema.safeParse(body);
 
     if (!parsed.success) {
+      console.error('Validation error:', parsed.error.issues);
       return NextResponse.json(
         { message: parsed.error.issues[0].message, data: null },
         { status: 400 }
       );
     }
 
-    const { title, description, content_blocks } = parsed.data;
+    const { title, description, contentBlocks: blocks } = parsed.data;
 
     const post = await db.transaction(async (tx) => {
       const now = new Date();
@@ -160,17 +142,28 @@ export const PUT = async (
       await tx.delete(contentBlocks).where(eq(contentBlocks.postId, _id));
 
       // Create new content blocks
-      for (const block of content_blocks) {
+      for (const block of blocks) {
         const { media, ...blockData } = block;
-        await tx.insert(contentBlocks).values({
-          contentOrder: blockData.content_order,
-          contentType: blockData.content_type,
-          contentData: blockData.content_data,
+        const insertData = {
+          contentOrder: blockData.contentOrder,
+          contentType: blockData.contentType,
+          contentData: blockData.contentData,
           postId: _id,
-          mediaId: media?.id ? media.id : null,
+          mediaId: media?.id ? Number(media.id) : null,
           createdAt: now,
           updatedAt: now,
-        });
+        };
+
+        if (process.env.NODE_ENV === 'development') {
+          console.log('Inserting content block:', {
+            contentType: insertData.contentType,
+            mediaId: insertData.mediaId,
+            hasMedia: !!media,
+            mediaObject: media
+          });
+        }
+
+        await tx.insert(contentBlocks).values(insertData);
       }
 
       // Retrieve the updated post with content blocks
@@ -187,40 +180,8 @@ export const PUT = async (
       return fullPost;
     });
 
-    // Transform to match frontend expectations (snake_case from Prisma)
-    const transformedPost = post ? (() => {
-      const { contentBlocks: putContentBlocks, createdAt, updatedAt, ...rest } = post;
-      return {
-        ...rest,
-        created_at: createdAt,
-        updated_at: updatedAt,
-        content_block: putContentBlocks?.map((block: any) => ({
-          id: block.id,
-          content_order: block.contentOrder,
-          content_type: block.contentType,
-          content_data: block.contentData,
-          post_id: block.postId,
-          media_id: block.mediaId,
-          created_at: block.createdAt,
-          updated_at: block.updatedAt,
-          media: block.media ? {
-            id: block.media.id,
-            url: block.media.url,
-            media_type: block.media.mediaType,
-            description: block.media.description,
-            alt: block.media.alt,
-            provider_asset_id: block.media.providerAssetId,
-            storage_provider: block.media.storageProvider,
-            file_hash: block.media.fileHash,
-            created_at: block.media.createdAt,
-            updated_at: block.media.updatedAt,
-          } : null,
-        })),
-      };
-    })() : null;
-
     return NextResponse.json(
-      { data: transformedPost, status: "success" },
+      { data: post, status: "success" },
       { status: 200 }
     );
   } catch (error) {

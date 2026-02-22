@@ -84,7 +84,7 @@ const PostForm = () => {
   };
 
   const renderBlockComponent = (block: ContentBlock) => {
-    switch (block.content_type) {
+    switch (block.contentType) {
       case "doc":
         return <TextEditorBlock block={block} />;
       case "image":

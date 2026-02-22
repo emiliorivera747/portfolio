@@ -64,7 +64,7 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
                   />
                 </svg>
                 <span>5 min read</span>
-                {new Date(postResponse?.data?.created_at).toLocaleDateString(
+                {new Date(postResponse?.data?.createdAt).toLocaleDateString(
                   "en-US",
                   {
                     month: "short",
@@ -78,21 +78,21 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
           </div>
 
           {/* --- Go through the content blocks */}
-          {postResponse?.data?.content_block?.map(
+          {postResponse?.data?.contentBlocks?.map(
             ({
               id,
-              content_data,
-              content_order,
-              content_type,
+              contentData,
+              contentOrder,
+              contentType,
               media,
             }: {
               id: number;
-              content_data: any;
-              content_order: number;
-              content_type: string;
+              contentData: any;
+              contentOrder: number;
+              contentType: string;
               media: any;
             }) => {
-              if (content_type === "image")
+              if (contentType === "image")
                 return (
                   <Image
                     key={id}
@@ -113,7 +113,7 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
                   key={id}
                   className="blog-content font-extralight pb-4"
                   dangerouslySetInnerHTML={{
-                    __html: renderTipTapJSON(content_data) || "",
+                    __html: renderTipTapJSON(contentData) || "",
                   }}
                 />
               );

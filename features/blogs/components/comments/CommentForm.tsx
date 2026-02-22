@@ -6,13 +6,19 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useCreateComment, useVerifyComment } from "@/features/blogs/hooks/useComments";
+import {
+  useCreateComment,
+  useVerifyComment,
+} from "@/features/blogs/hooks/useComments";
 import { toast } from "sonner";
 
 const commentSchema = z.object({
   name: z.string().max(100).optional(),
   email: z.string().email("Please enter a valid email"),
-  content: z.string().min(1, "Comment cannot be empty").max(2000, "Comment is too long"),
+  content: z
+    .string()
+    .min(1, "Comment cannot be empty")
+    .max(2000, "Comment is too long"),
 });
 
 const verifySchema = z.object({
@@ -46,11 +52,13 @@ const CommentForm = ({ postId }: CommentFormProps) => {
   const onSubmitComment = async (data: CommentFormData) => {
     try {
       const result = await createComment.mutateAsync(data);
-      setPendingId(result.data.pending_id);
+      setPendingId(result.data.pendingId);
       setStep("verify");
       toast.success("Verification code sent to your email!");
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Failed to submit comment");
+      toast.error(
+        error instanceof Error ? error.message : "Failed to submit comment"
+      );
     }
   };
 
@@ -58,7 +66,7 @@ const CommentForm = ({ postId }: CommentFormProps) => {
     if (!pendingId) return;
     try {
       await verifyComment.mutateAsync({
-        pending_id: pendingId,
+        pendingId: pendingId,
         code: data.code,
       });
       toast.success("Comment published!");
@@ -67,7 +75,9 @@ const CommentForm = ({ postId }: CommentFormProps) => {
       composeForm.reset();
       verifyForm.reset();
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Verification failed");
+      toast.error(
+        error instanceof Error ? error.message : "Verification failed"
+      );
     }
   };
 
@@ -86,17 +96,22 @@ const CommentForm = ({ postId }: CommentFormProps) => {
           </p>
           <p className="text-sm text-primary-600">
             We sent a 6-digit verification code to{" "}
-            <span className="font-medium">{composeForm.getValues("email")}</span>.
-            Enter it below to publish your comment.
+            <span className="font-medium">
+              {composeForm.getValues("email")}
+            </span>
+            . Enter it below to publish your comment.
           </p>
         </div>
-        <form onSubmit={verifyForm.handleSubmit(onSubmitCode)} className="space-y-3">
+        <form
+          onSubmit={verifyForm.handleSubmit(onSubmitCode)}
+          className="space-y-3"
+        >
           <div>
             <Input
               {...verifyForm.register("code")}
               placeholder="Enter 6-digit code"
               maxLength={6}
-              className="text-center text-lg tracking-[0.3em] font-mono"
+              className="text-center text-lg tracking-[0.3em] font-mono rounded-[12px]"
               autoFocus
             />
             {verifyForm.formState.errors.code && (
@@ -123,7 +138,10 @@ const CommentForm = ({ postId }: CommentFormProps) => {
   }
 
   return (
-    <form onSubmit={composeForm.handleSubmit(onSubmitComment)} className="space-y-3">
+    <form
+      onSubmit={composeForm.handleSubmit(onSubmitComment)}
+      className="space-y-3"
+    >
       <div className="flex gap-3">
         <div className="flex-1">
           <Input
@@ -149,7 +167,7 @@ const CommentForm = ({ postId }: CommentFormProps) => {
           {...composeForm.register("content")}
           placeholder="Write a comment..."
           rows={3}
-          className="flex w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm resize-y"
+          className="flex w-full  border border-input bg-transparent px-3 py-3 text-base shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm resize-y rounded-[12px]"
         />
         {composeForm.formState.errors.content && (
           <p className="text-sm text-red-500 mt-1">
@@ -157,10 +175,7 @@ const CommentForm = ({ postId }: CommentFormProps) => {
           </p>
         )}
       </div>
-      <Button
-        type="submit"
-        disabled={createComment.isPending}
-      >
+      <Button className="rounded-[12px] h-[3rem]" type="submit" disabled={createComment.isPending}>
         {createComment.isPending ? "Submitting..." : "Submit Comment"}
       </Button>
     </form>

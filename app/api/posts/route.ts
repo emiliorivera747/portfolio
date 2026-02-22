@@ -7,25 +7,25 @@ import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
 
 // Validation schema for the request body
 const postSchema = z.object({
-  user_id: z.string().optional(),
+  userId: z.string().optional(),
   description: z.string().optional(),
   title: z.string().optional(),
-  content_blocks: z
+  contentBlocks: z
     .array(
       z
         .object({
-          content_order: z.number().int(),
-          content_type: z.enum(["doc", "image", "video"]),
-          content_data: z.record(z.string(), z.any()),
+          contentOrder: z.number().int(),
+          contentType: z.enum(["doc", "image", "video"]),
+          contentData: z.record(z.string(), z.any()),
         })
         .extend({
           media: z
             .object({
-              provider_asset_id: z.string().optional(),
+              providerAssetId: z.string().optional(),
               id: z.number().optional(),
               url: z.string().url(),
               alt: z.string().optional(),
-              media_type: z.enum(["image", "video"]),
+              mediaType: z.enum(["image", "video"]),
               description: z.string().optional(),
             })
             .optional(),
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const { user_id, title, content_blocks, description } = parsed.data;
+  const { userId, title, contentBlocks: blocks, description } = parsed.data;
 
   try {
     /**
@@ -63,12 +63,12 @@ export async function POST(req: NextRequest) {
      */
     const post = await db.transaction(async (tx) => {
       // Ensure the authenticated user exists in the User table
-      const userId = user_id ? user_id : result.id;
+      const userIdValue = userId ? userId : result.id;
       await tx
         .insert(users)
         .values({
-          userId: userId,
-          email: result.email ?? `${userId}@unknown`,
+          userId: userIdValue,
+          email: result.email ?? `${userIdValue}@unknown`,
           name: result.user_metadata?.full_name ?? null,
           emailVerified: !!result.email_confirmed_at,
         })
@@ -93,21 +93,21 @@ export async function POST(req: NextRequest) {
             .toLowerCase()
             .replace(/ /g, "-")}`, // Add the formatted date (month-dd-yyyy) to the end
           title,
-          userId: userId,
+          userId: userIdValue,
           description: description,
           createdAt: now,
           updatedAt: now,
         })
         .returning();
 
-      const post_id = newPost.id;
+      const postId = newPost.id;
 
-      for (const block of content_blocks) {
+      for (const block of blocks) {
         const { media, ...blockData } = block as any;
         await tx.insert(contentBlocks).values({
-          contentOrder: blockData.content_order,
-          contentType: blockData.content_type,
-          contentData: blockData.content_data,
+          contentOrder: blockData.contentOrder,
+          contentType: blockData.contentType,
+          contentData: blockData.contentData,
           postId: newPost.id,
           mediaId: media?.id ? Number(media.id) : null,
           createdAt: now,
@@ -121,35 +121,17 @@ export async function POST(req: NextRequest) {
       const cb = await tx
         .select()
         .from(contentBlocks)
-        .where(eq(contentBlocks.postId, post_id))
+        .where(eq(contentBlocks.postId, postId))
         .orderBy(asc(contentBlocks.contentOrder));
 
       return {
         ...newPost,
-        content_blocks: cb,
+        contentBlocks: cb,
       };
     });
 
-    // Transform to match frontend expectations (snake_case)
-    const { createdAt, updatedAt, content_blocks, ...restPost } = post;
-    const transformedPost = {
-      ...restPost,
-      created_at: createdAt,
-      updated_at: updatedAt,
-      content_block: content_blocks?.map((block: any) => ({
-        id: block.id,
-        content_order: block.contentOrder,
-        content_type: block.contentType,
-        content_data: block.contentData,
-        post_id: block.postId,
-        media_id: block.mediaId,
-        created_at: block.createdAt,
-        updated_at: block.updatedAt,
-      })),
-    };
-
     return NextResponse.json(
-      { data: transformedPost, status: "success" },
+      { data: post, status: "success" },
       { status: 201 }
     );
   } catch (error) {
@@ -178,28 +160,8 @@ export async function GET() {
       },
     });
 
-    // Transform to match frontend expectations (snake_case from Prisma)
-    const transformedPosts = allPosts.map((post) => {
-      const { contentBlocks: postContentBlocks, createdAt, updatedAt, ...rest } = post;
-      return {
-        ...rest,
-        created_at: createdAt,
-        updated_at: updatedAt,
-        content_block: postContentBlocks?.map((block: any) => ({
-          id: block.id,
-          content_order: block.contentOrder,
-          content_type: block.contentType,
-          content_data: block.contentData,
-          post_id: block.postId,
-          media_id: block.mediaId,
-          created_at: block.createdAt,
-          updated_at: block.updatedAt,
-        })),
-      };
-    });
-
     return NextResponse.json(
-      { data: transformedPosts, status: "success" },
+      { data: allPosts, status: "success" },
       { status: 200 }
     );
   } catch (error) {

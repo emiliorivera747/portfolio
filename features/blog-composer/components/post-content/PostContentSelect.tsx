@@ -88,13 +88,13 @@ const PostContentSelect = () => {
         // 2. Update the block (still using the context hook – it’s fresh)
         // ------------------------------------------------------------------
         updateBlock(blockId, {
-          media_id: mediaResponse.id,
+          mediaId: mediaResponse.id,
           media: {
-            provider_asset_id: mediaResponse.providerAssetId,
+            providerAssetId: mediaResponse.providerAssetId,
             id: mediaResponse.id,
             url: mediaResponse.url,
             alt: original_filename || "Image",
-            media_type: resource_type,
+            mediaType: resource_type,
           },
         });
       } catch (err) {

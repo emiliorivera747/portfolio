@@ -5,29 +5,29 @@ import { ContentBlock } from "@/features/blogs/types/post";
 
 // === Types ===
 type ImageBlock = ContentBlock & {
-  media: { url: string; alt: string; media_type: "image" };
+  media: { url: string; alt: string; mediaType: "image" };
 };
 
 type DocBlock = ContentBlock & {
-  content_data: Record<string, any>;
+  contentData: Record<string, any>;
 };
 
 export const CONTENT_BLOCK_GENERATOR = {
   doc: (order: number, currentData?: Record<string, any>): DocBlock => {
     return {
       id: nanoid(),
-      content_order: order,
-      content_type: "doc",
-      content_data: currentData || DEFAULT_BLOCK,
+      contentOrder: order,
+      contentType: "doc",
+      contentData: currentData || DEFAULT_BLOCK,
     };
   },
   image: (order: number): ImageBlock => {
     return {
       id: nanoid(),
-      content_order: order,
-      content_type: "image",
-      content_data: {},
-      media: { provider_asset_id: "", url: "", alt: "", media_type: "image" },
+      contentOrder: order,
+      contentType: "image",
+      contentData: {},
+      media: { providerAssetId: "", url: "", alt: "", mediaType: "image" },
     };
   },
 } as const;

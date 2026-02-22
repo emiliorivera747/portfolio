@@ -66,16 +66,16 @@ const EditPostForm = ({ postId }: { postId: string }) => {
         description: post.description || "",
       });
 
-      // Map content_block from the API response to ContentBlock[]
-      if (post.content_block && post.content_block.length > 0) {
-        const mappedBlocks: ContentBlock[] = post.content_block.map(
+      // Map contentBlocks from the API response to ContentBlock[]
+      if (post.contentBlocks && post.contentBlocks.length > 0) {
+        const mappedBlocks: ContentBlock[] = post.contentBlocks.map(
           (block: any) => ({
             id: String(block.id),
-            content_order: block.content_order,
-            content_type: block.content_type,
-            content_data: block.content_data,
-            post_id: block.post_id,
-            media_id: block.media_id,
+            contentOrder: block.contentOrder,
+            contentType: block.contentType,
+            contentData: block.contentData,
+            postId: block.postId,
+            mediaId: block.mediaId,
             media: block.media || undefined,
           })
         );
@@ -93,11 +93,11 @@ const EditPostForm = ({ postId }: { postId: string }) => {
       mutateUpdate({
         title: data.title,
         description: data.description,
-        content_blocks: blocks.map(
-          ({ content_order, content_data, content_type, media }, index) => ({
-            content_order: content_order ?? index + 1,
-            content_type,
-            content_data,
+        contentBlocks: blocks.map(
+          ({ contentOrder, contentData, contentType, media }, index) => ({
+            contentOrder: contentOrder ?? index + 1,
+            contentType,
+            contentData,
             media: media ?? undefined,
           })
         ),
@@ -107,7 +107,7 @@ const EditPostForm = ({ postId }: { postId: string }) => {
   );
 
   const renderBlockComponent = (block: ContentBlock) => {
-    switch (block.content_type) {
+    switch (block.contentType) {
       case "doc":
         return <TextEditorBlock block={block} />;
       case "image":

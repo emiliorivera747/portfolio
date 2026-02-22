@@ -69,7 +69,7 @@ const CommentList = ({ postId }: CommentListProps) => {
               </span>
             </div>
             <span className="text-xs text-primary-400 ml-auto">
-              {timeAgo(comment.created_at)}
+              {timeAgo(comment.createdAt)}
             </span>
           </div>
           <p className="text-sm text-primary-700 pl-10 whitespace-pre-wrap">

@@ -11,8 +11,8 @@ const AdminBlogsPage = () => {
   const posts: Post[] = postsResponse?.data ?? [];
   const sortedPosts = [...posts].sort(
     (a, b) =>
-      new Date(b.created_at || 0).getTime() -
-      new Date(a.created_at || 0).getTime()
+      new Date(b.createdAt || 0).getTime() -
+      new Date(a.createdAt || 0).getTime()
   );
 
   return (
@@ -68,7 +68,7 @@ const AdminBlogsPage = () => {
               <div className="w-20 h-20 rounded-md overflow-hidden shrink-0">
                 <CldImage
                   src={
-                    post.image_url ||
+                    post.imageUrl ||
                     "https://res.cloudinary.com/dcss55nem/image/upload/v1700596192/Untitled_design_2_udsazb.png"
                   }
                   height={80}
@@ -85,8 +85,8 @@ const AdminBlogsPage = () => {
                   {post.description || "No description"}
                 </p>
                 <span className="text-primary-600 text-xs">
-                  {post.created_at
-                    ? new Date(post.created_at).toLocaleDateString("en-US", {
+                  {post.createdAt
+                    ? new Date(post.createdAt).toLocaleDateString("en-US", {
                         month: "short",
                         day: "2-digit",
                         year: "numeric",

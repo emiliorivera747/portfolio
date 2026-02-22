@@ -76,7 +76,7 @@ const createComment = async (
 
 const verifyComment = async (
   postId: string,
-  data: { pending_id: number; code: string }
+  data: { pendingId: number; code: string }
 ) => {
   const res = await fetch(`${API_URL}/posts/${postId}/comments/verify`, {
     method: "POST",

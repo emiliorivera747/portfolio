@@ -36,14 +36,14 @@ export const GET = async (
         name: comments.name,
         email: comments.email,
         content: comments.content,
-        created_at: comments.createdAt,
+        createdAt: comments.createdAt,
       })
       .from(comments)
       .where(eq(comments.postId, _id))
       .orderBy(desc(comments.createdAt));
 
     // Mask emails: show first 2 chars + ***@domain
-    const masked = commentsList.map((c: { id: number; name: string | null; email: string; content: string; created_at: Date }) => {
+    const masked = commentsList.map((c: { id: number; name: string | null; email: string; content: string; createdAt: Date }) => {
       const [local, domain] = c.email.split("@");
       const maskedEmail =
         local.slice(0, 2) + "***@" + domain;
@@ -120,7 +120,7 @@ export const POST = async (
 
     return NextResponse.json(
       {
-        data: { pending_id: pending.id },
+        data: { pendingId: pending.id },
         message: "Verification code sent to your email",
         status: "success",
       },

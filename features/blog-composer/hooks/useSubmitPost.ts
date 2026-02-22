@@ -29,13 +29,13 @@ const useSubmitPost = ({ blocks }: { blocks: ContentBlock[] }) => {
       const postData: PostWithRelations = {
         title: data.title,
         description: data.description,
-        image_url: "",
-        content_blocks: blocks.map(
-          ({ content_order, content_data, content_type, media }, index) => ({
+        imageUrl: "",
+        contentBlocks: blocks.map(
+          ({ contentOrder, contentData, contentType, media }, index) => ({
             id: `block-${index}`,
-            content_order: content_order ?? index + 1,
-            content_type,
-            content_data,
+            contentOrder: contentOrder ?? index + 1,
+            contentType,
+            contentData,
             media: media ?? undefined,
           })
         ),

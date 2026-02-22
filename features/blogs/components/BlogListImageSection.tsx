@@ -3,13 +3,13 @@ import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 
 interface BlogListImageSectionProps {
-  image_url?: string;
+  imageUrl?: string;
   title?: string;
   id?: string | number;
 }
 
 const BlogListImageSection = ({
-  image_url,
+  imageUrl,
   title = "No title provided",
   id = "#",
 }: BlogListImageSectionProps) => {
@@ -21,8 +21,8 @@ const BlogListImageSection = ({
       <Link href={`posts/${id}`}>
         <CldImage
           src={
-            image_url
-              ? image_url
+            imageUrl
+              ? imageUrl
               : "https://res.cloudinary.com/dcss55nem/image/upload/v1700596192/Untitled_design_2_udsazb.png"
           }
           height={300}

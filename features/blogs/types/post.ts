@@ -1,22 +1,22 @@
 type ContentType = "image" | "video" | "doc";
 export interface Post {
   id?: number;
-  user_id?: number;
-  created_at?: Date;
-  updated_at?: Date;
+  userId?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
   description?: string;
   title?: string;
-  image_url?: string;
+  imageUrl?: string;
 }
 export interface ContentBlock {
   id: string;
-  content_order: number;
-  content_type: ContentType;
-  content_data: Record<string, any>;
-  post_id?: number;
-  media_id?: number;
-  created_at?: Date;
-  updated_at?: Date;
+  contentOrder: number;
+  contentType: ContentType;
+  contentData: Record<string, any>;
+  postId?: number;
+  mediaId?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
   media?: Media;
 }
 
@@ -25,16 +25,16 @@ export interface PostWithRelations extends Post {
     id: number;
     name?: string;
   };
-  content_blocks: ContentBlock[];
+  contentBlocks: ContentBlock[];
   comments?: {
     id: number;
     text: string;
-    created_at: Date;
-    updated_at: Date;
+    createdAt: Date;
+    updatedAt: Date;
   }[];
   PostTag?: {
     id: number;
-    tag_name: string;
+    tagName: string;
   }[];
 }
 
@@ -53,9 +53,11 @@ export interface Media {
   id?: string;
   url: string;
   alt?: string;
-  media_type: ContentType;
+  mediaType: ContentType;
   description?: string;
-  provider_asset_id: string;
+  providerAssetId: string;
+  storageProvider?: "CLOUDINARY" | "S3";
+  fileHash?: string;
 }
 
 export interface CommentResponse {
@@ -63,19 +65,19 @@ export interface CommentResponse {
   name: string | null;
   email: string;
   content: string;
-  created_at: string;
+  createdAt: string;
 }
 
 export interface PostResponse {
   data: {
     id?: string;
-    user_id?: number;
-    created_at?: Date;
-    updated_at?: Date;
+    userId?: number;
+    createdAt?: Date;
+    updatedAt?: Date;
     description?: string;
     title?: string;
-    image_url?: string;
-    content_block?: ContentBlock[];
+    imageUrl?: string;
+    contentBlocks?: ContentBlock[];
     User?: {
       id: number;
       name?: string;

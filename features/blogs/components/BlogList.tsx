@@ -13,19 +13,19 @@ import BlogItemContent from "@/features/blogs/components/BlogItemContent";
  */
 const BlogList = ({ posts }: PostListProps) => {
   const sortedPosts = Array.isArray(posts)
-    ? [...posts].sort((a, b) => new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime())
+    ? [...posts].sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime())
     : [];
 
   return (
     <div>
-      {sortedPosts.map(({ image_url, title, description, id, created_at }: Post) => {
+      {sortedPosts.map(({ imageUrl, title, description, id, createdAt }: Post) => {
         return (
           <div
             key={id}
             className="border-y py-8 flex gap-10 border-primary-200 flex-col sm:flex-row"
           >
             <BlogListImageSection
-              image_url={image_url}
+              imageUrl={imageUrl}
               title={title}
               id={id}
             />
@@ -33,7 +33,7 @@ const BlogList = ({ posts }: PostListProps) => {
               title={title}
               id={id}
               description={description}
-              createdAt={created_at}
+              createdAt={createdAt}
             />
           </div>
         );
