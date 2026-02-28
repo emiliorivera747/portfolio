@@ -66,17 +66,9 @@ function About() {
 
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              {`Growing up, I dreamed of either becoming a `}
-              <strong>professional soccer player</strong>
-              {` or `}
-              <strong>inventing</strong>
-              {` something entirely new. As my soccer aspirations faded over the years, I faced a pivotal decision during my senior year of high school: choosing a major. After debating between `}
-              <strong>Mechanical Engineering</strong>
-              {`, `}
-              <strong>Aerospace Engineering</strong>
-              {`, and `}
+              {`From a young age, I dreamed of building something that would leave a mark on the world. That dream led me to `}
               <strong>Computer Science</strong>
-              {`, I chose the latter for its versatility and its profound impact on nearly every aspect of modern life.`}
+              {` — a field where I could imagine something and bring it to life through code.`}
             </p>
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
@@ -229,7 +221,7 @@ function About() {
             </h2>
           </div>
         </section>
-        <section className="px-[8%] flex flex-col items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
+        {/* <section className="px-[8%] flex flex-col items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <PrimaryHeader className="text-4xl" title={"Volunteering"} />
           <div className="w-full h-[80vh] rounded-[12px] relative bg-black mb-40">
             <iframe
@@ -239,7 +231,7 @@ function About() {
               title="1119 CM"
             ></iframe>
           </div>
-        </section>
+        </section> */}
       </section>
     </Page>
   );
