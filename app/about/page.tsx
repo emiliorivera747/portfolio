@@ -1,9 +1,7 @@
 "use client";
-import React from "react";
 import Page from "@/components/Page";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
-import PrimaryHeader from "@/components/titles/PrimaryHeader";
 
 // External Libraries
 import { motion } from "framer-motion";
