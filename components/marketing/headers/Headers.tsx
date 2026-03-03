@@ -1,0 +1,55 @@
+
+import {
+  PrimaryHeaderProps,
+  SecondaryHeaderProps,
+} from "@/types/components/marketing/headers";
+
+import { cn } from "@/lib/utils";
+
+/**
+ * PrimaryHeader component renders a styled header element with customizable classes and label.
+ *
+ * @param {PrimaryHeaderProps} props - The properties for the PrimaryHeader component.
+ * @param {string} props.className - Additional CSS classes to apply to the header element.
+ * @param {string} props.label - The text content to display inside the header.
+ * @param {React.Ref<HTMLHeadingElement>} props.ref - A ref to be attached to the header element.
+ *
+ * @returns {JSX.Element} A styled `<h1>` element with the provided label and classes.
+ */
+export const PrimaryHeader = ({
+  className,
+  label,
+  ref,
+}: PrimaryHeaderProps) => {
+  const defaultClasses =
+    "text-center text-xl sm:text-3xl font-bold text-tertiary-900  bg-gradient-to-r from-tertiary-1000 to-tertiary-800 bg-clip-text text-transparent  mt-[3rem]";
+  return (
+    <h1 className={cn(defaultClasses, className)} ref={ref}>
+      {label}
+    </h1>
+  );
+};
+
+/**
+ * SecondaryHeader component renders a styled header element with customizable classes and label.
+ *
+ * @param {Object} props - The properties passed to the component.
+ * @param {string} props.className - Additional CSS classes to apply to the header element.
+ * @param {string} props.label - The text content to display inside the header.
+ * @param {React.Ref<HTMLHeadingElement>} props.ref - A ref to be attached to the header element.
+ *
+ * @returns {JSX.Element} A styled `<h1>` element with the provided label and classes.
+ */
+export const SecondaryHeader = ({
+  className,
+  label,
+  ref,
+}: SecondaryHeaderProps) => {
+  const defaultClasses =
+    "text-center text-md bg-gradient-to-r from-tertiary-800 to-tertiary-600 bg-clip-text text-transparent mt-4";
+  return (
+    <h1 className={cn(defaultClasses, className)} ref={ref}>
+      {label}
+    </h1>
+  );
+};

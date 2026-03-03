@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import "@/styles/globals.css";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,13 +18,13 @@ const Footer = dynamic(() => import("@/components/footers/Footer"), {
 import PrimaryLandingPageSection from "@/features/primary-landing-page/components/PrimaryLandingPageSection";
 import Page from "@/components/Page";
 import ProjectSection from "@/components/ProjectSection";
+import ProjectSectionV2 from "@/components/ProjectSectionV2";
 import ToolsSection from "@/components/ToolsSection";
 
 // Data
 import { toolsData } from "@/utils/data/tools/allToolsData";
 import { navBarData } from "@/utils/data/navbar/navbarData";
 import Navbar from "@/components/navbar/Navbar";
-
 
 /**
  *  Main App component that wraps around all pages.
@@ -44,6 +44,30 @@ export default function App() {
                 "https://res.cloudinary.com/davx3yyob/video/upload/v1760238501/Portfolio_Video_t0y4tc_ykkaej.mp4"
               }
             />
+            <ProjectSectionV2
+              url={"https://www.trellismoney.com/"}
+              title={"Trellis Money"}
+              videoUrl={
+                "https://res.cloudinary.com/dxxdfgpdh/video/upload/v1772235119/Portfolio_Video_2_tupy6r.mp4"
+              }
+              buttonLabel={"Learn More"}
+              titleClassName="text-2xl sm:text-4xl text-tertiary-1000 font-semibold"
+              buttonClassName="flex items-center absolute rounded-[12px] border-2 border-zinc-800 hover:border-zinc-800 bg-transparent text-[#495057] w-60 h-[3.6rem] font-semibold self-center justify-center text-center p-2 bottom-6 hover:bg-tertiary-1000 hover:text-white"
+              bgColor="bg-white"
+              videoCover="sm:object-cover"
+            />
+            <ToolsSection
+              frontEndData={toolsData["my-portfolio"].frontEnd}
+              backEndData={toolsData["my-portfolio"].backEnd}
+              bothData={toolsData["my-portfolio"].both}
+              checkWhatDataToShow={{
+                frontEndData: true,
+                backEndData: true,
+                bothData: true,
+              }}
+              bgColor={"bg-white"}
+            />
+            <div className="w-full border-b border-primary-200 pt-10"></div>
             <ProjectSection
               url={"/casa-chirilagua"}
               titleSize={"text-3xl sm:text-4xl"}
