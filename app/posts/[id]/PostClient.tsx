@@ -4,7 +4,7 @@ import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 import Image from "next/image";
 import BlogPostSkeleton from "@/features/blogs/components/skeletons/BlogPostSkeleton";
 import { PostResponse } from "@/features/blogs/types/post";
-import CommentSection from "@/features/blogs/components/comments/CommentSection";
+// import CommentSection from "@/features/blogs/components/comments/CommentSection";
 
 interface PostClientProps {
   id: string;
@@ -119,7 +119,7 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
               );
             }
           )}
-          <CommentSection postId={id} />
+          {/* <CommentSection postId={id} /> */}
         </div>
       </article>
     </div>
