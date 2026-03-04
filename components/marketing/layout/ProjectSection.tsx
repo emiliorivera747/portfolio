@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useVideoIntersectionObserver } from "@/hooks/video-display/useVideoIntersectionObserver";
+import { useVideoIntersectionObserver } from "@/hooks/useVideoIntersectionObserver";
 
 import { PrimaryHeader, SecondaryHeader } from "../headers/Headers";
 
@@ -62,12 +62,14 @@ function ProjectSection({
     <section
       className={`relative h-screen w-screen ${bgColor} ${className ?? ""}`}
     >
-      <motion.div className="flex flex-col items-center justify-start h-full w-full">
+      <motion.div {...({ className: "flex flex-col items-center justify-start h-full w-full" } as any)}>
         <motion.div
-          className="absolute w-full flex justify-center items-center flex-col "
-          initial="initial"
-          whileInView="animate"
-          variants={variants}
+          {...({
+            className: "absolute w-full flex justify-center items-center flex-col ",
+            initial: "initial",
+            whileInView: "animate",
+            variants,
+          } as any)}
         >
           <div>
             {" "}

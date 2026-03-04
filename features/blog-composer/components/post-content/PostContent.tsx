@@ -1,5 +1,5 @@
 import React from "react";
-import PrimaryHeader from "@/components/headers/PrimaryHeader";
+import PrimaryHeader from "@/components/titles/PrimaryHeader";
 
 /**
  * Dispalys the blog content

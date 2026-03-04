@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CldImage } from "next-cloudinary";
 import useFetchBlogs from "@/features/blogs/hooks/useFetchBlogs";
 import { Post } from "@/features/blogs/types/post";
-import PrimaryHeader from "@/components/headers/PrimaryHeader";
+import PrimaryHeader from "@/components/titles/PrimaryHeader";
 
 const AdminBlogsPage = () => {
   const { postsResponse, isLoadingPosts, isErrorPosts } = useFetchBlogs();

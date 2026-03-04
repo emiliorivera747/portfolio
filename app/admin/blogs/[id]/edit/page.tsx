@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 // Components
 import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
-import PrimaryHeader from "@/components/headers/PrimaryHeader";
+import PrimaryHeader from "@/components/titles/PrimaryHeader";
 import { Form } from "@/components/ui/form";
 import FormFieldGenerator from "@/components/form-builder/FormFieldGenerator";
 import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
