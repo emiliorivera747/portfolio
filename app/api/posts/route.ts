@@ -45,7 +45,6 @@ export async function POST(req: NextRequest) {
 
   const body = await req.json();
   const parsed = postSchema.safeParse(body);
-  console.log(body)
 
   if (!parsed.success) {
     return NextResponse.json(
@@ -137,8 +136,6 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     const errorMessage =
       error instanceof Error ? error.message : "unknown error";
-
-    console.log("errorMessage", errorMessage);
 
     return NextResponse.json(
       {

@@ -30,6 +30,18 @@ export async function POST(request: Request) {
       );
     }
 
+    // Validate URL to prevent SSRF — only allow known media hostnames
+    let parsedUrl: URL;
+    try {
+      parsedUrl = new URL(remoteUrl);
+    } catch {
+      return NextResponse.json({ error: "Invalid URL." }, { status: 400 });
+    }
+    const allowedHosts = ["res.cloudinary.com", "images.unsplash.com"];
+    if (!allowedHosts.includes(parsedUrl.hostname) || parsedUrl.protocol !== "https:") {
+      return NextResponse.json({ error: "URL not allowed." }, { status: 400 });
+    }
+
     // 1. --- Fetch the file content from the remote URL ---
     const response = await fetch(remoteUrl);
     if (!response.ok)

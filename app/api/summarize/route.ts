@@ -1,9 +1,13 @@
 import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
 export async function POST(request: Request) {
+  const authResult = await authenticateUser();
+  if (authResult instanceof NextResponse) return authResult;
+
   try {
     const { content } = await request.json();
 

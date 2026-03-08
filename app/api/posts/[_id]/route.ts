@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db/drizzle";
 import { posts, users, contentBlocks, media, postTags, comments } from "@/lib/db/schema";
-import { eq, asc } from "drizzle-orm";
+import { eq, asc, and } from "drizzle-orm";
 import { z } from "zod";
 import { authenticateUser } from "@/utils/api-helpers/authenticateUser";
 
@@ -97,6 +97,17 @@ export const PUT = async (
       return NextResponse.json(
         { message: "Post ID not provided", status: "error" },
         { status: 400 }
+      );
+    }
+
+    // Verify the post belongs to the authenticated user
+    const existingPost = await db.query.posts.findFirst({
+      where: and(eq(posts.id, _id), eq(posts.userId, result.id)),
+    });
+    if (!existingPost) {
+      return NextResponse.json(
+        { message: "Post not found or unauthorized", status: "error" },
+        { status: 403 }
       );
     }
 
@@ -208,6 +219,17 @@ export const DELETE = async (
       return NextResponse.json(
         { message: "Post ID not provided", status: "error" },
         { status: 400 }
+      );
+    }
+
+    // Verify the post belongs to the authenticated user
+    const existingPost = await db.query.posts.findFirst({
+      where: and(eq(posts.id, _id), eq(posts.userId, result.id)),
+    });
+    if (!existingPost) {
+      return NextResponse.json(
+        { message: "Post not found or unauthorized", status: "error" },
+        { status: 403 }
       );
     }
 

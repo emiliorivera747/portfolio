@@ -78,7 +78,7 @@ export default function App() {
               buttonLabel={"Learn More"}
               titleColor={"text-primary-1000"}
               titleFont={"font-semibold"}
-              buttonTextColor={"text-[#495057]"}
+              buttonTextColor={"text-[#495057]"}lll
               buttonBorderColor={"border-zinc-800 hover:border-zinc-800"}
               buttonBgColor={"hover:bg-primary-1000"}
               buttonHoverTextColor={"hover:text-white"}
