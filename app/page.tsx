@@ -52,8 +52,8 @@ export default function App() {
               }
               buttonLabel={"Learn More"}
               titleClassName="text-2xl sm:text-4xl text-tertiary-1000 font-semibold"
-              buttonClassName="flex items-center absolute rounded-[12px] border-2 border-zinc-800 hover:border-zinc-800 bg-transparent text-[#495057] w-60 h-[3.6rem] font-semibold self-center justify-center text-center p-2 bottom-6 hover:bg-tertiary-1000 hover:text-white"
-              bgColor="bg-white"
+              buttonClassName="flex items-center absolute rounded-[12px] border-2 border-zinc-800 hover:border-zinc-800 bg-transparent text-[#495057] w-60 h-[3.6rem] font-semibold self-center justify-center text-center p-2 bottom-6 hover:bg-primary-1000 hover:text-white"
+              bgColor="bg-black"
               videoCover="sm:object-cover"
             />
             <ToolsSection
