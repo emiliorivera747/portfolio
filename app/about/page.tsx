@@ -70,9 +70,8 @@ function About() {
             </p>
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              {`Writing my first lines of code felt like `}
-              <strong>pure magic</strong>
-              {`—I could imagine something and bring it to life. Since then, I've continually learned and embraced the latest technologies, exploring frameworks and libraries such as `}
+
+              {`Since then, I've continually learned and embraced the latest technologies, exploring frameworks and libraries such as `}
               <strong>
                 <i>React.js</i>
               </strong>
