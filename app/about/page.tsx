@@ -70,7 +70,6 @@ function About() {
             </p>
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-
               {`Since then, I've continually learned and embraced the latest technologies, exploring frameworks and libraries such as `}
               <strong>
                 <i>React.js</i>
