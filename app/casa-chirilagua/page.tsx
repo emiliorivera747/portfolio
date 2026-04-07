@@ -5,6 +5,7 @@ import "swiper/css/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
+import InfoCard from "@/components/cards/InfoCard";
 
 const variants = {
   initial: {
@@ -186,49 +187,28 @@ function Project1() {
               Alexandria, Virginia.
             </h1>
             <div className=" grid gap-4 md:grid-cols-6 w-full p-6 ">
-              <div className="w-full flex flex-col col-span-2 border p-6 rounded-[12px] md:p-16 backdrop-blur">
-                <h1 className="text-primary-900 text-start leading-loose tracking-wider text-xl  font-bold ">
-                  Role
-                </h1>
+              <InfoCard title="Role">
                 <p className="font-light text-md text-primary-800">
                   Full Stack Engineer
                 </p>
-              </div>
-              <motion.div
-                {...{
-                  className:
-                    "w-full flex flex-col pl-6 md:p-16 col-span-2 border p-6 rounded-[12px]",
-                }}
-              >
-                {" "}
-                <h1 className="text-primary-900 text-start leading-loose tracking-wider text-xl font-bold ">
-                  Responsibility
-                </h1>
+              </InfoCard>
+              <InfoCard title="Responsibility" className="bg-tertiary-100">
                 <p className="text-sm md:text-md font-light text-md text-primary-800 leading-loose tracking-wider">
                   Consultation, Front End Architecture, Back End Development,
                   Create and Manage Database, Create RESTful APIs, Security,
                   UI/UX Design, Figma Prototyping, Deployment, Present Demos,
                   Employee Training.
                 </p>
-              </motion.div>
-              <motion.div
-                {...{
-                  className:
-                    "w-full flex flex-col p-6 md:p-16 col-span-2 border rounded-[12px]",
-                }}
-              >
-                {" "}
-                <h1 className="text-primary-900 text-start leading-loose tracking-wider text-xl font-bold">
-                  Learn more about Casa Chirilagua
-                </h1>
+              </InfoCard>
+              <InfoCard title="Learn more about Casa Chirilagua">
                 <Link
                   href="https://casachirilagua.org/"
-                  className="text-md md:text-md leading-loose tracking-wider text-blue-600"
+                  className="hover:bg-primary-300 text-md md:text-md leading-loose tracking-wider text-blue-600 border border-primary-400 rounded-[12px] px-2 py-3 flex items-center justify-center text-center"
                   aria-label="Casa Chirilagua Website"
                 >
-                  https://casachirilagua.org/
+                  Casa Chirilagua Website
                 </Link>
-              </motion.div>
+              </InfoCard>
             </div>
           </div>
         </div>
@@ -246,9 +226,9 @@ function Project1() {
               >
                 <h1 className="text-2xl text-black font-bold">{item.title}</h1>
               </motion.div>
-              <div className="pb-6 leading-loose tracking-wider font-light text-md text-primary-800">
+              {/* <div className="pb-6 leading-loose tracking-wider font-light text-md text-primary-800">
                 {item.paragraph}
-              </div>
+              </div> */}
                 <div
                 // style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
                 className="p-10 relative w-full sm:h-[87vh] h-[20vh] rounded-[12px] overflow-hidden shadow-md hover:shadow-xl "
