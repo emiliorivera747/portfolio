@@ -34,7 +34,7 @@ export const navBarData = [
       {
         id: 2,
         label: "Contact",
-        url: "/#",
+        url: "/#contact",
       },
     ],
   },

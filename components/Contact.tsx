@@ -59,7 +59,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
   }, []);
 
   return (
-    <section className="min-h-screen w-screen bg-white h-auto">
+    <section id='contact' className="min-h-screen w-screen bg-white h-auto">
       <motion.div
         {...({
           className:
@@ -98,7 +98,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
               className="text-zinc-800 text-sm"
               aria-label="Email"
             >
-              emiliorivera174@gmail.com
+              emiliorivera747@gmai
             </Link>
           </motion.div>
           <motion.div {...({ variants: variants, className: "w-full" } as any)}>

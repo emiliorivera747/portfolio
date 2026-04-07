@@ -38,14 +38,24 @@ const NavMenu = ({ menuItems, menuTextColor }: NavMenuItems) => {
                             className="w-[10rem]"
                             asChild
                           >
-                            <Link
-                              key={subItem.id}
-                              href={subItem.url}
-                              className={`block text-[1rem] text-primary-800 font-medium rounded-lg p-[0.2rem] hover:underline hover:underline-offset-4 hover:decoration-2`}
-                              aria-label={subItem.label}
-                            >
-                              {subItem.label}
-                            </Link>
+                            {subItem.url.includes("#") ? (
+                              <a
+                                href={subItem.url}
+                                className={`block text-[1rem] text-primary-800 font-medium rounded-lg p-[0.2rem] hover:underline hover:underline-offset-4 hover:decoration-2`}
+                                aria-label={subItem.label}
+                              >
+                                {subItem.label}
+                              </a>
+                            ) : (
+                              <Link
+                                key={subItem.id}
+                                href={subItem.url}
+                                className={`block text-[1rem] text-primary-800 font-medium rounded-lg p-[0.2rem] hover:underline hover:underline-offset-4 hover:decoration-2`}
+                                aria-label={subItem.label}
+                              >
+                                {subItem.label}
+                              </Link>
+                            )}
                           </NavigationMenuLink>
                         );
                       })}

@@ -2,14 +2,13 @@
 import "@/styles/globals.css";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
 
 // Components - dynamically imported for better performance
 const Testimonial = dynamic(() => import("@/components/Testimonial"), {
   loading: () => null,
 });
-const Contact = dynamic(() => import("@/components/Contact"), {
-  loading: () => null,
-});
+import Contact from "@/components/Contact";
 const Footer = dynamic(() => import("@/components/footers/Footer"), {
   loading: () => null,
 });
@@ -33,6 +32,18 @@ import Navbar from "@/components/navbar/Navbar";
  * @returns
  */
 export default function App() {
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.slice(1);
+      const timer = setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <>
       <Navbar menuItems={navBarData} />
