@@ -74,7 +74,7 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
 
         {/* Nav Items */}
         <div className="flex flex-row items-center justify-end">
-          <NavMenu menuItems={menuItems} menuTextColor={menuTextColor} />
+          <NavMenu menuItems={menuItems} menuTextColor={menuTextColor} contentBg="light" />
 
           {/* Hamburger Button */}
           <button

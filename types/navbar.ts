@@ -24,4 +24,5 @@ export interface NavbarLogoProp {
 export interface NavMenuItems {
   menuItems: MenuItem[];
   menuTextColor: string;
+  contentBg?: "dark" | "light";
 }

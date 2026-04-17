@@ -12,7 +12,8 @@ import { MenuItem, SubMenuItem, NavMenuItems } from "@/types/navbar";
 // Next.js
 import Link from "next/link";
 
-const NavMenu = ({ menuItems, menuTextColor }: NavMenuItems) => {
+const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems) => {
+  const linkTextColor = contentBg === "dark" ? "text-primary-100" : "text-primary-1000";
   return (
     <div className="hidden items-center justify-end space-x-10  md:flex pr-10 z-30">
       <NavigationMenu>
@@ -29,7 +30,7 @@ const NavMenu = ({ menuItems, menuTextColor }: NavMenuItems) => {
                       {item.label}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent
-                      className="py-4 px-6 pb-6 backdrop-blur bg-primary-300/20 flex flex-col gap-2 rounded-lg border-none outline-none"
+                      className="py-4 px-6 pb-6 backdrop-blur-sm bg-primary-300/30  text-white text-sm flex flex-col gap-2 rounded-lg border-none outline-none"
                     >
                       {item.content?.map((subItem: SubMenuItem) => {
                         return (
@@ -41,7 +42,7 @@ const NavMenu = ({ menuItems, menuTextColor }: NavMenuItems) => {
                             {subItem.url.includes("#") ? (
                               <a
                                 href={subItem.url}
-                                className={`block text-[1rem] text-primary-800 font-medium rounded-lg p-[0.2rem] hover:underline hover:underline-offset-4 hover:decoration-2`}
+                                className={`block text-[1rem] ${linkTextColor} font-medium rounded-lg p-[0.2rem] hover:underline hover:underline-offset-4 hover:decoration-2`}
                                 aria-label={subItem.label}
                               >
                                 {subItem.label}
@@ -50,7 +51,7 @@ const NavMenu = ({ menuItems, menuTextColor }: NavMenuItems) => {
                               <Link
                                 key={subItem.id}
                                 href={subItem.url}
-                                className={`block text-[1rem] text-primary-800 font-medium rounded-lg p-[0.2rem] hover:underline hover:underline-offset-4 hover:decoration-2`}
+                                className={`block text-[1rem] ${linkTextColor} font-medium rounded-lg p-[0.2rem] hover:underline hover:underline-offset-4 hover:decoration-2`}
                                 aria-label={subItem.label}
                               >
                                 {subItem.label}
