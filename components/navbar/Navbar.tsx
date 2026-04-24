@@ -33,9 +33,7 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
     mode === "light" ? "bg-white" : "bg-primary-1000"
   );
 
-  const [navbarClass, setNavbarClass] = useState(
-    "backdrop-blur bg-tertiary-300/90"
-  );
+  const [navbarClass, setNavbarClass] = useState("bg-transparent");
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
@@ -44,7 +42,7 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
     else setHidden(false);
 
     if (latest > 600) {
-      setNavbarClass("backdrop-blur bg-tertiary-300/90");
+      setNavbarClass("backdrop-blur bg-white/10");
       setMenuTextColor(
         mode === "light" ? "text-primary-1000" : "text-primary-100"
       );

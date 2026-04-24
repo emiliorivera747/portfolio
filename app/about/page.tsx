@@ -30,19 +30,34 @@ function About() {
   return (
     <Page>
       <section className="h-screen w-full bg-white overflow-x-hidden">
-        <motion.div
-          {...{
-            initial: "initial",
-            whileInView: "animate",
-            variants,
-            className: "h-full flex items-center justify-center bg-white",
-          }}
-        >
-          {" "}
-          <h1 className=" text-transparent bg-clip-text bg-gradient-to-r from-primary-900 to-primary-800 text-4xl md:text-8xl font-bold text-center">
+        <div className="h-full flex flex-col items-center justify-center relative overflow-hidden">
+          <img
+            src="https://res.cloudinary.com/dcss55nem/image/upload/v1776990294/Untitled_design_11_apepib.png"
+            alt="Milky Way galaxy captured by the Artemis II crew"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/30" />
+          <motion.h1
+            {...({
+              initial: "initial",
+              whileInView: "animate",
+              variants,
+              className: "relative z-10 text-white text-4xl md:text-8xl font-bold text-center",
+            } as any)}
+          >
             About Me.
-          </h1>
-        </motion.div>
+          </motion.h1>
+          <motion.p
+            {...({
+              initial: "initial",
+              whileInView: "animate",
+              variants,
+              className: "relative z-10 mt-4 text-white/60 text-xs text-center px-4",
+            } as any)}
+          >
+            Photo: <em>Starstruck</em> — Milky Way captured by the Artemis II crew, April 7, 2026. Credit: NASA/JSC
+          </motion.p>
+        </div>
 
         <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
           <div className="flex flex-col md:w-1/2 items-center justify-center">
