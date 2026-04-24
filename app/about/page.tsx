@@ -79,37 +79,29 @@ function About() {
 
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              {`From a young age, I dreamed of building something that would leave a mark on the world. That dream led me to `}
-              <strong>Computer Science</strong>
-              {` — a field where I could imagine something and bring it to life through code.`}
-            </p>
-            <br></br>
-            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              {`Since then, I've continually learned and embraced the latest technologies, exploring frameworks and libraries such as `}
-              <strong>
-                <i>React.js</i>
-              </strong>
+              {`The idea of inventing something new that could impact our world, whether big or small, has always excited me. In my senior year of high school, I had to choose a major. After debating between `}
+              <strong>Aerospace Engineering</strong>
               {`, `}
-              <strong>
-                <i>Node.js</i>
-              </strong>
-              {`, `}
-              <strong>
-                <i>FastAPI</i>
-              </strong>
+              <strong>Mechanical Engineering</strong>
               {`, and `}
-              <strong>
-                <i>Next.js</i>
-              </strong>
-              {`, as well as cloud platforms like `}
-              <strong>
-                <i>AWS</i>
-              </strong>
-              {`, to expand my technical toolbox.`}
+              <strong>Computer Science</strong>
+              {`, I chose the latter because of the profound impact it has on our everyday lives.`}
             </p>
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              {`I earned my bachelor's degree in Computer Science from Virginia Tech, graduating in December 2022. Since then, I've freelanced to refine my skills in both front-end and back-end systems`}
+              {`I earned my bachelor's degree in Computer Science from `}
+              <strong>Virginia Tech</strong>
+              {` in December 2022. Since then, I've freelanced to sharpen my front-end and back-end skills while exploring modern frameworks and tools like `}
+              <strong><i>React.js</i></strong>
+              {`, `}
+              <strong><i>Node.js</i></strong>
+              {`, `}
+              <strong><i>FastAPI</i></strong>
+              {`, `}
+              <strong><i>Next.js</i></strong>
+              {`, and `}
+              <strong><i>AWS</i></strong>
+              {` to expand my technical toolbox.`}
             </p>
           </div>
           <div className="text-secondary-900">
