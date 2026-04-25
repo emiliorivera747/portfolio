@@ -18,6 +18,8 @@ interface HeroImageBannerProps {
   overlayOpacity?: string;
   type?: "image" | "video";
   className?: string;
+  titleColor?: string;
+  captionColor?: string;
 }
 
 export default function HeroImageBanner({
@@ -28,6 +30,8 @@ export default function HeroImageBanner({
   overlayOpacity = "bg-black/30",
   type = "image",
   className,
+  titleColor = "text-white",
+  captionColor = "text-white/60",
 }: HeroImageBannerProps) {
   return (
     <div className={`h-screen flex flex-col items-center justify-center relative overflow-hidden ${className ?? ""}`}>
@@ -51,7 +55,7 @@ export default function HeroImageBanner({
           initial: "initial",
           whileInView: "animate",
           variants,
-          className: "relative z-10 text-white text-4xl md:text-8xl font-bold text-center",
+          className: `relative z-10 ${titleColor} text-4xl md:text-8xl font-bold text-center`,
         } as any)}
       >
         {title}
@@ -62,7 +66,7 @@ export default function HeroImageBanner({
             initial: "initial",
             whileInView: "animate",
             variants,
-            className: "relative z-10 mt-4 text-white/60 text-xs text-center px-4",
+            className: `relative z-10 mt-4 ${captionColor} text-xs text-center px-4`,
           } as any)}
         >
           {caption}

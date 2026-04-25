@@ -1,9 +1,13 @@
 "use client";
+import { useState } from "react";
 import useFetchPostById from "@/features/blogs/hooks/useFetchPostById";
 import { renderTipTapJSON } from "@/utils/tiptap-helpers/tiptapRenderer";
 import Image from "next/image";
 import BlogPostSkeleton from "@/features/blogs/components/skeletons/BlogPostSkeleton";
 import { PostResponse } from "@/features/blogs/types/post";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import Navbar from "@/components/navbar/Navbar";
+import { navBarData } from "@/utils/data/navbar/navbarData";
 // import CommentSection from "@/features/blogs/components/comments/CommentSection";
 
 interface PostClientProps {
@@ -15,6 +19,7 @@ interface PostClientProps {
  * Displays the post with id
  */
 const PostClient = ({ id, initialPost }: PostClientProps) => {
+  const [isDark, setIsDark] = useState(false);
   const isValidId = id && id.trim() !== "";
   const { postResponse, isLoadingPost, isErrorPost, postError } =
     useFetchPostById({
@@ -35,7 +40,9 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
   if (isErrorPost) return <div>Opps</div>;
 
   return (
-    <div className="flex items-center justify-center">
+    <div className={`flex flex-col min-h-screen ${isDark ? "dark bg-[#0d0d0d]" : ""}`}>
+      <Navbar menuItems={navBarData} mode={isDark ? "light" : "dark"} />
+      <div className="flex items-center justify-center flex-1">
       <article
         style={{
           fontFamily: `Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif`,
@@ -43,10 +50,14 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
         className="min-h-screen sm:mx-[1%] md:mx-[4%] lg:mx-[24%] font-normal pb-10 h-auto lg:w-[60rem] "
       >
         <div className="pt-[7rem] mx-[8%] text-4xl">
-          <h1 className="text-primary-900 font-semibold times-header upper mb-1">
-            {postResponse?.data?.title}
-          </h1>
-          <div className="flex flex-row gap-4 items-center text-[0.9rem] mb-4 text-primary-700 font-light justify-between px-2">
+          <div className="flex flex-row justify-between">
+            <h1 className="text-primary-900 dark:text-primary-100 font-semibold times-header upper mb-1">
+              {postResponse?.data?.title}
+            </h1>
+            <ThemeToggle isDark={isDark} onToggle={() => setIsDark((d) => !d)} />
+          </div>
+
+          <div className="flex flex-row gap-4 items-center text-[0.9rem] mb-4 text-primary-700 dark:text-primary-400 font-light justify-between px-2">
             <div className="flex items-center justify-between  w-full">
               <div className="flex items-center gap-2">
                 <svg
@@ -122,6 +133,7 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
           {/* <CommentSection postId={id} /> */}
         </div>
       </article>
+    </div>
     </div>
   );
 };

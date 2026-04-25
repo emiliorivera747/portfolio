@@ -14,7 +14,6 @@ export const metadata = {
 
 // Components
 import { ReactQueryClientProvider } from "@/features/react-query/components/ReactQueryClientProvider";
-
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 /**
@@ -32,7 +31,7 @@ export default function RootLayout({
   return (
     <ReactQueryClientProvider>
       <TooltipProvider>
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
           <head>
             <Script
               async

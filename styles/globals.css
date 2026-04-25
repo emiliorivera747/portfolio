@@ -448,6 +448,10 @@ input:-webkit-autofill:active {
   /* font-family: Graphik, sans-serif; */
 }
 
+.dark .blog-content p {
+  color: #dee2e6;
+}
+
 .blog-content h1 {
   font-size: 2rem;
 

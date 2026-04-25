@@ -5,12 +5,15 @@ import useFetchBlogs from "@/features/blogs/hooks/useFetchBlogs";
 import BlogList from "@/features/blogs/components/BlogList";
 import BlogListSkeleton from "@/features/blogs/components/skeletons/BlogListSkeleton";
 import HeroImageBanner from "@/components/HeroImageBanner";
+import Navbar from "@/components/navbar/Navbar";
+import { navBarData } from "@/utils/data/navbar/navbarData";
 
 const Page = () => {
   const { postsResponse, isLoadingPosts, isErrorPosts } = useFetchBlogs();
   if (isLoadingPosts) return <BlogListSkeleton />;
   return (
     <section className="w-screen min-h-screen h-auto">
+      <Navbar menuItems={navBarData} mode="light" />
       <HeroImageBanner
         title="Blogs."
         className="bg-[#1877F2]"
