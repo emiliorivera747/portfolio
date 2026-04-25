@@ -25,7 +25,7 @@ const BlogListImageSection = ({
               ? imageUrl
               : "https://res.cloudinary.com/dcss55nem/image/upload/v1700596192/Untitled_design_2_udsazb.png"
           }
-          height={300}
+          height={150}
           width={300}
           alt={title || "Default alt text"}
           className="w-full duration-200 md-block group-hover:scale-110"

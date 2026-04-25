@@ -8,21 +8,21 @@ const BlogItemContent = ({
   createdAt = new Date(),
 }: BlogItemContentProps) => {
   return (
-    <div className="w-[20rem] flex flex-col gap-1">
+    <div className="w-full flex flex-col gap-1">
       <Link
         href={`posts/${id}`}
-        className="font-bold text-primary-1000 text-3xl hover:underline"
+        className="font-bold text-primary-1000 text-2xl hover:underline"
       >
         {title}
       </Link>
-      <span className="text-primary-800 font-extralight text-md mb-4 ">
+      <span className="text-primary-800 font-extralight text-[1rem] mb-4">
         {description ? description : "No description provided for the post"}
       </span>
-      <div className="font-light text-primary-700  flex flex-col text-md gap-2">
-        <span className="text-primary-800 text-md">
+      <div className="font-light text-primary-700 flex flex-col text-md gap-1">
+        {/* <span className="text-primary-800 text-sm">
           <i>By Emilio Rivera</i>
-        </span>
-        <span className="flex flex-row gap-4 items-center text-sm">
+        </span> */}
+        <span className="flex flex-row gap-3 items-center text-[0.85rem]">
           <div className="flex items-center gap-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@ const BlogItemContent = ({
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-5 "
+              className="size-3"
             >
               <path
                 strokeLinecap="round"
