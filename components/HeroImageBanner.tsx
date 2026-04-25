@@ -11,11 +11,13 @@ const variants = {
 };
 
 interface HeroImageBannerProps {
-  src: string;
-  alt: string;
+  src?: string;
+  alt?: string;
   title: string;
   caption?: React.ReactNode;
   overlayOpacity?: string;
+  type?: "image" | "video";
+  className?: string;
 }
 
 export default function HeroImageBanner({
@@ -24,11 +26,26 @@ export default function HeroImageBanner({
   title,
   caption,
   overlayOpacity = "bg-black/30",
+  type = "image",
+  className,
 }: HeroImageBannerProps) {
   return (
-    <div className="h-screen flex flex-col items-center justify-center relative overflow-hidden">
-      <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-cover" />
-      <div className={`absolute inset-0 ${overlayOpacity}`} />
+    <div className={`h-screen flex flex-col items-center justify-center relative overflow-hidden ${className ?? ""}`}>
+      {src && type === "video" && (
+        <video
+          src={src}
+          aria-label={alt}
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+      )}
+      {src && type === "image" && (
+        <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-cover" />
+      )}
+      {src && <div className={`absolute inset-0 ${overlayOpacity}`} />}
       <motion.h1
         {...({
           initial: "initial",

@@ -11,17 +11,16 @@ const Page = () => {
   if (isLoadingPosts) return <BlogListSkeleton />;
   return (
     <section className="w-screen min-h-screen h-auto">
-      {/* <HeroImageBanner
-        src="https://res.cloudinary.com/dcss55nem/image/upload/v1776990294/Untitled_design_11_apepib.png"
-        alt="Milky Way galaxy captured by the Artemis II crew"
-        title="About Me."
+      <HeroImageBanner
+        title="Blogs."
+        className="bg-[#1877F2]"
         caption={
           <>
             Photo: <em>Starstruck</em> — Milky Way captured by the Artemis II
             crew, April 7, 2026. Credit: NASA/JSC
           </>
         }
-      /> */}
+      />
       <div className="mx-[5%]">
         <div className=" text-4xl sm:text-6xl pt-[10rem] pb-4 font-semibold  text-transparent bg-clip-text bg-gradient-to-r from-primary-900 to-primary-800">
           Latest Posts
