@@ -15,7 +15,7 @@ const BlogItemContent = ({
       >
         {title}
       </Link>
-      <span className="text-primary-800 font-extralight text-[1rem] mb-4">
+      <span className="text-primary-800 font-extralight text-[1rem] mb-2">
         {description ? description : "No description provided for the post"}
       </span>
       <div className="font-light text-primary-700 flex flex-col text-md gap-1">
@@ -30,7 +30,7 @@ const BlogItemContent = ({
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="size-3"
+              className="size-4"
             >
               <path
                 strokeLinecap="round"
