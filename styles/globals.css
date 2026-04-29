@@ -452,9 +452,26 @@ input:-webkit-autofill:active {
   color: #dee2e6;
 }
 
+.blog-content h1,
+.blog-content h2,
+.blog-content h3,
+.blog-content h4,
+.blog-content h5,
+.blog-content h6 {
+  color: #212529;
+}
+
+.dark .blog-content h1,
+.dark .blog-content h2,
+.dark .blog-content h3,
+.dark .blog-content h4,
+.dark .blog-content h5,
+.dark .blog-content h6 {
+  color: #dee2e6;
+}
+
 .blog-content h1 {
   font-size: 2rem;
-
 }
 
 .blog-content h2 {

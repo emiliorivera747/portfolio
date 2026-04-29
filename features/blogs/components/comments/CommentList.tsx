@@ -62,23 +62,23 @@ const CommentList = ({ postId }: CommentListProps) => {
         >
           <div className="flex items-center gap-2">
             <Avatar className="w-12 h-12">
-              <AvatarFallback>
+              <AvatarFallback className="bg-primary-200 text-primary-800 dark:bg-primary-800 dark:text-primary-200">
                 {(comment.name || comment.email)[0].toUpperCase()}
               </AvatarFallback>
             </Avatar>
             <div className="h-full  flex items-center">
-              <span className="text-sm font-medium text-primary-800">
+              <span className="text-sm font-medium text-primary-800 dark:text-primary-300">
                 {comment.name || "Anonymous"}
               </span>
-              <span className="text-xs text-primary-700 ml-2 font-light">
+              <span className="text-xs text-primary-700 ml-2 font-light dark:text-primary-400">
                 {comment.email}
               </span>
             </div>
-            <span className="text-xs text-primary-700 ml-auto font-light">
+            <span className="text-xs text-primary-700 ml-auto font-light dark:text-primary-400">
               {timeAgo(comment.createdAt)}
             </span>
           </div>
-          <p className="text-[1rem] text-primary-800 pl-14 whitespace-pre-wrap font-extralight">
+          <p className="text-[1rem] text-primary-800 pl-14 whitespace-pre-wrap font-extralight dark:text-primary-300">
             {comment.content}
           </p>
         </div>

@@ -17,9 +17,14 @@ export const useFetchComments = (postId: string) => {
 };
 
 export const useCreateComment = (postId: string) => {
+  const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationFn: (data: { email: string; content: string; name?: string }) =>
       blogsServices.createComment(postId, data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["comments", postId] });
+    },
   });
 
   return mutation;

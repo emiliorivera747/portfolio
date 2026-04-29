@@ -10,7 +10,7 @@ interface CommentSectionProps {
 const CommentSection = ({ postId }: CommentSectionProps) => {
   return (
     <section className="mt-12 pt-8 border-t border-primary-200">
-      <h2 className="text-2xl font-semibold text-primary-900 mb-6">
+      <h2 className="text-2xl font-semibold text-primary-900 dark:text-primary-200 mb-6">
         Comments
       </h2>
       <div className="mb-8">
