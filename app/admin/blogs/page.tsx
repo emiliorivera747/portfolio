@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
 import useFetchBlogs from "@/features/blogs/hooks/useFetchBlogs";
@@ -58,21 +57,21 @@ const AdminBlogsPage = () => {
       )}
 
       {!isLoadingPosts && !isErrorPosts && sortedPosts.length > 0 && (
-        <div className="space-y-3">
+        <div className="grid grid-cols-3">
           {sortedPosts.map((post: Post) => (
             <Link
               key={post.id}
               href={`/admin/blogs/${post.id}/edit`}
-              className="flex gap-4 p-4 border border-primary-200 rounded-lg hover:bg-primary-50 transition-colors group"
+              className="flex flex-col gap-4 p-4 border border-primary-200 rounded-lg hover:bg-primary-50 transition-colors group"
             >
-              <div className="w-20 h-20 rounded-md overflow-hidden shrink-0">
+              <div className="w-full h-70 rounded-md overflow-hidden shrink-0">
                 <CldImage
                   src={
                     post.imageUrl ||
                     "https://res.cloudinary.com/dcss55nem/image/upload/v1700596192/Untitled_design_2_udsazb.png"
                   }
-                  height={80}
-                  width={80}
+                  height={160}
+                  width={400}
                   alt={post.title || "Post image"}
                   className="w-full h-full object-cover"
                 />

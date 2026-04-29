@@ -7,7 +7,7 @@ export interface SelectContentButtonProps {
 
 export interface SelectContentWithToolTipButtonProps {
   label: string;
-  type: "image" | "doc";
+  type: "image" | "doc" | "iframe";
   path: string;
-  addContent: (type: "image" | "doc") => void;
+  addContent: (type: "image" | "doc" | "iframe") => void;
 }

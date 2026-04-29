@@ -29,6 +29,7 @@ import FormFieldGenerator from "@/components/form-builder/FormFieldGenerator";
 import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
 import TextEditorBlock from "@/components/tiptap/TextEditorBlock";
 import ImageBlock from "@/features/blog-composer/components/blocks/ImageBlock";
+import IframeBlock from "@/features/blog-composer/components/blocks/IframeBlock";
 import SortableBlockItem from "@/features/blog-composer/components/blocks/SortableBlockItem";
 
 // Zod Schemas
@@ -89,6 +90,8 @@ const PostForm = () => {
         return <TextEditorBlock block={block} />;
       case "image":
         return <ImageBlock block={block} />;
+      case "iframe":
+        return <IframeBlock block={block} />;
     }
   };
 

@@ -1,4 +1,4 @@
-type ContentType = "image" | "video" | "doc";
+type ContentType = "image" | "video" | "doc" | "iframe";
 export interface Post {
   id?: number;
   userId?: number;

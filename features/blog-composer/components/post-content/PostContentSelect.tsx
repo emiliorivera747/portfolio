@@ -49,7 +49,7 @@ const PostContentSelect = () => {
   }, [blocks]);
 
   const handleAddContent = (
-    contentType: "doc" | "image",
+    contentType: "doc" | "image" | "iframe",
     openWidget?: () => void
   ) => {
     const newBlock = CONTENT_BLOCK_GENERATOR[contentType](

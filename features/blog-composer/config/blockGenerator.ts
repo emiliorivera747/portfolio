@@ -12,6 +12,10 @@ type DocBlock = ContentBlock & {
   contentData: Record<string, any>;
 };
 
+type IframeBlock = ContentBlock & {
+  contentData: { src: string };
+};
+
 export const CONTENT_BLOCK_GENERATOR = {
   doc: (order: number, currentData?: Record<string, any>): DocBlock => {
     return {
@@ -28,6 +32,14 @@ export const CONTENT_BLOCK_GENERATOR = {
       contentType: "image",
       contentData: {},
       media: { providerAssetId: "", url: "", alt: "", mediaType: "image" },
+    };
+  },
+  iframe: (order: number): IframeBlock => {
+    return {
+      id: nanoid(),
+      contentOrder: order,
+      contentType: "iframe",
+      contentData: { src: "" },
     };
   },
 } as const;

@@ -119,6 +119,17 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
                     className="w-full rounded-[12px] mb-4 sm:mb-10  h-[16rem] sm:h-full"
                   />
                 );
+              if (contentType === "iframe" && contentData?.src)
+                return (
+                  <iframe
+                    key={id}
+                    src={contentData.src}
+                    className="w-full rounded-[12px] mb-4 sm:mb-10"
+                    style={{ height: 500, border: 0 }}
+                    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+                    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+                  />
+                );
               return (
                 <div
                   key={id}
