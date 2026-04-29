@@ -64,10 +64,70 @@ export const GET = async (
   }
 };
 
-// POST disabled — comments are temporarily turned off
-export const POST = async () => {
-  return NextResponse.json(
-    { message: "Comments are currently disabled", status: "error" },
-    { status: 403 }
-  );
+export const POST = async (
+  request: Request,
+  { params }: { params: Promise<{ _id: string }> }
+) => {
+  try {
+    const { _id } = await params;
+
+    if (!_id) {
+      return NextResponse.json(
+        { message: "Post ID not provided", status: "error" },
+        { status: 400 }
+      );
+    }
+
+    const body = await request.json();
+    const parsed = createCommentSchema.safeParse(body);
+
+    if (!parsed.success) {
+      return NextResponse.json(
+        { message: parsed.error.issues[0].message, status: "error" },
+        { status: 422 }
+      );
+    }
+
+    const post = await db
+      .select({ id: posts.id })
+      .from(posts)
+      .where(eq(posts.id, _id))
+      .limit(1);
+
+    if (post.length === 0) {
+      return NextResponse.json(
+        { message: "Post not found", status: "error" },
+        { status: 404 }
+      );
+    }
+
+    const code = generateCode();
+    const expiresAt = new Date(Date.now() + 15 * 60 * 1000);
+
+    const [pending] = await db
+      .insert(pendingComments)
+      .values({
+        postId: _id,
+        email: parsed.data.email,
+        name: parsed.data.name ?? null,
+        content: parsed.data.content,
+        verificationCode: code,
+        verificationExpiresAt: expiresAt,
+      })
+      .returning({ id: pendingComments.id });
+
+    await sendVerificationEmail(parsed.data.email, code);
+
+    return NextResponse.json(
+      { data: { pendingId: pending.id }, status: "success" },
+      { status: 201 }
+    );
+  } catch (error) {
+    const errorMessage =
+      error instanceof Error ? error.message : "Unknown error";
+    return NextResponse.json(
+      { message: errorMessage, data: null },
+      { status: 500 }
+    );
+  }
 };

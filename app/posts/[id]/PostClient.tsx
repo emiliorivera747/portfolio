@@ -8,7 +8,7 @@ import { PostResponse } from "@/features/blogs/types/post";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import Navbar from "@/components/navbar/Navbar";
 import { navBarData } from "@/utils/data/navbar/navbarData";
-// import CommentSection from "@/features/blogs/components/comments/CommentSection";
+import CommentSection from "@/features/blogs/components/comments/CommentSection";
 
 interface PostClientProps {
   id: string;
@@ -119,6 +119,19 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
                     className="w-full rounded-[12px] mb-4 sm:mb-10  h-[16rem] sm:h-full"
                   />
                 );
+              if (contentType === "code" && contentData?.code)
+                return (
+                  <div key={id} className="mb-4 sm:mb-10 rounded-[12px] overflow-hidden bg-[#1e1e1e]">
+                    <div className="flex items-center px-4 py-2 bg-[#2d2d2d]">
+                      <span className="text-xs text-gray-400 font-mono">{contentData.language ?? "code"}</span>
+                    </div>
+                    <pre className="p-4 overflow-x-auto">
+                      <code className="text-[#d4d4d4] text-sm font-mono whitespace-pre">
+                        {contentData.code}
+                      </code>
+                    </pre>
+                  </div>
+                );
               if (contentType === "iframe" && contentData?.src)
                 return (
                   <div
@@ -146,7 +159,7 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
               );
             }
           )}
-          {/* <CommentSection postId={id} /> */}
+          <CommentSection postId={id} />
         </div>
       </article>
     </div>

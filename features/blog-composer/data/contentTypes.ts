@@ -1,5 +1,5 @@
 type ContentType = {
-  type: "doc" | "image" | "iframe";
+  type: "doc" | "image" | "iframe" | "code";
   path: string;
   label: string;
 };
@@ -19,5 +19,10 @@ export const contentTypes: ContentType[] = [
     type: "iframe",
     path: "M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z",
     label: "Embed",
+  },
+  {
+    type: "code",
+    path: "M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 15",
+    label: "Code",
   },
 ];

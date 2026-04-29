@@ -16,6 +16,10 @@ type IframeBlock = ContentBlock & {
   contentData: { src: string };
 };
 
+type CodeBlock = ContentBlock & {
+  contentData: { code: string; language: string };
+};
+
 export const CONTENT_BLOCK_GENERATOR = {
   doc: (order: number, currentData?: Record<string, any>): DocBlock => {
     return {
@@ -40,6 +44,14 @@ export const CONTENT_BLOCK_GENERATOR = {
       contentOrder: order,
       contentType: "iframe",
       contentData: { src: "" },
+    };
+  },
+  code: (order: number): CodeBlock => {
+    return {
+      id: nanoid(),
+      contentOrder: order,
+      contentType: "code",
+      contentData: { code: "", language: "javascript" },
     };
   },
 } as const;

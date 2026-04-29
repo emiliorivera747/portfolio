@@ -30,6 +30,7 @@ import SecondaryHeader from "@/features/blog-composer/components/headings/Second
 import TextEditorBlock from "@/components/tiptap/TextEditorBlock";
 import ImageBlock from "@/features/blog-composer/components/blocks/ImageBlock";
 import IframeBlock from "@/features/blog-composer/components/blocks/IframeBlock";
+import CodeBlock from "@/features/blog-composer/components/blocks/CodeBlock";
 import SortableBlockItem from "@/features/blog-composer/components/blocks/SortableBlockItem";
 
 // Zod Schemas
@@ -61,11 +62,12 @@ const PostForm = () => {
   const { onSubmit, blocks, handleFileChange, moveBlock, removeBlock, updateBlock } =
     useComposerContext();
 
-  const handleChangeType = (blockId: string, newType: "doc" | "image" | "iframe") => {
-    const resetData: Record<"doc" | "image" | "iframe", object> = {
+  const handleChangeType = (blockId: string, newType: "doc" | "image" | "iframe" | "code") => {
+    const resetData: Record<"doc" | "image" | "iframe" | "code", object> = {
       doc: { contentType: "doc", contentData: DEFAULT_BLOCK, media: undefined, mediaId: undefined },
       image: { contentType: "image", contentData: {}, media: { providerAssetId: "", url: "", alt: "", mediaType: "image" }, mediaId: undefined },
       iframe: { contentType: "iframe", contentData: { src: "" }, media: undefined, mediaId: undefined },
+      code: { contentType: "code", contentData: { code: "", language: "javascript" }, media: undefined, mediaId: undefined },
     };
     updateBlock(blockId, resetData[newType]);
   };
@@ -104,6 +106,8 @@ const PostForm = () => {
         return <ImageBlock block={block} />;
       case "iframe":
         return <IframeBlock block={block} />;
+      case "code":
+        return <CodeBlock block={block} />;
     }
   };
 
@@ -148,7 +152,7 @@ const PostForm = () => {
                     key={block.id}
                     id={block.id}
                     onRemove={() => removeBlock(block.id)}
-                    currentType={block.contentType as "doc" | "image" | "iframe"}
+                    currentType={block.contentType as "doc" | "image" | "iframe" | "code"}
                     onChangeType={(newType) => handleChangeType(block.id, newType)}
                   >
                     {renderBlockComponent(block)}

@@ -14,7 +14,7 @@ import {
 import { relations, sql } from "drizzle-orm";
 
 // Enums
-export const contentTypeEnum = pgEnum("ContentType", ["doc", "image", "video", "iframe"]);
+export const contentTypeEnum = pgEnum("ContentType", ["doc", "image", "video", "iframe", "code"]);
 
 // User table
 export const users = pgTable("User", {

@@ -6,7 +6,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { GripVertical, X, RefreshCw } from "lucide-react";
 
-type BlockType = "doc" | "image" | "iframe";
+type BlockType = "doc" | "image" | "iframe" | "code";
 
 interface SortableBlockItemProps {
   id: string;
@@ -31,6 +31,11 @@ const TYPE_OPTIONS: { type: BlockType; label: string; path: string }[] = [
     type: "iframe",
     label: "Embed",
     path: "M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z",
+  },
+  {
+    type: "code",
+    label: "Code",
+    path: "M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 15",
   },
 ];
 

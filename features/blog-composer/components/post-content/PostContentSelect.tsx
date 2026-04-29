@@ -49,13 +49,10 @@ const PostContentSelect = () => {
   }, [blocks]);
 
   const handleAddContent = (
-    contentType: "doc" | "image" | "iframe",
+    contentType: "doc" | "image" | "iframe" | "code",
     openWidget?: () => void
   ) => {
-    const newBlock = CONTENT_BLOCK_GENERATOR[contentType](
-      blocks.length,
-      undefined
-    );
+    const newBlock = CONTENT_BLOCK_GENERATOR[contentType](blocks.length);
 
     addBlock(newBlock); // <- push into context
     setCurrentBlock(newBlock); // <- make it the active block

@@ -27,6 +27,7 @@ import SecondaryHeader from "@/features/blog-composer/components/headings/Second
 import TextEditorBlock from "@/components/tiptap/TextEditorBlock";
 import ImageBlock from "@/features/blog-composer/components/blocks/ImageBlock";
 import IframeBlock from "@/features/blog-composer/components/blocks/IframeBlock";
+import CodeBlock from "@/features/blog-composer/components/blocks/CodeBlock";
 import SortableBlockItem from "@/features/blog-composer/components/blocks/SortableBlockItem";
 import PostContentSelect from "@/features/blog-composer/components/post-content/PostContentSelect";
 import UploadButton from "@/components/form-components/UploadButton";
@@ -121,9 +122,9 @@ const EditPostForm = ({ postId }: { postId: string }) => {
 
   const handleChangeType = (
     blockId: string,
-    newType: "doc" | "image" | "iframe"
+    newType: "doc" | "image" | "iframe" | "code"
   ) => {
-    const resetData: Record<"doc" | "image" | "iframe", object> = {
+    const resetData: Record<"doc" | "image" | "iframe" | "code", object> = {
       doc: {
         contentType: "doc",
         contentData: DEFAULT_BLOCK,
@@ -139,6 +140,12 @@ const EditPostForm = ({ postId }: { postId: string }) => {
       iframe: {
         contentType: "iframe",
         contentData: { src: "" },
+        media: undefined,
+        mediaId: undefined,
+      },
+      code: {
+        contentType: "code",
+        contentData: { code: "", language: "javascript" },
         media: undefined,
         mediaId: undefined,
       },
@@ -173,6 +180,8 @@ const EditPostForm = ({ postId }: { postId: string }) => {
         return <ImageBlock block={block} />;
       case "iframe":
         return <IframeBlock block={block} />;
+      case "code":
+        return <CodeBlock block={block} />;
     }
   };
 
@@ -280,7 +289,7 @@ const EditPostForm = ({ postId }: { postId: string }) => {
                     id={block.id}
                     onRemove={() => removeBlock(block.id)}
                     currentType={
-                      block.contentType as "doc" | "image" | "iframe"
+                      block.contentType as "doc" | "image" | "iframe" | "code"
                     }
                     onChangeType={(newType) =>
                       handleChangeType(block.id, newType)
