@@ -1,5 +1,6 @@
 "use client";
 
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useFetchComments } from "@/features/blogs/hooks/useComments";
 import { CommentResponse } from "@/features/blogs/types/post";
 
@@ -55,24 +56,29 @@ const CommentList = ({ postId }: CommentListProps) => {
   return (
     <div className="space-y-6">
       {comments.map((comment) => (
-        <div key={comment.id} className="border-b border-primary-100 pb-4 last:border-0">
-          <div className="flex items-center gap-2 mb-1">
-            <div className="w-8 h-8 rounded-full bg-primary-200 flex items-center justify-center text-sm font-medium text-primary-700">
-              {(comment.name || comment.email)[0].toUpperCase()}
-            </div>
-            <div>
+        <div
+          key={comment.id}
+          className="border-b border-primary-100 pb-4 last:border-0"
+        >
+          <div className="flex items-center gap-2">
+            <Avatar className="w-12 h-12">
+              <AvatarFallback>
+                {(comment.name || comment.email)[0].toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+            <div className="h-full  flex items-center">
               <span className="text-sm font-medium text-primary-800">
                 {comment.name || "Anonymous"}
               </span>
-              <span className="text-xs text-primary-400 ml-2">
+              <span className="text-xs text-primary-700 ml-2 font-light">
                 {comment.email}
               </span>
             </div>
-            <span className="text-xs text-primary-400 ml-auto">
+            <span className="text-xs text-primary-700 ml-auto font-light">
               {timeAgo(comment.createdAt)}
             </span>
           </div>
-          <p className="text-sm text-primary-700 pl-10 whitespace-pre-wrap">
+          <p className="text-[1rem] text-primary-800 pl-14 whitespace-pre-wrap font-extralight">
             {comment.content}
           </p>
         </div>
