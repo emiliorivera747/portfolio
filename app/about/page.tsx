@@ -58,13 +58,13 @@ function About() {
 
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              {`The idea of inventing something new that could impact our world, whether big or small, has always excited me. In my senior year of high school, I had to choose a major. After debating between `}
+              {`The idea of inventing something new that could impact our world, whether big or small, has always excited me. While there were many fields I could have gone into to fulfill my desire to create—such as `}
               <strong>Aerospace Engineering</strong>
               {`, `}
               <strong>Mechanical Engineering</strong>
               {`, and `}
               <strong>Computer Science</strong>
-              {`, I chose the latter because of the profound impact it has on our everyday lives.`}
+              {`—I ended up choosing the latter because of the profound impact it has on our everyday lives.`}
             </p>
             <br></br>
             <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
