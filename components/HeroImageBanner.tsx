@@ -66,7 +66,7 @@ export default function HeroImageBanner({
             initial: "initial",
             whileInView: "animate",
             variants,
-            className: `relative z-10 mt-4 ${captionColor} text-xs text-center px-4`,
+            className: `relative z-10 mt-4 ${captionColor} text-[0.3rem] text-center px-4`,
           } as any)}
         >
           {caption}
