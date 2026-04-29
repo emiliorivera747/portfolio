@@ -64,7 +64,7 @@ const updatePostSchema = z.object({
       z
         .object({
           contentOrder: z.number().int(),
-          contentType: z.enum(["doc", "image", "video"]),
+          contentType: z.enum(["doc", "image", "video", "iframe"]),
           contentData: z.record(z.string(), z.any()),
         })
         .extend({
@@ -196,6 +196,7 @@ export const PUT = async (
       { status: 200 }
     );
   } catch (error) {
+    console.error("PUT /api/posts/[_id] error:", error);
     const errorMessage =
       error instanceof Error ? error.message : "unknown error";
     return NextResponse.json(

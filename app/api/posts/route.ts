@@ -15,7 +15,7 @@ const postSchema = z.object({
       z
         .object({
           contentOrder: z.number().int(),
-          contentType: z.enum(["doc", "image", "video"]),
+          contentType: z.enum(["doc", "image", "video", "iframe"]),
           contentData: z.record(z.string(), z.any()),
         })
         .extend({

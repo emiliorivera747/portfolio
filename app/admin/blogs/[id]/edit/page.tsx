@@ -1,8 +1,22 @@
 "use client";
-import { useEffect, useState, useRef, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
 // Components
 import PrimarySubmitButton from "@/components/buttons/PrimarySubmitButton";
@@ -12,6 +26,8 @@ import FormFieldGenerator from "@/components/form-builder/FormFieldGenerator";
 import SecondaryHeader from "@/features/blog-composer/components/headings/SecondaryHeading";
 import TextEditorBlock from "@/components/tiptap/TextEditorBlock";
 import ImageBlock from "@/features/blog-composer/components/blocks/ImageBlock";
+import IframeBlock from "@/features/blog-composer/components/blocks/IframeBlock";
+import SortableBlockItem from "@/features/blog-composer/components/blocks/SortableBlockItem";
 import PostContentSelect from "@/features/blog-composer/components/post-content/PostContentSelect";
 import UploadButton from "@/components/form-components/UploadButton";
 
@@ -23,6 +39,7 @@ import {
 
 // Data
 import { fields } from "@/features/blog-composer/data/formFields";
+import { DEFAULT_BLOCK } from "@/features/blog-composer/data/blocks";
 
 // Types
 import { ContentBlock } from "@/features/blogs/types/post";
@@ -33,12 +50,17 @@ import useUpdatePost from "@/features/blogs/hooks/useUpdatePost";
 import useDeletePost from "@/features/blogs/hooks/useDeletePost";
 
 // Context
-import { ComposerProvider, useComposerContext } from "@/features/blog-composer/context/ComposerContext";
+import {
+  ComposerProvider,
+  useComposerContext,
+} from "@/features/blog-composer/context/ComposerContext";
 
 const EditPostForm = ({ postId }: { postId: string }) => {
   const buttonRef = useRef(null);
   const router = useRouter();
-  const { postResponse, isLoadingPost, isErrorPost } = useFetchPostById({ id: postId });
+  const { postResponse, isLoadingPost, isErrorPost } = useFetchPostById({
+    id: postId,
+  });
   const { mutateUpdate, isPendingUpdate } = useUpdatePost(postId);
   const { mutateDelete, isPendingDelete } = useDeletePost(postId);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -47,6 +69,9 @@ const EditPostForm = ({ postId }: { postId: string }) => {
     blocks,
     setBlocks,
     handleFileChange,
+    moveBlock,
+    removeBlock,
+    updateBlock,
   } = useComposerContext();
 
   const form = useForm<FormSchema>({
@@ -56,17 +81,13 @@ const EditPostForm = ({ postId }: { postId: string }) => {
   const [open, setOpen] = useState(false);
   const [initialized, setInitialized] = useState(false);
 
-  // Load post data into the form and blocks when it arrives
   useEffect(() => {
     if (postResponse?.data && !initialized) {
       const post = postResponse.data;
-
       form.reset({
         title: post.title || "",
         description: post.description || "",
       });
-
-      // Map contentBlocks from the API response to ContentBlock[]
       if (post.contentBlocks && post.contentBlocks.length > 0) {
         const mappedBlocks: ContentBlock[] = post.contentBlocks.map(
           (block: any) => ({
@@ -81,15 +102,53 @@ const EditPostForm = ({ postId }: { postId: string }) => {
         );
         setBlocks(mappedBlocks);
       }
-
       setInitialized(true);
     }
   }, [postResponse, initialized, form, setBlocks]);
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates })
+  );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    const oldIndex = blocks.findIndex((b) => b.id === active.id);
+    const newIndex = blocks.findIndex((b) => b.id === over.id);
+    if (oldIndex !== -1 && newIndex !== -1) moveBlock(oldIndex, newIndex);
+  };
+
+  const handleChangeType = (
+    blockId: string,
+    newType: "doc" | "image" | "iframe"
+  ) => {
+    const resetData: Record<"doc" | "image" | "iframe", object> = {
+      doc: {
+        contentType: "doc",
+        contentData: DEFAULT_BLOCK,
+        media: undefined,
+        mediaId: undefined,
+      },
+      image: {
+        contentType: "image",
+        contentData: {},
+        media: { providerAssetId: "", url: "", alt: "", mediaType: "image" },
+        mediaId: undefined,
+      },
+      iframe: {
+        contentType: "iframe",
+        contentData: { src: "" },
+        media: undefined,
+        mediaId: undefined,
+      },
+    };
+    updateBlock(blockId, resetData[newType]);
+  };
+
   const onSubmit = useCallback(
     (data: FormSchema) => {
       if (blocks.length === 0) return;
-
       mutateUpdate({
         title: data.title,
         description: data.description,
@@ -112,6 +171,8 @@ const EditPostForm = ({ postId }: { postId: string }) => {
         return <TextEditorBlock block={block} />;
       case "image":
         return <ImageBlock block={block} />;
+      case "iframe":
+        return <IframeBlock block={block} />;
     }
   };
 
@@ -162,7 +223,8 @@ const EditPostForm = ({ postId }: { postId: string }) => {
         {showDeleteConfirm && (
           <div className="w-full mb-4 p-4 border border-red-300 rounded-lg bg-red-50">
             <p className="text-red-800 text-sm mb-3">
-              Are you sure you want to delete this post? This action cannot be undone.
+              Are you sure you want to delete this post? This action cannot be
+              undone.
             </p>
             <div className="flex gap-2">
               <button
@@ -201,12 +263,35 @@ const EditPostForm = ({ postId }: { postId: string }) => {
         </div>
         <SecondaryHeader label="Content" />
 
-        <div className="w-full flex gap-4 flex-col">
-          {blocks?.length > 0 &&
-            blocks.map((block: ContentBlock) => (
-              <div key={block.id}>{renderBlockComponent(block)}</div>
-            ))}
-        </div>
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={blocks.map((b) => b.id)}
+            strategy={verticalListSortingStrategy}
+          >
+            <div className="w-full flex gap-4 flex-col">
+              {blocks?.length > 0 &&
+                blocks.map((block: ContentBlock) => (
+                  <SortableBlockItem
+                    key={block.id}
+                    id={block.id}
+                    onRemove={() => removeBlock(block.id)}
+                    currentType={
+                      block.contentType as "doc" | "image" | "iframe"
+                    }
+                    onChangeType={(newType) =>
+                      handleChangeType(block.id, newType)
+                    }
+                  >
+                    {renderBlockComponent(block)}
+                  </SortableBlockItem>
+                ))}
+            </div>
+          </SortableContext>
+        </DndContext>
 
         <PostContentSelect />
         <PrimarySubmitButton

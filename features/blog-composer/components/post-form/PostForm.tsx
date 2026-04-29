@@ -44,6 +44,9 @@ import { fields } from "@/features/blog-composer/data/formFields";
 // Types
 import { ContentBlock } from "@/features/blogs/types/post";
 
+// Data
+import { DEFAULT_BLOCK } from "@/features/blog-composer/data/blocks";
+
 // Context
 import { useComposerContext } from "@/features/blog-composer/context/ComposerContext";
 
@@ -55,8 +58,17 @@ import { useComposerContext } from "@/features/blog-composer/context/ComposerCon
 const PostForm = () => {
   const buttonRef = useRef(null);
 
-  const { onSubmit, blocks, handleFileChange, moveBlock, removeBlock } =
+  const { onSubmit, blocks, handleFileChange, moveBlock, removeBlock, updateBlock } =
     useComposerContext();
+
+  const handleChangeType = (blockId: string, newType: "doc" | "image" | "iframe") => {
+    const resetData: Record<"doc" | "image" | "iframe", object> = {
+      doc: { contentType: "doc", contentData: DEFAULT_BLOCK, media: undefined, mediaId: undefined },
+      image: { contentType: "image", contentData: {}, media: { providerAssetId: "", url: "", alt: "", mediaType: "image" }, mediaId: undefined },
+      iframe: { contentType: "iframe", contentData: { src: "" }, media: undefined, mediaId: undefined },
+    };
+    updateBlock(blockId, resetData[newType]);
+  };
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -136,6 +148,8 @@ const PostForm = () => {
                     key={block.id}
                     id={block.id}
                     onRemove={() => removeBlock(block.id)}
+                    currentType={block.contentType as "doc" | "image" | "iframe"}
+                    onChangeType={(newType) => handleChangeType(block.id, newType)}
                   >
                     {renderBlockComponent(block)}
                   </SortableBlockItem>
