@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 
 const variants = {
-  initial: { y: 400, opacity: 0 },
+  initial: { y: 40, opacity: 0 },
   animate: {
     y: 0,
     opacity: 1,
@@ -53,7 +53,7 @@ export default function HeroImageBanner({
       <motion.h1
         {...({
           initial: "initial",
-          whileInView: "animate",
+          animate: "animate",
           variants,
           className: `relative z-10 ${titleColor} text-4xl md:text-8xl font-bold text-center`,
         } as any)}
@@ -64,7 +64,7 @@ export default function HeroImageBanner({
         <motion.p
           {...({
             initial: "initial",
-            whileInView: "animate",
+            animate: "animate",
             variants,
             className: `relative z-10 mt-4 ${captionColor} text-[0.3rem] text-center px-4`,
           } as any)}
