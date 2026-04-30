@@ -35,9 +35,14 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
   const form = useRef<HTMLFormElement | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const sendEmail = useCallback((e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
 
     emailjs
       .sendForm(
@@ -47,13 +52,14 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
         "KREG4OVfIOrUuqIh3"
       )
       .then(
-        (result) => {
+        () => {
           setSuccess(true);
-          setError(null);
+          setLoading(false);
+          form.current?.reset();
         },
-        (error) => {
+        () => {
           setError("Failed to send email. Please try again later.");
-          setSuccess(false);
+          setLoading(false);
         }
       );
   }, []);
@@ -94,11 +100,11 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
               Mail
             </h1>
             <Link
-              href="mailto:emiliorivera174@gmail.com"
+              href="mailto:emiliorivera747@gmail.com"
               className="text-zinc-800 text-sm"
               aria-label="Email"
             >
-              emiliorivera747@gmai
+              emiliorivera747@gmail.com
             </Link>
           </motion.div>
           <motion.div {...({ variants: variants, className: "w-full" } as any)}>
@@ -189,25 +195,31 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
             <input
               type="text"
               name="from_name"
-              className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border "
+              required
+              className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border"
               placeholder="Name"
             />
             <input
               name="email"
               type="email"
-              className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border "
+              required
+              className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border"
               placeholder="Email"
             />
             <textarea
-              className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border "
+              className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border"
               name="message"
-              id=""
+              required
               cols={20}
               rows={10}
               placeholder="Message"
             ></textarea>
-            <button className="text-zinc-800 bg-white hover:bg-zinc-800 hover:text-white border-2 border-zinc-800 p-4 rounded-[12px]">
-              Submit
+            <button
+              type="submit"
+              disabled={loading}
+              className="text-zinc-800 bg-white hover:bg-zinc-800 hover:text-white border-2 border-zinc-800 p-4 rounded-[12px] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? "Sending..." : "Submit"}
             </button>
             {error && (
               <div className="bg-red-100 rounded-[12px] flex items-center justify-center py-10 border-red-600 border">

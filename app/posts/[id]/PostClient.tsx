@@ -37,7 +37,25 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
   }
 
   if (isLoadingPost) return <BlogPostSkeleton />;
-  if (isErrorPost) return <div>Opps</div>;
+  if (isErrorPost)
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen gap-4 text-center px-4">
+        <h2 className="text-2xl font-semibold text-primary-900">
+          Failed to load post
+        </h2>
+        <p className="text-primary-600 text-sm">
+          {postError instanceof Error
+            ? postError.message
+            : "Something went wrong. Please try again."}
+        </p>
+        <a
+          href="/posts"
+          className="mt-2 px-6 py-2 rounded-[12px] border-2 border-zinc-800 text-zinc-800 hover:bg-zinc-800 hover:text-white transition-colors text-sm"
+        >
+          Back to posts
+        </a>
+      </div>
+    );
 
   return (
     <div className={`flex flex-col min-h-screen ${isDark ? "dark bg-[#0d0d0d]" : ""}`}>

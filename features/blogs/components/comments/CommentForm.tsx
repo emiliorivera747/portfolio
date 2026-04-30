@@ -35,6 +35,7 @@ interface CommentFormProps {
 const CommentForm = ({ postId }: CommentFormProps) => {
   const [step, setStep] = useState<"compose" | "verify">("compose");
   const [pendingId, setPendingId] = useState<number | null>(null);
+  const [pendingData, setPendingData] = useState<CommentFormData | null>(null);
 
   const createComment = useCreateComment(postId);
   const verifyComment = useVerifyComment(postId);
@@ -53,12 +54,25 @@ const CommentForm = ({ postId }: CommentFormProps) => {
     try {
       const result = await createComment.mutateAsync(data);
       setPendingId(result.data.pendingId);
+      setPendingData(data);
       setStep("verify");
       toast.success("Verification code sent to your email!");
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Failed to submit comment"
       );
+    }
+  };
+
+  const handleResend = async () => {
+    if (!pendingData) return;
+    try {
+      const result = await createComment.mutateAsync(pendingData);
+      setPendingId(result.data.pendingId);
+      verifyForm.reset();
+      toast.success("New verification code sent!");
+    } catch (error) {
+      toast.error("Failed to resend code. Please try again.");
     }
   };
 
@@ -132,6 +146,14 @@ const CommentForm = ({ postId }: CommentFormProps) => {
               Cancel
             </Button>
           </div>
+          <button
+            type="button"
+            onClick={handleResend}
+            disabled={createComment.isPending}
+            className="text-sm text-primary-600 hover:underline disabled:opacity-50"
+          >
+            {createComment.isPending ? "Sending..." : "Resend code"}
+          </button>
         </form>
       </div>
     );

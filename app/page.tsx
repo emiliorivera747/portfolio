@@ -61,7 +61,7 @@ export default function App() {
               videoUrl={
                 "https://res.cloudinary.com/dxxdfgpdh/video/upload/v1772235119/Portfolio_Video_2_tupy6r.mp4"
               }
-              buttonLabel={"Learn More"}
+              buttonLabel={"Visit Trellis Money"}
               titleClassName="text-2xl sm:text-4xl text-tertiary-1000 font-semibold"
               buttonClassName="flex items-center absolute rounded-[12px] border-2 border-zinc-800 hover:border-zinc-800 bg-transparent text-[#495057] w-60 h-[3.6rem] font-semibold self-center justify-center text-center p-2 bottom-6 hover:bg-primary-1000 hover:text-white"
               bgColor="bg-white"
