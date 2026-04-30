@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 /**
  *
@@ -15,6 +14,12 @@ const page = () => {
           For the meantime you can check out the source code.
         </span>
 
+        <Link
+          className="font-light text-sm text-zinc-500 hover:text-zinc-800 underline underline-offset-4 mb-2"
+          href="/"
+        >
+          ← Back to home
+        </Link>
         <Link
           className="font-light  box-border w-[18rem] source-code-button flex item-center justify-center text-center gap-4 text-primary-800 hover:font-semibold transition-all duration-1000 ease-in-out bg-white border rounded-[12px] border-primary-500 px-8 py-4 text-2xl"
           href="https://github.com/emiliorivera747/portfolio"

@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useVideoIntersectionObserver } from "@/hooks/useVideoIntersectionObserver";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useNearViewport } from "@/hooks/useNearViewport";
 import { getMobileVideoUrl } from "@/utils/cloudinary";
+import ProjectButton from "@/components/ui/ProjectButton";
 
 interface ProjectSectionProps {
   title: string;
@@ -12,10 +12,6 @@ interface ProjectSectionProps {
   buttonLabel: string;
   titleColor: string;
   titleFont: string;
-  buttonTextColor: string;
-  buttonBgColor: string;
-  buttonBorderColor: string;
-  buttonHoverTextColor: string;
   bgColor: string;
   videoCover: string;
   titleSize: string;
@@ -23,37 +19,20 @@ interface ProjectSectionProps {
 }
 
 const variants = {
-  initial: {
-    y: 100,
-    opacity: 0,
-  },
+  initial: { y: 100, opacity: 0 },
   animate: {
     y: 0,
     opacity: 1,
-    transition: {
-      duration: 0.8,
-      staggerChildren: 0.1,
-    },
+    transition: { duration: 0.8, staggerChildren: 0.1 },
   },
 };
 
-/**
- *
- * Displays different projects on the main landing page
- *
- * @param param0
- * @returns
- */
 function ProjectSection({
   title,
   videoUrl,
   buttonLabel,
   titleColor,
   titleFont,
-  buttonTextColor,
-  buttonBgColor,
-  buttonBorderColor,
-  buttonHoverTextColor,
   bgColor,
   videoCover,
   titleSize,
@@ -67,15 +46,13 @@ function ProjectSection({
   return (
     <section ref={sectionRef as React.RefObject<HTMLElement>} className={`relative h-screen w-screen ${bgColor}`}>
       <motion.div
-        {...({
-          className: "flex flex-col items-center justify-start h-full w-full",
-        } as any)}
+        {...({ className: "flex flex-col items-center justify-start h-full w-full" } as any)}
       >
         <motion.div
           className="absolute h-[7rem] flex items-center"
           {...({ initial: "initial", whileInView: "animate", variants } as any)}
         >
-          <h1 className={`${titleFont} ${titleSize} ${titleColor}`}>{title}</h1>
+          <h2 className={`${titleFont} ${titleSize} ${titleColor}`}>{title}</h2>
         </motion.div>
         {isNear && (
           <video
@@ -89,15 +66,8 @@ function ProjectSection({
             playsInline
           />
         )}
-        <div className="flex items-end justify-center">
-          {" "}
-          <Link
-            href={url}
-            className={`flex items-center absolute rounded-[12px] border-2 ${buttonBorderColor} bg-transparent ${buttonTextColor} w-60 h-[3.6rem] font-semibold self-center justify-center text-center p-2 bottom-0 ${buttonBgColor} ${buttonHoverTextColor} mb-6 rounded-[12px]`}
-            aria-label={`Learn more about ${title}`}
-          >
-            {buttonLabel} <span className="text-transparent">.</span>
-          </Link>
+        <div className="absolute bottom-6 flex justify-center w-full">
+          <ProjectButton href={url} label={buttonLabel} />
         </div>
       </motion.div>
     </section>

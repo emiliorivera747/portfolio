@@ -63,7 +63,6 @@ export default function App() {
               }
               buttonLabel={"Visit Trellis Money"}
               titleClassName="text-2xl sm:text-4xl text-tertiary-1000 font-semibold"
-              buttonClassName="flex items-center absolute rounded-[12px] border-2 border-zinc-800 hover:border-zinc-800 bg-transparent text-[#495057] w-60 h-[3.6rem] font-semibold self-center justify-center text-center p-2 bottom-6 hover:bg-primary-1000 hover:text-white"
               bgColor="bg-white"
               videoCover="sm:object-cover"
             />
@@ -89,12 +88,8 @@ export default function App() {
               buttonLabel={"Learn More"}
               titleColor={"text-primary-1000"}
               titleFont={"font-semibold"}
-              buttonTextColor={"text-[#495057]"}
-              buttonBorderColor={"border-zinc-800 hover:border-zinc-800"}
-              buttonBgColor={"hover:bg-primary-1000"}
-              buttonHoverTextColor={"hover:text-white"}
               bgColor={"bg-white"}
-              videoCover={"sm:object-cover "}
+              videoCover={"sm:object-cover"}
             />
             <ToolsSection
               frontEndData={toolsData["casa-chirilagua"].frontEnd}
@@ -118,10 +113,6 @@ export default function App() {
               buttonLabel={"Learn More"}
               titleColor={"text-primary-1000"}
               titleFont={"font-bold"}
-              buttonTextColor={"text-zinc-800 md:text-zinc-800"}
-              buttonBorderColor={"border-black md:border-black"}
-              buttonBgColor={"hover:bg-primary-1000"}
-              buttonHoverTextColor={"hover:text-white md:hover:text-white"}
               bgColor={"bg-white"}
               videoCover={"sm:object-cover"}
             />
@@ -135,10 +126,6 @@ export default function App() {
                 "https://res.cloudinary.com/davx3yyob/video/upload/v1760242715/Untitled_design_20_pg1n4r_kv58m5.mp4"
               }
               buttonLabel={"Learn More"}
-              buttonTextColor={"text-zinc-800 "}
-              buttonBorderColor={"border-zinc-800 hover:border-zinc-800"}
-              buttonBgColor={"hover:bg-primary-1000"}
-              buttonHoverTextColor={"hover:text-white"}
               videoCover={"object-cover"}
               bgColor={"bg-white"}
             />

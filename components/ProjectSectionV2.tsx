@@ -1,13 +1,13 @@
 "use client";
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useVideoIntersectionObserver } from "@/hooks/useVideoIntersectionObserver";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useNearViewport } from "@/hooks/useNearViewport";
 import { getMobileVideoUrl } from "@/utils/cloudinary";
 
 import { PrimaryHeader, SecondaryHeader } from "@/components/marketing/headers/Headers";
+import ProjectButton from "@/components/ui/ProjectButton";
 
 interface ProjectSectionProps {
   title: string;
@@ -19,7 +19,6 @@ interface ProjectSectionProps {
   videoCover?: string;
   titleClassName?: string;
   subtitleClassName?: string;
-  buttonClassName?: string;
   className?: string;
 }
 
@@ -38,13 +37,6 @@ const variants = {
   },
 };
 
-const DEFAULT_BUTTON_CLASS =
-  "flex items-center absolute rounded-[12px] border-2 border-zinc-800 bg-transparent text-zinc-700 w-60 h-[3.6rem] font-semibold self-center justify-center text-center p-2 bottom-6";
-
-/**
- * Displays a full-screen project section with a background video, animated
- * title/subtitle, and a CTA button. All styling is overridable via className props.
- */
 function ProjectSectionV2({
   title,
   videoUrl,
@@ -55,7 +47,6 @@ function ProjectSectionV2({
   videoCover = "object-cover",
   titleClassName,
   subtitleClassName,
-  buttonClassName = DEFAULT_BUTTON_CLASS,
   className,
 }: ProjectSectionProps) {
   const isMobile = useIsMobile();
@@ -97,14 +88,8 @@ function ProjectSectionV2({
             playsInline
           />
         )}
-        <div className="flex items-end justify-center">
-          <Link
-            href={url}
-            className={buttonClassName}
-            aria-label={`Learn more about ${title}`}
-          >
-            {buttonLabel}
-          </Link>
+        <div className="absolute bottom-6 flex justify-center w-full">
+          <ProjectButton href={url} label={buttonLabel} />
         </div>
       </motion.div>
     </section>

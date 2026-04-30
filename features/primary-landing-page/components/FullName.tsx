@@ -1,4 +1,3 @@
-import React from "react";
 import { FullNameProp } from "@/features/primary-landing-page/types/props";
 
 /**
@@ -12,8 +11,9 @@ import { FullNameProp } from "@/features/primary-landing-page/types/props";
 const FullName = ({ firstName, lastName }: FullNameProp) => {
   return (
     <header className="flex lg:flex-row flex-row gap-1 sm:text-5xl md:gap-3 sm:mb-6 text-4xl  md:text-6xl 2xl:text-[5rem]  mb-2 bg-white-300">
-      <h1 className="text-white font-semibold">{firstName}</h1>
-      <h1 className="text-white font-semibold">{lastName}</h1>
+      <h1 className="text-white font-semibold">
+        <span>{firstName}</span> <span>{lastName}</span>
+      </h1>
     </header>
   );
 };

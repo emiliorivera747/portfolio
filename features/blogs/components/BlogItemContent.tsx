@@ -10,7 +10,7 @@ const BlogItemContent = ({
   return (
     <div className="w-full flex flex-col gap-1">
       <Link
-        href={`posts/${id}`}
+        href={`/posts/${id}`}
         className="font-bold text-primary-1000 text-2xl hover:underline"
       >
         {title}

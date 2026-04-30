@@ -3,6 +3,7 @@ import React, { useRef, useState, FormEvent, useCallback } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const variants = {
   initial: {
@@ -80,7 +81,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
             className: "flex-1 flex flex-col gap-4 h-full",
           } as any)}
         >
-          <motion.h1
+          <motion.h2
             {...({
               onMouseEnter: textEnter,
               onMouseLeave: textLeave,
@@ -90,15 +91,15 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
             } as any)}
           >
             {"Contact"}
-          </motion.h1>
+          </motion.h2>
           <motion.div {...({ variants: variants, className: "w-full" } as any)}>
-            <h1
+            <h3
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
               className="text-zinc-800 font-bold"
             >
               Mail
-            </h1>
+            </h3>
             <Link
               href="mailto:emiliorivera747@gmail.com"
               className="text-zinc-800 text-sm"
@@ -108,13 +109,13 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
             </Link>
           </motion.div>
           <motion.div {...({ variants: variants, className: "w-full" } as any)}>
-            <h1
+            <h3
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
               className="text-zinc-800 font-bold "
             >
               Phone
-            </h1>
+            </h3>
             <span
               onMouseEnter={textEnter}
               onMouseLeave={textLeave}
@@ -192,35 +193,52 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
               className: "flex flex-col gap-4 pt-6 w-full  ",
             } as any)}
           >
-            <input
-              type="text"
-              name="from_name"
-              required
-              className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border"
-              placeholder="Name"
-            />
-            <input
-              name="email"
-              type="email"
-              required
-              className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border"
-              placeholder="Email"
-            />
-            <textarea
-              className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border"
-              name="message"
-              required
-              cols={20}
-              rows={10}
-              placeholder="Message"
-            ></textarea>
-            <button
+            <div className="flex flex-col gap-1">
+              <label htmlFor="from_name" className="text-xs text-zinc-500 font-medium">Name</label>
+              <input
+                id="from_name"
+                type="text"
+                name="from_name"
+                required
+                className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border"
+                placeholder="Jane Smith"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="contact_email" className="text-xs text-zinc-500 font-medium">Email</label>
+              <input
+                id="contact_email"
+                name="email"
+                type="email"
+                required
+                className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border"
+                placeholder="jane@example.com"
+              />
+            </div>
+            <div className="flex flex-col gap-1">
+              <label htmlFor="contact_message" className="text-xs text-zinc-500 font-medium">Message</label>
+              <textarea
+                id="contact_message"
+                className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border"
+                name="message"
+                required
+                cols={20}
+                rows={10}
+                placeholder="Your message..."
+              ></textarea>
+            </div>
+            <Button
               type="submit"
+              variant="outline"
               disabled={loading}
-              className="text-zinc-800 bg-white hover:bg-zinc-800 hover:text-white border-2 border-zinc-800 p-4 rounded-[12px] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="h-[3.5rem] px-[4rem] rounded-[12px] font-semibold text-primary-900 border-primary-300 hover:bg-primary-100 transition delay-150 duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{
+                boxShadow:
+                  "rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset, rgba(0, 0, 0, 0.9) 0px 0px 0px 1px",
+              }}
             >
               {loading ? "Sending..." : "Submit"}
-            </button>
+            </Button>
             {error && (
               <div className="bg-red-100 rounded-[12px] flex items-center justify-center py-10 border-red-600 border">
                 <p className="text-red-600 text-md">{error}</p>
