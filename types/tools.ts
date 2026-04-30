@@ -15,6 +15,7 @@ export interface ToolsSectionProps {
   backEndData?: ToolItem[];
   bothData?: ToolItem[];
   checkWhatDataToShow: CheckWhatDataToShow;
+  isLoading?: boolean;
 }
 
 

@@ -5,6 +5,7 @@ import PrimaryButton from "@/components/buttons/PrimaryButton";
 
 //Components
 import Tools from "@/components/tools-section/Tools";
+import ToolsSectionSkeleton from "@/components/skeletons/ToolsSectionSkeleton";
 
 //Types
 import { ToolsSectionProps } from "@/types/tools";
@@ -21,8 +22,11 @@ function ToolsSection({
   backEndData,
   bothData,
   checkWhatDataToShow,
+  isLoading = false,
 }: ToolsSectionProps) {
   const [activeButton, setActiveButton] = useState<string>("Front End");
+
+  if (isLoading) return <ToolsSectionSkeleton />;
 
   const handleClick = useCallback((buttonName: string) => {
     setActiveButton(buttonName);
