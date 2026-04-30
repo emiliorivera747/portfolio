@@ -43,9 +43,4 @@ export const navBarData = [
     label: "blog",
     url: "/posts",
   },
-  {
-    id: 5,
-    label: "Sign In",
-    url: "/admin/dashboard",
-  },
 ];
