@@ -82,7 +82,7 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
             aria-controls="menu"
             className={`${
               openMenu ? "open" : ""
-            } z-50 block focus:outline-none hamburger justify-end`}
+            } z-50 block hamburger justify-end focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-800 focus-visible:rounded`}
             onClick={() => setOpenMenu(!openMenu)}
           >
             <span className={`hamburger-top ${hamburgerBgColor}`}></span>

@@ -82,7 +82,7 @@ function ProjectSection({
             ref={videoRef}
             className={`h-full w-full ${videoCover}`}
             src={isMobile ? getMobileVideoUrl(videoUrl) : videoUrl}
-            preload="none"
+            preload="metadata"
             autoPlay
             loop
             muted

@@ -10,6 +10,23 @@ import Navbar from "@/components/navbar/Navbar";
 import { navBarData } from "@/utils/data/navbar/navbarData";
 import CommentSection from "@/features/blogs/components/comments/CommentSection";
 
+function extractText(node: any): string {
+  if (!node) return "";
+  if (typeof node.text === "string") return node.text;
+  if (Array.isArray(node.content)) return node.content.map(extractText).join(" ");
+  return "";
+}
+
+function calcReadTime(contentBlocks?: PostResponse["data"]["contentBlocks"]): number {
+  if (!contentBlocks?.length) return 1;
+  const text = contentBlocks
+    .filter((b) => b.contentType !== "image" && b.contentType !== "video" && b.contentType !== "iframe")
+    .map((b) => extractText(b.contentData))
+    .join(" ");
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
+
 interface PostClientProps {
   id: string;
   initialPost?: PostResponse;
@@ -92,7 +109,7 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
                     d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                   />
                 </svg>
-                <span>5 min read</span>
+                <span>{calcReadTime(postResponse?.data?.contentBlocks)} min read</span>
                 {new Date(postResponse?.data?.createdAt).toLocaleDateString(
                   "en-US",
                   {
