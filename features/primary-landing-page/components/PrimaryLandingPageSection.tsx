@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 
 // External Libraries
 import { motion } from "framer-motion";
@@ -12,8 +12,6 @@ import MissionStatement from "@/features/primary-landing-page/components/Mission
 import CalendlyPopupButton from "@/features/calendly/CalendlyPopupButton";
 import BackgroundOverlay from "@/components/overlays/BackgroundOverlay";
 import PrimaryHeader from "@/features/primary-landing-page/components/PrimaryHeader";
-import LoadingPage from "@/components/loading/LoadingPage";
-
 const variants = {
   initial: {
     y: 500,
@@ -37,34 +35,9 @@ const variants = {
 const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
   videoUrl,
 }) => {
-  const [isLoading, setIsLoading] = useState(true);
-
   const videoRef = useRef<HTMLVideoElement>(null!);
-  
-  // Use the custom hook for video intersection observer
+
   useVideoIntersectionObserver(videoRef);
-
-  useEffect(() => {
-    const handleLoadedData = () => {
-      setIsLoading(false);
-    };
-
-    const videoElement = videoRef.current;
-    if (videoElement) {
-      // Check if video is already loaded
-      if (videoElement.readyState >= 2) {
-        setIsLoading(false);
-      } else {
-        // Add the event listener to detect when the video is ready
-        videoElement.addEventListener("loadeddata", handleLoadedData);
-      }
-
-      // Clean up the event listener when the component unmounts
-      return () => {
-        videoElement.removeEventListener("loadeddata", handleLoadedData);
-      };
-    }
-  }, [videoUrl]);
 
   return (
     <section className="relative h-screen w-screen">
@@ -85,7 +58,7 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
         </div>
       </motion.div>
 
-      {!isLoading && <BackgroundOverlay />}
+      <BackgroundOverlay />
       <video
         ref={videoRef}
         className={`object-cover w-full h-full`}
