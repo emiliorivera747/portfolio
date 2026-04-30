@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { CldImage } from "next-cloudinary";
-import Image from "next/image";
 import Link from "next/link";
 
 import { NavbarLogoProp } from "@/types/navbar";
@@ -27,10 +26,11 @@ const NavbarLogo = ({ logoTextColor, menuTextColor }: NavbarLogoProp) => {
           height={30}
           width={30}
           className="pr-1 self-end"
-          alt="logo"
+          alt=""
+          aria-hidden="true"
         />{" "}
         <h1 className="self-end font-bold tracking-widest">
-          {"milio's Portfolio"}
+          {"Emilio's Portfolio"}
         </h1>
       </Link>
     </div>
