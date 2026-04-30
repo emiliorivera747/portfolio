@@ -40,7 +40,7 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
   useVideoIntersectionObserver(videoRef);
 
   return (
-    <section className="relative h-screen w-screen">
+    <section className="relative h-screen w-screen bg-black">
       <motion.div
         style={{ zIndex: 50 }}
         {...{
