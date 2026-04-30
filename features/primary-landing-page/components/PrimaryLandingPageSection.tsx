@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 
 // Hooks
 import { useVideoIntersectionObserver } from "@/hooks/useVideoIntersectionObserver";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { getMobileVideoUrl } from "@/utils/cloudinary";
 
 // Component
 import MissionStatement from "@/features/primary-landing-page/components/MissionStatement";
@@ -35,6 +37,7 @@ const variants = {
 const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
   videoUrl,
 }) => {
+  const isMobile = useIsMobile();
   const videoRef = useRef<HTMLVideoElement>(null!);
 
   useVideoIntersectionObserver(videoRef);
@@ -61,12 +64,13 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
       <BackgroundOverlay />
       <video
         ref={videoRef}
-        className={`object-cover w-full h-full`}
-        src={
-          videoUrl ||
-          "https://res.cloudinary.com/davx3yyob/video/upload/v1760238501/Portfolio_Video_t0y4tc_ykkaej.mp4"
+        className="object-cover w-full h-full"
+        src={isMobile
+          ? getMobileVideoUrl(videoUrl || "https://res.cloudinary.com/davx3yyob/video/upload/v1760238501/Portfolio_Video_t0y4tc_ykkaej.mp4")
+          : videoUrl || "https://res.cloudinary.com/davx3yyob/video/upload/v1760238501/Portfolio_Video_t0y4tc_ykkaej.mp4"
         }
-        preload="metadata"
+        preload={isMobile ? "none" : "metadata"}
+        autoPlay
         loop
         muted
         playsInline

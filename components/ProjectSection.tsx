@@ -2,6 +2,9 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useVideoIntersectionObserver } from "@/hooks/useVideoIntersectionObserver";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { useNearViewport } from "@/hooks/useNearViewport";
+import { getMobileVideoUrl } from "@/utils/cloudinary";
 
 interface ProjectSectionProps {
   title: string;
@@ -56,11 +59,13 @@ function ProjectSection({
   titleSize,
   url,
 }: ProjectSectionProps) {
+  const isMobile = useIsMobile();
+  const { ref: sectionRef, isNear } = useNearViewport();
   const videoRef = useRef<HTMLVideoElement>(null!);
   useVideoIntersectionObserver(videoRef);
 
   return (
-    <section className={`relative h-screen w-screen ${bgColor}`}>
+    <section ref={sectionRef as React.RefObject<HTMLElement>} className={`relative h-screen w-screen ${bgColor}`}>
       <motion.div
         {...({
           className: "flex flex-col items-center justify-start h-full w-full",
@@ -72,15 +77,18 @@ function ProjectSection({
         >
           <h1 className={`${titleFont} ${titleSize} ${titleColor}`}>{title}</h1>
         </motion.div>
-        <video
-          ref={videoRef}
-          className={`h-full w-full ${videoCover} `}
-          src={videoUrl}
-          preload="none"
-          loop
-          muted
-          playsInline
-        />
+        {isNear && (
+          <video
+            ref={videoRef}
+            className={`h-full w-full ${videoCover}`}
+            src={isMobile ? getMobileVideoUrl(videoUrl) : videoUrl}
+            preload="none"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        )}
         <div className="flex items-end justify-center">
           {" "}
           <Link
