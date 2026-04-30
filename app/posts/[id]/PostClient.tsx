@@ -47,11 +47,11 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
         style={{
           fontFamily: `Georgia, 'Nimbus Roman No9 L', 'Century Schoolbook L', serif`,
         }}
-        className="min-h-screen sm:mx-[1%] md:mx-[4%] lg:mx-[24%] font-normal pb-10 h-auto lg:w-[60rem] "
+        className="min-h-screen w-full px-4 sm:px-8 md:px-[4%] lg:mx-[24%] font-normal pb-10 h-auto lg:w-[60rem]"
       >
-        <div className="pt-[7rem] mx-[8%] text-4xl">
-          <div className="flex flex-row justify-between">
-            <h1 className="text-primary-900 dark:text-primary-100 font-semibold times-header upper mb-1">
+        <div className="pt-[7rem]">
+          <div className="flex flex-row justify-between items-start gap-2">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl text-primary-900 dark:text-primary-100 font-semibold times-header upper mb-1">
               {postResponse?.data?.title}
             </h1>
             <ThemeToggle isDark={isDark} onToggle={() => setIsDark((d) => !d)} />
