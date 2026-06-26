@@ -9,6 +9,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { MenuItem, SubMenuItem, NavMenuItems } from "@/types/navbar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 // Next.js
 import Link from "next/link";
@@ -35,43 +36,92 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                 {item.content && (
                   <>
                     <NavigationMenuTrigger
-                      className={`uppercase bg-transparent text-white font-bold hover:text-white hover:backdrop-blur-md hover:bg-transparent focus:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} font-bold text-sm tracking-wider focus:text-white data-[state=open]:hover:bg-transparent data-[state=open]:text-primary-400 ${active ? "underline underline-offset-4" : ""}`}
+                      className={`uppercase bg-transparent font-bold hover:text-white hover:bg-transparent focus:bg-transparent active:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} text-sm tracking-wider focus:text-white data-[state=open]:bg-transparent data-[state=open]:text-white ${active ? "underline underline-offset-4" : ""}`}
                     >
                       {item.label}
                     </NavigationMenuTrigger>
-                    <NavigationMenuContent
-                      className="py-4 px-6 pb-6 backdrop-blur-sm bg-primary-300/30  text-white text-sm flex flex-col gap-2 rounded-lg border-none outline-none"
-                    >
-                      {item.content?.map((subItem: SubMenuItem) => {
-                        return (
-                          <NavigationMenuLink
-                            key={subItem.id}
-                            className="w-[10rem]"
-                            asChild
-                          >
-                            {subItem.external || subItem.url.includes("#") ? (
-                              <a
-                                href={subItem.url}
-                                className={`block text-[1rem] ${linkTextColor} font-medium rounded-lg p-[0.2rem] hover:underline hover:underline-offset-4 hover:decoration-2`}
-                                aria-label={subItem.label}
-                                {...(subItem.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                              >
-                                {subItem.label}
-                              </a>
-                            ) : (
-                              <Link
+                    {(() => {
+                      const isGrid = item.content?.some(
+                        (s) => s.logo || s.initials || s.stack
+                      );
+                      return (
+                        <NavigationMenuContent
+                          className={`backdrop-blur-sm bg-primary-300/30 text-white text-sm rounded-lg border-none outline-none ${
+                            isGrid
+                              ? "grid grid-cols-2 gap-3 p-6 min-w-[22rem]"
+                              : "flex flex-col gap-3 py-4 px-6 pb-6 min-w-[14rem]"
+                          }`}
+                        >
+                          {item.content?.map((subItem: SubMenuItem) => {
+                            const derivedInitials = subItem.initials ??
+                              subItem.label.split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase();
+
+                            const hasLogo = !!(subItem.logo || subItem.initials || subItem.stack);
+
+                            const logo = (
+                              <span className="flex items-center justify-center">
+                                {subItem.stack ? (
+                                  <span className="flex items-center">
+                                    {subItem.stack.map((stackItem, i) => (
+                                      <Avatar
+                                        key={i}
+                                        className={`w-12 h-12 border-2 border-white ${stackItem.logo ? "bg-transparent" : "bg-primary-800"}`}
+                                        style={{ marginLeft: i === 0 ? 0 : "-10px", zIndex: subItem.stack!.length - i }}
+                                      >
+                                        {stackItem.logo && <AvatarImage src={stackItem.logo} alt={stackItem.initials} className="object-contain p-1" />}
+                                        <AvatarFallback className="bg-primary-800 text-primary-100 text-[0.65rem] font-bold">
+                                          {stackItem.initials}
+                                        </AvatarFallback>
+                                      </Avatar>
+                                    ))}
+                                  </span>
+                                ) : (
+                                  <Avatar className={`w-12 h-12 ${subItem.logo ? "bg-transparent border-none" : "border border-primary-600 bg-primary-800"}`}>
+                                    {subItem.logo && <AvatarImage src={subItem.logo} alt={subItem.label} className="object-contain p-1" />}
+                                    <AvatarFallback className="bg-primary-800 text-primary-100 text-xs font-bold">
+                                      {derivedInitials}
+                                    </AvatarFallback>
+                                  </Avatar>
+                                )}
+                              </span>
+                            );
+
+                            const linkClass = isGrid
+                              ? `flex flex-col items-center justify-start gap-2 text-center text-[0.8rem] ${linkTextColor} font-medium rounded-lg p-3 hover:bg-transparent transition-colors duration-200 min-h-[5.5rem]`
+                              : `flex items-center gap-3 text-[1rem] ${linkTextColor} font-medium rounded-lg py-1 px-1`;
+
+                            return (
+                              <NavigationMenuLink
                                 key={subItem.id}
-                                href={subItem.url}
-                                className={`block text-[1rem] ${linkTextColor} font-medium rounded-lg p-[0.2rem] hover:underline hover:underline-offset-4 hover:decoration-2`}
-                                aria-label={subItem.label}
+                                className="w-full"
+                                asChild
                               >
-                                {subItem.label}
-                              </Link>
-                            )}
-                          </NavigationMenuLink>
-                        );
-                      })}
-                    </NavigationMenuContent>
+                                {subItem.external || subItem.url.includes("#") ? (
+                                  <a
+                                    href={subItem.url}
+                                    className={linkClass}
+                                    aria-label={subItem.label}
+                                    {...(subItem.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                  >
+                                    {hasLogo && logo}
+                                    <span className="hover:underline hover:underline-offset-4 hover:decoration-2 leading-tight">{subItem.label}</span>
+                                  </a>
+                                ) : (
+                                  <Link
+                                    href={subItem.url}
+                                    className={linkClass}
+                                    aria-label={subItem.label}
+                                  >
+                                    {hasLogo && logo}
+                                    <span className="hover:underline hover:underline-offset-4 hover:decoration-2 leading-tight">{subItem.label}</span>
+                                  </Link>
+                                )}
+                              </NavigationMenuLink>
+                            );
+                          })}
+                        </NavigationMenuContent>
+                      );
+                    })()}
                   </>
                 )}
 
@@ -79,7 +129,7 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                 {!item.content && (
                   <NavigationMenuLink
                     asChild
-                    className={`uppercase bg-transparent font-bold hover:backdrop-blur-md hover:bg-transparent focus:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} font-bold text-sm tracking-wider focus:text-white data-[state=open]:hover:bg-transparent data-[state=open]:text-primary-400 hover:text-primary-400 ${active ? "underline underline-offset-4" : ""}`}
+                    className={`uppercase bg-transparent font-bold hover:text-white hover:bg-transparent focus:bg-transparent active:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} text-sm tracking-wider ${active ? "underline underline-offset-4" : ""}`}
                   >
                     <Link href={item.url}>
                       {item.label}

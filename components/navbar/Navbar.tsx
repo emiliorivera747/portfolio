@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 // External Lib
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 // Next.js
 import Link from "next/link";
@@ -24,6 +25,7 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const [expandedItem, setExpandedItem] = useState<number | null>(null);
   const [logoTextColor, setLogoTextColor] = useState("text-black");
   const [menuTextColor, setMenuTextColor] = useState(
     mode === "light" ? "text-white" : "text-primary-1000"
@@ -82,7 +84,7 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
             aria-controls="menu"
             className={`${
               openMenu ? "open" : ""
-            } z-50 block hamburger justify-end focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-800 focus-visible:rounded`}
+            } z-50 block md:hidden hamburger justify-end focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-800 focus-visible:rounded`}
             onClick={() => setOpenMenu(!openMenu)}
           >
             <span className={`hamburger-top ${hamburgerBgColor}`}></span>
@@ -98,22 +100,67 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
         role="menu"
         aria-hidden={!openMenu}
         aria-label="Main Navigation"
-        className={` ${openMenu ? "open" : ""} fixed z-40 top-0 right-0 ${
+        className={`${openMenu ? "open" : ""} fixed z-40 top-0 right-0 ${
           openMenu ? "flex" : "hidden"
-        } flex flex-col items-center self-end w-full sm:w-80 h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500 bg-black opacity-90 transition-all duration-1000 ease-in-out`}
+        } flex flex-col items-center self-end w-full sm:w-80 h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500 bg-black opacity-90 overflow-y-auto`}
       >
         {menuItems.map((item: MenuItem, index: number) => {
+          const isExpanded = expandedItem === item.id;
           return (
-            <div key={index} className="w-full py-3 text-center">
-              <Link
-                key={item.id}
-                href={item.url}
-                className="block hover:text-zinc-400"
-                aria-label={item.label}
-                onClick={() => setOpenMenu(!openMenu)}
-              >
-                {item.label}
-              </Link>
+            <div key={index} className="w-full">
+              {item.content ? (
+                <>
+                  <button
+                    className="w-full py-3 flex items-center justify-center gap-2 hover:text-zinc-400 text-center"
+                    onClick={() => setExpandedItem(isExpanded ? null : (item.id ?? index))}
+                    aria-expanded={isExpanded}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      className={`h-4 w-4 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  {isExpanded && (
+                    <div className="flex flex-col divide-y divide-gray-700 pb-2">
+                      {item.content.map((subItem) => (
+                        <div key={subItem.id} className="w-full py-2 text-center">
+                          {subItem.external || subItem.url.includes("#") ? (
+                            <a
+                              href={subItem.url}
+                              className="block text-sm text-zinc-300 hover:text-white normal-case tracking-normal"
+                              aria-label={subItem.label}
+                              {...(subItem.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                              onClick={() => setOpenMenu(false)}
+                            >
+                              {subItem.label}
+                            </a>
+                          ) : (
+                            <Link
+                              href={subItem.url}
+                              className="block text-sm text-zinc-300 hover:text-white normal-case tracking-normal"
+                              aria-label={subItem.label}
+                              onClick={() => setOpenMenu(false)}
+                            >
+                              {subItem.label}
+                            </Link>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="py-3 text-center">
+                  <Link
+                    href={item.url}
+                    className="block hover:text-zinc-400"
+                    aria-label={item.label}
+                    onClick={() => setOpenMenu(false)}
+                  >
+                    {item.label}
+                  </Link>
+                </div>
+              )}
             </div>
           );
         })}

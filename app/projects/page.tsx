@@ -7,22 +7,24 @@ import { motion } from "framer-motion";
 const projects = [
   {
     id: 1,
-    title: "Casa Chirilagua",
-    category: "Web Application",
-    description: "Internal management platform for a non-profit in Alexandria, VA.",
-    href: "/casa-chirilagua",
+    title: "Trellis Money",
+    category: "FinTech",
+    description:
+      "Financial platform helping families build wealth and access financial tools.",
+    href: "https://www.trellismoney.com/",
     image:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1701526592/Space_and_Astronomy_Film_Video_Intro_4_iuwnwv.png",
-    internal: true,
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1782445441/TrellisMoneyDashboard_ccvlyj.png",
+    internal: false,
   },
   {
     id: 2,
-    title: "Portfolio Website",
-    category: "Portfolio",
-    description: "Personal portfolio showcasing projects, skills, and experience.",
-    href: "/my-portfolio",
+    title: "Casa Chirilagua",
+    category: "Web Application",
+    description:
+      "Internal management platform for a non-profit in Alexandria, VA.",
+    href: "/casa-chirilagua",
     image:
-      "https://res.cloudinary.com/dcss55nem/image/upload/v1753932226/Screenshot_2025-07-30_at_8.22.13_PM_eu24ir.png",
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1747625338/Screenshot_2025-05-18_at_8.23.36_PM_sqxg9w.png",
     internal: true,
   },
   {
@@ -34,6 +36,17 @@ const projects = [
     image:
       "https://res.cloudinary.com/dcss55nem/image/upload/v1782442242/Screenshot_2026-06-25_at_7.50.20_PM_v5djhd.png",
     internal: false,
+  },
+  {
+    id: 4,
+    title: "Portfolio Website",
+    category: "Portfolio",
+    description:
+      "Personal portfolio showcasing projects, skills, and experience.",
+    href: "/my-portfolio",
+    image:
+      "https://res.cloudinary.com/dcss55nem/image/upload/v1753932226/Screenshot_2025-07-30_at_8.22.13_PM_eu24ir.png",
+    internal: true,
   },
 ];
 
@@ -59,7 +72,12 @@ const ArrowIcon = ({ className }: { className?: string }) => (
     viewBox="0 0 24 24"
     stroke="currentColor"
   >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
   </svg>
 );
 
@@ -80,7 +98,13 @@ const ExternalIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-function ProjectCard({ project, index }: { project: (typeof projects)[number]; index: number }) {
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: (typeof projects)[number];
+  index: number;
+}) {
   const isLast = index === projects.length - 1 && projects.length % 2 !== 0;
 
   const cardInner = (
@@ -115,13 +139,16 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
       {/* Bottom content */}
       <div className="absolute bottom-0 left-0 right-0 p-6">
         <div className="flex items-end justify-between gap-4">
-          <div className="flex-1 min-w-0">
-            <h3 className="text-white font-semibold text-xl leading-snug group-hover:translate-x-1 transition-transform duration-300">
-              {project.title}
-            </h3>
-            <p className="text-primary-500 text-sm mt-1.5 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-              {project.description}
-            </p>
+          <div className="flex items-end gap-3 flex-1 min-w-0">
+            {/* Title + description */}
+            <div className="flex-1 min-w-0">
+              <h3 className="text-white font-semibold text-xl leading-snug group-hover:translate-x-1 transition-transform duration-300">
+                {project.title}
+              </h3>
+              <p className="text-primary-500 text-sm mt-1.5 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                {project.description}
+              </p>
+            </div>
           </div>
 
           <div className="shrink-0">
@@ -165,7 +192,6 @@ export default function Project() {
   return (
     <section className="min-h-screen w-screen bg-white overflow-auto">
       <div className="w-full pt-36 pb-24 px-[8%]">
-
         {/* Header */}
         <motion.div
           {...({
@@ -175,11 +201,12 @@ export default function Project() {
             className: "mb-20",
           } as any)}
         >
-<h1 className="text-5xl sm:text-7xl font-bold text-primary-1000 mt-3 mb-5 tracking-tight">
+          <h1 className="text-5xl sm:text-7xl font-bold text-primary-1000 mt-3 mb-5 tracking-tight">
             Projects
           </h1>
           <p className="text-primary-700 text-base sm:text-lg max-w-lg leading-relaxed font-light">
-            A collection of work spanning web applications, design systems, and community initiatives.
+            A collection of work spanning web applications, design systems, and
+            community initiatives.
           </p>
         </motion.div>
 

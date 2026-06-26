@@ -10,6 +10,9 @@ export interface SubMenuItem {
   label: string;
   url: string;
   external?: boolean;
+  logo?: string;
+  initials?: string;
+  stack?: Array<{ initials: string; logo?: string }>;
 }
 
 export interface NavbarProps {
