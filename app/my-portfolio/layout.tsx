@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Portfolio | Emilio Rivera's Portfolio",
   description:
-    "Emilio created an internal employee web application using MongoDB, Express.js, Node.js, and React to help manage programs for Casa Chirilagua, a non-profit organization based in the City of Alexandria, Virginia",
+    "Explore Emilio Rivera's personal portfolio website — a showcase of his skills, projects, and experience as a Software Engineer.",
 };
 
 import { navBarData } from "@/utils/data/navbar/navbarData";
