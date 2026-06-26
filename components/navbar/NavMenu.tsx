@@ -49,11 +49,12 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                             className="w-[10rem]"
                             asChild
                           >
-                            {subItem.url.includes("#") ? (
+                            {subItem.external || subItem.url.includes("#") ? (
                               <a
                                 href={subItem.url}
                                 className={`block text-[1rem] ${linkTextColor} font-medium rounded-lg p-[0.2rem] hover:underline hover:underline-offset-4 hover:decoration-2`}
                                 aria-label={subItem.label}
+                                {...(subItem.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                               >
                                 {subItem.label}
                               </a>

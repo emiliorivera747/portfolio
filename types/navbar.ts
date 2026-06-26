@@ -9,6 +9,7 @@ export interface SubMenuItem {
   id?: number;
   label: string;
   url: string;
+  external?: boolean;
 }
 
 export interface NavbarProps {

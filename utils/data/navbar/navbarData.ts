@@ -16,6 +16,12 @@ export const navBarData = [
       },
       {
         id: 3,
+        label: "Cipotes Sonriendo Foundation",
+        url: "https://www.cipotessonriendofoundation.org/",
+        external: true,
+      },
+      {
+        id: 4,
         label: "All Projects",
         url: "/projects",
       },
