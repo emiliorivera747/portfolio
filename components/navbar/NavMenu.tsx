@@ -36,7 +36,7 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                 {item.content && (
                   <>
                     <NavigationMenuTrigger
-                      className={`uppercase bg-transparent font-bold hover:text-white hover:bg-transparent focus:bg-transparent active:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} text-sm tracking-wider focus:text-white data-[state=open]:bg-transparent data-[state=open]:text-white ${active ? "underline underline-offset-4" : ""}`}
+                      className={`uppercase bg-transparent font-bold hover:bg-transparent focus:bg-transparent active:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} text-sm tracking-wider focus:text-white data-[state=open]:bg-transparent data-[state=open]:text-white ${active ? "underline underline-offset-4" : ""}`}
                     >
                       {item.label}
                     </NavigationMenuTrigger>
@@ -87,7 +87,7 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                             );
 
                             const linkClass = isGrid
-                              ? `flex flex-col items-center justify-start gap-2 text-center text-[0.8rem] ${linkTextColor} font-medium rounded-lg p-3 hover:bg-transparent transition-colors duration-200 min-h-[5.5rem]`
+                              ? `flex flex-col items-center justify-start gap-2 text-center text-[0.8rem] ${linkTextColor} font-medium rounded-lg p-3 hover:bg-white/15 transition-colors duration-200 min-h-[5.5rem]`
                               : `flex items-center gap-3 text-[1rem] ${linkTextColor} font-medium rounded-lg py-1 px-1`;
 
                             return (
@@ -129,7 +129,7 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                 {!item.content && (
                   <NavigationMenuLink
                     asChild
-                    className={`uppercase bg-transparent font-bold hover:text-white hover:bg-transparent focus:bg-transparent active:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} text-sm tracking-wider ${active ? "underline underline-offset-4" : ""}`}
+                    className={`uppercase bg-transparent font-bold hover:bg-transparent focus:bg-transparent active:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} text-sm tracking-wider ${active ? "underline underline-offset-4" : ""}`}
                   >
                     <Link href={item.url}>
                       {item.label}
