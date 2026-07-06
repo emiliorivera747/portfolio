@@ -101,7 +101,7 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                                     href={subItem.url}
                                     className={linkClass}
                                     aria-label={subItem.label}
-                                    {...(subItem.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                    {...(subItem.external ? { target: "_blank", rel: "noopener" } : {})}
                                   >
                                     {hasLogo && logo}
                                     <span className="hover:underline hover:underline-offset-4 hover:decoration-2 leading-tight">{subItem.label}</span>

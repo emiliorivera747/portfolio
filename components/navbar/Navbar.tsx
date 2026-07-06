@@ -129,7 +129,7 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
                               href={subItem.url}
                               className="block text-sm text-zinc-300 hover:text-white normal-case tracking-normal"
                               aria-label={subItem.label}
-                              {...(subItem.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                              {...(subItem.external ? { target: "_blank", rel: "noopener" } : {})}
                               onClick={() => setOpenMenu(false)}
                             >
                               {subItem.label}

@@ -178,7 +178,7 @@ function ProjectCard({
         <a
           href={project.href}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           className="block h-full w-full"
         >
           {cardInner}
