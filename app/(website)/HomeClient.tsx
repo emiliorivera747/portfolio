@@ -61,12 +61,12 @@ export default function App({
               }
             />
             <ProjectSectionV2
-              url={"https://www.trellismoney.com/"}
+              url={"/trellis-money"}
               title={"Trellis Money"}
               videoUrl={
                 "https://res.cloudinary.com/dxxdfgpdh/video/upload/v1772235119/Portfolio_Video_2_tupy6r.mp4"
               }
-              buttonLabel={"Visit Trellis Money"}
+              buttonLabel={"Learn More"}
               titleClassName="text-2xl sm:text-4xl text-tertiary-1000 font-semibold"
               bgColor="bg-white"
               videoCover="sm:object-cover"

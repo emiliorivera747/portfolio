@@ -48,6 +48,8 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname !== "/about" &&
     request.nextUrl.pathname !== "/casa-chirilagua" &&
     request.nextUrl.pathname !== "/my-portfolio" &&
+    request.nextUrl.pathname !== "/trellis-money" &&
+    request.nextUrl.pathname !== "/cipotes-sonriendo-foundation" &&
     request.nextUrl.pathname !== "/projects" &&
     !request.nextUrl.pathname.startsWith("/posts") &&
     request.nextUrl.pathname !== "/payload-demo" &&

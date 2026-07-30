@@ -11,10 +11,10 @@ const projects = [
     category: "FinTech",
     description:
       "Financial platform helping families build wealth and access financial tools.",
-    href: "https://www.trellismoney.com/",
+    href: "/trellis-money",
     image:
       "https://res.cloudinary.com/dcss55nem/image/upload/v1782445441/TrellisMoneyDashboard_ccvlyj.png",
-    internal: false,
+    internal: true,
   },
   {
     id: 2,
@@ -32,10 +32,10 @@ const projects = [
     title: "Cipotes Sonriendo Foundation",
     category: "Non-Profit",
     description: "Website for the Cipotes Sonriendo Foundation.",
-    href: "https://www.cipotessonriendofoundation.org/",
+    href: "/cipotes-sonriendo-foundation",
     image:
       "https://res.cloudinary.com/dcss55nem/image/upload/v1782442242/Screenshot_2026-06-25_at_7.50.20_PM_v5djhd.png",
-    internal: false,
+    internal: true,
   },
   {
     id: 4,

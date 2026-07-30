@@ -21,16 +21,14 @@ export const navBarData = [
       {
         id: 3,
         label: "Trellis Money",
-        url: "https://www.trellismoney.com/",
-        external: true,
+        url: "/trellis-money",
         initials: "TM",
         logo: "https://res.cloudinary.com/dcss55nem/image/upload/v1782447722/Untitled_design_19_cjgbwd.png",
       },
       {
         id: 4,
         label: "Cipotes Sonriendo Foundation",
-        url: "https://www.cipotessonriendofoundation.org/",
-        external: true,
+        url: "/cipotes-sonriendo-foundation",
         initials: "CS",
         logo: "https://res.cloudinary.com/dcss55nem/image/upload/v1782445827/Transparent_Background_Design_8_u5ztu4.png",
       },

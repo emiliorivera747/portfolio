@@ -12,7 +12,7 @@ const TestimonialCard = ({ testimonial }: { testimonial: TestimonialItem }) => {
   return (
     <blockquote className="px-6 pt-10 md:px-18 flex md:flex-col flex-col h-auto gap-1 sm:pt-2">
       <h2 className="text-base md:text-xl leading-loose tracking-wider md:mx-52 md:pt-8 md:pb-2 flex rounded font-extralight">
-        <p className="text-zinc-700 px-2 flex text-center justify-center items-center leading-loose tracking-wider font-thin ">
+        <p className="text-zinc-500 px-2 flex text-center justify-center items-center leading-loose tracking-wider font-thin ">
           {testimonial.quote}
         </p>
       </h2>
@@ -34,15 +34,15 @@ const TestimonialCard = ({ testimonial }: { testimonial: TestimonialItem }) => {
             {testimonial.linkUrl ? (
               <Link
                 href={testimonial.linkUrl}
-                className="text-zinc-700 font-bold text-sm hover:underline hover:text-secondary-700"
+                className="text-zinc-600 font-bold text-sm hover:underline hover:text-secondary-700"
               >
                 {testimonial.name}
               </Link>
             ) : (
-              <p className="text-zinc-700 font-bold text-sm">{testimonial.name}</p>
+              <p className="text-zinc-600 font-bold text-sm">{testimonial.name}</p>
             )}
             {testimonial.title && (
-              <p className="text-xs text-zinc-800 text-xs ">
+              <p className="text-xs text-zinc-500 text-xs ">
                 <i>{testimonial.title}</i>
               </p>
             )}
