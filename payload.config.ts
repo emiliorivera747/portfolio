@@ -84,7 +84,7 @@ export default buildConfig({
     },
     schemaName: "payload",
   }),
-  sharp,
+  sharp: sharp as unknown as Parameters<typeof buildConfig>[0]["sharp"],
   plugins: [
     s3Storage({
       collections: {

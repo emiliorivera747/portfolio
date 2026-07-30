@@ -9,9 +9,18 @@ type Args = {
 };
 
 export const generateMetadata = ({ params, searchParams }: Args): Promise<Metadata> =>
-  generatePageMetadata({ config, params, searchParams });
+  generatePageMetadata({
+    config,
+    params,
+    searchParams: searchParams as Promise<{ [key: string]: string | string[] }>,
+  });
 
 const NotFound = ({ params, searchParams }: Args) =>
-  NotFoundPage({ config, params, searchParams, importMap });
+  NotFoundPage({
+    config,
+    params,
+    searchParams: searchParams as Promise<{ [key: string]: string | string[] }>,
+    importMap,
+  });
 
 export default NotFound;
