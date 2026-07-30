@@ -38,7 +38,7 @@ function ToolsSection({
     "bg-gradient-to-r from-[#3b5bdb] to-[#364fc7] text-white";
 
   return (
-    <section className={`min-h-[70vh] h-auto w-screen ${bgColor}`}>
+    <section className={`min-h-[70vh] h-auto w-screen pb-16 ${bgColor}`}>
       {/* Header */}
       <div className="p-10 flex flex-row items-center justify-center pt-20">
         <SecondaryHeader title={"Tools Used"} />

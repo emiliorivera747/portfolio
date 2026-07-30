@@ -1,5 +1,5 @@
 import type { Metadata, ResolvingMetadata } from "next";
-import PostClient from "@/app/posts/[id]/PostClient";
+import PostClient from "@/app/(website)/posts/[id]/PostClient";
 import { blogsServices } from "@/features/blogs/services/blogsServices";
 import { notFound } from "next/navigation";
 interface Props {

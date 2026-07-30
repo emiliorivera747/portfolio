@@ -1,7 +1,13 @@
-import "../styles/globals.css";
+import "../../styles/globals.css";
 import Script from "next/script";
+import { Nunito_Sans } from "next/font/google";
 
 import { Toaster } from "@/components/ui/sonner";
+
+const nunitoSans = Nunito_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
 
 export const metadata = {
   icons: {
@@ -45,7 +51,7 @@ export default function RootLayout({
   gtag('config', 'G-R0GTFSV0LN');`}
             </Script>
           </head>
-          <body>
+          <body className={nunitoSans.className}>
             {children}
             <Toaster />
           </body>

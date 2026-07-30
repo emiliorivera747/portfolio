@@ -50,6 +50,7 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname !== "/my-portfolio" &&
     request.nextUrl.pathname !== "/projects" &&
     !request.nextUrl.pathname.startsWith("/posts") &&
+    request.nextUrl.pathname !== "/payload-demo" &&
     request.nextUrl.pathname !== "/robots.txt" &&
     request.nextUrl.pathname !== "/sitemap.xml"
   ) {

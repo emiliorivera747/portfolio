@@ -13,6 +13,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
       },
+      {
+        protocol: 'https',
+        hostname: '*.amazonaws.com',
+      },
     ],
     formats: ['image/avif', 'image/webp'],
   },
@@ -24,7 +28,11 @@ const nextConfig = {
   },
 };
 
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
+import bundleAnalyzer from '@next/bundle-analyzer';
+import { withPayload } from '@payloadcms/next/withPayload';
+
+const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
-module.exports = withBundleAnalyzer(nextConfig);
+
+export default withPayload(withBundleAnalyzer(nextConfig));
