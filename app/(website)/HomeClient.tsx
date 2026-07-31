@@ -57,12 +57,7 @@ export default function App({
       <AnimatePresence mode="wait">
         <motion.div {...({ className: "h-auto" } as any)}>
           <Page>
-            <PrimaryLandingPageSection
-              videoUrl={
-                heroVideoUrl ||
-                "https://res.cloudinary.com/davx3yyob/video/upload/v1760238501/Portfolio_Video_t0y4tc_ykkaej.mp4"
-              }
-            />
+            <PrimaryLandingPageSection videoUrl={heroVideoUrl} />
             <ProjectSectionV2
               url={"/projects/trellis-money"}
               title={"Trellis Money"}

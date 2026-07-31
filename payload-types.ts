@@ -523,9 +523,9 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface SiteSetting {
   id: number;
   /**
-   * Background video on the homepage hero section. Cloudinary URL (or any direct video URL).
+   * Background video on the homepage hero section. Upload a video file (mp4 recommended). Falls back to the default video if not set.
    */
-  heroVideoUrl: string;
+  heroVideo?: (number | null) | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -534,7 +534,7 @@ export interface SiteSetting {
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
-  heroVideoUrl?: T;
+  heroVideo?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

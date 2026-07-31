@@ -112,12 +112,12 @@ const SiteSettings: GlobalConfig = {
   slug: "site-settings",
   fields: [
     {
-      name: "heroVideoUrl",
-      type: "text",
-      required: true,
+      name: "heroVideo",
+      type: "upload",
+      relationTo: "media",
       admin: {
         description:
-          "Background video on the homepage hero section. Cloudinary URL (or any direct video URL).",
+          "Background video on the homepage hero section. Upload a video file (mp4 recommended). Falls back to the default video if not set.",
       },
     },
   ],
