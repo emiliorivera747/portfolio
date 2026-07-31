@@ -7,6 +7,10 @@ const nextConfig = {
     DATABASE_URL: process.env.DATABASE_URL ?? "",
   },
   reactStrictMode: true,
+  // Sharp ships native .so binaries (libvips) that Next's build tracer can
+  // fail to bundle correctly for serverless deployment — this tells Next to
+  // leave it external instead, so Node's own module resolution handles it.
+  serverExternalPackages: ['sharp'],
   images: {
     remotePatterns: [
       {
