@@ -16,11 +16,6 @@ const Footer = () => {
             Terms of Service
           </a>
         </p>
-        <p className="text-xs mt-3">
-          <a href="/admin/dashboard" className="text-tertiary-500 hover:text-gray-400">
-            Sign In
-          </a>
-        </p>
       </div>
     </footer>
   );

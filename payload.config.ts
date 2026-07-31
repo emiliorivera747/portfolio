@@ -235,6 +235,15 @@ export default buildConfig({
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL,
+      // DATABASE_URL points at Supabase's session-mode pooler, which caps
+      // this project at 15 concurrent sessions total. node-postgres's
+      // default pool max is 10 — uncapped, a single serverless instance
+      // could nearly exhaust that budget on its own, and Vercel can spin up
+      // several instances at once (this is what broke the production
+      // build: a static-generation worker couldn't get a connection).
+      // Keep each instance's footprint small so there's headroom for
+      // concurrent instances plus the app's own Drizzle pool.
+      max: 3,
     },
     schemaName: "payload",
   }),

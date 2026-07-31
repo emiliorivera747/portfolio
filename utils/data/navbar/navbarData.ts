@@ -63,7 +63,7 @@ export const navBarData = [
   },
   {
     id: 6,
-    label: "blog",
-    url: "/posts",
+    label: "Blog",
+    url: "/blog",
   },
 ];
