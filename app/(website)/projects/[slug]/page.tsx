@@ -6,6 +6,8 @@ import ProjectHero from "@/components/project/ProjectHero";
 import ProjectOverview from "@/components/project/ProjectOverview";
 import ProjectGallery from "@/components/project/ProjectGallery";
 import RichText from "@/components/payload/RichText";
+import ToolsSection from "@/components/ToolsSection";
+import { groupToolsByCategory } from "@/lib/tools";
 
 export const revalidate = 3600;
 
@@ -53,6 +55,17 @@ export default async function ProjectPage({
   const project = await getProject(slug);
   if (!project) notFound();
 
+  const payload = await getPayload({ config });
+  const { docs: tools } = await payload.find({
+    collection: "tools",
+    depth: 1,
+    sort: "order",
+    where: { project: { equals: project.id } },
+    limit: 200,
+  });
+  const toolsByCategory = groupToolsByCategory(tools);
+  const hasTools = tools.length > 0;
+
   return (
     <section className="h-screen w-screen overflow-x-hidden bg-white">
       <ProjectHero title={project.title} />
@@ -73,6 +86,20 @@ export default async function ProjectPage({
           paragraph: item.caption ? <RichText data={item.caption} /> : undefined,
         }))}
       />
+
+      {hasTools && (
+        <ToolsSection
+          bgColor="bg-white"
+          frontEndData={toolsByCategory.frontEnd}
+          backEndData={toolsByCategory.backEnd}
+          bothData={toolsByCategory.both}
+          checkWhatDataToShow={{
+            frontEndData: toolsByCategory.frontEnd.length > 0,
+            backEndData: toolsByCategory.backEnd.length > 0,
+            bothData: toolsByCategory.both.length > 0,
+          }}
+        />
+      )}
     </section>
   );
 }

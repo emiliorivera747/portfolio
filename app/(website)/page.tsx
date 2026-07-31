@@ -1,6 +1,7 @@
 import { getPayload } from "payload";
 import config from "@/payload.config";
 import HomeClient from "./HomeClient";
+import { groupToolsByProject } from "@/lib/tools";
 
 export const revalidate = 3600;
 
@@ -21,7 +22,19 @@ export default async function Page() {
   const heroVideoUrl =
     typeof heroVideo === "object" && heroVideo?.url ? heroVideo.url : undefined;
 
+  const { docs: tools } = await payload.find({
+    collection: "tools",
+    depth: 1,
+    sort: "order",
+    limit: 200,
+  });
+  const toolsByProject = groupToolsByProject(tools);
+
   return (
-    <HomeClient testimonials={testimonials} heroVideoUrl={heroVideoUrl} />
+    <HomeClient
+      testimonials={testimonials}
+      heroVideoUrl={heroVideoUrl}
+      toolsByProject={toolsByProject}
+    />
   );
 }

@@ -72,6 +72,7 @@ export interface Config {
     showcase: Showcase;
     testimonials: Testimonial;
     projects: Project;
+    tools: Tool;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +85,7 @@ export interface Config {
     showcase: ShowcaseSelect<false> | ShowcaseSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    tools: ToolsSelect<false> | ToolsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -295,6 +297,34 @@ export interface Project {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools".
+ */
+export interface Tool {
+  id: number;
+  name: string;
+  imageSource: 'url' | 'upload';
+  /**
+   * Image URL for the tool's icon.
+   */
+  imageUrl?: string | null;
+  /**
+   * Upload an icon image instead of using a URL.
+   */
+  image?: (number | null) | Media;
+  /**
+   * Which project's Tools Used section this tool appears in.
+   */
+  project: number | Project;
+  category: 'frontEnd' | 'backEnd' | 'both';
+  /**
+   * Lower numbers show first.
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -336,6 +366,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'projects';
         value: number | Project;
+      } | null)
+    | ({
+        relationTo: 'tools';
+        value: number | Tool;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -472,6 +506,21 @@ export interface ProjectsSelect<T extends boolean = true> {
       };
   showOnHome?: T;
   homeVideoUrl?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tools_select".
+ */
+export interface ToolsSelect<T extends boolean = true> {
+  name?: T;
+  imageSource?: T;
+  imageUrl?: T;
+  image?: T;
+  project?: T;
+  category?: T;
   order?: T;
   updatedAt?: T;
   createdAt?: T;

@@ -24,7 +24,14 @@ function ToolsSection({
   checkWhatDataToShow,
   isLoading = false,
 }: ToolsSectionProps) {
-  const [activeButton, setActiveButton] = useState<string>("Front End");
+  const defaultButton = checkWhatDataToShow.frontEndData
+    ? "Front End"
+    : checkWhatDataToShow.backEndData
+      ? "Back End"
+      : checkWhatDataToShow.bothData
+        ? "Both"
+        : "Front End";
+  const [activeButton, setActiveButton] = useState<string>(defaultButton);
 
   if (isLoading) return <ToolsSectionSkeleton />;
 

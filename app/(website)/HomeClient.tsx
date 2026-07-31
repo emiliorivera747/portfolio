@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import type { Testimonial as TestimonialDoc } from "@/payload-types";
+import type { ToolItem } from "@/types/tools";
 
 // Components - dynamically imported for better performance
 const Testimonial = dynamic(() => import("@/components/Testimonial"), {
@@ -22,9 +23,19 @@ import ProjectSectionV2 from "@/components/ProjectSectionV2";
 import ToolsSection from "@/components/ToolsSection";
 
 // Data
-import { toolsData } from "@/utils/data/tools/allToolsData";
 import { navBarData } from "@/utils/data/navbar/navbarData";
 import Navbar from "@/components/navbar/Navbar";
+
+type ProjectToolsBySlug = Record<
+  string,
+  { frontEnd: ToolItem[]; backEnd: ToolItem[]; both: ToolItem[] }
+>;
+
+const emptyTools: { frontEnd: ToolItem[]; backEnd: ToolItem[]; both: ToolItem[] } = {
+  frontEnd: [],
+  backEnd: [],
+  both: [],
+};
 
 /**
  *  Main App component that wraps around all pages.
@@ -35,10 +46,19 @@ import Navbar from "@/components/navbar/Navbar";
 export default function App({
   testimonials,
   heroVideoUrl,
+  toolsByProject,
 }: {
   testimonials: TestimonialDoc[];
   heroVideoUrl?: string;
+  toolsByProject: ProjectToolsBySlug;
 }) {
+  const myPortfolioTools = toolsByProject["my-portfolio"] ?? emptyTools;
+  const casaChirilaguaTools = toolsByProject["casa-chirilagua"] ?? emptyTools;
+  const trellisMoneyTools = toolsByProject["trellis-money"] ?? emptyTools;
+
+  const hasAnyTools = (t: typeof emptyTools) =>
+    t.frontEnd.length > 0 || t.backEnd.length > 0 || t.both.length > 0;
+
   useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
@@ -69,17 +89,19 @@ export default function App({
               bgColor="bg-white"
               videoCover="sm:object-cover"
             />
-            <ToolsSection
-              frontEndData={toolsData["my-portfolio"].frontEnd}
-              backEndData={toolsData["my-portfolio"].backEnd}
-              bothData={toolsData["my-portfolio"].both}
-              checkWhatDataToShow={{
-                frontEndData: true,
-                backEndData: true,
-                bothData: true,
-              }}
-              bgColor={"bg-white"}
-            />
+            {hasAnyTools(trellisMoneyTools) && (
+              <ToolsSection
+                frontEndData={trellisMoneyTools.frontEnd}
+                backEndData={trellisMoneyTools.backEnd}
+                bothData={trellisMoneyTools.both}
+                checkWhatDataToShow={{
+                  frontEndData: trellisMoneyTools.frontEnd.length > 0,
+                  backEndData: trellisMoneyTools.backEnd.length > 0,
+                  bothData: trellisMoneyTools.both.length > 0,
+                }}
+                bgColor={"bg-white"}
+              />
+            )}
             <div className="w-full border-b border-primary-200 pt-10"></div>
             <ProjectSection
               url={"/projects/casa-chirilagua"}
@@ -95,13 +117,13 @@ export default function App({
               videoCover={"sm:object-cover"}
             />
             <ToolsSection
-              frontEndData={toolsData["casa-chirilagua"].frontEnd}
-              backEndData={toolsData["casa-chirilagua"].backEnd}
-              bothData={toolsData["casa-chirilagua"].both}
+              frontEndData={casaChirilaguaTools.frontEnd}
+              backEndData={casaChirilaguaTools.backEnd}
+              bothData={casaChirilaguaTools.both}
               checkWhatDataToShow={{
-                frontEndData: true,
-                backEndData: true,
-                bothData: true,
+                frontEndData: casaChirilaguaTools.frontEnd.length > 0,
+                backEndData: casaChirilaguaTools.backEnd.length > 0,
+                bothData: casaChirilaguaTools.both.length > 0,
               }}
               bgColor={"bg-white"}
             />
@@ -132,13 +154,13 @@ export default function App({
               bgColor={"bg-white"}
             />
             <ToolsSection
-              frontEndData={toolsData["my-portfolio"].frontEnd}
-              backEndData={toolsData["my-portfolio"].backEnd}
-              bothData={toolsData["my-portfolio"].both}
+              frontEndData={myPortfolioTools.frontEnd}
+              backEndData={myPortfolioTools.backEnd}
+              bothData={myPortfolioTools.both}
               checkWhatDataToShow={{
-                frontEndData: true,
-                backEndData: true,
-                bothData: true,
+                frontEndData: myPortfolioTools.frontEnd.length > 0,
+                backEndData: myPortfolioTools.backEnd.length > 0,
+                bothData: myPortfolioTools.both.length > 0,
               }}
               bgColor={"bg-white"}
             />

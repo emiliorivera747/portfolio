@@ -42,7 +42,7 @@ const Showcase: CollectionConfig = {
 // Powers the "Client Testimonials" section on the real homepage.
 const Testimonials: CollectionConfig = {
   slug: "testimonials",
-  admin: { useAsTitle: "name" },
+  admin: { useAsTitle: "name", group: "Home Page" },
   defaultSort: "order",
   fields: [
     { name: "quote", type: "textarea", required: true },
@@ -63,7 +63,7 @@ const Testimonials: CollectionConfig = {
 // Powers the /projects grid and each project's /projects/[slug] case-study page.
 const Projects: CollectionConfig = {
   slug: "projects",
-  admin: { useAsTitle: "title" },
+  admin: { useAsTitle: "title", group: "Projects" },
   defaultSort: "order",
   fields: [
     { name: "title", type: "text", required: true },
@@ -106,10 +106,87 @@ const Projects: CollectionConfig = {
   ],
 };
 
+// Powers the "Tools Used" section under each project row on the homepage.
+const Tools: CollectionConfig = {
+  slug: "tools",
+  admin: {
+    useAsTitle: "name",
+    group: "Home Page",
+    defaultColumns: ["name", "project", "category", "order"],
+  },
+  defaultSort: "order",
+  fields: [
+    { name: "name", type: "text", required: true },
+    {
+      name: "imageSource",
+      type: "radio",
+      required: true,
+      defaultValue: "url",
+      options: [
+        { label: "Image URL", value: "url" },
+        { label: "Upload", value: "upload" },
+      ],
+      admin: { layout: "horizontal" },
+    },
+    {
+      // Cloudinary (or other) URL — same convention as Project.cardImage.
+      name: "imageUrl",
+      type: "text",
+      admin: {
+        condition: (_, siblingData) => siblingData?.imageSource !== "upload",
+        description: "Image URL for the tool's icon.",
+      },
+      validate: (value: string | null | undefined, { siblingData }: any) =>
+        siblingData?.imageSource === "upload" || value
+          ? true
+          : "Image URL is required unless you upload an image.",
+    },
+    {
+      name: "image",
+      type: "upload",
+      relationTo: "media",
+      admin: {
+        condition: (_, siblingData) => siblingData?.imageSource === "upload",
+        description: "Upload an icon image instead of using a URL.",
+      },
+      validate: ((value: unknown, { siblingData }: any) =>
+        siblingData?.imageSource !== "upload" || value
+          ? true
+          : "An uploaded image is required when using upload mode.") as any,
+    },
+    {
+      name: "project",
+      type: "relationship",
+      relationTo: "projects",
+      required: true,
+      admin: {
+        description: "Which project's Tools Used section this tool appears in.",
+      },
+    },
+    {
+      name: "category",
+      type: "select",
+      required: true,
+      options: [
+        { label: "Front End", value: "frontEnd" },
+        { label: "Back End", value: "backEnd" },
+        { label: "Both", value: "both" },
+      ],
+    },
+    {
+      name: "order",
+      type: "number",
+      defaultValue: 0,
+      admin: { description: "Lower numbers show first." },
+    },
+  ],
+};
+
 // Singleton site-wide settings, starting with the homepage hero's
 // background video (currently hardcoded in HomeClient.tsx).
 const SiteSettings: GlobalConfig = {
   slug: "site-settings",
+  admin: { group: "Home Page" },
   fields: [
     {
       name: "heroVideo",
@@ -139,7 +216,7 @@ export default buildConfig({
   // configured either. The result was a bare relative path in the reset
   // email, which mail clients then mangled into an invalid "http:///" URL.
   serverURL: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
-  collections: [Users, Media, Showcase, Testimonials, Projects],
+  collections: [Users, Media, Showcase, Testimonials, Projects, Tools],
   globals: [SiteSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
