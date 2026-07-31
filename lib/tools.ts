@@ -1,4 +1,4 @@
-import type { Tool, Project } from "@/payload-types";
+import type { Project } from "@/payload-types";
 import type { ToolItem } from "@/types/tools";
 
 export type ToolsByCategory = {
@@ -7,11 +7,13 @@ export type ToolsByCategory = {
   both: ToolItem[];
 };
 
+type ProjectToolEntry = NonNullable<Project["frontEndTools"]>[number];
+
 function emptyToolsByCategory(): ToolsByCategory {
   return { frontEnd: [], backEnd: [], both: [] };
 }
 
-export function resolveToolImageUrl(tool: Tool): string {
+export function resolveToolImageUrl(tool: ProjectToolEntry): string {
   if (tool.imageSource === "upload") {
     return typeof tool.image === "object" && tool.image?.url
       ? tool.image.url
@@ -20,31 +22,27 @@ export function resolveToolImageUrl(tool: Tool): string {
   return tool.imageUrl ?? "";
 }
 
-export function groupToolsByCategory(tools: Tool[]): ToolsByCategory {
-  const grouped = emptyToolsByCategory();
-  for (const tool of tools) {
-    grouped[tool.category].push({
-      name: tool.name,
-      imageUrl: resolveToolImageUrl(tool),
-    });
-  }
-  return grouped;
+function toToolItems(entries: ProjectToolEntry[] | null | undefined): ToolItem[] {
+  return (entries ?? []).map((tool) => ({
+    name: tool.name,
+    imageUrl: resolveToolImageUrl(tool),
+  }));
+}
+
+export function getProjectTools(project: Project): ToolsByCategory {
+  return {
+    frontEnd: toToolItems(project.frontEndTools),
+    backEnd: toToolItems(project.backEndTools),
+    both: toToolItems(project.bothTools),
+  };
 }
 
 export function groupToolsByProject(
-  tools: Tool[]
+  projects: Project[]
 ): Record<string, ToolsByCategory> {
   const byProject: Record<string, ToolsByCategory> = {};
-  for (const tool of tools) {
-    const project = tool.project as number | Project;
-    const slug = typeof project === "object" ? project.slug : undefined;
-    if (!slug) continue;
-
-    if (!byProject[slug]) byProject[slug] = emptyToolsByCategory();
-    byProject[slug][tool.category].push({
-      name: tool.name,
-      imageUrl: resolveToolImageUrl(tool),
-    });
+  for (const project of projects) {
+    byProject[project.slug] = getProjectTools(project);
   }
   return byProject;
 }

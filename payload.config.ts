@@ -5,10 +5,55 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { s3Storage } from "@payloadcms/storage-s3";
 import { resendAdapter } from "@payloadcms/email-resend";
 import { buildConfig } from "payload";
-import type { CollectionConfig, GlobalConfig } from "payload";
+import type { CollectionConfig, Field, GlobalConfig } from "payload";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+
+// Shared shape for one entry in a project's Front End / Back End / Both
+// tools array — lets each tool either link a Cloudinary (or other) URL or
+// upload an image straight into Media.
+function toolItemFields(): Field[] {
+  return [
+    { name: "name", type: "text", required: true },
+    {
+      name: "imageSource",
+      type: "radio",
+      required: true,
+      defaultValue: "url",
+      options: [
+        { label: "Image URL", value: "url" },
+        { label: "Upload", value: "upload" },
+      ],
+      admin: { layout: "horizontal" },
+    },
+    {
+      name: "imageUrl",
+      type: "text",
+      admin: {
+        condition: (_, siblingData) => siblingData?.imageSource !== "upload",
+        description: "Image URL for the tool's icon.",
+      },
+      validate: (value: string | null | undefined, { siblingData }: any) =>
+        siblingData?.imageSource === "upload" || value
+          ? true
+          : "Image URL is required unless you upload an image.",
+    },
+    {
+      name: "image",
+      type: "upload",
+      relationTo: "media",
+      admin: {
+        condition: (_, siblingData) => siblingData?.imageSource === "upload",
+        description: "Upload an icon image instead of using a URL.",
+      },
+      validate: ((value: unknown, { siblingData }: any) =>
+        siblingData?.imageSource !== "upload" || value
+          ? true
+          : "An uploaded image is required when using upload mode.") as any,
+    },
+  ];
+}
 
 // Payload's own admin-user auth, intentionally separate from the app's Supabase users.
 const Users: CollectionConfig = {
@@ -103,81 +148,48 @@ const Projects: CollectionConfig = {
       defaultValue: 0,
       admin: { description: "Lower numbers show first." },
     },
-  ],
-};
-
-// Powers the "Tools Used" section under each project row on the homepage.
-const Tools: CollectionConfig = {
-  slug: "tools",
-  admin: {
-    useAsTitle: "name",
-    group: "Home Page",
-    defaultColumns: ["name", "project", "category", "order"],
-  },
-  defaultSort: "order",
-  fields: [
-    { name: "name", type: "text", required: true },
+    // Powers this project's "Tools Used" section (shown on both the
+    // homepage and this project's own page) — grouped into tabs so editing
+    // a project's tools means picking Front End / Back End / Both and
+    // managing that array directly, instead of jumping to a separate
+    // collection and filtering by project + category.
     {
-      name: "imageSource",
-      type: "radio",
-      required: true,
-      defaultValue: "url",
-      options: [
-        { label: "Image URL", value: "url" },
-        { label: "Upload", value: "upload" },
+      type: "tabs",
+      tabs: [
+        {
+          label: "Front End Tools",
+          fields: [
+            {
+              name: "frontEndTools",
+              type: "array",
+              labels: { singular: "Tool", plural: "Tools" },
+              fields: toolItemFields(),
+            },
+          ],
+        },
+        {
+          label: "Back End Tools",
+          fields: [
+            {
+              name: "backEndTools",
+              type: "array",
+              labels: { singular: "Tool", plural: "Tools" },
+              fields: toolItemFields(),
+            },
+          ],
+        },
+        {
+          label: "Both Tools",
+          fields: [
+            {
+              name: "bothTools",
+              type: "array",
+              labels: { singular: "Tool", plural: "Tools" },
+              fields: toolItemFields(),
+            },
+          ],
+        },
       ],
-      admin: { layout: "horizontal" },
-    },
-    {
-      // Cloudinary (or other) URL — same convention as Project.cardImage.
-      name: "imageUrl",
-      type: "text",
-      admin: {
-        condition: (_, siblingData) => siblingData?.imageSource !== "upload",
-        description: "Image URL for the tool's icon.",
-      },
-      validate: (value: string | null | undefined, { siblingData }: any) =>
-        siblingData?.imageSource === "upload" || value
-          ? true
-          : "Image URL is required unless you upload an image.",
-    },
-    {
-      name: "image",
-      type: "upload",
-      relationTo: "media",
-      admin: {
-        condition: (_, siblingData) => siblingData?.imageSource === "upload",
-        description: "Upload an icon image instead of using a URL.",
-      },
-      validate: ((value: unknown, { siblingData }: any) =>
-        siblingData?.imageSource !== "upload" || value
-          ? true
-          : "An uploaded image is required when using upload mode.") as any,
-    },
-    {
-      name: "project",
-      type: "relationship",
-      relationTo: "projects",
-      required: true,
-      admin: {
-        description: "Which project's Tools Used section this tool appears in.",
-      },
-    },
-    {
-      name: "category",
-      type: "select",
-      required: true,
-      options: [
-        { label: "Front End", value: "frontEnd" },
-        { label: "Back End", value: "backEnd" },
-        { label: "Both", value: "both" },
-      ],
-    },
-    {
-      name: "order",
-      type: "number",
-      defaultValue: 0,
-      admin: { description: "Lower numbers show first." },
     },
   ],
 };
@@ -216,7 +228,7 @@ export default buildConfig({
   // configured either. The result was a bare relative path in the reset
   // email, which mail clients then mangled into an invalid "http:///" URL.
   serverURL: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
-  collections: [Users, Media, Showcase, Testimonials, Projects, Tools],
+  collections: [Users, Media, Showcase, Testimonials, Projects],
   globals: [SiteSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

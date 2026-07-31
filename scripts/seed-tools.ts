@@ -25,9 +25,10 @@ type SeedTool = {
   imageUrl: string;
   projectSlug: string;
   category: "frontEnd" | "backEnd" | "both";
-  order: number;
 };
 
+// Tools are seeded into each project's frontEndTools/backEndTools/bothTools
+// array fields (in this listed order), rather than as separate documents.
 const tools: SeedTool[] = [
   // casa-chirilagua — Front End
   {
@@ -36,7 +37,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/react.png",
     projectSlug: "casa-chirilagua",
     category: "frontEnd",
-    order: 0,
   },
   {
     name: "Tailwind",
@@ -44,7 +44,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/tailwind.png",
     projectSlug: "casa-chirilagua",
     category: "frontEnd",
-    order: 1,
   },
   {
     name: "Sass",
@@ -52,7 +51,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/sass.png",
     projectSlug: "casa-chirilagua",
     category: "frontEnd",
-    order: 2,
   },
   {
     name: "Figma",
@@ -60,7 +58,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1724544103/figma.jpg",
     projectSlug: "casa-chirilagua",
     category: "frontEnd",
-    order: 3,
   },
   {
     name: "Redux Tool Kit",
@@ -68,7 +65,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/Redux.png",
     projectSlug: "casa-chirilagua",
     category: "frontEnd",
-    order: 4,
   },
   {
     name: "CSS",
@@ -76,7 +72,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032024/css.png",
     projectSlug: "casa-chirilagua",
     category: "frontEnd",
-    order: 5,
   },
   {
     name: "HTML",
@@ -84,7 +79,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/HTML.png",
     projectSlug: "casa-chirilagua",
     category: "frontEnd",
-    order: 6,
   },
   // casa-chirilagua — Back End
   {
@@ -93,7 +87,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/21_cwuqxj.png",
     projectSlug: "casa-chirilagua",
     category: "backEnd",
-    order: 0,
   },
   {
     name: "Node.js",
@@ -101,7 +94,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/nodejs.png",
     projectSlug: "casa-chirilagua",
     category: "backEnd",
-    order: 1,
   },
   {
     name: "MongoDB",
@@ -109,7 +101,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/mongoDB.png",
     projectSlug: "casa-chirilagua",
     category: "backEnd",
-    order: 2,
   },
   {
     name: "Mongoose",
@@ -117,7 +108,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1747623658/mongoose_cchiii.png",
     projectSlug: "casa-chirilagua",
     category: "backEnd",
-    order: 3,
   },
   {
     name: "Postman",
@@ -125,7 +115,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032032/postman.png",
     projectSlug: "casa-chirilagua",
     category: "backEnd",
-    order: 4,
   },
   // casa-chirilagua — Both
   {
@@ -134,7 +123,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032028/auth0.png",
     projectSlug: "casa-chirilagua",
     category: "both",
-    order: 0,
   },
   {
     name: "JavaScript",
@@ -142,7 +130,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032031/javascript.png",
     projectSlug: "casa-chirilagua",
     category: "both",
-    order: 1,
   },
   {
     name: "Cloudinary",
@@ -150,7 +137,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1700277363/samples/cloudinary-icon.png",
     projectSlug: "casa-chirilagua",
     category: "both",
-    order: 2,
   },
   {
     name: "GitHub",
@@ -158,7 +144,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1724547300/Github.jpg",
     projectSlug: "casa-chirilagua",
     category: "both",
-    order: 3,
   },
   {
     name: "Heroku",
@@ -166,7 +151,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1724547303/heroku.jpg",
     projectSlug: "casa-chirilagua",
     category: "both",
-    order: 4,
   },
   // my-portfolio — Front End
   {
@@ -175,7 +159,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701048415/nextjs-black.png",
     projectSlug: "my-portfolio",
     category: "frontEnd",
-    order: 0,
   },
   {
     name: "React",
@@ -183,7 +166,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/react.png",
     projectSlug: "my-portfolio",
     category: "frontEnd",
-    order: 1,
   },
   {
     name: "Google Analytics",
@@ -191,7 +173,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1754260222/Google_Analytics_zer4br.png",
     projectSlug: "my-portfolio",
     category: "frontEnd",
-    order: 2,
   },
   {
     name: "Tailwind",
@@ -199,7 +180,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/tailwind.png",
     projectSlug: "my-portfolio",
     category: "frontEnd",
-    order: 3,
   },
   {
     name: "Sass",
@@ -207,7 +187,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032021/sass.png",
     projectSlug: "my-portfolio",
     category: "frontEnd",
-    order: 4,
   },
   {
     name: "GitHub",
@@ -215,7 +194,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1724547300/Github.jpg",
     projectSlug: "my-portfolio",
     category: "frontEnd",
-    order: 5,
   },
   {
     name: "HTML",
@@ -223,7 +201,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032025/HTML.png",
     projectSlug: "my-portfolio",
     category: "frontEnd",
-    order: 6,
   },
   {
     name: "Cloudinary",
@@ -231,7 +208,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1700277363/samples/cloudinary-icon.png",
     projectSlug: "my-portfolio",
     category: "frontEnd",
-    order: 7,
   },
   // my-portfolio — Back End
   {
@@ -240,7 +216,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1758909388/PgAdmin_qhjyuf.svg",
     projectSlug: "my-portfolio",
     category: "backEnd",
-    order: 0,
   },
   {
     name: "Next.js",
@@ -248,7 +223,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701048415/nextjs-black.png",
     projectSlug: "my-portfolio",
     category: "backEnd",
-    order: 1,
   },
   {
     name: "PostgreSQL",
@@ -256,7 +230,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1758909501/PostgreSQL_esvzut.svg",
     projectSlug: "my-portfolio",
     category: "backEnd",
-    order: 2,
   },
   {
     name: "Prisma",
@@ -264,7 +237,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1758908682/PostgreSQL_1_vg0yyt.svg",
     projectSlug: "my-portfolio",
     category: "backEnd",
-    order: 3,
   },
   {
     name: "Postman",
@@ -272,7 +244,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032032/postman.png",
     projectSlug: "my-portfolio",
     category: "backEnd",
-    order: 4,
   },
   // my-portfolio — Both
   {
@@ -281,7 +252,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1758909397/Supabase_ultsfo.svg",
     projectSlug: "my-portfolio",
     category: "both",
-    order: 0,
   },
   {
     name: "JavaScript",
@@ -289,7 +259,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1701032031/javascript.png",
     projectSlug: "my-portfolio",
     category: "both",
-    order: 1,
   },
   {
     name: "GitHub",
@@ -297,7 +266,6 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1724547300/Github.jpg",
     projectSlug: "my-portfolio",
     category: "both",
-    order: 2,
   },
   {
     name: "AWS Amplify",
@@ -305,62 +273,69 @@ const tools: SeedTool[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1758909382/Amplify_zk384x.svg",
     projectSlug: "my-portfolio",
     category: "both",
-    order: 3,
   },
 ];
+
+const categoryField = {
+  frontEnd: "frontEndTools",
+  backEnd: "backEndTools",
+  both: "bothTools",
+} as const;
 
 async function seed() {
   const { default: config } = await import("../payload.config");
   const payload = await getPayload({ config });
 
-  const projectIdBySlug = new Map<string, number>();
-
+  const toolsBySlug = new Map<string, SeedTool[]>();
   for (const tool of tools) {
-    let projectId = projectIdBySlug.get(tool.projectSlug);
-    if (projectId === undefined) {
-      const { docs } = await payload.find({
-        collection: "projects",
-        where: { slug: { equals: tool.projectSlug } },
-        limit: 1,
-      });
-      if (docs.length === 0) {
-        console.log(
-          `Skipping "${tool.name}" — no project found with slug "${tool.projectSlug}". Run scripts/seed-projects.ts first.`
-        );
-        continue;
-      }
-      projectId = docs[0].id;
-      projectIdBySlug.set(tool.projectSlug, projectId);
-    }
+    if (!toolsBySlug.has(tool.projectSlug)) toolsBySlug.set(tool.projectSlug, []);
+    toolsBySlug.get(tool.projectSlug)!.push(tool);
+  }
 
-    const existing = await payload.find({
-      collection: "tools",
-      where: {
-        and: [
-          { name: { equals: tool.name } },
-          { project: { equals: projectId } },
-          { category: { equals: tool.category } },
-        ],
-      },
+  for (const [slug, slugTools] of toolsBySlug) {
+    const { docs } = await payload.find({
+      collection: "projects",
+      where: { slug: { equals: slug } },
       limit: 1,
     });
-    if (existing.docs.length > 0) {
-      console.log(`Skipping "${tool.name}" (${tool.projectSlug}/${tool.category}) — already seeded.`);
+    if (docs.length === 0) {
+      console.log(
+        `Skipping "${slug}" — no project found with that slug. Run scripts/seed-projects.ts first.`
+      );
+      continue;
+    }
+    const project = docs[0] as unknown as Record<string, unknown>;
+
+    const data: Record<string, unknown> = {};
+    for (const category of ["frontEnd", "backEnd", "both"] as const) {
+      const fieldName = categoryField[category];
+      const existing = (project[fieldName] as unknown[] | null | undefined) ?? [];
+      if (existing.length > 0) {
+        console.log(`Skipping ${slug}/${category} — already has ${existing.length} tool(s).`);
+        continue;
+      }
+
+      const entries = slugTools.filter((tool) => tool.category === category);
+      if (entries.length === 0) continue;
+
+      data[fieldName] = entries.map((tool) => ({
+        name: tool.name,
+        imageSource: "url" as const,
+        imageUrl: tool.imageUrl,
+      }));
+    }
+
+    if (Object.keys(data).length === 0) {
+      console.log(`Nothing to seed for "${slug}".`);
       continue;
     }
 
-    await payload.create({
-      collection: "tools",
-      data: {
-        name: tool.name,
-        imageSource: "url",
-        imageUrl: tool.imageUrl,
-        project: projectId,
-        category: tool.category,
-        order: tool.order,
-      },
+    await payload.update({
+      collection: "projects",
+      id: project.id as number,
+      data,
     });
-    console.log(`Created tool: ${tool.name} (${tool.projectSlug}/${tool.category})`);
+    console.log(`Updated tools for "${slug}": ${Object.keys(data).join(", ")}`);
   }
 
   process.exit(0);

@@ -22,13 +22,12 @@ export default async function Page() {
   const heroVideoUrl =
     typeof heroVideo === "object" && heroVideo?.url ? heroVideo.url : undefined;
 
-  const { docs: tools } = await payload.find({
-    collection: "tools",
+  const { docs: projects } = await payload.find({
+    collection: "projects",
     depth: 1,
-    sort: "order",
     limit: 200,
   });
-  const toolsByProject = groupToolsByProject(tools);
+  const toolsByProject = groupToolsByProject(projects);
 
   return (
     <HomeClient

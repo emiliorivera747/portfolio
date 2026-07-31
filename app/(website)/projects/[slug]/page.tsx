@@ -7,7 +7,7 @@ import ProjectOverview from "@/components/project/ProjectOverview";
 import ProjectGallery from "@/components/project/ProjectGallery";
 import RichText from "@/components/payload/RichText";
 import ToolsSection from "@/components/ToolsSection";
-import { groupToolsByCategory } from "@/lib/tools";
+import { getProjectTools } from "@/lib/tools";
 
 export const revalidate = 3600;
 
@@ -15,6 +15,7 @@ async function getProject(slug: string) {
   const payload = await getPayload({ config });
   const { docs } = await payload.find({
     collection: "projects",
+    depth: 1,
     where: { slug: { equals: slug } },
     limit: 1,
   });
@@ -55,16 +56,11 @@ export default async function ProjectPage({
   const project = await getProject(slug);
   if (!project) notFound();
 
-  const payload = await getPayload({ config });
-  const { docs: tools } = await payload.find({
-    collection: "tools",
-    depth: 1,
-    sort: "order",
-    where: { project: { equals: project.id } },
-    limit: 200,
-  });
-  const toolsByCategory = groupToolsByCategory(tools);
-  const hasTools = tools.length > 0;
+  const toolsByCategory = getProjectTools(project);
+  const hasTools =
+    toolsByCategory.frontEnd.length > 0 ||
+    toolsByCategory.backEnd.length > 0 ||
+    toolsByCategory.both.length > 0;
 
   return (
     <section className="h-screen w-screen overflow-x-hidden bg-white">
