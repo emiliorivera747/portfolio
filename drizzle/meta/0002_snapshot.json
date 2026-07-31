@@ -1,78 +1,9 @@
 {
+  "id": "8f1ca160-9a25-4a3b-99c3-c0b047d28ed4",
+  "prevId": "af5e62aa-3e42-47a2-8653-7115bd8698cf",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.Comment": {
-      "name": "Comment",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "content": {
-          "name": "content",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "email": {
-          "name": "email",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp (3) with time zone",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp (3) with time zone",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "post_id": {
-          "name": "post_id",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "Comment_post_id_Post_id_fk": {
-          "name": "Comment_post_id_Post_id_fk",
-          "tableFrom": "Comment",
-          "columnsFrom": [
-            "post_id"
-          ],
-          "tableTo": "Post",
-          "columnsTo": [
-            "id"
-          ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "isRLSEnabled": false,
-      "checkConstraints": {}
-    },
     "public.ContentBlock": {
       "name": "ContentBlock",
       "schema": "",
@@ -135,30 +66,30 @@
         "ContentBlock_post_id_Post_id_fk": {
           "name": "ContentBlock_post_id_Post_id_fk",
           "tableFrom": "ContentBlock",
+          "tableTo": "Post",
           "columnsFrom": [
             "post_id"
           ],
-          "tableTo": "Post",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "ContentBlock_media_id_unique": {
           "name": "ContentBlock_media_id_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "media_id"
-          ],
-          "nullsNotDistinct": false
+          ]
         }
       },
       "policies": {},
-      "isRLSEnabled": false,
-      "checkConstraints": {}
+      "checkConstraints": {},
+      "isRLSEnabled": false
     },
     "public.Media": {
       "name": "Media",
@@ -230,6 +161,7 @@
       },
       "indexes": {
         "Media_provider_asset_id_idx": {
+          "name": "Media_provider_asset_id_idx",
           "columns": [
             {
               "expression": "provider_asset_id",
@@ -238,11 +170,10 @@
               "nulls": "last"
             }
           ],
-          "with": {},
-          "name": "Media_provider_asset_id_idx",
           "isUnique": false,
+          "concurrently": false,
           "method": "btree",
-          "concurrently": false
+          "with": {}
         }
       },
       "foreignKeys": {},
@@ -250,77 +181,15 @@
       "uniqueConstraints": {
         "Media_file_hash_unique": {
           "name": "Media_file_hash_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "file_hash"
-          ],
-          "nullsNotDistinct": false
+          ]
         }
       },
       "policies": {},
-      "isRLSEnabled": false,
-      "checkConstraints": {}
-    },
-    "public.PendingComment": {
-      "name": "PendingComment",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "content": {
-          "name": "content",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "email": {
-          "name": "email",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "name": {
-          "name": "name",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "post_id": {
-          "name": "post_id",
-          "type": "varchar(255)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "verification_code": {
-          "name": "verification_code",
-          "type": "varchar(6)",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "verification_expires_at": {
-          "name": "verification_expires_at",
-          "type": "timestamp (3) with time zone",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp (3) with time zone",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "isRLSEnabled": false,
-      "checkConstraints": {}
+      "checkConstraints": {},
+      "isRLSEnabled": false
     },
     "public.PostTag": {
       "name": "PostTag",
@@ -344,28 +213,28 @@
         "PostTag_post_id_Post_id_fk": {
           "name": "PostTag_post_id_Post_id_fk",
           "tableFrom": "PostTag",
+          "tableTo": "Post",
           "columnsFrom": [
             "post_id"
           ],
-          "tableTo": "Post",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         },
         "PostTag_tag_id_Tag_id_fk": {
           "name": "PostTag_tag_id_Tag_id_fk",
           "tableFrom": "PostTag",
+          "tableTo": "Tag",
           "columnsFrom": [
             "tag_id"
           ],
-          "tableTo": "Tag",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {
@@ -379,8 +248,8 @@
       },
       "uniqueConstraints": {},
       "policies": {},
-      "isRLSEnabled": false,
-      "checkConstraints": {}
+      "checkConstraints": {},
+      "isRLSEnabled": false
     },
     "public.Post": {
       "name": "Post",
@@ -437,22 +306,22 @@
         "Post_user_id_User_user_id_fk": {
           "name": "Post_user_id_User_user_id_fk",
           "tableFrom": "Post",
+          "tableTo": "User",
           "columnsFrom": [
             "user_id"
           ],
-          "tableTo": "User",
           "columnsTo": [
             "user_id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
       "policies": {},
-      "isRLSEnabled": false,
-      "checkConstraints": {}
+      "checkConstraints": {},
+      "isRLSEnabled": false
     },
     "public.Tag": {
       "name": "Tag",
@@ -477,15 +346,15 @@
       "uniqueConstraints": {
         "Tag_name_unique": {
           "name": "Tag_name_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "name"
-          ],
-          "nullsNotDistinct": false
+          ]
         }
       },
       "policies": {},
-      "isRLSEnabled": false,
-      "checkConstraints": {}
+      "checkConstraints": {},
+      "isRLSEnabled": false
     },
     "public.User": {
       "name": "User",
@@ -551,22 +420,22 @@
       "uniqueConstraints": {
         "User_email_unique": {
           "name": "User_email_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "email"
-          ],
-          "nullsNotDistinct": false
+          ]
         },
         "User_user_id_unique": {
           "name": "User_user_id_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "user_id"
-          ],
-          "nullsNotDistinct": false
+          ]
         }
       },
       "policies": {},
-      "isRLSEnabled": false,
-      "checkConstraints": {}
+      "checkConstraints": {},
+      "isRLSEnabled": false
     }
   },
   "enums": {
@@ -583,15 +452,13 @@
     }
   },
   "schemas": {},
-  "_meta": {
-    "schemas": {},
-    "tables": {},
-    "columns": {}
-  },
-  "id": "af5e62aa-3e42-47a2-8653-7115bd8698cf",
-  "prevId": "ac0d6274-ab10-4e30-89b2-3c68b75cd1f1",
   "sequences": {},
+  "roles": {},
   "policies": {},
   "views": {},
-  "roles": {}
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
 }

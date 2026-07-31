@@ -43,7 +43,7 @@ const ImageBlock = ({ block }: { block: ContentBlock }) => {
 
   return (
     <CldUploadWidget
-      signatureEndpoint="/api/sign-cloudinary-params"
+      signatureEndpoint="/api/utils/sign-cloudinary-params"
       onSuccess={handleUploadSuccess}
     >
       {({ open }) => (

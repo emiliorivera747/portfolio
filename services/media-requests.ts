@@ -10,7 +10,7 @@ const saveMedia = async (data: Media) => {
   if (!API_URL || typeof API_URL !== "string") {
     throw new Error("Invalid or undefined API_URL");
   }
-  const res = await fetch(`${API_URL}/save-remote-media`, {
+  const res = await fetch(`${API_URL}/utils/save-remote-media`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...data }),

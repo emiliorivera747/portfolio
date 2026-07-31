@@ -47,7 +47,7 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
     const formData = new FormData(e.currentTarget);
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/utils/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

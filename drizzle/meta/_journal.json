@@ -15,6 +15,13 @@
       "when": 1777501678389,
       "tag": "0001_safe_matthew_murdock",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1785464851606,
+      "tag": "0002_overconfident_cloak",
+      "breakpoints": true
     }
   ]
 }

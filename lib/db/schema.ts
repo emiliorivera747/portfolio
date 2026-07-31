@@ -98,40 +98,6 @@ export const media = pgTable(
   })
 );
 
-// Comment table
-export const comments = pgTable("Comment", {
-  id: serial("id").primaryKey(),
-  content: text("content").notNull(),
-  email: varchar("email", { length: 255 }).notNull(),
-  name: varchar("name", { length: 255 }),
-  createdAt: timestamp("created_at", { withTimezone: true, precision: 3 })
-    .notNull()
-    .defaultNow(),
-  updatedAt: timestamp("updated_at", { withTimezone: true, precision: 3 })
-    .notNull()
-    .defaultNow(),
-  postId: varchar("post_id", { length: 255 })
-    .notNull()
-    .references(() => posts.id),
-});
-
-// PendingComment table
-export const pendingComments = pgTable("PendingComment", {
-  id: serial("id").primaryKey(),
-  content: text("content").notNull(),
-  email: varchar("email", { length: 255 }).notNull(),
-  name: varchar("name", { length: 255 }),
-  postId: varchar("post_id", { length: 255 }).notNull(),
-  verificationCode: varchar("verification_code", { length: 6 }).notNull(),
-  verificationExpiresAt: timestamp("verification_expires_at", {
-    withTimezone: true,
-    precision: 3,
-  }).notNull(),
-  createdAt: timestamp("created_at", { withTimezone: true, precision: 3 })
-    .notNull()
-    .defaultNow(),
-});
-
 // Tag table
 export const tags = pgTable("Tag", {
   id: serial("id").primaryKey(),
@@ -165,7 +131,6 @@ export const postsRelations = relations(posts, ({ one, many }) => ({
     references: [users.userId],
   }),
   contentBlocks: many(contentBlocks),
-  comments: many(comments),
   postTags: many(postTags),
 }));
 
@@ -184,13 +149,6 @@ export const mediaRelations = relations(media, ({ one }) => ({
   contentBlock: one(contentBlocks, {
     fields: [media.id],
     references: [contentBlocks.mediaId],
-  }),
-}));
-
-export const commentsRelations = relations(comments, ({ one }) => ({
-  post: one(posts, {
-    fields: [comments.postId],
-    references: [posts.id],
   }),
 }));
 
@@ -218,10 +176,6 @@ export type ContentBlock = typeof contentBlocks.$inferSelect;
 export type NewContentBlock = typeof contentBlocks.$inferInsert;
 export type Media = typeof media.$inferSelect;
 export type NewMedia = typeof media.$inferInsert;
-export type Comment = typeof comments.$inferSelect;
-export type NewComment = typeof comments.$inferInsert;
-export type PendingComment = typeof pendingComments.$inferSelect;
-export type NewPendingComment = typeof pendingComments.$inferInsert;
 export type Tag = typeof tags.$inferSelect;
 export type NewTag = typeof tags.$inferInsert;
 export type PostTag = typeof postTags.$inferSelect;

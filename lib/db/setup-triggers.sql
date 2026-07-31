@@ -34,10 +34,3 @@ CREATE TRIGGER update_media_updated_at
 BEFORE UPDATE ON "Media"
 FOR EACH ROW
 EXECUTE FUNCTION update_updated_at_column();
-
--- Apply trigger to Comment table
-DROP TRIGGER IF EXISTS update_comment_updated_at ON "Comment";
-CREATE TRIGGER update_comment_updated_at
-BEFORE UPDATE ON "Comment"
-FOR EACH ROW
-EXECUTE FUNCTION update_updated_at_column();

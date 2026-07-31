@@ -8,7 +8,6 @@ import { PostResponse } from "@/features/blogs/types/post";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import Navbar from "@/components/navbar/Navbar";
 import { navBarData } from "@/utils/data/navbar/navbarData";
-import CommentSection from "@/features/blogs/components/comments/CommentSection";
 
 function extractText(node: any): string {
   if (!node) return "";
@@ -178,7 +177,7 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
                       src={contentData.src}
                       className="absolute inset-0 w-full h-full"
                       style={{ border: 0 }}
-                      allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                       sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
                     />
                   </div>
@@ -194,7 +193,6 @@ const PostClient = ({ id, initialPost }: PostClientProps) => {
               );
             }
           )}
-          <CommentSection postId={id} />
         </div>
       </article>
     </div>

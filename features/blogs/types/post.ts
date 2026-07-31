@@ -26,12 +26,6 @@ export interface PostWithRelations extends Post {
     name?: string;
   };
   contentBlocks: ContentBlock[];
-  comments?: {
-    id: number;
-    text: string;
-    createdAt: Date;
-    updatedAt: Date;
-  }[];
   PostTag?: {
     id: number;
     tagName: string;
@@ -58,14 +52,6 @@ export interface Media {
   providerAssetId: string;
   storageProvider?: "CLOUDINARY" | "S3";
   fileHash?: string;
-}
-
-export interface CommentResponse {
-  id: number;
-  name: string | null;
-  email: string;
-  content: string;
-  createdAt: string;
 }
 
 export interface PostResponse {

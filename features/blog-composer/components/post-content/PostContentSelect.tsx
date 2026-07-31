@@ -110,7 +110,7 @@ const PostContentSelect = () => {
 
   return (
     <CldUploadWidget
-      signatureEndpoint="/api/sign-cloudinary-params"
+      signatureEndpoint="/api/utils/sign-cloudinary-params"
       onSuccess={handleUploadSuccess}
     >
       {({ open }) => (

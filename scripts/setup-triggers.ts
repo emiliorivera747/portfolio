@@ -24,7 +24,6 @@ async function setupTriggers() {
     console.log("  - Post table trigger");
     console.log("  - ContentBlock table trigger");
     console.log("  - Media table trigger");
-    console.log("  - Comment table trigger");
   } catch (error) {
     console.error("Error setting up triggers:", error);
     process.exit(1);
