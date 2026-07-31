@@ -67,7 +67,7 @@ const PrimaryLandingPageSection: React.FC<{ videoUrl?: string }> = ({
         className="object-cover w-full h-full"
         src={isMobile
           ? getMobileVideoUrl(videoUrl || "https://res.cloudinary.com/davx3yyob/video/upload/v1760238501/Portfolio_Video_t0y4tc_ykkaej.mp4")
-          : videoUrl || "https://res.cloudinary.com/davx3yyob/video/upload/v1760238501/Portfolio_Video_t0y4tc_ykkaej.mp4"
+          : videoUrl || "https://res.cloudinary.com/davx3yyob/video/upload/v1785469489/Portfolio_Video_Final_tabfl1.mp4"
         }
         preload={isMobile ? "none" : "metadata"}
         autoPlay
