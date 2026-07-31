@@ -61,7 +61,7 @@ export default function App({
               }
             />
             <ProjectSectionV2
-              url={"/trellis-money"}
+              url={"/projects/trellis-money"}
               title={"Trellis Money"}
               videoUrl={
                 "https://res.cloudinary.com/dxxdfgpdh/video/upload/v1772235119/Portfolio_Video_2_tupy6r.mp4"
@@ -84,7 +84,7 @@ export default function App({
             />
             <div className="w-full border-b border-primary-200 pt-10"></div>
             <ProjectSection
-              url={"/casa-chirilagua"}
+              url={"/projects/casa-chirilagua"}
               titleSize={"text-3xl sm:text-4xl"}
               title={"Casa Chirilagua"}
               videoUrl={
@@ -108,7 +108,7 @@ export default function App({
               bgColor={"bg-white"}
             />
             <ProjectSection
-              url={"/my-portfolio"}
+              url={"/projects/my-portfolio"}
               titleSize={"text-3xl sm:text-4xl"}
               title={"Portfolio"}
               videoUrl={
@@ -121,7 +121,7 @@ export default function App({
               videoCover={"sm:object-cover"}
             />
             <ProjectSection
-              url={"/my-portfolio"}
+              url={"/projects/my-portfolio"}
               title={"Responsive Design"}
               titleSize={"text-2xl sm:text-3xl"}
               titleColor={"text-primary-1000"}

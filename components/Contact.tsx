@@ -1,7 +1,6 @@
 "use client";
 import React, { useRef, useState, FormEvent, useCallback } from "react";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
@@ -38,31 +37,38 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
   const [success, setSuccess] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const sendEmail = useCallback((e: FormEvent<HTMLFormElement>) => {
+  const sendEmail = useCallback(async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setLoading(true);
     setError(null);
     setSuccess(false);
 
-    emailjs
-      .sendForm(
-        "service_hdvlhug",
-        "template_dy3465k",
-        form.current as HTMLFormElement,
-        "KREG4OVfIOrUuqIh3"
-      )
-      .then(
-        () => {
-          setSuccess(true);
-          setLoading(false);
-          form.current?.reset();
-        },
-        () => {
-          setError("Failed to send email. Please try again later.");
-          setLoading(false);
-        }
-      );
+    const formData = new FormData(e.currentTarget);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("from_name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+        }),
+      });
+
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
+        throw new Error(body?.message ?? "Failed to send email.");
+      }
+
+      setSuccess(true);
+      form.current?.reset();
+    } catch {
+      setError("Failed to send email. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   return (

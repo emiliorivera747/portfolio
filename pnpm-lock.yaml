@@ -97,9 +97,6 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.3)
-      '@emailjs/browser':
-        specifier: ^3.12.1
-        version: 3.12.1
       '@google/generative-ai':
         specifier: ^0.24.1
         version: 0.24.1
@@ -112,6 +109,9 @@ importers:
       '@payloadcms/db-postgres':
         specifier: ^3.86.0
         version: 3.86.0(payload@3.86.0(graphql@16.11.0)(typescript@5.8.2))(postgres@3.4.8)
+      '@payloadcms/email-resend':
+        specifier: 3.86.0
+        version: 3.86.0(payload@3.86.0(graphql@16.11.0)(typescript@5.8.2))
       '@payloadcms/next':
         specifier: ^3.86.0
         version: 3.86.0(@types/react@19.2.7)(graphql@16.11.0)(monaco-editor@0.56.0)(next@16.2.10(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.83.4))(payload@3.86.0(graphql@16.11.0)(typescript@5.8.2))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.8.2)
@@ -935,10 +935,6 @@ packages:
 
   '@drizzle-team/brocli@0.10.2':
     resolution: {integrity: sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w==}
-
-  '@emailjs/browser@3.12.1':
-    resolution: {integrity: sha512-C5nK07CgSCFx3onsuRt/ZaaMvIi0T3SHHanM7fKozjSvbZu+OjHHP9W608fYpic0OavF7yIlfy4+lRDO33JdbA==}
-    engines: {node: '>=14.0.0'}
 
   '@emnapi/runtime@1.11.3':
     resolution: {integrity: sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==}
@@ -2001,6 +1997,12 @@ packages:
 
   '@payloadcms/drizzle@3.86.0':
     resolution: {integrity: sha512-30qtjVUd281YZTIW4zYh75w+QyniZ78oXJSGLglZBo4davNEFMjqaN68WIF+s4g3EFSNirlmkD5amzZWphW+KQ==}
+    peerDependencies:
+      payload: 3.86.0
+
+  '@payloadcms/email-resend@3.86.0':
+    resolution: {integrity: sha512-hasyTbxeiHStVAAm+2pVvuT9xT/GI51UBphZm2+tMmlJXbQa8LyYPbpR+F0nx5Uam/nsXlFSuh21JQgX7ETfQw==}
+    engines: {node: ^18.20.2 || >=20.9.0}
     peerDependencies:
       payload: 3.86.0
 
@@ -7610,8 +7612,6 @@ snapshots:
 
   '@drizzle-team/brocli@0.10.2': {}
 
-  '@emailjs/browser@3.12.1': {}
-
   '@emnapi/runtime@1.11.3':
     dependencies:
       tslib: 2.8.1
@@ -8601,6 +8601,10 @@ snapshots:
       - prisma
       - sql.js
       - sqlite3
+
+  '@payloadcms/email-resend@3.86.0(payload@3.86.0(graphql@16.11.0)(typescript@5.8.2))':
+    dependencies:
+      payload: 3.86.0(graphql@16.11.0)(typescript@5.8.2)
 
   '@payloadcms/graphql@3.86.0(graphql@16.11.0)(payload@3.86.0(graphql@16.11.0)(typescript@5.8.2))(typescript@5.8.2)':
     dependencies:

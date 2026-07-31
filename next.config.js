@@ -26,6 +26,15 @@ const nextConfig = {
       exclude: ['error', 'warn'],
     } : false,
   },
+  // Project pages moved from flat top-level routes to /projects/[slug].
+  async redirects() {
+    return [
+      { source: '/casa-chirilagua', destination: '/projects/casa-chirilagua', permanent: true },
+      { source: '/trellis-money', destination: '/projects/trellis-money', permanent: true },
+      { source: '/cipotes-sonriendo-foundation', destination: '/projects/cipotes-sonriendo-foundation', permanent: true },
+      { source: '/my-portfolio', destination: '/projects/my-portfolio', permanent: true },
+    ];
+  },
 };
 
 import bundleAnalyzer from '@next/bundle-analyzer';

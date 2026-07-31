@@ -3,6 +3,7 @@ import { fileURLToPath } from "url";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { s3Storage } from "@payloadcms/storage-s3";
+import { resendAdapter } from "@payloadcms/email-resend";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 import type { CollectionConfig } from "payload";
@@ -60,6 +61,52 @@ const Testimonials: CollectionConfig = {
   ],
 };
 
+// Powers the /projects grid and each project's /projects/[slug] case-study page.
+const Projects: CollectionConfig = {
+  slug: "projects",
+  admin: { useAsTitle: "title" },
+  defaultSort: "order",
+  fields: [
+    { name: "title", type: "text", required: true },
+    {
+      name: "slug",
+      type: "text",
+      required: true,
+      unique: true,
+      admin: { position: "sidebar" },
+    },
+    { name: "category", type: "text", required: true },
+    { name: "cardDescription", type: "textarea", required: true },
+    // Cloudinary URL — kept as plain text rather than a Payload Media
+    // relationship since existing screenshots already live on Cloudinary,
+    // not S3 (see Media collection below).
+    { name: "cardImage", type: "text", required: true },
+    { name: "overviewDescription", type: "richText", required: true },
+    { name: "role", type: "text", required: true },
+    { name: "responsibility", type: "richText", required: true },
+    { name: "learnMoreLabel", type: "text", required: true },
+    { name: "learnMoreHref", type: "text", required: true },
+    { name: "learnMoreLinkText", type: "text" },
+    {
+      name: "gallery",
+      type: "array",
+      fields: [
+        { name: "title", type: "text", required: true },
+        { name: "imageUrl", type: "text", required: true },
+        { name: "caption", type: "richText" },
+      ],
+    },
+    { name: "showOnHome", type: "checkbox", defaultValue: false },
+    { name: "homeVideoUrl", type: "text" },
+    {
+      name: "order",
+      type: "number",
+      defaultValue: 0,
+      admin: { description: "Lower numbers show first." },
+    },
+  ],
+};
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -70,9 +117,22 @@ export default buildConfig({
   routes: {
     admin: "/studio",
   },
-  collections: [Users, Media, Showcase, Testimonials],
+  // Without this, Payload can't build absolute URLs (e.g. the password
+  // reset link in the email) — it falls back to the request's Host header,
+  // and only trusts that if it's in the cors/csrf allowlist, which isn't
+  // configured either. The result was a bare relative path in the reset
+  // email, which mail clients then mangled into an invalid "http:///" URL.
+  serverURL: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
+  collections: [Users, Media, Showcase, Testimonials, Projects],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
+  // Without this, Payload has no way to send anything (password resets,
+  // etc.) — it just logs emails to the server console instead.
+  email: resendAdapter({
+    apiKey: process.env.RESEND_API_KEY || "",
+    defaultFromAddress: "onboarding@resend.dev",
+    defaultFromName: "Emilio Rivera's Portfolio",
+  }),
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
