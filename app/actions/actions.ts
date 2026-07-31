@@ -83,7 +83,7 @@ export async function login(
         type: "signup",
         email: formData.get("email") as string,
         options: {
-          emailRedirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/sign-in`,
+          emailRedirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/sign-in`,
         },
       });
 
@@ -212,7 +212,7 @@ export const confirmReset = async (
     }
 
     await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/reset-password`,
+      redirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/reset-password`,
     });
 
     return {
@@ -289,7 +289,7 @@ export const resendConfirmation = async (
       type: "signup",
       email: formData.get("email") as string,
       options: {
-        emailRedirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/sign-in`,
+        emailRedirectTo: `${process.env.NEXT_PUBLIC_BASE_URL}/sign-in`,
       },
     });
 
