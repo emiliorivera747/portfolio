@@ -194,6 +194,35 @@ const Projects: CollectionConfig = {
   ],
 };
 
+// Powers the /blog list page and each post's /blog/[slug] page.
+const Posts: CollectionConfig = {
+  slug: "posts",
+  admin: {
+    useAsTitle: "title",
+    group: "Blog",
+    defaultColumns: ["title", "slug", "updatedAt"],
+  },
+  defaultSort: "-createdAt",
+  fields: [
+    { name: "title", type: "text", required: true },
+    {
+      name: "slug",
+      type: "text",
+      required: true,
+      unique: true,
+      admin: { position: "sidebar" },
+    },
+    {
+      name: "excerpt",
+      type: "textarea",
+      required: true,
+      admin: { description: "Short summary shown on the blog list page." },
+    },
+    { name: "coverImage", type: "upload", relationTo: "media" },
+    { name: "body", type: "richText", required: true },
+  ],
+};
+
 // Singleton site-wide settings, starting with the homepage hero's
 // background video (currently hardcoded in HomeClient.tsx).
 const SiteSettings: GlobalConfig = {
@@ -228,7 +257,7 @@ export default buildConfig({
   // configured either. The result was a bare relative path in the reset
   // email, which mail clients then mangled into an invalid "http:///" URL.
   serverURL: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
-  collections: [Users, Media, Showcase, Testimonials, Projects],
+  collections: [Users, Media, Showcase, Testimonials, Projects, Posts],
   globals: [SiteSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",

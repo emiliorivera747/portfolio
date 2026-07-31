@@ -1,14 +1,13 @@
 export const metadata = {
   title: "Blog | Emilio Rivera's Portfolio",
-  description: "Writing on software engineering, projects, and lessons learned.",
+  description:
+    "Writing on software engineering, projects, and lessons learned.",
 };
-
-import { navBarData } from "@/utils/data/navbar/navbarData";
-import Navbar from "@/components/navbar/Navbar";
 
 /**
  *
- * The layout for the blog page
+ * The layout for the blog section. Each page (list, post) renders its own
+ * Navbar since they need different modes (the post page toggles dark mode).
  *
  * @param {React.ReactNode} children
  * @returns layout
@@ -20,10 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <div>
-      <main>
-        <Navbar menuItems={navBarData} mode="dark" />
-        {children}
-      </main>
+      <main>{children}</main>
     </div>
   );
 }

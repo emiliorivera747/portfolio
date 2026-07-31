@@ -1,23 +1,46 @@
-import Page from "@/components/Page";
-import SecondaryHeader from "@/components/titles/SecondaryHeader";
+import { getPayload } from "payload";
+import config from "@/payload.config";
+import Navbar from "@/components/navbar/Navbar";
+import { navBarData } from "@/utils/data/navbar/navbarData";
+import HeroImageBanner from "@/components/HeroImageBanner";
+import BlogCard from "@/components/blog/BlogCard";
+
+export const revalidate = 3600;
 
 /**
- * Placeholder blog landing page. Posts aren't wired up to Payload yet —
- * this just holds the nav link and route until that content is added.
+ *  Displays the blog list page
  *
- * @returns the blog page
+ * @returns the blog list page
  */
-function Blog() {
+export default async function BlogPage() {
+  const payload = await getPayload({ config });
+  const { docs: posts } = await payload.find({
+    collection: "posts",
+    depth: 1,
+    sort: "-createdAt",
+    limit: 50,
+  });
+
   return (
-    <Page>
-      <section className="h-screen w-screen flex flex-col items-center justify-center bg-white px-[8%] text-center gap-4">
-        <SecondaryHeader title="Blog" />
-        <p className="text-primary-900 text-lg tracking-wide">
-          New posts are coming soon.
-        </p>
-      </section>
-    </Page>
+    <section className="w-screen min-h-screen h-auto">
+      <Navbar menuItems={navBarData} mode="light" />
+      <HeroImageBanner title="Blogs." className="bg-[#1877F2]" />
+      <div className="mx-[5%]">
+        <div className="text-4xl sm:text-6xl pt-[10rem] pb-4 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-primary-900 to-primary-800">
+          Latest Posts
+        </div>
+        {posts.length === 0 ? (
+          <div className="text-2xl text-primary-700 font-extralight pb-20">
+            No posts found at this time.
+          </div>
+        ) : (
+          <div className="sm:grid sm:grid-cols-3 gap-4 pb-20">
+            {posts.map((post) => (
+              <BlogCard key={post.id} post={post} />
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
-
-export default Blog;
