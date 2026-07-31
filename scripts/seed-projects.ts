@@ -172,10 +172,11 @@ const projects: SeedProject[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1782442242/Screenshot_2026-06-25_at_7.50.20_PM_v5djhd.png",
     // TODO: replace with a real description of the work.
     overviewMarkdown: "Website for the Cipotes Sonriendo Foundation.",
-    // TODO: replace with your role on this project.
-    role: "TODO: Add your role",
-    // TODO: replace with your responsibilities on this project.
-    responsibilityMarkdown: "TODO: Add your responsibilities",
+    role: "Front End Engineer",
+    responsibilityMarkdown: `- **Design**: UI/UX design and page layouts.
+- **Front End**: Responsive, reusable components across mobile and desktop.
+- **SEO & Accessibility**: Semantic markup and metadata.
+- **Deployment**: Hosting, domain setup, and ongoing updates.`,
     learnMoreLabel: "Cipotes Sonriendo Foundation",
     learnMoreHref: "https://www.cipotessonriendofoundation.org/",
     order: 3,
