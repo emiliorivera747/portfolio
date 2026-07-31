@@ -2,7 +2,12 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { revalidatePath } from "next/cache";
 import { postgresAdapter } from "@payloadcms/db-postgres";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import {
+  BlocksFeature,
+  CodeBlock,
+  UploadFeature,
+  lexicalEditor,
+} from "@payloadcms/richtext-lexical";
 import { s3Storage } from "@payloadcms/storage-s3";
 import { resendAdapter } from "@payloadcms/email-resend";
 import { buildConfig } from "payload";
@@ -291,7 +296,21 @@ const Posts: CollectionConfig = {
       admin: { description: "Short summary shown on the blog list page." },
     },
     { name: "coverImage", type: "upload", relationTo: "media" },
-    { name: "body", type: "richText", required: true },
+    {
+      name: "body",
+      type: "richText",
+      required: true,
+      // Extends the default toolbar (headings, lists, links, formatting) with
+      // inline images and syntax-highlighted code blocks, so a post can mix
+      // text/images/code the way the old block-composer blog did.
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          UploadFeature({ collections: { media: { fields: [] } } }),
+          BlocksFeature({ blocks: [CodeBlock()] }),
+        ],
+      }),
+    },
   ],
 };
 
