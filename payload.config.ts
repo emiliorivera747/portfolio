@@ -5,7 +5,6 @@ import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { s3Storage } from "@payloadcms/storage-s3";
 import { resendAdapter } from "@payloadcms/email-resend";
 import { buildConfig } from "payload";
-import sharp from "sharp";
 import type { CollectionConfig, GlobalConfig } from "payload";
 
 const filename = fileURLToPath(import.meta.url);
@@ -162,7 +161,11 @@ export default buildConfig({
     },
     schemaName: "payload",
   }),
-  sharp: sharp as unknown as Parameters<typeof buildConfig>[0]["sharp"],
+  // Deliberately no `sharp`. Payload only needs it to resize/convert uploads
+  // and record image dimensions — the Media collection defines no imageSizes,
+  // and site imagery is served from Cloudinary, not Payload's S3 bucket. Its
+  // native libvips binaries also don't survive Vercel's packaging step under
+  // pnpm's symlinked node_modules, which broke deploys outright.
   plugins: [
     s3Storage({
       collections: {
