@@ -1,14 +1,44 @@
 import path from "path";
 import { fileURLToPath } from "url";
+import { revalidatePath } from "next/cache";
 import { postgresAdapter } from "@payloadcms/db-postgres";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { s3Storage } from "@payloadcms/storage-s3";
 import { resendAdapter } from "@payloadcms/email-resend";
 import { buildConfig } from "payload";
-import type { CollectionConfig, Field, GlobalConfig } from "payload";
+import type {
+  CollectionAfterChangeHook,
+  CollectionAfterDeleteHook,
+  CollectionConfig,
+  Field,
+  GlobalAfterChangeHook,
+  GlobalConfig,
+} from "payload";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+
+// Pages fetch Payload data with `revalidate = 3600`, so without this,
+// content edits sit invisible on the live site for up to an hour even
+// though they show up immediately in local dev (which doesn't cache
+// renders). Called from collection/global hooks below to bust the specific
+// cached paths a save affects, right when it happens.
+function revalidatePaths(paths: (string | undefined)[]) {
+  for (const path of paths) {
+    if (!path) continue;
+    try {
+      revalidatePath(path);
+    } catch (error) {
+      // Hooks also run outside a Next.js request (e.g. seed scripts run via
+      // `tsx`) — revalidatePath throws there since there's no request-scoped
+      // cache to invalidate. Safe to ignore; the doc write itself succeeded.
+      console.warn(
+        `Skipped revalidating "${path}":`,
+        error instanceof Error ? error.message : error
+      );
+    }
+  }
+}
 
 // Shared shape for one entry in a project's Front End / Back End / Both
 // tools array — lets each tool either link a Cloudinary (or other) URL or
@@ -84,11 +114,24 @@ const Showcase: CollectionConfig = {
   ],
 };
 
+const revalidateHome: CollectionAfterChangeHook = ({ doc }) => {
+  revalidatePaths(["/"]);
+  return doc;
+};
+
+const revalidateHomeOnDelete: CollectionAfterDeleteHook = () => {
+  revalidatePaths(["/"]);
+};
+
 // Powers the "Client Testimonials" section on the real homepage.
 const Testimonials: CollectionConfig = {
   slug: "testimonials",
   admin: { useAsTitle: "name", group: "Home Page" },
   defaultSort: "order",
+  hooks: {
+    afterChange: [revalidateHome],
+    afterDelete: [revalidateHomeOnDelete],
+  },
   fields: [
     { name: "quote", type: "textarea", required: true },
     { name: "name", type: "text", required: true },
@@ -105,11 +148,27 @@ const Testimonials: CollectionConfig = {
   ],
 };
 
+// A project's tools (tabs below) show on both "/" and its own page, so
+// any change — including just editing Front End/Back End/Both tools —
+// needs to bust both, plus the /projects grid for card-level fields.
+const revalidateProject: CollectionAfterChangeHook = ({ doc }) => {
+  revalidatePaths(["/", "/projects", doc?.slug ? `/projects/${doc.slug}` : undefined]);
+  return doc;
+};
+
+const revalidateProjectOnDelete: CollectionAfterDeleteHook = ({ doc }) => {
+  revalidatePaths(["/", "/projects", doc?.slug ? `/projects/${doc.slug}` : undefined]);
+};
+
 // Powers the /projects grid and each project's /projects/[slug] case-study page.
 const Projects: CollectionConfig = {
   slug: "projects",
   admin: { useAsTitle: "title", group: "Projects" },
   defaultSort: "order",
+  hooks: {
+    afterChange: [revalidateProject],
+    afterDelete: [revalidateProjectOnDelete],
+  },
   fields: [
     { name: "title", type: "text", required: true },
     {
@@ -194,6 +253,15 @@ const Projects: CollectionConfig = {
   ],
 };
 
+const revalidatePost: CollectionAfterChangeHook = ({ doc }) => {
+  revalidatePaths(["/blog", doc?.slug ? `/blog/${doc.slug}` : undefined]);
+  return doc;
+};
+
+const revalidatePostOnDelete: CollectionAfterDeleteHook = ({ doc }) => {
+  revalidatePaths(["/blog", doc?.slug ? `/blog/${doc.slug}` : undefined]);
+};
+
 // Powers the /blog list page and each post's /blog/[slug] page.
 const Posts: CollectionConfig = {
   slug: "posts",
@@ -203,6 +271,10 @@ const Posts: CollectionConfig = {
     defaultColumns: ["title", "slug", "updatedAt"],
   },
   defaultSort: "-createdAt",
+  hooks: {
+    afterChange: [revalidatePost],
+    afterDelete: [revalidatePostOnDelete],
+  },
   fields: [
     { name: "title", type: "text", required: true },
     {
@@ -223,11 +295,19 @@ const Posts: CollectionConfig = {
   ],
 };
 
+const revalidateSiteSettings: GlobalAfterChangeHook = ({ doc }) => {
+  revalidatePaths(["/"]);
+  return doc;
+};
+
 // Singleton site-wide settings, starting with the homepage hero's
 // background video (currently hardcoded in HomeClient.tsx).
 const SiteSettings: GlobalConfig = {
   slug: "site-settings",
   admin: { group: "Home Page" },
+  hooks: {
+    afterChange: [revalidateSiteSettings],
+  },
   fields: [
     {
       name: "heroVideo",
@@ -272,18 +352,19 @@ export default buildConfig({
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   // Dedicated Postgres schema keeps Payload's tables fully isolated from the
-  // Drizzle-managed `public` schema (User, Post, Media, etc.) in the same DB.
+  // `public` schema (User, Post, Media, etc.) in the same DB.
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL,
-      // DATABASE_URL points at Supabase's session-mode pooler, which caps
-      // this project at 15 concurrent sessions total. node-postgres's
-      // default pool max is 10 — uncapped, a single serverless instance
-      // could nearly exhaust that budget on its own, and Vercel can spin up
-      // several instances at once (this is what broke the production
-      // build: a static-generation worker couldn't get a connection).
-      // Keep each instance's footprint small so there's headroom for
-      // concurrent instances plus the app's own Drizzle pool.
+      // DATABASE_URL points at Supabase's transaction-mode pooler (:6543),
+      // which multiplexes many concurrent clients onto few backend
+      // connections — the right fit for serverless, where several Vercel
+      // instances can be running concurrently. We were previously on the
+      // session-mode pooler (:5432, capped at 15 total sessions project-wide)
+      // and even a small handful of concurrent instances blew through that,
+      // taking down /studio and every Payload-backed page in production.
+      // Keep this pool small regardless — no need for many connections per
+      // instance when the pooler itself already handles the fan-out.
       max: 3,
     },
     schemaName: "payload",
