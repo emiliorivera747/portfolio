@@ -13,5 +13,12 @@ export default async function Page() {
     limit: 50,
   });
 
-  return <HomeClient testimonials={testimonials} />;
+  const siteSettings = await payload.findGlobal({ slug: "site-settings" });
+
+  return (
+    <HomeClient
+      testimonials={testimonials}
+      heroVideoUrl={siteSettings?.heroVideoUrl}
+    />
+  );
 }

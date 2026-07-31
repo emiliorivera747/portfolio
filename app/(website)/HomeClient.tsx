@@ -34,8 +34,10 @@ import Navbar from "@/components/navbar/Navbar";
  */
 export default function App({
   testimonials,
+  heroVideoUrl,
 }: {
   testimonials: TestimonialDoc[];
+  heroVideoUrl?: string;
 }) {
   useEffect(() => {
     const hash = window.location.hash;
@@ -57,6 +59,7 @@ export default function App({
           <Page>
             <PrimaryLandingPageSection
               videoUrl={
+                heroVideoUrl ||
                 "https://res.cloudinary.com/davx3yyob/video/upload/v1760238501/Portfolio_Video_t0y4tc_ykkaej.mp4"
               }
             />
