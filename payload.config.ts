@@ -400,6 +400,94 @@ const SiteSettings: GlobalConfig = {
   ],
 };
 
+const revalidateAbout: GlobalAfterChangeHook = ({ doc }) => {
+  revalidatePaths(["/about"]);
+  return doc;
+};
+
+// Drives the whole /about page, which used to be hardcoded JSX. The page is a
+// hero banner followed by alternating text-and-photo sections, so `sections`
+// is an array rather than a fixed set of fields — adding a new chapter to the
+// story is a matter of adding a row, not editing the component.
+const AboutPage: GlobalConfig = {
+  slug: "about-page",
+  label: "About Page",
+  admin: { group: "About Page" },
+  hooks: { afterChange: [revalidateAbout] },
+  fields: [
+    {
+      name: "hero",
+      type: "group",
+      label: "Hero Banner",
+      fields: [
+        {
+          name: "title",
+          type: "text",
+          required: true,
+          defaultValue: "About Me.",
+        },
+        {
+          name: "alt",
+          type: "text",
+          admin: { description: "Describes the banner image for screen readers." },
+        },
+        {
+          name: "caption",
+          type: "richText",
+          admin: { description: "Small print under the title — photo credit, etc." },
+        },
+        ...imageSourceFields("hero banner", { optional: true }),
+      ],
+    },
+    {
+      name: "sections",
+      type: "array",
+      labels: { singular: "Section", plural: "Sections" },
+      admin: {
+        description:
+          "Each row is one heading + paragraphs + photo. The photo alternates sides down the page, which `imagePosition` controls.",
+      },
+      fields: [
+        { name: "heading", type: "text", required: true },
+        { name: "body", type: "richText", required: true },
+        {
+          name: "imagePosition",
+          type: "radio",
+          required: true,
+          defaultValue: "right",
+          options: [
+            { label: "Right of text", value: "right" },
+            { label: "Left of text", value: "left" },
+          ],
+          admin: { layout: "horizontal" },
+        },
+        {
+          name: "imageAlt",
+          type: "text",
+          admin: { description: "Describes the photo for screen readers." },
+        },
+        {
+          name: "imageCaption",
+          type: "richText",
+          admin: { description: "Caption shown directly under the photo." },
+        },
+        ...imageSourceFields("section photo", { optional: true }),
+        // The gradient pull quote sits between two sections rather than at a
+        // fixed spot on the page, so it hangs off whichever section it follows.
+        // That keeps it movable without needing a separate ordered list.
+        {
+          name: "quoteAfter",
+          type: "richText",
+          admin: {
+            description:
+              "Optional large gradient quote, rendered after this section. Leave empty for none.",
+          },
+        },
+      ],
+    },
+  ],
+};
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -417,7 +505,7 @@ export default buildConfig({
   // email, which mail clients then mangled into an invalid "http:///" URL.
   serverURL: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
   collections: [Users, Media, Showcase, Testimonials, Projects, Posts],
-  globals: [SiteSettings],
+  globals: [SiteSettings, AboutPage],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   // Without this, Payload has no way to send anything (password resets,

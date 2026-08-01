@@ -1,222 +1,39 @@
-"use client";
-import Page from "@/components/Page";
-import HeroImageBanner from "@/components/HeroImageBanner";
-import { CldImage } from "next-cloudinary";
-import Link from "next/link";
+import { getPayload } from "payload";
+import config from "@/payload.config";
+import AboutClient, { type AboutSectionView } from "./AboutClient";
+import { resolveImageUrl } from "@/lib/images";
 
-// External Libraries
-import { motion } from "framer-motion";
-
-const variants = {
-  initial: {
-    y: 400,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.6,
-      staggerChildren: 0.1,
-    },
-  },
-};
+export const revalidate = 3600;
 
 /**
- *  Displays information about me
+ * Displays information about me.
  *
- * @returns the about page
+ * The copy and photos all live in the `about-page` global, so this only
+ * resolves each section's image (pasted URL or Media upload) down to a plain
+ * URL and hands the result to the client component that does the animation.
  */
-function About() {
-  return (
-    <Page>
-      <section className="h-screen w-full bg-white overflow-x-hidden">
-        <HeroImageBanner
-          src="https://res.cloudinary.com/dcss55nem/image/upload/v1776990294/Untitled_design_11_apepib.png"
-          alt="Milky Way galaxy captured by the Artemis II crew"
-          title="About Me."
-          caption={<>Photo: <em>Starstruck</em> — Milky Way captured by the Artemis II crew, April 7, 2026. Credit: NASA/JSC</>}
-        />
+export default async function About() {
+  const payload = await getPayload({ config });
+  const about = await payload.findGlobal({ slug: "about-page", depth: 1 });
 
-        <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
-          <div className="flex flex-col md:w-1/2 items-center justify-center">
-            <motion.h1
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.5 }}
-              variants={{
-                initial: { x: -200, opacity: 0 },
-                animate: { x: 0, opacity: 1, transition: { duration: 1 } },
-              }}
-              {...({
-                className:
-                  "text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6",
-              } as any)}
-            >
-              My Journey
-            </motion.h1>
+  const hero = {
+    title: about?.hero?.title ?? "About Me.",
+    alt: about?.hero?.alt ?? "",
+    imageUrl: resolveImageUrl(about?.hero ?? {}),
+    caption: about?.hero?.caption,
+  };
 
-            <br></br>
-            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              {`The idea of inventing something new that could impact our world, whether big or small, has always excited me. While there were many fields I could have gone into to fulfill my desire to create—such as `}
-              <strong>Aerospace Engineering</strong>
-              {`, `}
-              <strong>Mechanical Engineering</strong>
-              {`, and `}
-              <strong>Computer Science</strong>
-              {`—I ended up choosing the latter because of the profound impact it has on our everyday lives.`}
-            </p>
-            <br></br>
-            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.1rem]">
-              {`I earned my bachelor's degree in Computer Science from `}
-              <strong>Virginia Tech</strong>
-              {` in December 2022. Since then, I've freelanced to sharpen my front-end and back-end skills while exploring modern frameworks and tools like `}
-              <strong><i>React.js</i></strong>
-              {`, `}
-              <strong><i>Node.js</i></strong>
-              {`, `}
-              <strong><i>FastAPI</i></strong>
-              {`, `}
-              <strong><i>Next.js</i></strong>
-              {`, and `}
-              <strong><i>AWS</i></strong>
-              {` to expand my technical toolbox.`}
-            </p>
-          </div>
-          <div className="text-secondary-900">
-            <CldImage
-              src="https://res.cloudinary.com/dcss55nem/image/upload/v1701486445/20221216_115051_ezqxrn.jpg"
-              height={700}
-              width={700}
-              alt="Virginia Tech Graduation"
-              className="rounded-[12px] shadow-lg hover:scale-105 transition-transform duration-300"
-            />
-            <h2 className="md:text-2sm pt-4 text-center text-primary-800">
-              Virginia Tech Graduation Ceremony December 2022
-            </h2>
-          </div>
-        </section>
-
-        <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
-          {" "}
-          <div className="text-black order-last md:order-first">
-            <CldImage
-              src="https://res.cloudinary.com/dcss55nem/image/upload/v1701747663/IMG_2215_kypj32.jpg"
-              height={700}
-              width={700}
-              alt="Intramural Soccer at Virginia Tech Fall 2022"
-              className="rounded-[12px] shadow-lg hover:scale-105 transition-transform duration-300"
-            />
-            <h2 className="md:text-2sm pt-4 text-center text-primary-800">
-              Intramural <span className="font-bold">Soccer</span> at Virginia
-              Tech
-            </h2>
-          </div>
-          <div className="flex flex-col h-1/2 md:w-1/2  items-center justify-center">
-            <motion.h1
-              {...({
-                className:
-                  "text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6",
-              } as any)}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.5 }}
-              variants={{
-                initial: { x: 200, opacity: 0 },
-                animate: { x: 0, opacity: 1, transition: { duration: 1 } },
-              }}
-            >
-              Hobbies
-            </motion.h1>
-            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
-              In my free time, I enjoy playing
-              <strong> soccer</strong>, practicing
-              <strong> public speaking</strong>, and
-              <strong> volunteering </strong>in my community.
-            </p>
-            <h1></h1>
-          </div>
-        </section>
-        <div className="bg-white p-10 flex flex-col md:flex-col h-auto min-h-[70vh] text-center items-center justify-center gap-0 ">
-          <motion.h2
-            {...{
-              className:
-                "bg-gradient-to-r bg-clip-text text-transparent from-primary-1000 to-primary-800 text-4xl md:p-10 leading-loose tracking-wider pb-10",
-              initial: "initial",
-              whileInView: "animate",
-              variants,
-            }}
-          >
-            {`"Everyone has a story, an idea, or message to share with the world and there is no one better than for you to share it through`}{" "}
-            <strong>Public Speaking</strong>
-            <span>{`"`}</span>
-          </motion.h2>
-          {/* <p className="text-xl font-light text-[#868e96]">- Emilio Rivera</p> */}
-        </div>
-        <section className=" px-[8%] flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
-          <div className="flex flex-col md:w-1/2  items-center justify-center ">
-            <motion.h1
-              {...({
-                className:
-                  "text-primary-1000 font-bold text-2xl md:text-4xl pb-3 md:pb-6",
-              } as any)}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true, amount: 0.5 }}
-              variants={{
-                initial: { x: -200, opacity: 0 },
-                animate: { x: 0, opacity: 1, transition: { duration: 1 } },
-              }}
-            >
-              Public Speaking
-            </motion.h1>
-            {/* <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
-              I love <strong>public speaking</strong> and hope to start my own
-              public speaking organization someday.
-            </p> */}
-            <br></br>
-            <p className="text-primary-900 text-start leading-loose tracking-wider text-[1.2rem]">
-              Fall 2024, I got the privilege to represent{" "}
-              <Link
-                className="text-secondary-800 text-blue-600 hover:underline"
-                href={
-                  "https://www.toastmasters.org/Find-a-Club/00003572-saratoga-toastmasters-club"
-                }
-                aria-label="Saratoga Toastmasters Website"
-              >
-                Saratoga Toastmasters{" "}
-              </Link>
-              at the Divison level speech contest and was awarded 2nd place.
-            </p>
-            <h1></h1>
-          </div>
-          <div className="text-primary-900">
-            <CldImage
-              src="https://res.cloudinary.com/dcss55nem/image/upload/v1758821016/Screenshot_2025-09-25_at_10.22.39_AM_yse58q.png"
-              height={700}
-              width={700}
-              alt="Toastmasters Open House 2025"
-              className="rounded-[12px] shadow-lg hover:scale-105 transition-transform duration-300"
-            />
-            <h2 className="md:text-2sm pt-4 text-center text-primary-800">
-              Toastmasters Open House 2025
-            </h2>
-          </div>
-        </section>
-        {/* <section className="px-[8%] flex flex-col items-center justify-center gap-8 md:gap-16 relative pt-10  w-screen overflow-auto h-auto min-h-[90vh] bg-white">
-          <PrimaryHeader className="text-4xl" title={"Volunteering"} />
-          <div className="w-full h-[80vh] rounded-[12px] relative bg-black mb-40">
-            <iframe
-              className="w-full absolute top-0 right-0 h-full"
-              src="https://player.vimeo.com/video/906510596?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-              allow="autoplay; fullscreen; picture-in-picture"
-              title="1119 CM"
-            ></iframe>
-          </div>
-        </section> */}
-      </section>
-    </Page>
+  const sections: AboutSectionView[] = (about?.sections ?? []).map(
+    (section) => ({
+      heading: section.heading,
+      body: section.body,
+      imageUrl: resolveImageUrl(section),
+      imageAlt: section.imageAlt ?? "",
+      imageCaption: section.imageCaption,
+      imagePosition: section.imagePosition === "left" ? "left" : "right",
+      quoteAfter: section.quoteAfter,
+    })
   );
-}
 
-export default About;
+  return <AboutClient hero={hero} sections={sections} />;
+}

@@ -97,9 +97,11 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     'site-settings': SiteSetting;
+    'about-page': AboutPage;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
+    'about-page': AboutPageSelect<false> | AboutPageSelect<true>;
   };
   locale: null;
   widgets: {
@@ -696,10 +698,160 @@ export interface SiteSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-page".
+ */
+export interface AboutPage {
+  id: number;
+  hero: {
+    title: string;
+    /**
+     * Describes the banner image for screen readers.
+     */
+    alt?: string | null;
+    /**
+     * Small print under the title — photo credit, etc.
+     */
+    caption?: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    } | null;
+    imageSource?: ('url' | 'upload') | null;
+    /**
+     * Image URL for the hero banner.
+     */
+    imageUrl?: string | null;
+    /**
+     * Upload an image for the hero banner instead of using a URL.
+     */
+    image?: (number | null) | Media;
+  };
+  /**
+   * Each row is one heading + paragraphs + photo. The photo alternates sides down the page, which `imagePosition` controls.
+   */
+  sections?:
+    | {
+        heading: string;
+        body: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        imagePosition: 'right' | 'left';
+        /**
+         * Describes the photo for screen readers.
+         */
+        imageAlt?: string | null;
+        /**
+         * Caption shown directly under the photo.
+         */
+        imageCaption?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        imageSource?: ('url' | 'upload') | null;
+        /**
+         * Image URL for the section photo.
+         */
+        imageUrl?: string | null;
+        /**
+         * Upload an image for the section photo instead of using a URL.
+         */
+        image?: (number | null) | Media;
+        /**
+         * Optional large gradient quote, rendered after this section. Leave empty for none.
+         */
+        quoteAfter?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
   heroVideo?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-page_select".
+ */
+export interface AboutPageSelect<T extends boolean = true> {
+  hero?:
+    | T
+    | {
+        title?: T;
+        alt?: T;
+        caption?: T;
+        imageSource?: T;
+        imageUrl?: T;
+        image?: T;
+      };
+  sections?:
+    | T
+    | {
+        heading?: T;
+        body?: T;
+        imagePosition?: T;
+        imageAlt?: T;
+        imageCaption?: T;
+        imageSource?: T;
+        imageUrl?: T;
+        image?: T;
+        quoteAfter?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
