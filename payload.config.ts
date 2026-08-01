@@ -264,13 +264,29 @@ const Projects: CollectionConfig = {
         description: "Show this project in the navbar's Projects dropdown.",
       },
     },
+    // Deliberately separate from `order` below. `order` sorts the /projects
+    // grid and the homepage, and the menu wants its own sequence — sharing one
+    // field meant reordering the menu dragged the grid along with it. Left
+    // empty this falls back to `order`, so the menu keeps its current sequence
+    // until someone actually wants the two to differ.
+    {
+      name: "navOrder",
+      type: "number",
+      admin: {
+        description:
+          "Position in the navbar's Projects dropdown — lower numbers show first. Leave empty to reuse the Order field below.",
+      },
+    },
     { name: "showOnHome", type: "checkbox", defaultValue: false },
     { name: "homeVideoUrl", type: "text" },
     {
       name: "order",
       type: "number",
       defaultValue: 0,
-      admin: { description: "Lower numbers show first." },
+      admin: {
+        description:
+          "Lower numbers show first. Sorts the /projects grid and the homepage — and the navbar dropdown too, unless Nav Order is set.",
+      },
     },
     // Powers this project's "Tools Used" section (shown on both the
     // homepage and this project's own page) — grouped into tabs so editing

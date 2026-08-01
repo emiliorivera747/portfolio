@@ -63,7 +63,17 @@ export async function getNavBarData(): Promise<MenuItem[]> {
 
   // `showInNav` defaults to true, but rows created before the field existed
   // come back null — treat anything that isn't an explicit false as visible.
-  const visible = projects.filter((project) => project.showInNav !== false);
+  //
+  // The query sorts by `order`, which is what the /projects grid and homepage
+  // use. The menu then re-sorts by `navOrder` so the two can diverge; falling
+  // back to `order` leaves any project without a nav position exactly where it
+  // is today, rather than bunching those at one end.
+  const navPosition = (project: Project) =>
+    Number(project.navOrder ?? project.order ?? 0);
+
+  const visible = projects
+    .filter((project) => project.showInNav !== false)
+    .sort((a, b) => navPosition(a) - navPosition(b));
 
   // navLogo is a new field, so it's empty on every project until someone fills
   // it in. Rather than have the menu lose its logos in the meantime, fall back

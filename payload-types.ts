@@ -321,10 +321,14 @@ export interface Project {
    * Show this project in the navbar's Projects dropdown.
    */
   showInNav?: boolean | null;
+  /**
+   * Position in the navbar's Projects dropdown — lower numbers show first. Leave empty to reuse the Order field below.
+   */
+  navOrder?: number | null;
   showOnHome?: boolean | null;
   homeVideoUrl?: string | null;
   /**
-   * Lower numbers show first.
+   * Lower numbers show first. Sorts the /projects grid and the homepage — and the navbar dropdown too, unless Nav Order is set.
    */
   order?: number | null;
   frontEndTools?:
@@ -599,6 +603,7 @@ export interface ProjectsSelect<T extends boolean = true> {
         image?: T;
       };
   showInNav?: T;
+  navOrder?: T;
   showOnHome?: T;
   homeVideoUrl?: T;
   order?: T;
