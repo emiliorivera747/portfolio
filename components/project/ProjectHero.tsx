@@ -18,7 +18,7 @@ const variants = {
 
 export default function ProjectHero({ title }: { title: string }) {
   return (
-    <motion.div {...{ className: "relative h-screen w-screen" }}>
+    <motion.div {...{ className: "relative h-screen w-full" }}>
       <motion.div
         initial="initial"
         whileInView="animate"

@@ -267,7 +267,15 @@ export interface Project {
   gallery?:
     | {
         title: string;
-        imageUrl: string;
+        imageSource: 'url' | 'upload';
+        /**
+         * Image URL for the gallery image.
+         */
+        imageUrl?: string | null;
+        /**
+         * Upload an image for the gallery image instead of using a URL.
+         */
+        image?: (number | null) | Media;
         caption?: {
           root: {
             type: string;
@@ -301,7 +309,7 @@ export interface Project {
          */
         imageUrl?: string | null;
         /**
-         * Upload an icon image instead of using a URL.
+         * Upload an image for the tool's icon instead of using a URL.
          */
         image?: (number | null) | Media;
         id?: string | null;
@@ -316,7 +324,7 @@ export interface Project {
          */
         imageUrl?: string | null;
         /**
-         * Upload an icon image instead of using a URL.
+         * Upload an image for the tool's icon instead of using a URL.
          */
         image?: (number | null) | Media;
         id?: string | null;
@@ -331,7 +339,7 @@ export interface Project {
          */
         imageUrl?: string | null;
         /**
-         * Upload an icon image instead of using a URL.
+         * Upload an image for the tool's icon instead of using a URL.
          */
         image?: (number | null) | Media;
         id?: string | null;
@@ -548,7 +556,9 @@ export interface ProjectsSelect<T extends boolean = true> {
     | T
     | {
         title?: T;
+        imageSource?: T;
         imageUrl?: T;
+        image?: T;
         caption?: T;
         id?: T;
       };

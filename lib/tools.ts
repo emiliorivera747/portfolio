@@ -1,5 +1,6 @@
 import type { Project } from "@/payload-types";
 import type { ToolItem } from "@/types/tools";
+import { resolveImageUrl } from "@/lib/images";
 
 export type ToolsByCategory = {
   frontEnd: ToolItem[];
@@ -14,12 +15,7 @@ function emptyToolsByCategory(): ToolsByCategory {
 }
 
 export function resolveToolImageUrl(tool: ProjectToolEntry): string {
-  if (tool.imageSource === "upload") {
-    return typeof tool.image === "object" && tool.image?.url
-      ? tool.image.url
-      : "";
-  }
-  return tool.imageUrl ?? "";
+  return resolveImageUrl(tool);
 }
 
 function toToolItems(entries: ProjectToolEntry[] | null | undefined): ToolItem[] {

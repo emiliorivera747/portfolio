@@ -8,6 +8,7 @@ import ProjectGallery from "@/components/project/ProjectGallery";
 import RichText from "@/components/payload/RichText";
 import ToolsSection from "@/components/ToolsSection";
 import { getProjectTools } from "@/lib/tools";
+import { resolveImageUrl } from "@/lib/images";
 
 export const revalidate = 3600;
 
@@ -63,7 +64,10 @@ export default async function ProjectPage({
     toolsByCategory.both.length > 0;
 
   return (
-    <section className="h-screen w-screen overflow-x-hidden bg-white">
+    // w-full rather than w-screen: 100vw includes the vertical scrollbar, so
+    // w-screen made every section a scrollbar's width wider than the page and
+    // needed overflow-x-hidden to paper over it.
+    <section className="min-h-screen w-full overflow-x-hidden bg-white">
       <ProjectHero title={project.title} />
 
       <ProjectOverview
@@ -76,11 +80,17 @@ export default async function ProjectPage({
       />
 
       <ProjectGallery
-        items={(project.gallery ?? []).map((item) => ({
-          title: item.title,
-          imageUrl: item.imageUrl,
-          paragraph: item.caption ? <RichText data={item.caption} /> : undefined,
-        }))}
+        items={(project.gallery ?? [])
+          .map((item) => ({
+            title: item.title,
+            imageUrl: resolveImageUrl(item),
+            paragraph: item.caption ? (
+              <RichText data={item.caption} />
+            ) : undefined,
+          }))
+          // An entry whose image never resolved would render an empty frame,
+          // so drop it rather than show a broken slot.
+          .filter((item) => item.imageUrl !== "")}
       />
 
       {hasTools && (

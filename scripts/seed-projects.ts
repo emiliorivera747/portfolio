@@ -198,10 +198,11 @@ const projects: SeedProject[] = [
       "https://res.cloudinary.com/dcss55nem/image/upload/v1753932226/Screenshot_2025-07-30_at_8.22.13_PM_eu24ir.png",
     overviewMarkdown:
       "Built this personal portfolio with **Next.js** (App Router), **TypeScript**, and **Tailwind CSS**, backed by **Drizzle ORM** + **Supabase Postgres** and Cloudinary-hosted media.",
-    // TODO: replace with your role on this project.
-    role: "TODO: Add your role",
-    // TODO: replace with your responsibilities on this project.
-    responsibilityMarkdown: "TODO: Add your responsibilities",
+    role: "Full Stack Engineer",
+    responsibilityMarkdown: `- **Front End**: Next.js App Router pages in TypeScript, styled with Tailwind CSS and animated with Framer Motion.
+- **CMS**: Payload CMS backing projects, blog posts, and testimonials, with cache revalidation on publish.
+- **Data & Media**: Supabase Postgres via Drizzle ORM, Cloudinary-hosted imagery, and S3 for uploads.
+- **Deployment**: Vercel hosting with SEO metadata, sitemap, and redirects.`,
     learnMoreLabel: "Source Code",
     learnMoreHref: "https://github.com/emiliorivera747/portfolio",
     learnMoreLinkText: "View Source Code",
@@ -252,6 +253,9 @@ async function seed() {
         gallery: await Promise.all(
           gallery.map(async (item) => ({
             title: item.title,
+            // Seeded screenshots are all Cloudinary URLs; uploads are only
+            // chosen through the admin UI.
+            imageSource: "url" as const,
             imageUrl: item.imageUrl,
             caption: item.captionMarkdown
               ? await markdownToRichText(payload, item.captionMarkdown)

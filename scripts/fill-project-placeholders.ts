@@ -28,6 +28,14 @@ const updates: { slug: string; role: string; responsibilityMarkdown: string }[] 
 - **SEO & Accessibility**: Semantic markup and metadata.
 - **Deployment**: Hosting, domain setup, and ongoing updates.`,
     },
+    {
+      slug: "my-portfolio",
+      role: "Full Stack Engineer",
+      responsibilityMarkdown: `- **Front End**: Next.js App Router pages in TypeScript, styled with Tailwind CSS and animated with Framer Motion.
+- **CMS**: Payload CMS backing projects, blog posts, and testimonials, with cache revalidation on publish.
+- **Data & Media**: Supabase Postgres via Drizzle ORM, Cloudinary-hosted imagery, and S3 for uploads.
+- **Deployment**: Vercel hosting with SEO metadata, sitemap, and redirects.`,
+    },
   ];
 
 async function run() {

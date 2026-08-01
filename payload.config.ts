@@ -45,12 +45,13 @@ function revalidatePaths(paths: (string | undefined)[]) {
   }
 }
 
-// Shared shape for one entry in a project's Front End / Back End / Both
-// tools array — lets each tool either link a Cloudinary (or other) URL or
-// upload an image straight into Media.
-function toolItemFields(): Field[] {
+// Lets an item either link an image URL (Cloudinary, etc.) or upload an image
+// straight into Media. Shared by project tool icons and gallery screenshots so
+// both offer the same choice and store it the same way — `imageSource` decides
+// which of `imageUrl` / `image` is shown and required. Neither field can be
+// `required` outright, since exactly one of them applies at a time.
+function imageSourceFields(subject: string): Field[] {
   return [
-    { name: "name", type: "text", required: true },
     {
       name: "imageSource",
       type: "radio",
@@ -67,7 +68,7 @@ function toolItemFields(): Field[] {
       type: "text",
       admin: {
         condition: (_, siblingData) => siblingData?.imageSource !== "upload",
-        description: "Image URL for the tool's icon.",
+        description: `Image URL for the ${subject}.`,
       },
       validate: (value: string | null | undefined, { siblingData }: any) =>
         siblingData?.imageSource === "upload" || value
@@ -80,13 +81,22 @@ function toolItemFields(): Field[] {
       relationTo: "media",
       admin: {
         condition: (_, siblingData) => siblingData?.imageSource === "upload",
-        description: "Upload an icon image instead of using a URL.",
+        description: `Upload an image for the ${subject} instead of using a URL.`,
       },
       validate: ((value: unknown, { siblingData }: any) =>
         siblingData?.imageSource !== "upload" || value
           ? true
           : "An uploaded image is required when using upload mode.") as any,
     },
+  ];
+}
+
+// Shared shape for one entry in a project's Front End / Back End / Both
+// tools array.
+function toolItemFields(): Field[] {
+  return [
+    { name: "name", type: "text", required: true },
+    ...imageSourceFields("tool's icon"),
   ];
 }
 
@@ -200,7 +210,7 @@ const Projects: CollectionConfig = {
       type: "array",
       fields: [
         { name: "title", type: "text", required: true },
-        { name: "imageUrl", type: "text", required: true },
+        ...imageSourceFields("gallery image"),
         { name: "caption", type: "richText" },
       ],
     },

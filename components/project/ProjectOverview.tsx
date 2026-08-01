@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 import InfoCard from "@/components/cards/InfoCard";
+import { PROJECT_CONTAINER } from "@/components/project/layout";
 
 interface ProjectOverviewProps {
   description: ReactNode;
@@ -21,16 +22,20 @@ export default function ProjectOverview({
 }: ProjectOverviewProps) {
   const linkText = learnMoreLinkText ?? `Visit ${learnMoreLabel}`;
   return (
-    <div className="w-screen bg-white min-h-screen h-auto flex items-center justify-center">
-      <div className="mx-[10%]">
-        <div className="h-1/6 w-full flex items-top justify-center pt-10">
-          <h1 className="text-4xl text-primary-900 font-bold"> What did I do?</h1>
+    <div className="w-full bg-white min-h-screen h-auto flex items-center justify-center">
+      <div className={PROJECT_CONTAINER}>
+        <div className="w-full flex items-top justify-center pt-10">
+          <h1 className="text-4xl text-primary-900 font-bold">What did I do?</h1>
         </div>
-        <div className="h-full w-full bg-white">
-          <h1 className="font-extralight p-6 text-primary-800 text-start text-xl leading-loose tracking-wider md:text-xl md:p-16">
+        <div className="w-full bg-white">
+          {/* Deliberately no horizontal padding of its own: the container
+              above already sets the page gutter, so this paragraph's edges
+              line up with the card grid below instead of sitting inset from
+              it. Vertical padding only. */}
+          <div className="font-extralight py-10 md:py-16 text-primary-800 text-start text-xl leading-loose tracking-wider">
             {description}
-          </h1>
-          <div className="grid gap-4 md:grid-cols-6 w-full p-6">
+          </div>
+          <div className="grid gap-4 md:grid-cols-6 w-full pb-10">
             <InfoCard title="Role" className="md:col-span-2">
               <p className="font-light text-md text-primary-800">{role}</p>
             </InfoCard>
@@ -46,9 +51,12 @@ export default function ProjectOverview({
               title={`Learn more about ${learnMoreLabel}`}
               className="md:col-span-6"
             >
+              {/* inline-flex + w-fit so the button hugs its label — as a plain
+                  block flex child of the column it stretched the full width
+                  of the card. */}
               <Link
                 href={learnMoreHref}
-                className="hover:bg-primary-300 text-md md:text-md leading-loose tracking-wider text-blue-600 border border-primary-400 rounded-[12px] px-2 py-3 flex items-center justify-center text-center"
+                className="hover:bg-primary-300 text-md leading-loose tracking-wider text-blue-600 border border-primary-400 rounded-[12px] px-6 py-2 inline-flex w-fit items-center justify-center text-center"
                 aria-label={linkText}
               >
                 {linkText}
