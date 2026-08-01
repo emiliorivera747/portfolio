@@ -23,7 +23,7 @@ import ProjectSectionV2 from "@/components/ProjectSectionV2";
 import ToolsSection from "@/components/ToolsSection";
 
 // Data
-import { navBarData } from "@/utils/data/navbar/navbarData";
+import type { MenuItem } from "@/types/navbar";
 import Navbar from "@/components/navbar/Navbar";
 
 type ProjectToolsBySlug = Record<
@@ -47,10 +47,12 @@ export default function App({
   testimonials,
   heroVideoUrl,
   toolsByProject,
+  menuItems,
 }: {
   testimonials: TestimonialDoc[];
   heroVideoUrl?: string;
   toolsByProject: ProjectToolsBySlug;
+  menuItems: MenuItem[];
 }) {
   const myPortfolioTools = toolsByProject["my-portfolio"] ?? emptyTools;
   const casaChirilaguaTools = toolsByProject["casa-chirilagua"] ?? emptyTools;
@@ -73,7 +75,7 @@ export default function App({
 
   return (
     <>
-      <Navbar menuItems={navBarData} />
+      <Navbar menuItems={menuItems} />
       <AnimatePresence mode="wait">
         <motion.div {...({ className: "h-auto" } as any)}>
           <Page>

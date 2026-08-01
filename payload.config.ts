@@ -50,12 +50,20 @@ function revalidatePaths(paths: (string | undefined)[]) {
 // both offer the same choice and store it the same way — `imageSource` decides
 // which of `imageUrl` / `image` is shown and required. Neither field can be
 // `required` outright, since exactly one of them applies at a time.
-function imageSourceFields(subject: string): Field[] {
+// `optional` drops the "you must supply one or the other" rules, for places
+// where having no image at all is a valid state. Without it, adding this group
+// to an existing collection would block saving every document already in the
+// database, since defaultValue only applies to newly created docs and existing
+// rows come back with a null imageSource.
+function imageSourceFields(
+  subject: string,
+  { optional = false }: { optional?: boolean } = {}
+): Field[] {
   return [
     {
       name: "imageSource",
       type: "radio",
-      required: true,
+      required: !optional,
       defaultValue: "url",
       options: [
         { label: "Image URL", value: "url" },
@@ -71,7 +79,7 @@ function imageSourceFields(subject: string): Field[] {
         description: `Image URL for the ${subject}.`,
       },
       validate: (value: string | null | undefined, { siblingData }: any) =>
-        siblingData?.imageSource === "upload" || value
+        optional || siblingData?.imageSource === "upload" || value
           ? true
           : "Image URL is required unless you upload an image.",
     },
@@ -84,7 +92,7 @@ function imageSourceFields(subject: string): Field[] {
         description: `Upload an image for the ${subject} instead of using a URL.`,
       },
       validate: ((value: unknown, { siblingData }: any) =>
-        siblingData?.imageSource !== "upload" || value
+        optional || siblingData?.imageSource !== "upload" || value
           ? true
           : "An uploaded image is required when using upload mode.") as any,
     },
@@ -166,13 +174,24 @@ const Testimonials: CollectionConfig = {
 // A project's tools (tabs below) show on both "/" and its own page, so
 // any change — including just editing Front End/Back End/Both tools —
 // needs to bust both, plus the /projects grid for card-level fields.
+// Projects also feed the navbar's dropdown (see lib/navbar.ts), which renders
+// on every page — so /about and /blog have to be busted too, not just the
+// pages that show project content directly.
+const projectPaths = (slug?: string) => [
+  "/",
+  "/projects",
+  "/about",
+  "/blog",
+  slug ? `/projects/${slug}` : undefined,
+];
+
 const revalidateProject: CollectionAfterChangeHook = ({ doc }) => {
-  revalidatePaths(["/", "/projects", doc?.slug ? `/projects/${doc.slug}` : undefined]);
+  revalidatePaths(projectPaths(doc?.slug));
   return doc;
 };
 
 const revalidateProjectOnDelete: CollectionAfterDeleteHook = ({ doc }) => {
-  revalidatePaths(["/", "/projects", doc?.slug ? `/projects/${doc.slug}` : undefined]);
+  revalidatePaths(projectPaths(doc?.slug));
 };
 
 // Powers the /projects grid and each project's /projects/[slug] case-study page.
@@ -213,6 +232,37 @@ const Projects: CollectionConfig = {
         ...imageSourceFields("gallery image"),
         { name: "caption", type: "richText" },
       ],
+    },
+    // Drives this project's entry in the navbar's Projects dropdown. Kept on
+    // the project rather than in a separate navigation global so there's one
+    // source of truth — adding a project puts it in the menu automatically.
+    {
+      name: "navLogo",
+      type: "group",
+      label: "Navigation Menu Logo",
+      admin: {
+        description:
+          "Logo shown next to this project in the site's Projects dropdown.",
+      },
+      fields: [
+        {
+          name: "initials",
+          type: "text",
+          admin: {
+            description:
+              'Shown when no image is set, e.g. "TM". Falls back to the first letters of the title.',
+          },
+        },
+        ...imageSourceFields("navigation menu logo", { optional: true }),
+      ],
+    },
+    {
+      name: "showInNav",
+      type: "checkbox",
+      defaultValue: true,
+      admin: {
+        description: "Show this project in the navbar's Projects dropdown.",
+      },
     },
     { name: "showOnHome", type: "checkbox", defaultValue: false },
     { name: "homeVideoUrl", type: "text" },

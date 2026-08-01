@@ -3,6 +3,7 @@ import { getPayload } from "payload";
 import type { Metadata } from "next";
 import config from "@/payload.config";
 import BlogPostClient from "./BlogPostClient";
+import { getNavBarData } from "@/lib/navbar";
 
 export const revalidate = 3600;
 
@@ -58,5 +59,7 @@ export default async function BlogPostPage({
   const post = await getPost(slug);
   if (!post) notFound();
 
-  return <BlogPostClient post={post} />;
+  const menuItems = await getNavBarData();
+
+  return <BlogPostClient post={post} menuItems={menuItems} />;
 }

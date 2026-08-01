@@ -294,6 +294,28 @@ export interface Project {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Logo shown next to this project in the site's Projects dropdown.
+   */
+  navLogo?: {
+    /**
+     * Shown when no image is set, e.g. "TM". Falls back to the first letters of the title.
+     */
+    initials?: string | null;
+    imageSource?: ('url' | 'upload') | null;
+    /**
+     * Image URL for the navigation menu logo.
+     */
+    imageUrl?: string | null;
+    /**
+     * Upload an image for the navigation menu logo instead of using a URL.
+     */
+    image?: (number | null) | Media;
+  };
+  /**
+   * Show this project in the navbar's Projects dropdown.
+   */
+  showInNav?: boolean | null;
   showOnHome?: boolean | null;
   homeVideoUrl?: string | null;
   /**
@@ -562,6 +584,15 @@ export interface ProjectsSelect<T extends boolean = true> {
         caption?: T;
         id?: T;
       };
+  navLogo?:
+    | T
+    | {
+        initials?: T;
+        imageSource?: T;
+        imageUrl?: T;
+        image?: T;
+      };
+  showInNav?: T;
   showOnHome?: T;
   homeVideoUrl?: T;
   order?: T;

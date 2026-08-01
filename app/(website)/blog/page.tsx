@@ -1,7 +1,7 @@
 import { getPayload } from "payload";
 import config from "@/payload.config";
 import Navbar from "@/components/navbar/Navbar";
-import { navBarData } from "@/utils/data/navbar/navbarData";
+import { getNavBarData } from "@/lib/navbar";
 import HeroImageBanner from "@/components/HeroImageBanner";
 import BlogCard from "@/components/blog/BlogCard";
 
@@ -21,9 +21,11 @@ export default async function BlogPage() {
     limit: 50,
   });
 
+  const menuItems = await getNavBarData();
+
   return (
     <section className="w-screen min-h-screen h-auto">
-      <Navbar menuItems={navBarData} mode="light" />
+      <Navbar menuItems={menuItems} mode="light" />
       <HeroImageBanner title="Blogs." className="bg-[#1877F2]" />
       <div className="mx-[5%]">
         <div className="text-4xl sm:text-6xl pt-[10rem] pb-4 font-semibold text-transparent bg-clip-text bg-gradient-to-r from-primary-900 to-primary-800">

@@ -14,7 +14,7 @@ export const metadata = {
 };
 
 // Data
-import { navBarData } from "@/utils/data/navbar/navbarData";
+import { getNavBarData } from "@/lib/navbar";
 import Navbar from "@/components/navbar/Navbar";
 
 /**
@@ -24,15 +24,16 @@ import Navbar from "@/components/navbar/Navbar";
  * @param children - in this case would be the about page
  * @returns layout
  */
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const menuItems = await getNavBarData();
   return (
     <div>
       <main>
-        <Navbar menuItems={navBarData} mode={'light'}/>
+        <Navbar menuItems={menuItems} mode={'light'}/>
         {children}
       </main>
     </div>

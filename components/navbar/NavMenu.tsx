@@ -45,8 +45,14 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                         (s) => s.logo || s.initials || s.stack
                       );
                       return (
+                        // Solid white panel. It was bg-primary-300/30 — a 30%
+                        // opacity grey — which all but disappeared over the
+                        // site's white pages. The border does the separating
+                        // work here rather than a shadow, since the Radix
+                        // viewport wrapping this is overflow-hidden and would
+                        // clip anything drawn outside the panel's box.
                         <NavigationMenuContent
-                          className={`backdrop-blur-sm bg-primary-300/30 text-white text-sm rounded-lg border-none outline-none ${
+                          className={`bg-white text-primary-1000 text-sm rounded-lg border border-primary-300 outline-none ${
                             isGrid
                               ? "grid grid-cols-2 gap-3 p-6 min-w-[22rem]"
                               : "flex flex-col gap-3 py-4 px-6 pb-6 min-w-[14rem]"
@@ -65,7 +71,13 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                                     {subItem.stack.map((stackItem, i) => (
                                       <Avatar
                                         key={i}
-                                        className={`w-12 h-12 border-2 border-white ${stackItem.logo ? "bg-transparent" : "bg-primary-800"}`}
+                                        // The ring's job is to separate the
+                                        // overlapping avatars. border-white
+                                        // did that against the old translucent
+                                        // grey panel but disappears on the
+                                        // white one, so it matches the panel
+                                        // border instead.
+                                        className={`w-12 h-12 border-2 border-primary-300 ${stackItem.logo ? "bg-transparent" : "bg-primary-800"}`}
                                         style={{ marginLeft: i === 0 ? 0 : "-10px", zIndex: subItem.stack!.length - i }}
                                       >
                                         {stackItem.logo && <AvatarImage src={stackItem.logo} alt={stackItem.initials} className="object-contain p-1" />}
@@ -87,8 +99,15 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                             );
 
                             const linkClass = isGrid
-                              ? `flex flex-col items-center justify-start gap-2 text-center text-[0.8rem] ${linkTextColor} font-medium rounded-lg p-3 hover:bg-white/15 transition-colors duration-200 min-h-[5.5rem]`
-                              : `flex items-center gap-3 text-[1rem] ${linkTextColor} font-medium rounded-lg py-1 px-1`;
+                              // hover:bg-white/15 was invisible once the panel
+                              // itself went white — a light grey reads instead.
+                              ? `flex flex-col items-center justify-start gap-2 text-center text-[0.8rem] ${linkTextColor} font-medium rounded-lg p-3 hover:bg-primary-200 transition-colors duration-200 min-h-[5.5rem]`
+                              // Same hover background as the grid variant —
+                              // without it these items lost their only hover
+                              // feedback when the underline came off. The
+                              // padding grows a little so the highlight reads
+                              // as a target rather than a sliver behind text.
+                              : `flex items-center gap-3 text-[1rem] ${linkTextColor} font-medium rounded-lg py-2 px-3 hover:bg-primary-200 transition-colors duration-200`;
 
                             return (
                               <NavigationMenuLink
@@ -104,7 +123,7 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                                     {...(subItem.external ? { target: "_blank", rel: "noopener" } : {})}
                                   >
                                     {hasLogo && logo}
-                                    <span className="hover:underline hover:underline-offset-4 hover:decoration-2 leading-tight">{subItem.label}</span>
+                                    <span className="leading-tight">{subItem.label}</span>
                                   </a>
                                 ) : (
                                   <Link
@@ -113,7 +132,7 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                                     aria-label={subItem.label}
                                   >
                                     {hasLogo && logo}
-                                    <span className="hover:underline hover:underline-offset-4 hover:decoration-2 leading-tight">{subItem.label}</span>
+                                    <span className="leading-tight">{subItem.label}</span>
                                   </Link>
                                 )}
                               </NavigationMenuLink>

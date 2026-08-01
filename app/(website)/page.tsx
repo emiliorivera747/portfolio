@@ -2,6 +2,7 @@ import { getPayload } from "payload";
 import config from "@/payload.config";
 import HomeClient from "./HomeClient";
 import { groupToolsByProject } from "@/lib/tools";
+import { getNavBarData } from "@/lib/navbar";
 
 export const revalidate = 3600;
 
@@ -29,11 +30,14 @@ export default async function Page() {
   });
   const toolsByProject = groupToolsByProject(projects);
 
+  const menuItems = await getNavBarData();
+
   return (
     <HomeClient
       testimonials={testimonials}
       heroVideoUrl={heroVideoUrl}
       toolsByProject={toolsByProject}
+      menuItems={menuItems}
     />
   );
 }

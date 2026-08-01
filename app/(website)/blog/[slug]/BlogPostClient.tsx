@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Navbar from "@/components/navbar/Navbar";
-import { navBarData } from "@/utils/data/navbar/navbarData";
+import type { MenuItem } from "@/types/navbar";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import RichText from "@/components/payload/RichText";
 import type { Post } from "@/payload-types";
@@ -23,13 +23,19 @@ function calcReadTime(body: Post["body"]): number {
 /**
  * Displays a single blog post
  */
-export default function BlogPostClient({ post }: { post: Post }) {
+export default function BlogPostClient({
+  post,
+  menuItems,
+}: {
+  post: Post;
+  menuItems: MenuItem[];
+}) {
   const [isDark, setIsDark] = useState(false);
   const cover = typeof post.coverImage === "object" ? post.coverImage : null;
 
   return (
     <div className={`flex flex-col min-h-screen ${isDark ? "dark bg-[#0d0d0d]" : ""}`}>
-      <Navbar menuItems={navBarData} mode={isDark ? "light" : "dark"} />
+      <Navbar menuItems={menuItems} mode={isDark ? "light" : "dark"} />
       <div className="flex items-center justify-center flex-1">
         <article
           style={{

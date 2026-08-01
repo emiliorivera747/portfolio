@@ -4,7 +4,7 @@ export const metadata = {
     "A collection of projects by Emilio Rivera spanning web applications, design systems, and community initiatives.",
 };
 
-import { navBarData } from "@/utils/data/navbar/navbarData";
+import { getNavBarData } from "@/lib/navbar";
 import Navbar from "@/components/navbar/Navbar";
 
 /**
@@ -14,15 +14,16 @@ import Navbar from "@/components/navbar/Navbar";
  * @param {React.ReactNode} children
  * @returns layout
  */
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const menuItems = await getNavBarData();
   return (
     <div>
       <main>
-        <Navbar menuItems={navBarData} mode="dark"/>
+        <Navbar menuItems={menuItems} mode="dark"/>
         {children}
       </main>
     </div>
