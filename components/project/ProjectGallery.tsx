@@ -2,7 +2,7 @@
 import { ReactNode } from "react";
 import Image from "next/image";
 import { CldImage } from "next-cloudinary";
-import { isCloudinaryUrl } from "@/lib/images";
+import { cloudinaryPublicId, isCloudinaryUrl } from "@/lib/images";
 
 export interface ProjectGalleryItem {
   title: string;
@@ -43,12 +43,13 @@ export default function ProjectGallery({ items }: { items: ProjectGalleryItem[] 
               compile to nothing and the frame collapses to zero height. */}
           <div className="relative w-full h-[58vw] sm:h-[87vh] rounded-[12px] overflow-hidden shadow-md hover:shadow-xl">
             {/* Gallery images can be a pasted Cloudinary URL or a Payload
-                upload served from S3 — CldImage only builds Cloudinary
-                delivery URLs, so uploads go through plain next/image. */}
+                upload, which now also lands on Cloudinary. CldImage needs a
+                public ID rather than a URL, and the two sources produce
+                different URL shapes — cloudinaryPublicId normalises both. */}
             {isCloudinaryUrl(item.imageUrl) ? (
               <CldImage
                 alt={item.title}
-                src={item.imageUrl}
+                src={cloudinaryPublicId(item.imageUrl)}
                 fill
                 sizes={IMAGE_SIZES}
                 className="rounded-[12px] object-contain sm:object-cover"

@@ -3,13 +3,14 @@ import { useState } from "react";
 import Image from "next/image";
 import { CldImage } from "next-cloudinary";
 import { ToolsProps, ToolItem } from "@/types/tools";
+import { cloudinaryPublicId, isCloudinaryUrl } from "@/lib/images";
 
 const ToolCard = ({ item }: { item: ToolItem }) => {
   const [loaded, setLoaded] = useState(false);
-  // Tool icons can either be a Cloudinary URL or a Payload upload (served
-  // from S3) — CldImage only works for actual Cloudinary-hosted assets, so
-  // uploaded icons need to go through plain next/image instead.
-  const isCloudinary = item.imageUrl.includes("cloudinary.com");
+  // Tool icons can either be a pasted Cloudinary URL or a Payload upload,
+  // which now also lands on Cloudinary. CldImage needs a public ID rather
+  // than a URL, and the two sources produce different URL shapes.
+  const isCloudinary = isCloudinaryUrl(item.imageUrl);
 
   return (
     <div className="grid grid-rows-[3fr_3rem] backdrop-blur-md h-[10rem] w-[10rem] sm:h-[12rem] sm:w-[12rem] bg-white rounded-[12px] transition-shadow duration-300 ease-in-out border border-primary-300 shadow-sm hover:shadow-lg hover:scale-105 items-center justify-center">
@@ -20,7 +21,7 @@ const ToolCard = ({ item }: { item: ToolItem }) => {
         {isCloudinary ? (
           <CldImage
             alt={item.name}
-            src={item.imageUrl}
+            src={cloudinaryPublicId(item.imageUrl)}
             width={100}
             height={100}
             className={loaded ? "opacity-100" : "opacity-0 absolute"}

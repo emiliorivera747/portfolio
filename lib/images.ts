@@ -20,8 +20,21 @@ export function resolveImageUrl(entry: ImageSourceEntry): string {
   return entry.imageUrl ?? "";
 }
 
-// Uploaded images live in S3, which CldImage can't serve — it only builds
-// Cloudinary delivery URLs. Callers use this to pick the right <Image>.
+// Everything is Cloudinary-hosted now, but a handful of images (blog covers,
+// testimonial photos) still render through plain next/image, so callers use
+// this to decide which component to reach for.
 export function isCloudinaryUrl(url: string): boolean {
   return url.includes("cloudinary.com");
+}
+
+// CldImage wants a Cloudinary *public ID*, not a delivery URL. It can recover
+// the ID from the URLs pasted into the CMS by hand, which carry a version and
+// an extension (.../upload/v1701048415/nextjs-black.png) — but not from the
+// ones Payload's storage adapter generates, which carry neither
+// (.../upload/payload/auth0-login-dialog). Those fail with "Resource not
+// found". Extracting the ID ourselves handles both shapes.
+export function cloudinaryPublicId(url: string): string {
+  const match = url.match(/\/(?:image|video|raw)\/upload\/(?:v\d+\/)?(.+)$/);
+  if (!match) return url;
+  return match[1].replace(/\.[^/.]+$/, "");
 }
