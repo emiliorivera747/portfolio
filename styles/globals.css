@@ -486,3 +486,54 @@ input:-webkit-autofill:active {
 .blog-content strong {
   font-weight: 700;
 }
+
+/* Payload rich text output (project overviews, responsibilities, gallery
+   captions, blog bodies). Tailwind's preflight resets ul/ol to no marker and
+   no padding, so lists authored in the CMS render as flat, marker-less runs
+   of text without this. */
+.rich-text ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+.rich-text ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+}
+
+.rich-text li {
+  margin-bottom: 0.5rem;
+}
+
+/* Semibold rather than bold, in the heading colour. The CMS copy bolds every
+   tool name, and at weight 700 those runs speckle a paragraph with hard dark
+   blocks; 600 reads as emphasis without breaking up the line. */
+.rich-text strong {
+  font-weight: 600;
+  color: #212529;
+}
+
+/* Preflight also strips paragraph margins, so a caption or overview with more
+   than one paragraph ran them together as a single block of text. */
+.rich-text p + p {
+  margin-top: 1rem;
+}
+
+/* Lists need the same separation from the text they follow. */
+.rich-text p + ul,
+.rich-text p + ol {
+  margin-top: 1rem;
+}
+
+/* Links in CMS copy were rendering as plain body text, indistinguishable from
+   the words around them. secondary-800/1000, matching the buttons. */
+.rich-text a {
+  color: #4263eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.rich-text a:hover {
+  color: #364fc7;
+}

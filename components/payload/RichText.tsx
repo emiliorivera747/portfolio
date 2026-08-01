@@ -35,7 +35,12 @@ const converters: JSXConvertersFunction = ({ defaultConverters }) => ({
 });
 
 export default function RichText({ data }: { data: DefaultTypedEditorState }) {
+  // The `rich-text` class carries list styling from globals.css — Tailwind's
+  // preflight strips markers and padding off ul/ol, so bullets authored in
+  // the CMS otherwise render as flat, marker-less lines.
   return (
-    <PayloadRichText data={data} converters={converters} disableContainer />
+    <div className="rich-text">
+      <PayloadRichText data={data} converters={converters} disableContainer />
+    </div>
   );
 }
