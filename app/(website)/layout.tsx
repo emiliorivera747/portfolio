@@ -6,7 +6,10 @@ import { Toaster } from "@/components/ui/sonner";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  // 200 is loaded so font-extralight renders a real ExtraLight cut. Without it
+  // the browser fakes the weight off the 300 file, which is why extralight
+  // text used to look subtly wrong rather than genuinely lighter.
+  weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata = {

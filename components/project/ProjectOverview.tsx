@@ -45,7 +45,7 @@ export default function ProjectOverview({
               statement instead of a wall of body copy, and 300 is the
               lightest Nunito Sans actually loads in layout.tsx — font-extralight
               (200) was never available and only ever rendered as a fake. */}
-          <div className="font-light py-10 md:py-16 w-full text-primary-900 text-start text-lg md:text-2xl leading-relaxed text-pretty">
+          <div className="font-extralight py-10 md:py-16 w-full text-primary-900 text-start text-lg md:text-2xl leading-relaxed text-pretty">
             {description}
           </div>
           <div className="grid gap-4 md:grid-cols-6 w-full pb-10">
