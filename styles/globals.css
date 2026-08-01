@@ -514,6 +514,16 @@ input:-webkit-autofill:active {
   color: #212529;
 }
 
+/* Images uploaded into a post body come through as bare <img> tags between
+   paragraphs. Tailwind's preflight strips their margins, so text sat flush
+   against every image — the paragraph above contributes its own margin-bottom,
+   but nothing separated the image from the paragraph below it. Rounded to
+   match the cover image above the body. */
+.rich-text img {
+  margin: 2rem 0;
+  border-radius: 12px;
+}
+
 /* Preflight also strips paragraph margins, so a caption or overview with more
    than one paragraph ran them together as a single block of text. */
 .rich-text p + p {

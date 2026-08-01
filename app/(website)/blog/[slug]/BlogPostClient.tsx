@@ -83,7 +83,7 @@ export default function BlogPostClient({
                 height={675}
                 width={1200}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 80rem"
-                className="w-full rounded-[12px] mb-4 sm:mb-10 h-[16rem] sm:h-full object-cover"
+                className="w-full rounded-[12px] mb-8 sm:mb-10 h-[16rem] sm:h-full object-cover"
               />
             )}
 
