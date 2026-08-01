@@ -121,7 +121,7 @@ export default function ProjectsGridClient({
           } as any)}
         >
           <h1 className="text-5xl sm:text-7xl font-bold text-primary-1000 mt-3 mb-5 tracking-tight">
-            Projects
+            Work
           </h1>
           <p className="text-primary-700 text-base sm:text-lg max-w-lg leading-relaxed font-light">
             A collection of work spanning web applications, design systems, and

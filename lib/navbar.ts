@@ -5,7 +5,7 @@ import { navBarData } from "@/utils/data/navbar/navbarData";
 import type { MenuItem, SubMenuItem } from "@/types/navbar";
 import type { Project } from "@/payload-types";
 
-// How many project logos to stack on the "All Projects" entry.
+// How many project logos to stack on the "All Work" entry.
 const STACK_SIZE = 3;
 
 function initialsFor(title: string) {
@@ -25,7 +25,7 @@ function initialsFor(title: string) {
 // Server-only: it opens a Payload connection, so call it from a layout, page,
 // or other server component and pass the result down to <Navbar />.
 export async function getNavBarData(): Promise<MenuItem[]> {
-  const projectsEntry = navBarData.find((item) => item.label === "Projects");
+  const projectsEntry = navBarData.find((item) => item.url === "/projects");
   if (!projectsEntry) return navBarData as MenuItem[];
 
   let projects: Project[] = [];
@@ -58,7 +58,7 @@ export async function getNavBarData(): Promise<MenuItem[]> {
   // Payload overrides the fallback, so this quietly stops mattering as the
   // field gets populated.
   // Cast because navbarData.ts is a plain literal — TypeScript infers a union
-  // of the shapes present (the "All Projects" entry has no logo/initials),
+  // of the shapes present (the "All Work" entry has no logo/initials),
   // which hides those properties on the rest.
   const fallbackByUrl = new Map(
     ((projectsEntry.content ?? []) as SubMenuItem[]).map((entry) => [
@@ -84,7 +84,7 @@ export async function getNavBarData(): Promise<MenuItem[]> {
 
   const allProjects: SubMenuItem = {
     id: projectLinks.length + 1,
-    label: "All Projects",
+    label: "All Work",
     url: "/projects",
     stack: projectLinks.slice(0, STACK_SIZE).map((project) => ({
       initials: project.initials as string,
@@ -93,7 +93,7 @@ export async function getNavBarData(): Promise<MenuItem[]> {
   };
 
   return navBarData.map((item) =>
-    item.label === "Projects"
+    item.url === "/projects"
       ? { ...item, content: [...projectLinks, allProjects] }
       : item
   ) as MenuItem[];

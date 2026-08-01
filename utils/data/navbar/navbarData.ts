@@ -1,7 +1,7 @@
 export const navBarData = [
   {
     id: 2,
-    label: "Projects",
+    label: "Work",
     url: "/projects",
     content: [
       {
@@ -34,7 +34,7 @@ export const navBarData = [
       },
       {
         id: 5,
-        label: "All Projects",
+        label: "All Work",
         url: "/projects",
         stack: [
           { initials: "CC", logo: "https://res.cloudinary.com/dcss55nem/image/upload/v1702750751/casa-logo_izyfkc.svg" },

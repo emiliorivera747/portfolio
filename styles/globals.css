@@ -326,11 +326,12 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #f8f9fa inset !important;
   border: solid 1px #adb5bd !important;
 }
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  outline: #748ffc auto 1px !important;
-  border: transparent !important;
-}
+/* Removed: this used to add `outline: #748ffc auto 1px !important` and
+   `border: transparent !important` on focus, so clicking into a field Chrome
+   had autofilled flashed a blue ring and dropped the field's own border. The
+   !important meant a component's focus:outline-none could not override it.
+   Fields now keep their own focus styling whether autofilled or not — the
+   block above still handles autofill's yellow background. */
 
 /* Basic editor styles */
 .tiptap {

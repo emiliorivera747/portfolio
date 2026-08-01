@@ -24,6 +24,37 @@ interface ContactProps {
   textLeave?: () => void;
 }
 
+// Floating-label field styling, kept in one place so the two inputs and the
+// textarea stay identical. The extra top padding is what leaves room for the
+// label to sit inside the field once it floats up.
+const inputClass =
+  "peer w-full border border-gray-300 bg-[#FBFBFB] rounded-[12px] px-[1rem] pt-[1.5rem] h-[4.2rem] " +
+  "leading-[1.23536] text-sm text-primary-900 placeholder-transparent align-text-bottom " +
+  "focus:outline-none transition-all duration-500";
+
+const textareaClass =
+  "peer w-full border border-gray-300 bg-[#FBFBFB] rounded-[12px] px-[1rem] pt-8 pb-3 " +
+  "leading-[1.23536] text-sm text-primary-900 placeholder-transparent resize-none " +
+  "focus:outline-none transition-all duration-500";
+
+// Floated state (focused, filled, or autofilled) is identical for every field;
+// only the resting position differs, since that has to line up with where the
+// text actually sits in each kind of field.
+const labelBase =
+  "absolute text-sm left-4 top-2 pb-4 text-primary-700 transition-all " +
+  "peer-focus:top-2 peer-focus:left-4 peer-focus:text-sm peer-focus:text-primary-700 " +
+  "peer-placeholder-shown:text-base peer-placeholder-shown:text-primary-700 peer-placeholder-shown:font-normal " +
+  "peer-autofill:top-2 peer-autofill:left-4 peer-autofill:text-sm";
+
+// Centres the resting label in the 4.2rem input: (4.2rem - 1.5rem line) / 2.
+// It was a flat top-4, which happened to centre the old 3.4rem field and went
+// off-centre the moment the fields got taller.
+const labelClass = `${labelBase} peer-placeholder-shown:top-[1.35rem]`;
+
+// A textarea fills from the top, so its resting label sits at the text's first
+// line — matching the textarea's own pt-8 — rather than centred.
+const textareaLabelClass = `${labelBase} peer-placeholder-shown:top-8`;
+
 /**
  * Displays the contact section where users can reach out via email or phone.
  *
@@ -199,39 +230,49 @@ const Contact: React.FC<ContactProps> = ({ textEnter, textLeave }) => {
               className: "flex flex-col gap-4 pt-6 w-full  ",
             } as any)}
           >
-            <div className="flex flex-col gap-1">
-              <label htmlFor="from_name" className="text-xs text-zinc-500 font-medium">Name</label>
+            {/* Each label sits *after* its field in the DOM so Tailwind's
+                peer-* variants can react to it, and the placeholder is
+                transparent — it exists only so peer-placeholder-shown can tell
+                an empty field from a filled one, which is what drops the label
+                down into the field and floats it back up. */}
+            <div className="relative">
               <input
                 id="from_name"
                 type="text"
                 name="from_name"
                 required
-                className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border"
-                placeholder="Jane Smith"
+                placeholder="Name"
+                className={inputClass}
               />
+              <label htmlFor="from_name" className={labelClass}>
+                Name
+              </label>
             </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor="contact_email" className="text-xs text-zinc-500 font-medium">Email</label>
+            <div className="relative">
               <input
                 id="contact_email"
                 name="email"
                 type="email"
                 required
-                className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border"
-                placeholder="jane@example.com"
+                placeholder="Email"
+                className={inputClass}
               />
+              <label htmlFor="contact_email" className={labelClass}>
+                Email
+              </label>
             </div>
-            <div className="flex flex-col gap-1">
-              <label htmlFor="contact_message" className="text-xs text-zinc-500 font-medium">Message</label>
+            <div className="relative">
               <textarea
                 id="contact_message"
-                className="bg-transparent border-primary-400 px-4 py-4 text-primary-800 rounded-[12px] border"
                 name="message"
                 required
-                cols={20}
-                rows={10}
-                placeholder="Your message..."
-              ></textarea>
+                rows={13}
+                placeholder="Message"
+                className={textareaClass}
+              />
+              <label htmlFor="contact_message" className={textareaLabelClass}>
+                Message
+              </label>
             </div>
             <Button
               type="submit"

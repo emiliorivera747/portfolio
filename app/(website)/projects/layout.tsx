@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Projects | Emilio Rivera's Portfolio",
+  title: "Work | Emilio Rivera's Portfolio",
   description:
-    "A collection of projects by Emilio Rivera spanning web applications, design systems, and community initiatives.",
+    "Client and product work by Emilio Rivera spanning web applications, design systems, and community initiatives.",
 };
 
 import { getNavBarData } from "@/lib/navbar";
