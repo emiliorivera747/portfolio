@@ -160,6 +160,7 @@ export interface User {
  */
 export interface Media {
   id: number;
+  cloudinaryPublicId?: string | null;
   alt?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -518,6 +519,7 @@ export interface UsersSelect<T extends boolean = true> {
  * via the `definition` "media_select".
  */
 export interface MediaSelect<T extends boolean = true> {
+  cloudinaryPublicId?: T;
   alt?: T;
   updatedAt?: T;
   createdAt?: T;

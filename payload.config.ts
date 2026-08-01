@@ -8,7 +8,7 @@ import {
   UploadFeature,
   lexicalEditor,
 } from "@payloadcms/richtext-lexical";
-import { s3Storage } from "@payloadcms/storage-s3";
+import { payloadCloudinaryPlugin } from "@jhb.software/payload-cloudinary-plugin";
 import { resendAdapter } from "@payloadcms/email-resend";
 import { buildConfig } from "payload";
 import type {
@@ -116,7 +116,7 @@ const Users: CollectionConfig = {
   fields: [],
 };
 
-// Upload-enabled collection backed by S3 (see s3Storage plugin below).
+// Upload-enabled collection backed by Cloudinary (see the storage plugin below).
 const Media: CollectionConfig = {
   slug: "media",
   upload: {
@@ -215,8 +215,8 @@ const Projects: CollectionConfig = {
     { name: "category", type: "text", required: true },
     { name: "cardDescription", type: "textarea", required: true },
     // Cloudinary URL — kept as plain text rather than a Payload Media
-    // relationship since existing screenshots already live on Cloudinary,
-    // not S3 (see Media collection below).
+    // relationship since these screenshots were uploaded to Cloudinary
+    // directly, outside of Payload's Media collection.
     { name: "cardImage", type: "text", required: true },
     { name: "overviewDescription", type: "richText", required: true },
     { name: "role", type: "text", required: true },
@@ -450,27 +450,34 @@ export default buildConfig({
   }),
   // Deliberately no `sharp`. Payload only needs it to resize/convert uploads
   // and record image dimensions — the Media collection defines no imageSizes,
-  // and site imagery is served from Cloudinary, not Payload's S3 bucket. Its
-  // native libvips binaries also don't survive Vercel's packaging step under
-  // pnpm's symlinked node_modules, which broke deploys outright.
+  // and Cloudinary already does transformation and optimization on delivery.
+  // Its native libvips binaries also don't survive Vercel's packaging step
+  // under pnpm's symlinked node_modules, which broke deploys outright.
   plugins: [
-    s3Storage({
+    // Media used to live in a public S3 bucket, which meant a second storage
+    // provider, a second set of long-lived credentials, and a world-readable
+    // bucket to keep hardened — all for ~5MB of assets. Cloudinary already
+    // serves the rest of the site's imagery, so uploads go there too and the
+    // AWS surface goes away entirely.
+    payloadCloudinaryPlugin({
       collections: {
-        // Serve files directly from S3 (public bucket + policy) instead of
-        // proxying every read through this app's server — important for video.
+        // Serve straight from Cloudinary's CDN rather than proxying every read
+        // through this app's server — important for the homepage hero video.
         media: { disablePayloadAccessControl: true },
       },
-      bucket: process.env.S3_BUCKET || "",
-      config: {
-        region: process.env.S3_REGION,
-        // Needed for the adapter to build public URLs (bucket/key), not just
-        // for making authenticated requests.
-        endpoint: `https://s3.${process.env.S3_REGION}.amazonaws.com`,
-        credentials: {
-          accessKeyId: process.env.S3_ACCESS_KEY_ID || "",
-          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || "",
-        },
+      cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || "",
+      credentials: {
+        apiKey: process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY || "",
+        apiSecret: process.env.CLOUDINARY_API_SECRET || "",
       },
+      // Keeps Payload's uploads in their own folder, so they stay distinct from
+      // the pre-existing Cloudinary assets that project pages reference by URL.
+      folder: "payload",
+      // Vercel caps a serverless request body at 4.5MB, and the hero video is
+      // already 4MB — a server-side upload would fail on the next one. This
+      // uploads from the browser straight to Cloudinary with a signed request,
+      // so the file never passes through a Vercel function.
+      clientUploads: true,
     }),
   ],
 });

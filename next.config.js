@@ -13,10 +13,6 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
       },
-      {
-        protocol: 'https',
-        hostname: '*.amazonaws.com',
-      },
     ],
     formats: ['image/avif', 'image/webp'],
   },
