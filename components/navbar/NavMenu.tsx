@@ -36,7 +36,12 @@ const NavMenu = ({ menuItems, menuTextColor, contentBg = "light" }: NavMenuItems
                 {item.content && (
                   <>
                     <NavigationMenuTrigger
-                      className={`uppercase bg-transparent font-bold hover:bg-transparent focus:bg-transparent active:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} text-sm tracking-wider focus:text-white data-[state=open]:bg-transparent data-[state=open]:text-white ${active ? "underline underline-offset-4" : ""}`}
+                      // No focus:text-white / data-[state=open]:text-white —
+                      // those forced the label white for as long as its
+                      // dropdown was open, which on a light page meant
+                      // clicking a menu item made its own label vanish.
+                      // menuTextColor already tracks the background.
+                      className={`uppercase bg-transparent font-bold hover:bg-transparent focus:bg-transparent active:bg-transparent tracking-widest rounded-lg p-[0.8rem] ${menuTextColor} text-sm tracking-wider data-[state=open]:bg-transparent ${active ? "underline underline-offset-4" : ""}`}
                     >
                       {item.label}
                     </NavigationMenuTrigger>

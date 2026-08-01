@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 // External Lib
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
@@ -21,6 +21,12 @@ import NavMenu from "@/components/navbar/NavMenu";
  * @param menuItems - Items for  the navigation bar
  * @returns Navbar
  */
+const NAV_TOP = "bg-transparent";
+const NAV_SCROLLED = "backdrop-blur bg-white/10";
+// Past this many pixels the bar sits over page content rather than the hero,
+// so it needs its own background and the inverse text colour.
+const SCROLLED_PAST = 600;
+
 export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
@@ -35,25 +41,52 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
     mode === "light" ? "bg-white" : "bg-primary-1000"
   );
 
-  const [navbarClass, setNavbarClass] = useState("bg-transparent");
+  const [navbarClass, setNavbarClass] = useState(NAV_TOP);
+
+  // One place that decides every colour from "are we scrolled past the hero",
+  // so the mount-time sync below and the scroll handler can't drift apart.
+  const applyScrollState = useCallback(
+    (scrolled: boolean) => {
+      setNavbarClass(scrolled ? NAV_SCROLLED : NAV_TOP);
+      setMenuTextColor(
+        scrolled
+          ? mode === "light"
+            ? "text-primary-1000"
+            : "text-primary-100"
+          : mode === "light"
+            ? "text-primary-100"
+            : "text-primary-1000"
+      );
+      setHamburgerBgColor(
+        scrolled
+          ? "bg-primary-900"
+          : mode === "light"
+            ? "bg-white"
+            : "bg-primary-1000"
+      );
+    },
+    [mode]
+  );
+
+  // useMotionValueEvent only fires when the scroll value *changes*. Without
+  // this, a page that mounts already scrolled — navigating back, a restored
+  // scroll position, an anchor link — keeps the initial "top of page" colours,
+  // leaving white text on a white background until you happen to scroll. Also
+  // re-runs when `mode` changes, since each route passes a different one.
+  useEffect(() => {
+    applyScrollState(scrollY.get() > SCROLLED_PAST);
+  }, [applyScrollState, scrollY]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
 
-    if (latest > previous && latest > 150) setHidden(true);
+    // getPrevious() is undefined on the very first change; `latest > undefined`
+    // is always false, which quietly disabled the hide-on-scroll-down there.
+    if (previous !== undefined && latest > previous && latest > 150)
+      setHidden(true);
     else setHidden(false);
 
-    if (latest > 600) {
-      setNavbarClass("backdrop-blur bg-white/10");
-      setMenuTextColor(
-        mode === "light" ? "text-primary-1000" : "text-primary-100"
-      );
-    } else {
-      setNavbarClass("bg-transparent");
-      setMenuTextColor(
-        mode === "light" ? "text-primary-100" : "text-primary-1000"
-      );
-    }
+    applyScrollState(latest > SCROLLED_PAST);
   });
 
   return (
