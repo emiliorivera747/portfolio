@@ -3,7 +3,7 @@ import config from "@/payload.config";
 import { resolveImageUrl } from "@/lib/images";
 import { navBarData } from "@/utils/data/navbar/navbarData";
 import type { MenuItem, SubMenuItem } from "@/types/navbar";
-import type { Project } from "@/payload-types";
+import type { Navigation, Project } from "@/payload-types";
 
 // How many project logos to stack on the "All Work" entry.
 const STACK_SIZE = 3;
@@ -17,10 +17,15 @@ function initialsFor(title: string) {
     .toUpperCase();
 }
 
-// Builds the navbar's Projects dropdown from the Projects collection, so the
-// logos are editable in Payload (Projects > a project > Navigation Menu Logo)
-// instead of being hardcoded URLs. The About and Blog entries stay in
-// navbarData.ts — they aren't backed by a collection.
+// Builds the navbar from Payload: the top-level entries and their sub-items
+// come from the `navigation` global, and any entry flagged
+// `populateWithProjects` has its dropdown generated from the Projects
+// collection instead, so project logos stay editable per project
+// (Projects > a project > Navigation Menu Logo).
+//
+// navbarData.ts is still the fallback for two cases — a database failure, and
+// a `navigation` global nobody has filled in yet — so the menu never comes
+// back empty.
 //
 // Server-only: it opens a Payload connection, so call it from a layout, page,
 // or other server component and pass the result down to <Navbar />.
@@ -29,15 +34,23 @@ export async function getNavBarData(): Promise<MenuItem[]> {
   if (!projectsEntry) return navBarData as MenuItem[];
 
   let projects: Project[] = [];
+  let navItems: NonNullable<Navigation["items"]> = [];
 
   try {
     const payload = await getPayload({ config });
-    ({ docs: projects } = await payload.find({
-      collection: "projects",
-      depth: 1,
-      sort: "order",
-      limit: 200,
-    }));
+    // One round trip rather than two sequential ones — this runs on every
+    // page render, so the latency is worth avoiding.
+    const [projectsResult, navigation] = await Promise.all([
+      payload.find({
+        collection: "projects",
+        depth: 1,
+        sort: "order",
+        limit: 200,
+      }),
+      payload.findGlobal({ slug: "navigation" }),
+    ]);
+    projects = projectsResult.docs;
+    navItems = navigation?.items ?? [];
   } catch (error) {
     // The navbar renders on every page, so a database hiccup must not take the
     // whole site down — fall back to the static menu.
@@ -92,9 +105,30 @@ export async function getNavBarData(): Promise<MenuItem[]> {
     })),
   };
 
-  return navBarData.map((item) =>
-    item.url === "/projects"
-      ? { ...item, content: [...projectLinks, allProjects] }
-      : item
-  ) as MenuItem[];
+  const projectsContent = [...projectLinks, allProjects];
+
+  // Nobody has filled in the navigation global yet — keep the hardcoded menu,
+  // but still swap in the freshly generated Projects dropdown.
+  if (navItems.length === 0) {
+    return navBarData.map((item) =>
+      item.url === "/projects" ? { ...item, content: projectsContent } : item
+    ) as MenuItem[];
+  }
+
+  return navItems.map((item, index) => ({
+    id: index + 1,
+    label: item.label,
+    url: item.url,
+    ...(item.populateWithProjects
+      ? { content: projectsContent }
+      : item.subItems?.length
+        ? {
+            content: item.subItems.map((subItem, subIndex) => ({
+              id: subIndex + 1,
+              label: subItem.label,
+              url: subItem.url,
+            })),
+          }
+        : {}),
+  }));
 }

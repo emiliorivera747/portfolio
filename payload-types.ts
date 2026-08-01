@@ -98,10 +98,12 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     'about-page': AboutPage;
+    navigation: Navigation;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     'about-page': AboutPageSelect<false> | AboutPageSelect<true>;
+    navigation: NavigationSelect<false> | NavigationSelect<true>;
   };
   locale: null;
   widgets: {
@@ -815,6 +817,42 @@ export interface AboutPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation".
+ */
+export interface Navigation {
+  id: number;
+  /**
+   * Drag to reorder. Leaving this empty falls back to the hardcoded menu in navbarData.ts.
+   */
+  items?:
+    | {
+        label: string;
+        /**
+         * Path such as "/about", or "/#contact" to jump to a section.
+         */
+        url: string;
+        /**
+         * Build this item's dropdown from the Projects collection instead of the sub-items below. Project order and logos are then managed per project.
+         */
+        populateWithProjects?: boolean | null;
+        /**
+         * Drag to reorder. Leave empty for a plain link with no dropdown.
+         */
+        subItems?:
+          | {
+              label: string;
+              url: string;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -850,6 +888,30 @@ export interface AboutPageSelect<T extends boolean = true> {
         imageUrl?: T;
         image?: T;
         quoteAfter?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navigation_select".
+ */
+export interface NavigationSelect<T extends boolean = true> {
+  items?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        populateWithProjects?: T;
+        subItems?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              id?: T;
+            };
         id?: T;
       };
   updatedAt?: T;

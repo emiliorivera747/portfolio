@@ -37,6 +37,13 @@ const emptyTools: { frontEnd: ToolItem[]; backEnd: ToolItem[]; both: ToolItem[] 
   both: [],
 };
 
+// Separates one project's block — its video section plus the tools that go
+// with it — from the next, so the homepage reads as distinct projects rather
+// than one continuous scroll.
+const ProjectDivider = () => (
+  <div className="w-full border-b border-primary-200 pt-10" />
+);
+
 /**
  *  Main App component that wraps around all pages.
  *
@@ -104,7 +111,7 @@ export default function App({
                 bgColor={"bg-white"}
               />
             )}
-            <div className="w-full border-b border-primary-200 pt-10"></div>
+            <ProjectDivider />
             <ProjectSection
               url={"/projects/casa-chirilagua"}
               titleSize={"text-3xl sm:text-4xl"}
@@ -129,6 +136,7 @@ export default function App({
               }}
               bgColor={"bg-white"}
             />
+            <ProjectDivider />
             <ProjectSection
               url={"/projects/my-portfolio"}
               titleSize={"text-3xl sm:text-4xl"}

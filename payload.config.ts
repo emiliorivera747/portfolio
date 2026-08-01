@@ -488,6 +488,65 @@ const AboutPage: GlobalConfig = {
   ],
 };
 
+// The navbar renders on every page, so a change here has to bust all of them.
+const revalidateNavigation: GlobalAfterChangeHook = ({ doc }) => {
+  revalidatePaths(["/", "/projects", "/about", "/blog"]);
+  return doc;
+};
+
+// Top-level navbar entries, previously hardcoded in
+// utils/data/navbar/navbarData.ts. Array rows are drag-orderable in the admin,
+// so reordering the menu is a drag rather than a field to renumber — which is
+// why there's no `order` field here, unlike Projects.
+const Navigation: GlobalConfig = {
+  slug: "navigation",
+  label: "Navigation Menu",
+  admin: { group: "Navigation" },
+  hooks: { afterChange: [revalidateNavigation] },
+  fields: [
+    {
+      name: "items",
+      type: "array",
+      labels: { singular: "Menu Item", plural: "Menu Items" },
+      admin: {
+        description:
+          "Drag to reorder. Leaving this empty falls back to the hardcoded menu in navbarData.ts.",
+      },
+      fields: [
+        { name: "label", type: "text", required: true },
+        {
+          name: "url",
+          type: "text",
+          required: true,
+          admin: { description: 'Path such as "/about", or "/#contact" to jump to a section.' },
+        },
+        {
+          name: "populateWithProjects",
+          type: "checkbox",
+          defaultValue: false,
+          admin: {
+            description:
+              "Build this item's dropdown from the Projects collection instead of the sub-items below. Project order and logos are then managed per project.",
+          },
+        },
+        {
+          name: "subItems",
+          type: "array",
+          labels: { singular: "Sub Item", plural: "Sub Items" },
+          admin: {
+            condition: (_, siblingData) => !siblingData?.populateWithProjects,
+            description: "Drag to reorder. Leave empty for a plain link with no dropdown.",
+          },
+          fields: [
+            { name: "label", type: "text", required: true },
+            { name: "url", type: "text", required: true },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -505,7 +564,7 @@ export default buildConfig({
   // email, which mail clients then mangled into an invalid "http:///" URL.
   serverURL: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
   collections: [Users, Media, Showcase, Testimonials, Projects, Posts],
-  globals: [SiteSettings, AboutPage],
+  globals: [SiteSettings, AboutPage, Navigation],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   // Without this, Payload has no way to send anything (password resets,
