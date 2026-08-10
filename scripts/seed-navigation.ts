@@ -25,7 +25,7 @@ import { getPayload } from "payload";
 // sub-items: `populateWithProjects` builds its dropdown from the Projects
 // collection, so the project links and logos stay managed per project.
 const items = [
-  { label: "Work", url: "/projects", populateWithProjects: true },
+  { label: "Work", url: "/work", populateWithProjects: true },
   {
     label: "About",
     url: "/about",

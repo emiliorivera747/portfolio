@@ -28,13 +28,18 @@ const nextConfig = {
       exclude: ['error', 'warn'],
     } : false,
   },
-  // Project pages moved from flat top-level routes to /projects/[slug].
+  // Project pages have moved twice: first from flat top-level routes to
+  // /projects/[slug], and now to /work/[slug]. Both generations of URL are
+  // pointed straight at the current one rather than chained through each
+  // other, so any inbound link costs a single redirect.
   async redirects() {
     return [
-      { source: '/casa-chirilagua', destination: '/projects/casa-chirilagua', permanent: true },
-      { source: '/trellis-money', destination: '/projects/trellis-money', permanent: true },
-      { source: '/cipotes-sonriendo-foundation', destination: '/projects/cipotes-sonriendo-foundation', permanent: true },
-      { source: '/my-portfolio', destination: '/projects/my-portfolio', permanent: true },
+      { source: '/projects', destination: '/work', permanent: true },
+      { source: '/projects/:slug', destination: '/work/:slug', permanent: true },
+      { source: '/casa-chirilagua', destination: '/work/casa-chirilagua', permanent: true },
+      { source: '/trellis-money', destination: '/work/trellis-money', permanent: true },
+      { source: '/cipotes-sonriendo-foundation', destination: '/work/cipotes-sonriendo-foundation', permanent: true },
+      { source: '/my-portfolio', destination: '/work/my-portfolio', permanent: true },
     ];
   },
 };

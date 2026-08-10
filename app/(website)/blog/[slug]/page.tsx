@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import config from "@/payload.config";
 import BlogPostClient from "./BlogPostClient";
 import { getNavBarData } from "@/lib/navbar";
+import { pageMetadata } from "@/lib/seo";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const revalidate = 3600;
 
@@ -39,15 +41,15 @@ export async function generateMetadata({
 
   const cover = typeof post.coverImage === "object" ? post.coverImage : null;
 
-  return {
-    title: `${post.title} | Emilio Rivera's Portfolio`,
+  return pageMetadata({
+    title: post.title,
     description: post.excerpt,
-    openGraph: {
-      title: post.title,
-      description: post.excerpt,
-      images: cover?.url ? [cover.url] : [],
-    },
-  };
+    path: `/blog/${post.slug}`,
+    image: cover?.url || undefined,
+    // `article` rather than `website` so shares carry the byline and date.
+    type: "article",
+    publishedTime: post.createdAt,
+  });
 }
 
 export default async function BlogPostPage({
@@ -61,5 +63,26 @@ export default async function BlogPostPage({
 
   const menuItems = await getNavBarData();
 
-  return <BlogPostClient post={post} menuItems={menuItems} />;
+  const cover = typeof post.coverImage === "object" ? post.coverImage : null;
+
+  return (
+    <>
+      <ArticleJsonLd
+        title={post.title}
+        description={post.excerpt}
+        path={`/blog/${post.slug}`}
+        image={cover?.url || undefined}
+        datePublished={post.createdAt}
+        dateModified={post.updatedAt}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${post.slug}` },
+        ]}
+      />
+      <BlogPostClient post={post} menuItems={menuItems} />
+    </>
+  );
 }

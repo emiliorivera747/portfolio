@@ -1,7 +1,12 @@
+import { pageMetadata } from "@/lib/seo";
+
 export const metadata = {
-  title: "About | Emilio Rivera's Portfolio",
-  description:
-    "Discover Emilio Rivera's journey as a Software Engineer, his skills, and his passion for technology, public speaking, and continuous learning.",
+  ...pageMetadata({
+    title: "About",
+    description:
+      "Discover Emilio Rivera's journey as a Software Engineer, his skills, and his passion for technology, public speaking, and continuous learning.",
+    path: "/about",
+  }),
   keywords: [
     "Emilio Rivera",
     "Software Engineer",

@@ -6,7 +6,7 @@ import { BRAND_LOGO_URL, BRAND_NAME } from "@/lib/brand";
 // problem with a default 404, more than how it looks.
 const destinations = [
   { label: "Home", href: "/", description: "Start from the top" },
-  { label: "Work", href: "/projects", description: "Projects and case studies" },
+  { label: "Work", href: "/work", description: "Projects and case studies" },
   { label: "About", href: "/about", description: "How I got here" },
   { label: "Blog", href: "/blog", description: "Writing and notes" },
 ];

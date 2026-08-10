@@ -9,6 +9,8 @@ import RichText from "@/components/payload/RichText";
 import ToolsSection from "@/components/ToolsSection";
 import { getProjectTools } from "@/lib/tools";
 import { resolveImageUrl } from "@/lib/images";
+import { pageMetadata } from "@/lib/seo";
+import { BreadcrumbJsonLd, ProjectJsonLd } from "@/components/seo/JsonLd";
 
 export const revalidate = 3600;
 
@@ -40,12 +42,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProject(slug);
+  // No canonical for a slug that doesn't resolve — the page 404s.
   if (!project) return {};
 
-  return {
-    title: `${project.title} | Emilio Rivera's Portfolio`,
+  return pageMetadata({
+    title: project.title,
     description: project.cardDescription,
-  };
+    path: `/work/${project.slug}`,
+    // cardImage is the screenshot already used on the grid, so a shared link
+    // previews as the project rather than the generic site card.
+    image: project.cardImage || undefined,
+  });
 }
 
 export default async function ProjectPage({
@@ -68,6 +75,19 @@ export default async function ProjectPage({
     // w-screen made every section a scrollbar's width wider than the page and
     // needed overflow-x-hidden to paper over it.
     <section className="min-h-screen w-full overflow-x-hidden bg-white">
+      <ProjectJsonLd
+        title={project.title}
+        description={project.cardDescription}
+        path={`/work/${project.slug}`}
+        image={project.cardImage || undefined}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Work", path: "/work" },
+          { name: project.title, path: `/work/${project.slug}` },
+        ]}
+      />
       <ProjectHero title={project.title} />
 
       <ProjectOverview

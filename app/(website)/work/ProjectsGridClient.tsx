@@ -56,7 +56,7 @@ function ProjectCard({
         }`,
       } as any)}
     >
-      <Link href={`/projects/${project.slug}`} className="block h-full w-full">
+      <Link href={`/work/${project.slug}`} className="block h-full w-full">
         <Image
           alt={project.title}
           fill

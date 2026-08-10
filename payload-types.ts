@@ -328,7 +328,7 @@ export interface Project {
   showOnHome?: boolean | null;
   homeVideoUrl?: string | null;
   /**
-   * Lower numbers show first. Sorts the /projects grid and the homepage — and the navbar dropdown too, unless Nav Order is set.
+   * Lower numbers show first. Sorts the /work grid and the homepage — and the navbar dropdown too, unless Nav Order is set.
    */
   order?: number | null;
   frontEndTools?:
@@ -711,7 +711,7 @@ export interface SiteSetting {
          */
         subtitle?: string | null;
         /**
-         * Where the button links, e.g. "/projects/trellis-money".
+         * Where the button links, e.g. "/work/trellis-money".
          */
         url: string;
         buttonLabel: string;

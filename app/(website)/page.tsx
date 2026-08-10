@@ -3,6 +3,7 @@ import config from "@/payload.config";
 import HomeClient from "./HomeClient";
 import { groupToolsByProject } from "@/lib/tools";
 import { getNavBarData } from "@/lib/navbar";
+import { PersonJsonLd, WebSiteJsonLd } from "@/components/seo/JsonLd";
 import { resolveImageUrl } from "@/lib/images";
 import {
   homeProjectSections,
@@ -80,12 +81,16 @@ export default async function Page() {
   const menuItems = await getNavBarData();
 
   return (
-    <HomeClient
-      testimonials={testimonials}
-      heroVideoUrl={heroVideoUrl}
-      toolsByProject={toolsByProject}
-      menuItems={menuItems}
-      projectSections={projectSections}
-    />
+    <>
+      <PersonJsonLd />
+      <WebSiteJsonLd />
+      <HomeClient
+        testimonials={testimonials}
+        heroVideoUrl={heroVideoUrl}
+        toolsByProject={toolsByProject}
+        menuItems={menuItems}
+        projectSections={projectSections}
+      />
+    </>
   );
 }

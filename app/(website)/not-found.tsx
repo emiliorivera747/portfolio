@@ -3,7 +3,7 @@ import NotFoundContent from "@/components/NotFoundContent";
 import { BRAND_NAME } from "@/lib/brand";
 
 export const metadata: Metadata = {
-  title: `Page Not Found | ${BRAND_NAME}`,
+  title: "Page Not Found",
 };
 
 // Catches notFound() thrown inside the site's routes — a project or blog slug

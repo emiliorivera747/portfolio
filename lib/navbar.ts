@@ -30,7 +30,7 @@ function initialsFor(title: string) {
 // Server-only: it opens a Payload connection, so call it from a layout, page,
 // or other server component and pass the result down to <Navbar />.
 export async function getNavBarData(): Promise<MenuItem[]> {
-  const projectsEntry = navBarData.find((item) => item.url === "/projects");
+  const projectsEntry = navBarData.find((item) => item.url === "/work");
   if (!projectsEntry) return navBarData as MenuItem[];
 
   let projects: Project[] = [];
@@ -64,7 +64,7 @@ export async function getNavBarData(): Promise<MenuItem[]> {
   // `showInNav` defaults to true, but rows created before the field existed
   // come back null — treat anything that isn't an explicit false as visible.
   //
-  // The query sorts by `order`, which is what the /projects grid and homepage
+  // The query sorts by `order`, which is what the /work grid and homepage
   // use. The menu then re-sorts by `navOrder` so the two can diverge; falling
   // back to `order` leaves any project without a nav position exactly where it
   // is today, rather than bunching those at one end.
@@ -92,7 +92,7 @@ export async function getNavBarData(): Promise<MenuItem[]> {
 
   const projectLinks: SubMenuItem[] = visible.map((project, index) => {
     const navLogo = project.navLogo ?? {};
-    const url = `/projects/${project.slug}`;
+    const url = `/work/${project.slug}`;
     const fallback = fallbackByUrl.get(url);
     const logo = resolveImageUrl(navLogo) || fallback?.logo;
     return {
@@ -108,7 +108,7 @@ export async function getNavBarData(): Promise<MenuItem[]> {
   const allProjects: SubMenuItem = {
     id: projectLinks.length + 1,
     label: "All Work",
-    url: "/projects",
+    url: "/work",
     stack: projectLinks.slice(0, STACK_SIZE).map((project) => ({
       initials: project.initials as string,
       ...(project.logo ? { logo: project.logo } : {}),
@@ -121,7 +121,7 @@ export async function getNavBarData(): Promise<MenuItem[]> {
   // but still swap in the freshly generated Projects dropdown.
   if (navItems.length === 0) {
     return navBarData.map((item) =>
-      item.url === "/projects" ? { ...item, content: projectsContent } : item
+      item.url === "/work" ? { ...item, content: projectsContent } : item
     ) as MenuItem[];
   }
 

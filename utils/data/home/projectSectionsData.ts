@@ -28,7 +28,7 @@ export type HomeProjectSection = {
 export const homeProjectSections: HomeProjectSection[] = [
   {
     title: "Trellis Money",
-    url: "/projects/trellis-money",
+    url: "/work/trellis-money",
     buttonLabel: "Learn More",
     headerStyle: "featured",
     mediaType: "video",
@@ -39,7 +39,7 @@ export const homeProjectSections: HomeProjectSection[] = [
   },
   {
     title: "Casa Chirilagua",
-    url: "/projects/casa-chirilagua",
+    url: "/work/casa-chirilagua",
     buttonLabel: "Learn More",
     headerStyle: "standard",
     mediaType: "video",
@@ -50,7 +50,7 @@ export const homeProjectSections: HomeProjectSection[] = [
   },
   {
     title: "Portfolio",
-    url: "/projects/my-portfolio",
+    url: "/work/my-portfolio",
     buttonLabel: "Learn More",
     headerStyle: "standard",
     mediaType: "video",
@@ -61,7 +61,7 @@ export const homeProjectSections: HomeProjectSection[] = [
   {
     // Continues the Portfolio project above, so no rule between the two.
     title: "Responsive Design",
-    url: "/projects/my-portfolio",
+    url: "/work/my-portfolio",
     buttonLabel: "Learn More",
     headerStyle: "compact",
     mediaType: "video",

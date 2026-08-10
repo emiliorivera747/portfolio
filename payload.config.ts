@@ -187,16 +187,16 @@ const Testimonials: CollectionConfig = {
 
 // A project's tools (tabs below) show on both "/" and its own page, so
 // any change — including just editing Front End/Back End/Both tools —
-// needs to bust both, plus the /projects grid for card-level fields.
+// needs to bust both, plus the /work grid for card-level fields.
 // Projects also feed the navbar's dropdown (see lib/navbar.ts), which renders
 // on every page — so /about and /blog have to be busted too, not just the
 // pages that show project content directly.
 const projectPaths = (slug?: string) => [
   "/",
-  "/projects",
+  "/work",
   "/about",
   "/blog",
-  slug ? `/projects/${slug}` : undefined,
+  slug ? `/work/${slug}` : undefined,
 ];
 
 const revalidateProject: CollectionAfterChangeHook = ({ doc }) => {
@@ -208,7 +208,7 @@ const revalidateProjectOnDelete: CollectionAfterDeleteHook = ({ doc }) => {
   revalidatePaths(projectPaths(doc?.slug));
 };
 
-// Powers the /projects grid and each project's /projects/[slug] case-study page.
+// Powers the /work grid and each project's /work/[slug] case-study page.
 const Projects: CollectionConfig = {
   slug: "projects",
   admin: { useAsTitle: "title", group: "Projects" },
@@ -278,7 +278,7 @@ const Projects: CollectionConfig = {
         description: "Show this project in the navbar's Projects dropdown.",
       },
     },
-    // Deliberately separate from `order` below. `order` sorts the /projects
+    // Deliberately separate from `order` below. `order` sorts the /work
     // grid and the homepage, and the menu wants its own sequence — sharing one
     // field meant reordering the menu dragged the grid along with it. Left
     // empty this falls back to `order`, so the menu keeps its current sequence
@@ -299,7 +299,7 @@ const Projects: CollectionConfig = {
       defaultValue: 0,
       admin: {
         description:
-          "Lower numbers show first. Sorts the /projects grid and the homepage — and the navbar dropdown too, unless Nav Order is set.",
+          "Lower numbers show first. Sorts the /work grid and the homepage — and the navbar dropdown too, unless Nav Order is set.",
       },
     },
     // Powers this project's "Tools Used" section (shown on both the
@@ -452,7 +452,7 @@ const SiteSettings: GlobalConfig = {
           name: "url",
           type: "text",
           required: true,
-          admin: { description: 'Where the button links, e.g. "/projects/trellis-money".' },
+          admin: { description: 'Where the button links, e.g. "/work/trellis-money".' },
         },
         {
           name: "buttonLabel",
@@ -649,7 +649,7 @@ const AboutPage: GlobalConfig = {
 
 // The navbar renders on every page, so a change here has to bust all of them.
 const revalidateNavigation: GlobalAfterChangeHook = ({ doc }) => {
-  revalidatePaths(["/", "/projects", "/about", "/blog"]);
+  revalidatePaths(["/", "/work", "/about", "/blog"]);
   return doc;
 };
 

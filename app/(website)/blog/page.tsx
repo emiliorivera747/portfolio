@@ -4,6 +4,7 @@ import Navbar from "@/components/navbar/Navbar";
 import { getNavBarData } from "@/lib/navbar";
 import HeroImageBanner from "@/components/HeroImageBanner";
 import BlogCard from "@/components/blog/BlogCard";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 
 export const revalidate = 3600;
 
@@ -25,6 +26,12 @@ export default async function BlogPage() {
 
   return (
     <section className="w-screen min-h-screen h-auto">
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+        ]}
+      />
       <Navbar menuItems={menuItems} mode="light" />
       <HeroImageBanner title="Blogs." className="bg-[#1877F2]" />
       <div className="mx-[5%]">

@@ -1,7 +1,18 @@
+import { SITE_NAME, pageMetadata } from "@/lib/seo";
+
 export const metadata = {
-  title: "Blog | Emilio Rivera's Portfolio",
-  description:
-    "Writing on software engineering, projects, and lessons learned.",
+  ...pageMetadata({
+    title: "Blog",
+    description:
+      "Writing on software engineering, projects, and lessons learned.",
+    path: "/blog",
+  }),
+  // See the note in work/layout.tsx — an intermediate plain-string title stops
+  // the root template reaching this branch's children (/blog/[slug]).
+  title: {
+    default: "Blog",
+    template: `%s | ${SITE_NAME}`,
+  },
 };
 
 /**
