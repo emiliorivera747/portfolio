@@ -272,7 +272,7 @@ export interface Project {
   gallery?:
     | {
         title: string;
-        imageSource: 'url' | 'upload';
+        imageSource?: ('url' | 'upload') | null;
         /**
          * Image URL for the gallery image.
          */
@@ -334,7 +334,7 @@ export interface Project {
   frontEndTools?:
     | {
         name: string;
-        imageSource: 'url' | 'upload';
+        imageSource?: ('url' | 'upload') | null;
         /**
          * Image URL for the tool's icon.
          */
@@ -349,7 +349,7 @@ export interface Project {
   backEndTools?:
     | {
         name: string;
-        imageSource: 'url' | 'upload';
+        imageSource?: ('url' | 'upload') | null;
         /**
          * Image URL for the tool's icon.
          */
@@ -364,7 +364,7 @@ export interface Project {
   bothTools?:
     | {
         name: string;
-        imageSource: 'url' | 'upload';
+        imageSource?: ('url' | 'upload') | null;
         /**
          * Image URL for the tool's icon.
          */
@@ -700,6 +700,69 @@ export interface SiteSetting {
    * Background video on the homepage hero section. Upload a video file (mp4 recommended). Falls back to the default video if not set.
    */
   heroVideo?: (number | null) | Media;
+  /**
+   * Full-screen project bands, in order. Leave empty to fall back to the hardcoded homepage.
+   */
+  projectSections?:
+    | {
+        title: string;
+        /**
+         * Only shown on the Featured header style.
+         */
+        subtitle?: string | null;
+        /**
+         * Where the button links, e.g. "/projects/trellis-money".
+         */
+        url: string;
+        buttonLabel: string;
+        headerStyle: 'featured' | 'standard' | 'compact';
+        mediaType: 'video' | 'image';
+        /**
+         * Looping background video (mp4). Cloudinary URLs get a mobile-optimised variant automatically.
+         */
+        videoUrl?: string | null;
+        imageSource?: ('url' | 'upload') | null;
+        /**
+         * Image URL for the project section.
+         */
+        imageUrl?: string | null;
+        /**
+         * Upload an image for the project section instead of using a URL.
+         */
+        image?: (number | null) | Media;
+        /**
+         * Describes the image for screen readers. Falls back to the title.
+         */
+        imageAlt?: string | null;
+        /**
+         * Optional. Shown instead of the video on phones (under 768px). Leave empty to play the video everywhere.
+         */
+        mobileImage?: {
+          imageSource?: ('url' | 'upload') | null;
+          /**
+           * Image URL for the mobile image.
+           */
+          imageUrl?: string | null;
+          /**
+           * Upload an image for the mobile image instead of using a URL.
+           */
+          image?: (number | null) | Media;
+          /**
+           * Describes the mobile image for screen readers. Falls back to the title.
+           */
+          alt?: string | null;
+        };
+        /**
+         * Optional — show that project's Tools Used strip directly beneath this section.
+         */
+        toolsFromProject?: (number | null) | Project;
+        /**
+         * Draw a dividing rule above this section. Turn off when this section continues the project above it.
+         */
+        showDividerBefore?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -862,6 +925,32 @@ export interface Navigation {
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
   heroVideo?: T;
+  projectSections?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        url?: T;
+        buttonLabel?: T;
+        headerStyle?: T;
+        mediaType?: T;
+        videoUrl?: T;
+        imageSource?: T;
+        imageUrl?: T;
+        image?: T;
+        imageAlt?: T;
+        mobileImage?:
+          | T
+          | {
+              imageSource?: T;
+              imageUrl?: T;
+              image?: T;
+              alt?: T;
+            };
+        toolsFromProject?: T;
+        showDividerBefore?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

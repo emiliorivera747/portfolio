@@ -57,8 +57,17 @@ function revalidatePaths(paths: (string | undefined)[]) {
 // rows come back with a null imageSource.
 function imageSourceFields(
   subject: string,
-  { optional = false }: { optional?: boolean } = {}
+  {
+    optional = false,
+    when,
+  }: { optional?: boolean; when?: (siblingData: any) => boolean } = {}
 ): Field[] {
+  // `when` lets a caller hide the whole group behind something else in the
+  // same row — a homepage section only offers image fields once its media type
+  // is set to "image". It combines with each field's own imageSource condition
+  // rather than replacing it.
+  const shown = (siblingData: any) => (when ? when(siblingData) : true);
+
   return [
     {
       name: "imageSource",
@@ -69,13 +78,17 @@ function imageSourceFields(
         { label: "Image URL", value: "url" },
         { label: "Upload", value: "upload" },
       ],
-      admin: { layout: "horizontal" },
+      admin: {
+        layout: "horizontal",
+        condition: (_, siblingData) => shown(siblingData),
+      },
     },
     {
       name: "imageUrl",
       type: "text",
       admin: {
-        condition: (_, siblingData) => siblingData?.imageSource !== "upload",
+        condition: (_, siblingData) =>
+          shown(siblingData) && siblingData?.imageSource !== "upload",
         description: `Image URL for the ${subject}.`,
       },
       validate: (value: string | null | undefined, { siblingData }: any) =>
@@ -88,7 +101,8 @@ function imageSourceFields(
       type: "upload",
       relationTo: "media",
       admin: {
-        condition: (_, siblingData) => siblingData?.imageSource === "upload",
+        condition: (_, siblingData) =>
+          shown(siblingData) && siblingData?.imageSource === "upload",
         description: `Upload an image for the ${subject} instead of using a URL.`,
       },
       validate: ((value: unknown, { siblingData }: any) =>
@@ -412,6 +426,135 @@ const SiteSettings: GlobalConfig = {
         description:
           "Background video on the homepage hero section. Upload a video file (mp4 recommended). Falls back to the default video if not set.",
       },
+    },
+    // The full-bleed project bands down the homepage, which used to be
+    // hardcoded JSX in HomeClient.tsx. Rows are drag-orderable, so resequencing
+    // the homepage is a drag rather than an edit.
+    {
+      name: "projectSections",
+      type: "array",
+      labels: { singular: "Project Section", plural: "Project Sections" },
+      admin: {
+        description:
+          "Full-screen project bands, in order. Leave empty to fall back to the hardcoded homepage.",
+      },
+      fields: [
+        { name: "title", type: "text", required: true },
+        {
+          name: "subtitle",
+          type: "text",
+          admin: {
+            condition: (_, siblingData) => siblingData?.headerStyle === "featured",
+            description: "Only shown on the Featured header style.",
+          },
+        },
+        {
+          name: "url",
+          type: "text",
+          required: true,
+          admin: { description: 'Where the button links, e.g. "/projects/trellis-money".' },
+        },
+        {
+          name: "buttonLabel",
+          type: "text",
+          required: true,
+          defaultValue: "Learn More",
+        },
+        {
+          name: "headerStyle",
+          type: "radio",
+          required: true,
+          defaultValue: "standard",
+          options: [
+            { label: "Featured (large, centered)", value: "featured" },
+            { label: "Standard", value: "standard" },
+            { label: "Compact", value: "compact" },
+          ],
+          admin: { layout: "horizontal" },
+        },
+        // The point of this whole group: a section can be backed by a looping
+        // video or a still image.
+        {
+          name: "mediaType",
+          type: "radio",
+          required: true,
+          defaultValue: "video",
+          options: [
+            { label: "Video", value: "video" },
+            { label: "Image", value: "image" },
+          ],
+          admin: { layout: "horizontal" },
+        },
+        {
+          name: "videoUrl",
+          type: "text",
+          admin: {
+            condition: (_, siblingData) => siblingData?.mediaType !== "image",
+            description: "Looping background video (mp4). Cloudinary URLs get a mobile-optimised variant automatically.",
+          },
+          validate: (value: string | null | undefined, { siblingData }: any) =>
+            siblingData?.mediaType === "image" || value
+              ? true
+              : "A video URL is required unless this section uses an image.",
+        },
+        ...imageSourceFields("project section", {
+          optional: true,
+          when: (siblingData) => siblingData?.mediaType === "image",
+        }),
+        {
+          name: "imageAlt",
+          type: "text",
+          admin: {
+            condition: (_, siblingData) => siblingData?.mediaType === "image",
+            description: "Describes the image for screen readers. Falls back to the title.",
+          },
+        },
+        // A still to serve phones in place of the video. Autoplaying video is
+        // expensive on a phone connection, and the section is only ever mounted
+        // once it nears the viewport — so on mobile the video is never fetched
+        // at all when this is set, rather than fetched and then swapped out.
+        // Grouped so its URL-or-upload fields don't collide with the
+        // full-width image fields above.
+        {
+          name: "mobileImage",
+          type: "group",
+          label: "Mobile Image",
+          admin: {
+            condition: (_, siblingData) => siblingData?.mediaType !== "image",
+            description:
+              "Optional. Shown instead of the video on phones (under 768px). Leave empty to play the video everywhere.",
+          },
+          fields: [
+            ...imageSourceFields("mobile image", { optional: true }),
+            {
+              name: "alt",
+              type: "text",
+              admin: {
+                description:
+                  "Describes the mobile image for screen readers. Falls back to the title.",
+              },
+            },
+          ],
+        },
+        {
+          name: "toolsFromProject",
+          type: "relationship",
+          relationTo: "projects",
+          admin: {
+            description:
+              "Optional — show that project's Tools Used strip directly beneath this section.",
+          },
+        },
+        {
+          name: "showDividerBefore",
+          type: "checkbox",
+          defaultValue: true,
+          admin: {
+            description:
+              "Draw a dividing rule above this section. Turn off when this section continues the project above it.",
+          },
+        },
+      ],
     },
   ],
 };

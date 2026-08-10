@@ -1,14 +1,17 @@
-import React, { useRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { useVideoIntersectionObserver } from "@/hooks/useVideoIntersectionObserver";
-import { useIsMobile } from "@/hooks/useIsMobile";
 import { useNearViewport } from "@/hooks/useNearViewport";
-import { getMobileVideoUrl } from "@/utils/cloudinary";
 import ProjectButton from "@/components/ui/ProjectButton";
+import ProjectSectionMedia from "@/components/ProjectSectionMedia";
 
 interface ProjectSectionProps {
   title: string;
-  videoUrl: string;
+  /** Either a video or an image backs the section — see ProjectSectionMedia. */
+  videoUrl?: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  mobileImageUrl?: string;
+  mobileImageAlt?: string;
   buttonLabel: string;
   titleColor: string;
   titleFont: string;
@@ -30,6 +33,10 @@ const variants = {
 function ProjectSection({
   title,
   videoUrl,
+  imageUrl,
+  imageAlt,
+  mobileImageUrl,
+  mobileImageAlt,
   buttonLabel,
   titleColor,
   titleFont,
@@ -38,10 +45,7 @@ function ProjectSection({
   titleSize,
   url,
 }: ProjectSectionProps) {
-  const isMobile = useIsMobile();
   const { ref: sectionRef, isNear } = useNearViewport();
-  const videoRef = useRef<HTMLVideoElement>(null!);
-  useVideoIntersectionObserver(videoRef);
 
   return (
     <section ref={sectionRef as React.RefObject<HTMLElement>} className={`relative h-screen w-screen ${bgColor}`}>
@@ -55,15 +59,13 @@ function ProjectSection({
           <h2 className={`${titleFont} ${titleSize} ${titleColor}`}>{title}</h2>
         </motion.div>
         {isNear && (
-          <video
-            ref={videoRef}
-            className={`h-full w-full ${videoCover}`}
-            src={isMobile ? getMobileVideoUrl(videoUrl) : videoUrl}
-            preload="metadata"
-            autoPlay
-            loop
-            muted
-            playsInline
+          <ProjectSectionMedia
+            videoUrl={videoUrl}
+            imageUrl={imageUrl}
+            alt={imageAlt ?? title}
+            mobileImageUrl={mobileImageUrl}
+            mobileImageAlt={mobileImageAlt}
+            cover={videoCover}
           />
         )}
         <div className="absolute bottom-6 flex justify-center w-full">
