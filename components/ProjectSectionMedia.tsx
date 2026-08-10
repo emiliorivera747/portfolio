@@ -42,6 +42,15 @@ function ProjectSectionMedia({
 
   const className = `h-full w-full ${cover}`;
 
+  // Images are deliberately not given the section's `cover` class. Two reasons:
+  // it's breakpoint-scoped on most styles ("sm:object-cover"), so below 640px
+  // there'd be no object-fit at all and h-full/w-full would stretch the image;
+  // and being a responsive variant it would beat a base object-contain at
+  // >=640px no matter what order the classes appear in, cropping the image
+  // back. object-contain on its own guarantees the whole image is visible at
+  // every width, which is the point of supplying a still.
+  const imageClassName = "h-full w-full object-contain";
+
   // Explicit dimensions rather than `fill`: the section is a plain block, not
   // a positioned container, so `fill` would collapse it. 1920x1080 matches the
   // aspect of the videos these stand in for, and the object-fit class does the
@@ -53,7 +62,7 @@ function ProjectSectionMedia({
         alt={altText}
         width={1920}
         height={1080}
-        className={className}
+        className={imageClassName}
       />
     ) : (
       <Image
@@ -61,7 +70,7 @@ function ProjectSectionMedia({
         alt={altText}
         width={1920}
         height={1080}
-        className={className}
+        className={imageClassName}
       />
     );
 
