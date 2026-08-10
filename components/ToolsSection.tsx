@@ -58,7 +58,7 @@ function ToolsSection({
             <PrimaryButton
               text={"Front End"}
               actionFunction={() => handleClick("Front End")}
-              className={` w-40 ${
+              className={` w-40 text-xs sm:text-base ${
                 activeButton === "Front End"
                   ? buttonActiveStyle
                   : buttonDefaultStyle
@@ -70,7 +70,7 @@ function ToolsSection({
             <PrimaryButton
               text={"Back End"}
               actionFunction={() => handleClick("Back End")}
-              className={`w-40 ${
+              className={`w-40 text-xs sm:text-base ${
                 activeButton === "Back End"
                   ? buttonActiveStyle
                   : buttonDefaultStyle
@@ -81,7 +81,7 @@ function ToolsSection({
             <PrimaryButton
               text={"Both"}
               actionFunction={() => handleClick("Both")}
-              className={` w-40 ${
+              className={` w-40 text-xs sm:text-base ${
                 activeButton === "Both" ? buttonActiveStyle : buttonDefaultStyle
               }`}
             />

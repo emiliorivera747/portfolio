@@ -14,7 +14,9 @@ const ProjectButton = ({ href, label, className }: ProjectButtonProps) => {
       asChild
       variant="outline"
       className={cn(
-        "h-[3.5rem] px-[4rem] rounded-[12px] font-semibold text-primary-900 border-primary-300 hover:bg-primary-100 transition delay-150 duration-300 ease-in-out",
+        // Narrower and smaller on phones — 4rem of horizontal padding at
+        // full-size type made this span most of a phone's width.
+        "h-[3rem] sm:h-[3.5rem] px-[2.5rem] sm:px-[4rem] text-sm sm:text-base rounded-[12px] font-semibold text-primary-900 border-primary-300 hover:bg-primary-100 transition delay-150 duration-300 ease-in-out",
         className
       )}
       style={{
