@@ -9,11 +9,60 @@ import { ChevronDown } from "lucide-react";
 import Link from "next/link";
 
 // Types
-import { MenuItem, NavbarProps } from "@/types/navbar";
+import { MenuItem, NavbarProps, SubMenuItem } from "@/types/navbar";
 
 // Components
+import { CldImage } from "next-cloudinary";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import NavbarLogo from "@/components/navbar/NavbarLogo";
+import { BRAND_LOGO_URL, BRAND_NAME } from "@/lib/brand";
 import NavMenu from "@/components/navbar/NavMenu";
+
+/**
+ * The mark shown beside a sub-item in the mobile menu. A project carries its
+ * own logo (or initials as a fallback); the "All Work" entry carries a stack
+ * of the first few. Mirrors what the desktop dropdown draws, so the two menus
+ * read as the same navigation rather than two different ones.
+ */
+function SubItemMark({ subItem }: { subItem: SubMenuItem }) {
+  if (subItem.stack?.length) {
+    return (
+      <div className="flex -space-x-3 shrink-0">
+        {subItem.stack.slice(0, 3).map((entry, index) => (
+          <Avatar
+            key={index}
+            className="w-8 h-8 border border-white/20 bg-white ring-2 ring-black"
+          >
+            {entry.logo && (
+              <AvatarImage src={entry.logo} alt="" className="object-contain p-1" />
+            )}
+            <AvatarFallback className="bg-primary-800 text-white text-[0.6rem]">
+              {entry.initials}
+            </AvatarFallback>
+          </Avatar>
+        ))}
+      </div>
+    );
+  }
+
+  // About's sub-items are plain links with nothing to show — no empty circle.
+  if (!subItem.logo && !subItem.initials) return null;
+
+  return (
+    <Avatar
+      className={`w-8 h-8 shrink-0 border border-white/15 ${
+        subItem.logo ? "bg-white" : "bg-primary-800"
+      }`}
+    >
+      {subItem.logo && (
+        <AvatarImage src={subItem.logo} alt="" className="object-contain p-1" />
+      )}
+      <AvatarFallback className="bg-primary-800 text-white text-[0.65rem]">
+        {subItem.initials}
+      </AvatarFallback>
+    </Avatar>
+  );
+}
 
 /**
  *  Displays the main navigation bar.
@@ -127,7 +176,11 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu.
+          bg-black/95 rather than `bg-black opacity-90`: opacity applies to the
+          whole subtree, so the old panel dimmed its own text and logos along
+          with the backdrop. Tinting the background alone keeps the contents at
+          full strength. */}
       <div
         id="menu"
         role="menu"
@@ -135,68 +188,100 @@ export default function Navbar({ menuItems, mode = "light" }: NavbarProps) {
         aria-label="Main Navigation"
         className={`${openMenu ? "open" : ""} fixed z-40 top-0 right-0 ${
           openMenu ? "flex" : "hidden"
-        } flex flex-col items-center self-end w-full sm:w-80 h-screen px-6 py-1 pt-24 pb-4 tracking-widest text-white uppercase divide-y divide-gray-500 bg-black opacity-90 overflow-y-auto`}
+        } flex-col w-full sm:w-80 h-screen px-4 pt-5 pb-6 text-white bg-black/95 backdrop-blur-xl border-l border-white/10 overflow-y-auto`}
       >
-        {menuItems.map((item: MenuItem, index: number) => {
-          const isExpanded = expandedItem === item.id;
-          return (
-            <div key={index} className="w-full">
-              {item.content ? (
-                <>
-                  <button
-                    className="w-full py-3 flex items-center justify-center gap-2 hover:text-zinc-400 text-center"
-                    onClick={() => setExpandedItem(isExpanded ? null : (item.id ?? index))}
-                    aria-expanded={isExpanded}
-                  >
-                    {item.label}
-                    <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
-                    />
-                  </button>
-                  {isExpanded && (
-                    <div className="flex flex-col divide-y divide-gray-700 pb-2">
-                      {item.content.map((subItem) => (
-                        <div key={subItem.id} className="w-full py-2 text-center">
-                          {subItem.external || subItem.url.includes("#") ? (
-                            <a
-                              href={subItem.url}
-                              className="block text-sm text-zinc-300 hover:text-white normal-case tracking-normal"
-                              aria-label={subItem.label}
-                              {...(subItem.external ? { target: "_blank", rel: "noopener" } : {})}
-                              onClick={() => setOpenMenu(false)}
-                            >
-                              {subItem.label}
-                            </a>
-                          ) : (
-                            <Link
-                              href={subItem.url}
-                              className="block text-sm text-zinc-300 hover:text-white normal-case tracking-normal"
-                              aria-label={subItem.label}
-                              onClick={() => setOpenMenu(false)}
-                            >
-                              {subItem.label}
-                            </Link>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div className="py-3 text-center">
+        {/* pr-14 keeps the wordmark clear of the hamburger, which floats above
+            this panel in the top-right corner. */}
+        <Link
+          href="/"
+          onClick={() => setOpenMenu(false)}
+          aria-label={`${BRAND_NAME} home`}
+          className="flex items-center gap-3 pr-14 pb-5 mb-3 border-b border-white/10"
+        >
+          <CldImage
+            src={BRAND_LOGO_URL}
+            width={36}
+            height={36}
+            alt=""
+            aria-hidden="true"
+            className="rounded-lg"
+          />
+          <span className="font-bold tracking-widest text-sm uppercase">
+            {BRAND_NAME}
+          </span>
+        </Link>
+
+        <div className="flex flex-col gap-0.5">
+          {menuItems.map((item: MenuItem, index: number) => {
+            const isExpanded = expandedItem === item.id;
+            return (
+              <div key={index} className="w-full">
+                {item.content ? (
+                  <>
+                    <button
+                      className="w-full py-3 px-3 flex items-center justify-between gap-2 rounded-xl uppercase tracking-widest text-sm hover:bg-white/5 transition-colors"
+                      onClick={() => setExpandedItem(isExpanded ? null : (item.id ?? index))}
+                      aria-expanded={isExpanded}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronDown
+                        className={`h-4 w-4 shrink-0 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {isExpanded && (
+                      <div className="flex flex-col gap-0.5 pb-2">
+                        {item.content.map((subItem) => {
+                          const rowClass =
+                            "flex items-center gap-3 w-full rounded-xl px-3 py-2.5 text-sm text-zinc-300 normal-case tracking-normal hover:bg-white/5 hover:text-white transition-colors";
+                          const rowContent = (
+                            <>
+                              <SubItemMark subItem={subItem} />
+                              <span>{subItem.label}</span>
+                            </>
+                          );
+
+                          return (
+                            <div key={subItem.id} className="w-full">
+                              {subItem.external || subItem.url.includes("#") ? (
+                                <a
+                                  href={subItem.url}
+                                  className={rowClass}
+                                  aria-label={subItem.label}
+                                  {...(subItem.external ? { target: "_blank", rel: "noopener" } : {})}
+                                  onClick={() => setOpenMenu(false)}
+                                >
+                                  {rowContent}
+                                </a>
+                              ) : (
+                                <Link
+                                  href={subItem.url}
+                                  className={rowClass}
+                                  aria-label={subItem.label}
+                                  onClick={() => setOpenMenu(false)}
+                                >
+                                  {rowContent}
+                                </Link>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </>
+                ) : (
                   <Link
                     href={item.url}
-                    className="block hover:text-zinc-400"
+                    className="flex items-center w-full py-3 px-3 rounded-xl uppercase tracking-widest text-sm hover:bg-white/5 transition-colors"
                     aria-label={item.label}
                     onClick={() => setOpenMenu(false)}
                   >
                     {item.label}
                   </Link>
-                </div>
-              )}
-            </div>
-          );
-        })}
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </motion.nav>
   );

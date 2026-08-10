@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
+import NotFoundContent from "@/components/NotFoundContent";
+import { BRAND_NAME } from "@/lib/brand";
+
+export const metadata: Metadata = {
+  title: `Page Not Found | ${BRAND_NAME}`,
+};
+
+// Catches notFound() thrown inside the site's routes — a project or blog slug
+// that doesn't resolve, for instance. URLs matching no route at all are handled
+// by app/global-not-found.tsx, which renders the same component.
 export default function NotFound() {
-  return (
-    <div className="flex flex-col items-center justify-center h-screen w-screen gap-2">
-      <h1 className="text-3xl font-bold">404 Page Not Found</h1>
-      <p className="text-primary-600 font-light">Sorry, we couldn&apos;t find this page.</p>
-    </div>
-  );
+  return <NotFoundContent />;
 }

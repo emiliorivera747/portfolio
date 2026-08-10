@@ -7,6 +7,12 @@ const nextConfig = {
     DATABASE_URL: process.env.DATABASE_URL ?? "",
   },
   reactStrictMode: true,
+  experimental: {
+    // Enables app/global-not-found.tsx. Needed because this app has two root
+    // layouts — (website) and (payload) — so there's no single layout a 404 for
+    // unmatched URLs could be composed from.
+    globalNotFound: true,
+  },
   images: {
     remotePatterns: [
       {

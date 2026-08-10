@@ -4,6 +4,7 @@ import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 
 import { NavbarLogoProp } from "@/types/navbar";
+import { BRAND_LOGO_URL, BRAND_NAME } from "@/lib/brand";
 
 /**
  * Stores the logo for the navbar
@@ -21,7 +22,7 @@ const NavbarLogo = ({ logoTextColor, menuTextColor }: NavbarLogoProp) => {
         aria-label="Logo"
       >
         <CldImage
-          src="https://res.cloudinary.com/dcss55nem/image/upload/v1702588027/favicon_5_a5rhl0.png"
+          src={BRAND_LOGO_URL}
           fetchPriority="high"
           height={30}
           width={30}
@@ -29,9 +30,7 @@ const NavbarLogo = ({ logoTextColor, menuTextColor }: NavbarLogoProp) => {
           alt=""
           aria-hidden="true"
         />{" "}
-        <h1 className="self-end font-bold tracking-widest">
-          {"Emilio's Portfolio"}
-        </h1>
+        <h1 className="self-end font-bold tracking-widest">{BRAND_NAME}</h1>
       </Link>
     </div>
   );
