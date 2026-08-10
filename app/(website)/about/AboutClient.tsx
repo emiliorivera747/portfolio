@@ -40,20 +40,41 @@ const quoteVariants = {
 // uploads, which now also land on Cloudinary. CldImage wants a public ID
 // rather than a URL, so anything Cloudinary-hosted goes through the extractor
 // and everything else falls back to plain next/image.
-function SectionPhoto({ url, alt }: { url: string; alt: string }) {
-  const className =
-    "rounded-[12px] shadow-lg hover:scale-105 transition-transform duration-300";
+//
+// Every photo renders in the same fixed box regardless of its source aspect
+// ratio. The originals differ — the two event photos are 4:3, the Toastmasters
+// screenshot is nearly square — and without a box each one set its own height,
+// so the images marched down the page at visibly different sizes.
+// Landscape rather than square, and as wide as its column — the photo fills
+// the width available beside the text, with a fixed height so all three come
+// out identical.
+const PHOTO_BOX =
+  "w-full h-[16rem] sm:h-[20rem] md:h-[26rem] object-cover rounded-[12px] shadow-lg hover:scale-105 transition-transform duration-300";
 
+function SectionPhoto({ url, alt }: { url: string; alt: string }) {
   return isCloudinaryUrl(url) ? (
     <CldImage
       src={cloudinaryPublicId(url)}
-      height={700}
-      width={700}
+      // Cropped 3:2 at the source rather than downloading a 4:3 frame and
+      // letting CSS discard the rest. `gravity="auto"` lets Cloudinary pick
+      // the subject, so faces survive the crop.
+      width={1200}
+      height={800}
+      crop="fill"
+      gravity="auto"
+      sizes="(max-width: 768px) 100vw, 50vw"
       alt={alt}
-      className={className}
+      className={PHOTO_BOX}
     />
   ) : (
-    <Image src={url} height={700} width={700} alt={alt} className={className} />
+    <Image
+      src={url}
+      width={1200}
+      height={800}
+      sizes="(max-width: 768px) 100vw, 50vw"
+      alt={alt}
+      className={PHOTO_BOX}
+    />
   );
 }
 
@@ -109,11 +130,14 @@ export default function AboutClient({
 
                 {section.imageUrl && (
                   <div
-                    className={
+                    // Half the row on desktop, mirroring the text column, so
+                    // the photo is as wide as the space allows and every
+                    // section's photo lands on the same width.
+                    className={`w-full md:w-1/2 ${
                       section.imagePosition === "left"
                         ? "order-last md:order-first"
-                        : undefined
-                    }
+                        : ""
+                    }`}
                   >
                     <SectionPhoto
                       url={section.imageUrl}
