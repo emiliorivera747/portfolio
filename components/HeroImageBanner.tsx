@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const variants = {
@@ -34,7 +35,16 @@ export default function HeroImageBanner({
   captionColor = "text-white/60",
 }: HeroImageBannerProps) {
   return (
-    <div className={`h-screen flex flex-col items-center justify-center relative overflow-hidden ${className ?? ""}`}>
+    // The dark base matters: the overlay below is a translucent black, so until
+    // the media paints there is nothing behind it but the white page — and 30%
+    // black over white is a flash of grey. Starting dark means the gap reads as
+    // the image arriving rather than a colour change. Only applied when there
+    // is media to wait for; the blog banner passes its own background instead.
+    <div
+      className={`h-screen flex flex-col items-center justify-center relative overflow-hidden ${
+        src ? "bg-primary-1000" : ""
+      } ${className ?? ""}`}
+    >
       {src && type === "video" && (
         <video
           src={src}
@@ -47,7 +57,18 @@ export default function HeroImageBanner({
         />
       )}
       {src && type === "image" && (
-        <img src={src} alt={alt} className="absolute inset-0 w-full h-full object-cover" />
+        // next/image rather than a bare <img>: this is the page's LCP element,
+        // and `priority` preloads it from the document head instead of leaving
+        // the browser to discover it. It also serves AVIF/WebP at the right
+        // width, which matters a great deal here — the source PNG is 8MB.
+        <Image
+          src={src}
+          alt={alt ?? ""}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
       )}
       {src && <div className={`absolute inset-0 ${overlayOpacity}`} />}
       <motion.h1

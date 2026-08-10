@@ -87,15 +87,9 @@ const about = {
     alt: "Milky Way galaxy captured by the Artemis II crew",
     imageSource: "url" as const,
     imageUrl: `${CLOUDINARY}/v1776990294/Untitled_design_11_apepib.png`,
-    caption: richText(
-      paragraph([
-        text("Photo: "),
-        italic("Starstruck"),
-        text(
-          " — Milky Way captured by the Artemis II crew, April 7, 2026. Credit: NASA/JSC"
-        ),
-      ])
-    ),
+    // No caption. The field is still there — set one in the admin under
+    // About Page > Hero Banner > Caption if a photo credit is ever needed.
+    caption: null,
   },
   sections: [
     {
