@@ -130,11 +130,38 @@ const Users: CollectionConfig = {
   fields: [],
 };
 
+// The Cloudinary adapter builds each asset's public ID from the uploaded
+// filename, and that ID goes into delivery URLs unencoded. A macOS screenshot
+// arrives as "Screenshot 2026-08-22 at 7.09.38 PM.png", which yields a public
+// ID full of spaces and dots and a URL that breaks in several directions at
+// once. Flattening the name on the way in keeps every new asset URL-safe.
+function sanitizeUploadFilename(name: string): string {
+  const dot = name.lastIndexOf(".");
+  const hasExtension = dot > 0;
+  const base = hasExtension ? name.slice(0, dot) : name;
+  const extension = hasExtension ? name.slice(dot).toLowerCase() : "";
+  const safeBase = base
+    .normalize("NFKD")
+    .replace(/[^a-zA-Z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .toLowerCase();
+  return `${safeBase || "file"}${extension}`;
+}
+
 // Upload-enabled collection backed by Cloudinary (see the storage plugin below).
 const Media: CollectionConfig = {
   slug: "media",
   upload: {
     mimeTypes: ["image/*", "video/*"],
+  },
+  hooks: {
+    beforeOperation: [
+      ({ req, operation }) => {
+        if ((operation === "create" || operation === "update") && req.file) {
+          req.file.name = sanitizeUploadFilename(req.file.name);
+        }
+      },
+    ],
   },
   fields: [{ name: "alt", type: "text" }],
 };
