@@ -1,21 +1,13 @@
 import { getPayload } from "payload";
 import config from "@/payload.config";
 import { resolveImageUrl } from "@/lib/images";
+import { initialsFor } from "@/lib/initials";
 import { navBarData } from "@/utils/data/navbar/navbarData";
 import type { MenuItem, SubMenuItem } from "@/types/navbar";
 import type { Navigation, Project } from "@/payload-types";
 
 // How many project logos to stack on the "All Work" entry.
 const STACK_SIZE = 3;
-
-function initialsFor(title: string) {
-  return title
-    .split(" ")
-    .slice(0, 2)
-    .map((word) => word[0])
-    .join("")
-    .toUpperCase();
-}
 
 // Builds the navbar from Payload: the top-level entries and their sub-items
 // come from the `navigation` global, and any entry flagged
