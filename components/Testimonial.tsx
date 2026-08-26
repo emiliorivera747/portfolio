@@ -54,14 +54,14 @@ const TestimonialCard = ({
       onMouseMove={handlePointerMove}
       className="group relative flex w-full md:w-[calc(50%-0.75rem)] flex-col overflow-hidden rounded-[12px] border border-primary-300 bg-primary-100 shadow-sm"
     >
-      {/* The red blob that follows the pointer. It sits at the bottom of the
-          card's stacking order so the frosted pane above can blur it. */}
+      {/* The yellow blob that follows the pointer. It sits at the bottom of
+          the card's stacking order so the frosted pane above can blur it. */}
       <span
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{
           background:
-            "radial-gradient(9rem circle at var(--mx, 50%) var(--my, 50%), hsl(0 90% 55% / 0.8), transparent 70%)",
+            "radial-gradient(9rem circle at var(--mx, 50%) var(--my, 50%), hsl(45 95% 55% / 0.8), transparent 70%)",
         }}
       />
 
